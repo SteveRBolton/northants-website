@@ -16,7 +16,7 @@ hooks:
   build: |
     set -e
     yarn
-    npm i -g apollo
+    yarn global add apollo
     yarn build
     yarn codegen
 
