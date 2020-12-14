@@ -74,6 +74,7 @@ hooks:
   # fast.
   deploy: |
     set -e
+    php ./drush/platformsh_generate_drush_yml.php
 
 # The configuration of app when it is exposed to the web.
 web:
