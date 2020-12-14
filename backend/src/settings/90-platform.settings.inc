@@ -114,9 +114,6 @@ if ($platformsh->inRuntime()) {
   $settings['deployment_identifier'] = $settings['deployment_identifier'] ?? $platformsh->treeId;
 }
 
-print_r($settings);
-exit;
-
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
 // header then it can be an injection vector, depending on how the Host header is used.
