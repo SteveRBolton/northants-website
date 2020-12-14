@@ -110,6 +110,9 @@ if ($platformsh->inRuntime()) {
   // keys and such.
   $settings['hash_salt'] = $settings['hash_salt'] ?? $platformsh->projectEntropy;
 
+  print_r('test' . $platformsh->projectEntropy);
+  exit;
+
   // Set the deployment identifier, which is used by some Drupal cache systems.
   $settings['deployment_identifier'] = $settings['deployment_identifier'] ?? $platformsh->treeId;
 }
