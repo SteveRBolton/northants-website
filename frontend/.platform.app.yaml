@@ -18,10 +18,10 @@ hooks:
     yarn
     yarn global add apollo
     yarn build
-    yarn codegen
 
   post_deploy: |
-
+    set -e
+    yarn codegen
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024
@@ -30,3 +30,8 @@ disk: 1024
 web:
   commands:
     start: npx next start -p $PORT
+
+mounts:
+  '/__generated__':
+    source: local
+    source_path: __generated__
