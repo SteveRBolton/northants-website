@@ -15,12 +15,13 @@ relationships:
 hooks:
   build: |
     set -e
-
-  post_deploy: |
     yarn
     npm i -g apollo
-    yarn codegen
     yarn build
+    yarn codegen
+
+  post_deploy: |
+
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024

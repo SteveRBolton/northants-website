@@ -24,6 +24,7 @@ $base_domains = [
   'dev.example.com' => 'dev',
   'test.example.com' => 'test',
   'www.example.com' => 'prod',
+  'cms.master-7rqtwti-buviaip2abrdc.uk-1.platformsh.site' => 'dev',
 ];
 
 $platform = '';
