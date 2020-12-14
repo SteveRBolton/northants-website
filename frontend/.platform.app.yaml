@@ -11,6 +11,11 @@ dependencies:
 relationships:
   backend: 'backend:http'
 
+mounts:
+  '/__generated__':
+    source: local
+    source_path: '__generated__'
+
 # The hooks that will be triggered when the package is deployed.
 hooks:
   build: |
@@ -30,8 +35,3 @@ disk: 1024
 web:
   commands:
     start: npx next start -p $PORT
-
-mounts:
-  '/__generated__':
-    source: local
-    source_path: __generated__
