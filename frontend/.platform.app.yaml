@@ -13,6 +13,9 @@ relationships:
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
+  build: |
+    set -e
+
   post_deploy: |
     yarn
     npm i -g apollo
