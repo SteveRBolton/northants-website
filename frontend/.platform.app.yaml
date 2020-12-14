@@ -18,6 +18,9 @@ hooks:
     yarn
     yarn build
 
+  post_deploy: |
+    npx next start -p 80
+
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
