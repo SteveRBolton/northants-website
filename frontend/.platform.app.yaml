@@ -12,6 +12,9 @@ relationships:
   backend: 'backend:http'
 
 mounts:
+  '/.next':
+    source: local
+    source_path: '.next'
   '/__generated__':
     source: local
     source_path: '__generated__'
