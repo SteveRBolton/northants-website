@@ -30,7 +30,7 @@ hooks:
   build: |
     set -e
     yarn
-    yarn global add apollo --prefix /usr/local
+    npm install -g apollo
 
   post_deploy: |
     set -e
