@@ -24,4 +24,4 @@ disk: 1024
 # The configuration of the application when it is exposed to the web.
 web:
   commands:
-    start: npx next start -p $PORT
+    start: npx next start -p 80
