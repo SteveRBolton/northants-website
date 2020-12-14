@@ -30,11 +30,6 @@ hooks:
   build: |
     set -e
     yarn
-    npm install -g apollo
-
-  post_deploy: |
-    set -e
-    yarn codegen
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024
