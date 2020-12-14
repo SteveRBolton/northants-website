@@ -14,16 +14,16 @@ relationships:
 mounts:
   '/.cache':
     source: local
-    source_path: cache
+    source_path: 'cache'
   '/.config':
     source: local
-    source_path: config
+    source_path: 'config'
   '/.next':
     source: local
-    source_path: next
+    source_path: 'next'
   '/__generated__':
     source: local
-    source_path: __generated__
+    source_path: '__generated__'
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
@@ -31,7 +31,6 @@ hooks:
     set -e
     yarn
     yarn global add apollo
-    yarn build
 
   post_deploy: |
     set -e

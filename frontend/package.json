@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "start:server": "NODE_TLS_REJECT_UNAUTHORIZED='0' node src/server/graphql",
-    "precodegen": "NODE_TLS_REJECT_UNAUTHORIZED='0' apollo schema:download --endpoint=https://core-cms.northants.localhost/graphql",
+    "precodegen": "NODE_TLS_REJECT_UNAUTHORIZED='0' apollo schema:download --endpoint=https://cms.master-7rqtwti-buviaip2abrdc.uk-1.platformsh.site/graphql",
     "codegen": "apollo codegen:generate --globalTypesFile=src/types/graphql/__generated__/global.d.ts --queries='src/**/!(*.local).{ts,tsx}' --addTypename --localSchemaFile schema.json --target typescript"
   },
   "dependencies": {
