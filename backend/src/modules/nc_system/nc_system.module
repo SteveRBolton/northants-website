@@ -1,0 +1,31 @@
+<?php
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\nc_system\Entity\Paragraph\CallToAction;
+use Drupal\nc_system\Entity\Node\ServicePage;
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ *nfo
+ * @param array $bundles
+ */
+function nc_system_entity_bundle_info_alter(array &$bundles) {
+
+  // Node bundles
+  $bundles['node']['service_page']['class'] = ServicePage::class;
+
+  // Paragraph bundles
+  $bundles['paragraph']['call_to_action']['class'] = CallToAction::class;
+
+//  $bundles['taxonomy_term']['tags']['class'] = Tag::class;
+}
+
+/**
+ * @param EntityTypeInterface[] $entity_types
+ */
+function nc_system_entity_type_alter(&$entity_types) {
+  if (isset($entity_types['embedded_paragraphs'])) {
+    // Use our own EmbeddedParagraphs class which supports GraphQL entity field resolution.
+    $entity_types['embedded_paragraphs']->setClass('Drupal\nc_system\Entity\EmbeddedParagraphs');
+  }
+}

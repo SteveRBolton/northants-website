@@ -1,0 +1,130 @@
+
+# Query
+type Query {
+  route(path: String!): DrupalRoute!
+}
+
+# Scalars
+scalar HTML
+
+# Directives
+directive @entityType on INTERFACE | UNION | OBJECT
+# TODO Use this to auto-resolve entities to graphql types
+directive @entity(type: EntityType!, bundle: String!) on OBJECT
+
+# Drupal routes
+
+union DrupalRoute = DrupalNodeRoute | DrupalNotFoundRoute | DrupalOfflineRoute | DrupalRedirectRoute | DrupalAccessDeniedRoute
+
+
+type DrupalNodeRoute  {
+  node: Node!
+}
+
+type DrupalNotFoundRoute {
+  info: String
+}
+
+type DrupalOfflineRoute {
+  info: String
+}
+
+type DrupalRedirectRoute {
+  destination: String!
+  status: Int!
+}
+
+type DrupalAccessDeniedRoute {
+  reason: String!
+}
+
+#
+# Drupal field structures
+#
+
+interface FormattedFieldBase {
+  value: String!
+  format: String!
+  processed: String!
+}
+
+type FormattedField implements FormattedFieldBase {
+  value: String!
+  format: String!
+  processed: String!
+}
+
+type FormattedFieldWithParagraphsEmbed implements FormattedFieldBase {
+  value: String!
+  format: String!
+  processed: String!
+  embeds: [EmbeddedParagraph!]!
+}
+
+type EmbeddedParagraph @entityType @entity(type: embedded_paragraph, bundle: "EmbeddedParagraph") {
+  # Used by FormattedFieldWithParagraphsEmbed
+  id: ID!
+  paragraph: Paragraph!
+}
+
+# Links
+type LinkField {
+  url: String!
+  external: Boolean!
+}
+
+type LinkFieldWithTitle {
+  url: String!
+  title: String!
+  external: Boolean!
+}
+
+
+
+
+# TODO: Use this later?
+#enum VersionStatus {
+#  PUBLISHED
+#  DRAFT
+#  DRAFT
+#  PREVIOUS_REVISION
+#  PREVIEW
+#}
+
+enum EntityType {
+  node
+  paragraph
+  embedded_paragraph
+}
+
+#
+# Content types (Nodes)
+#
+
+interface Node  @entityType {
+  id: String!
+  title: String!
+  status: Boolean!
+}
+
+
+
+type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
+  id: String!
+  title: String!
+  status: Boolean!
+  body: FormattedFieldWithParagraphsEmbed!
+}
+
+#
+# Paragraph types
+#
+
+interface Paragraph @entityType {
+  id: String!
+}
+
+type CallToActionParagraph implements Paragraph @entity(type: paragraph, bundle: "call_to_action") {
+  id: String!
+  link: LinkFieldWithTitle!
+}

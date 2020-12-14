@@ -1,0 +1,5 @@
+name: Node modifications
+description: Node edit form modifications for Northants
+package: Northants
+type: module
+core_version_requirement: ^9

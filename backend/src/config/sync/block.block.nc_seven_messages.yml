@@ -1,0 +1,22 @@
+uuid: da1da2ec-84c2-4c03-a0d6-f86ec0161f05
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nc_seven
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: nc_seven_messages
+theme: nc_seven
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

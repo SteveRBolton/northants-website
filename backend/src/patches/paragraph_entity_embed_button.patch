@@ -1,0 +1,35 @@
+diff --git a/src/Plugin/EmbedType/Paragraph.php b/src/Plugin/EmbedType/Paragraph.php
+index ed236f3..4866b5a 100644
+--- a/src/Plugin/EmbedType/Paragraph.php
++++ b/src/Plugin/EmbedType/Paragraph.php
+@@ -62,6 +62,13 @@ class Paragraph extends EmbedTypeBase implements ContainerFactoryPluginInterface
+         'visible' => [':input[name="type_settings[enable_paragraph_type_filter]"]' => ['checked' => TRUE]],
+       ],
+     ];
++    $form['paragraphs_add_mode'] = [
++      '#type' => 'select',
++      '#title' => $this->t('Paragraphs add mode'),
++      '#description' => $this->t('Select which add mode to use when selecting a paragraph, the default is a drop down.'),
++      '#options' => ['dropdown' => $this->t('Dropdown select'), 'button' => $this->t('Buttons')],
++      '#default_value' => $this->getConfigurationValue('paragraphs_add_mode', 'dropdown'),
++    ];
+
+     return $form;
+   }
+diff --git a/src/Plugin/Field/FieldWidget/EmbedParagraphsWidget.php b/src/Plugin/Field/FieldWidget/EmbedParagraphsWidget.php
+index 649dfbc..d9e57b9 100644
+--- a/src/Plugin/Field/FieldWidget/EmbedParagraphsWidget.php
++++ b/src/Plugin/Field/FieldWidget/EmbedParagraphsWidget.php
+@@ -92,6 +92,12 @@ class EmbedParagraphsWidget extends ParagraphsWidget {
+     $storage = $form_state->getStorage();
+     $this->embedButton = isset($storage['editorParams']['embed_button']) ?
+       $storage['editorParams']['embed_button'] : [];
++
++    if (!empty($this->embedButton->type_settings['paragraphs_add_mode'])) {
++      // Set the add mode specified.
++      $this->settings['add_mode'] = $this->embedButton->type_settings['paragraphs_add_mode'];
++    }
++
+     return parent::formMultipleElements($items, $form, $form_state);
+   }
+

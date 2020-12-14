@@ -1,0 +1,67 @@
+<?php
+
+use Drupal\paragraphs_entity_embed\Entity\EmbeddedParagraphs;
+use Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Prepares variables for entity embed container templates.
+ *
+ * Default template: entity-embed-container.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ *     Properties used: #attributes, #children.
+ */
+function nc_seven_preprocess_entity_embed_container(array &$variables) {
+  $variables['element'] += ['#attributes' => []];
+  $variables['attributes'] = $variables['element']['#attributes'];
+  $variables['children'] = $variables['element']['#children'];
+
+  $entity = $variables['element']['#entity'];
+
+  if ($entity instanceof \Drupal\Core\Entity\EntityInterface) {
+    $type = $entity->getEntityType()->id();
+    $function = '_nc_seven_preprocess_entity_embed_container__' . $type;
+
+    if (function_exists($function)) {
+      $function($entity, $variables);
+    }
+  }
+}
+
+/**
+ * @param \Drupal\paragraphs_entity_embed\Entity\EmbeddedParagraphs $embedded_paragraph
+ * @param array $variables
+ */
+function _nc_seven_preprocess_entity_embed_container__embedded_paragraphs(EmbeddedParagraphs $embedded_paragraph, array &$variables) {
+  $paragraphs = $embedded_paragraph->getParagraph();
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $paragraphs[0];
+  $type = $paragraph->bundle();
+  $function = '_nc_seven_preprocess_entity_embed_container__paragraph__' . $type;
+
+  if (function_exists($function)) {
+    $function($paragraph, $variables);
+  }
+}
+
+/**
+ * Change the embed container depending on what's in the image paragraph.
+ *
+ * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+ * @param $variables
+ */
+function _nc_seven_preprocess_entity_embed_container__paragraph__image(Paragraph $paragraph, &$variables) {
+  $alignment = substr( $paragraph->image_alignment->value, 0, 4 ) === "left" ? 'left' : 'full';
+  $alignment = substr( $paragraph->image_alignment->value, 0, 5 ) === "right" ? 'right' : $alignment;
+
+  $variables['attributes']['class'][] = 'image-align-' . $alignment;
+
+  if (strpos($paragraph->image_alignment->value, 'small') !== false) {
+    $variables['attributes']['class'][] = 'image-size-small';
+  }
+
+  $variables['attributes']['class'][] = 'embedded-image';
+}
+

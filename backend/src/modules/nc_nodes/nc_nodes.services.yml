@@ -1,0 +1,3 @@
+services:
+  nc_nodes.embedded_paragraphs:
+    class: \Drupal\nc_nodes\EmbeddedParagraphsService

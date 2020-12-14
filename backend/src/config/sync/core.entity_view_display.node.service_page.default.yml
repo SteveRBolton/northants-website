@@ -1,0 +1,28 @@
+uuid: 82b6d87b-d2ec-4352-97b9-e78209b81de5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.service_page.field_wysiwyg_slices
+    - node.type.service_page
+  module:
+    - text
+    - user
+id: node.service_page.default
+targetEntityType: node
+bundle: service_page
+mode: default
+content:
+  field_wysiwyg_slices:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

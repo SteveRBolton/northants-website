@@ -1,0 +1,19 @@
+uuid: fa8a2a32-7c31-40d7-8fd3-a9a8b568fd4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quote_text
+    - paragraphs.paragraphs_type.pull_quote
+id: paragraph.pull_quote.field_quote_text
+field_name: field_quote_text
+entity_type: paragraph
+bundle: pull_quote
+label: 'Quote text'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

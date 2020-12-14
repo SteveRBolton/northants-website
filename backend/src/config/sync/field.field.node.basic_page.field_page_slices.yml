@@ -1,0 +1,32 @@
+uuid: c991f543-a36f-4e1d-88e3-e25037a5c5c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page_slices
+    - node.type.basic_page
+  module:
+    - entity_reference_revisions
+id: node.basic_page.field_page_slices
+field_name: field_page_slices
+entity_type: node
+bundle: basic_page
+label: 'Page Slices'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles: null
+    target_bundles_drag_drop:
+      call_to_action:
+        weight: 3
+        enabled: false
+      pull_quote:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

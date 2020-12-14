@@ -1,0 +1,28 @@
+uuid: de9c0414-e10b-40fc-8795-e0db7021f174
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.pull_quote.field_citation
+    - field.field.paragraph.pull_quote.field_quote_text
+    - paragraphs.paragraphs_type.pull_quote
+id: paragraph.pull_quote.default
+targetEntityType: paragraph
+bundle: pull_quote
+mode: default
+content:
+  field_citation:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_quote_text:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden: {  }

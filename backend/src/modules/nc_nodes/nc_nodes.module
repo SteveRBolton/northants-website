@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ *
+ * Hook implementations for the bfi_nodes module.
+ */
+
+use Drupal\Core\Site\Settings;
+use Drupal\Core\Url;
+use GuzzleHttp\Exception\RequestException;
+use Ramsey\Uuid\Uuid as UuidLib;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function nc_nodes_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Change submit button text on the node edit form.
+  $router_item = \Drupal::routeMatch()->getRouteName();
+
+  if ($router_item === 'entity.node.edit_form' || $router_item === 'node.add') {
+    $form['actions']['submit']['#value'] = t('Save and close');
+
+    // Set the default moderation state to draft
+    $form['moderation_state']['widget'][0]['state']['#default_value'] = 'draft';
+
+    if (!empty($form['publish_state']['widget'][0]['#options']['published'])) {
+      $form['publish_state']['widget'][0]['#default_value'] = 'published';
+    }
+
+    if (!empty($form['unpublish_state']['widget'][0]['#options']['archived'])) {
+      $form['unpublish_state']['widget'][0]['#default_value'] = 'archived';
+    }
+  }
+
+  // Remove the body label.
+  if (!empty($form['body'])) {
+    $form['body']['widget'][0]['#title'] = '';
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function nc_nodes_node_presave(Drupal\node\Entity\Node $node) {
+  if (!$node->hasField('body') || !$node->hasField('field_page_slices')) {
+    return;
+  }
+
+  $embedded_paragraphs = [];
+
+  /** @var \Drupal\nc_nodes\EmbeddedParagraphsService $paragraphs_service */
+  $paragraphs_service = \Drupal::service('nc_nodes.embedded_paragraphs');
+
+  /** @var \Drupal\text\Plugin\Field\FieldType\TextLongItem $body */
+  $body = $node->get('body')[0];
+
+  if (empty($body)) {
+    // Can be null if they've not put anything in the field.
+    return;
+  }
+
+  $html = $body->getValue();
+
+  foreach ($paragraphs_service->getParagraphsFromHTML($html['value']) as $embedded_paragraph) {
+    if (!in_array($embedded_paragraph, $embedded_paragraphs)) {
+      $embedded_paragraphs[] = $embedded_paragraph;
+    }
+  }
+
+  $node->field_page_slices = $embedded_paragraphs;
+}
