@@ -12,6 +12,9 @@ relationships:
   backend: 'backend:http'
 
 mounts:
+  '/.cache':
+    source: local
+    source_path: cache
   '/.next':
     source: local
     source_path: '.next'
@@ -25,10 +28,10 @@ hooks:
     set -e
     yarn
     yarn global add apollo
+    yarn build
 
   post_deploy: |
     set -e
-    yarn build
     yarn codegen
 
 # The size of the persistent disk of the application (in MB).
