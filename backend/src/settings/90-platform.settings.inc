@@ -89,6 +89,9 @@ if ($platformsh->hasRelationship('redis') && !InstallerKernel::installationAttem
   ];
 }
 
+print_r($platformsh->inRuntime());
+exit;
+
 if ($platformsh->inRuntime()) {
   // Configure private and temporary file paths.
   if (!isset($settings['file_private_path'])) {
