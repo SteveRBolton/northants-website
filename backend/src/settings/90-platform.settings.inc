@@ -89,9 +89,6 @@ if ($platformsh->hasRelationship('redis') && !InstallerKernel::installationAttem
   ];
 }
 
-print_r($platformsh->inRuntime());
-exit;
-
 if ($platformsh->inRuntime()) {
   // Configure private and temporary file paths.
   if (!isset($settings['file_private_path'])) {
@@ -116,6 +113,9 @@ if ($platformsh->inRuntime()) {
   // Set the deployment identifier, which is used by some Drupal cache systems.
   $settings['deployment_identifier'] = $settings['deployment_identifier'] ?? $platformsh->treeId;
 }
+
+print_r($settings);
+exit;
 
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
