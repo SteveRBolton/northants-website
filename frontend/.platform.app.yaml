@@ -28,12 +28,6 @@ web:
     start: npx next start -p $PORT
 
 mounts:
-  '/.config':
-    source: local
-    source_path: config
-  '/.global':
-    source: local
-    source_path: global
-  '/.next':
-    source: local
-    source_path: next
+  "/.config": "shared:cache"
+  "/.global": "shared:config"
+  "/.next": "shared:next"
