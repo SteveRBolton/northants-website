@@ -3,5 +3,6 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-# JetBrains IDE
-.idea/
+# IDEs
+.idea
+.vscode
