@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPageContext } from 'next';
 import React, { ReactElement } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { BreadcrumbsProps } from 'northants-design-system/build/library/Structure/Breadcrumbs/Breadcrumbs.types';
+import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import ServicePage from '../../cmsPages/ServicePage';
