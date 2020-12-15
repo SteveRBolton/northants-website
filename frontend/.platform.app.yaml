@@ -24,14 +24,3 @@ disk: 500
 web:
   commands:
     start: npx next start -p $PORT
-
-mounts:
-  '/.config':
-    source: local
-    source_path: config
-  '/.global':
-    source: local
-    source_path: global
-  '/.next':
-    source: local
-    source_path: next
