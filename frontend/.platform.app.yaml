@@ -16,9 +16,6 @@ hooks:
   build: |
     yarn
 
-  post_deploy: |
-    yarn build
-
 # The size of the persistent disk of the application (in MB).
 disk: 500
 
