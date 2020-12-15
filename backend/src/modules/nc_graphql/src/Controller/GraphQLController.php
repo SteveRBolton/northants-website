@@ -186,49 +186,16 @@ static function resolveEntityField(ContentEntityInterface $entity, $args, $conte
       return $typeConfig;
     };
 
-//    $c = \Drupal::cache()->get('nc_graphql.schema');
-//    if ($c = \Drupal::cache()->get('nc_graphql.schema')) {
-//      $doc = AST::fromArray($c->data);
-//    }
-//    else {
-//      $doc = Parser::parse(file_get_contents(DRUPAL_ROOT . '/../src/schema.graphql'));
-//      \Drupal::cache()->set('nc_graphql.schema', AST::toArray($doc));
-//    }
-
-    $doc = Parser::parse(file_get_contents(DRUPAL_ROOT . '/../src/schema.graphql'));
-
     // Build your existing schema
-    $originalSchema = BuildSchema::build($doc);
-
-    // Extend existing schema with Federation
+    $originalSchema = BuildSchema::build(file_get_contents(DRUPAL_ROOT . '/../src/schema.graphql'), $typeConfigDecorator);
+    // Extend schema with federation
     $federation = new \Drupal\nc_graphql\Federation();
-    //$federation = new \PascalDeVink\GraphQLFederation\Federation();
     $extendedSchema = $federation->extendSchema($originalSchema);
+    $schema = $extendedSchema;
 
-    // Federation loses custom type loaders so we reset them here
-//    $schemaString = \GraphQL\Utils\SchemaPrinter::doPrint($extendedSchema);
-//    $schema = \GraphQL\Utils\BuildSchema::build($schemaString, $typeConfigDecorator);
-
-    //$test = SchemaPrinter::doPrint($schema);
-
-    // Get your root value resolver.
-    //$root = \Drupal::service('nc_graphql.root')->getRoot();
-
-    // And extend it with Federation resolvers.
-    //$root = $federation->addResolversToRootValue($root);
-
-    // Doing this is easier than fixing https://github.com/pascaldevink/php-graphql-federation/issues/1
-//    $root['_service'] = function() {
-//      return [
-//        'sdl' => file_get_contents(DRUPAL_ROOT . '/../src/schema.graphql'),
-//      ];
-//    };
-//
-//    $root['_service'] = ['sdl' => file_get_contents(DRUPAL_ROOT . '/../src/schema.graphql')];
-
-    // old
-    $schema = BuildSchema::build($doc, $typeConfigDecorator);
+    // Add resolvers to root.
     $root = \Drupal::service('nc_graphql.root')->getRoot();
+    $root = $federation->addResolversToRootValue($root);
 
     $rules = [
       new QueryComplexity(5000), // 3.5k at last check
@@ -248,7 +215,7 @@ static function resolveEntityField(ContentEntityInterface $entity, $args, $conte
         }
         return array_map($formatter, $errors);
       },
-      'debug' => NC_GRAPHQL_DEBUG,
+      'debugFlag' => NC_GRAPHQL_DEBUG,
       'queryBatching' => TRUE,
       'persistentQueryLoader' => function($queryId, $params) {
 

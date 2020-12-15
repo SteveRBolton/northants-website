@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64a1129d10b84fd7cc041791e6c705c7",
+    "content-hash": "35621d06f6f1ed332427330aae5ec5f6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4712,51 +4712,6 @@
             "time": "2020-09-26T10:30:38+00:00"
         },
         {
-            "name": "pascaldevink/graphql-federation",
-            "version": "v0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pascaldevink/php-graphql-federation.git",
-                "reference": "fd016d790b918d24a29e2fb77cbe8d3cced44715"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pascaldevink/php-graphql-federation/zipball/fd016d790b918d24a29e2fb77cbe8d3cced44715",
-                "reference": "fd016d790b918d24a29e2fb77cbe8d3cced44715",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3",
-                "webonyx/graphql-php": "^0.13.8"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PascalDeVink\\GraphQLFederation\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pascal de vink",
-                    "email": "pascal@pascaldevink.nl"
-                }
-            ],
-            "description": "Utility for creating GraphQL microservices, which can be combined into a single endpoint through tools like Apollo Gateway",
-            "keywords": [
-                "Federation",
-                "apollo",
-                "graphql"
-            ],
-            "time": "2019-10-30T16:27:08+00:00"
-        },
-        {
             "name": "pear/archive_tar",
             "version": "1.4.11",
             "source": {
@@ -8050,16 +8005,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v0.13.9",
+            "version": "v14.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "d9a94fddcad0a35d4bced212b8a44ad1bc59bdf3"
+                "reference": "aab3d49181467db064b41429cde117a7589625fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/d9a94fddcad0a35d4bced212b8a44ad1bc59bdf3",
-                "reference": "d9a94fddcad0a35d4bced212b8a44ad1bc59bdf3",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/aab3d49181467db064b41429cde117a7589625fc",
+                "reference": "aab3d49181467db064b41429cde117a7589625fc",
                 "shasum": ""
             },
             "require": {
@@ -8068,15 +8023,19 @@
                 "php": "^7.1||^8.0"
             },
             "require-dev": {
+                "amphp/amp": "^2.3",
                 "doctrine/coding-standard": "^6.0",
-                "phpbench/phpbench": "^0.14.0",
-                "phpstan/phpstan": "^0.11.4",
-                "phpstan/phpstan-phpunit": "^0.11.0",
-                "phpstan/phpstan-strict-rules": "^0.11.0",
-                "phpunit/phpcov": "^5.0",
-                "phpunit/phpunit": "^7.2",
+                "nyholm/psr7": "^1.2",
+                "phpbench/phpbench": "^0.16.10",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "0.12.32",
+                "phpstan/phpstan-phpunit": "0.12.11",
+                "phpstan/phpstan-strict-rules": "0.12.2",
+                "phpunit/phpunit": "^7.2|^8.5",
                 "psr/http-message": "^1.0",
-                "react/promise": "2.*"
+                "react/promise": "2.*",
+                "simpod/php-coveralls-mirror": "^3.0",
+                "squizlabs/php_codesniffer": "3.5.4"
             },
             "suggest": {
                 "psr/http-message": "To use standard GraphQL server",
@@ -8104,7 +8063,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-07-02T05:49:25+00:00"
+            "time": "2020-12-03T16:05:21+00:00"
         }
     ],
     "packages-dev": [

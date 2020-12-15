@@ -2,6 +2,7 @@
 # Query
 type Query {
   route(path: String!): DrupalRoute!
+  globals: DrupalGlobals!
 }
 
 # Scalars
@@ -36,6 +37,14 @@ type DrupalRedirectRoute {
 
 type DrupalAccessDeniedRoute {
   reason: String!
+}
+
+#
+# Globals
+#
+
+type DrupalGlobals {
+  footerLinks: [LinkFieldWithTitle!]!
 }
 
 #

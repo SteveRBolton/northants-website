@@ -102,6 +102,9 @@ class Root {
         }
         throw new \Exception('Cannot return a route for path ' . $args['path']);
       },
+      'globals' => function ($root, $args, $context) {
+        return Root::getGlobals();
+      }
     ];
   }
 
@@ -125,7 +128,7 @@ class Root {
    *
    * @return array
    */
-  public static function getMenuLinks($menuName = 'footer', $maxDepth = 2) {
+  public static function getMenuLinks($menuName = 'footer', $maxDepth = 2, $flatten = false) {
     $menuTree = \Drupal::menuTree();
 
     $params = new MenuTreeParameters();
@@ -138,6 +141,12 @@ class Root {
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort']
     ];
 
+    if($flatten) {
+      $manipulators[] = [
+        'callable' => 'menu.default_tree_manipulators:flatten'
+      ];
+    }
+
     $tree = $menuTree->transform($tree, $manipulators);
     $list = [];
 
@@ -147,7 +156,7 @@ class Root {
       if ($urlObj->isExternal()) {
         $url = $urlObj->getUri();
       } elseif ($urlObj->isRouted()) {
-        $url = \Drupal::service('path.alias_manager')->getAliasByPath('/'.$urlObj->getInternalPath());
+        $url = \Drupal::service('path_alias.manager')->getAliasByPath('/'.$urlObj->getInternalPath());
       } elseif (!$urlObj->isExternal() && !$urlObj->isRouted()) {
         $url = Url::fromUri($urlObj->getUri())->toString();
       } else {
@@ -157,6 +166,7 @@ class Root {
       return [
         'title' => $element->link->getTitle(),
         'url' => $url,
+        'external' => $urlObj->isExternal()
       ];
     };
 
@@ -175,5 +185,15 @@ class Root {
     return $list;
   }
 
+  /**
+   * Get the global Drupal data
+   * @return array
+   */
+  public static function getGlobals(): array {
+    return [
+      '__typename' => 'DrupalGlobals',
+      'footerLinks' => Root::getMenuLinks('footer', NULL, true)
+    ];
+  }
 }
 

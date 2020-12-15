@@ -1,9 +1,9 @@
 <?php
 
-use GraphQL\Error\Debug;
+use GraphQL\Error\DebugFlag;
 
 if (SETTINGS_ENVIRONMENT == D_ENVIRONMENT_LOCAL) {
-  define('NC_GRAPHQL_DEBUG', Debug::INCLUDE_DEBUG_MESSAGE | Debug::INCLUDE_TRACE);
+  define('NC_GRAPHQL_DEBUG', DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE);
   define('NC_GRAPHQL_ALLOW_INTROSPECTION', TRUE);
 }
 else {
