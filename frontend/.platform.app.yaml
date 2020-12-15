@@ -18,7 +18,7 @@ hooks:
     yarn build
 
 # The size of the persistent disk of the application (in MB).
-disk: 2000
+disk: 500
 
 # The configuration of the application when it is exposed to the web.
 web:
