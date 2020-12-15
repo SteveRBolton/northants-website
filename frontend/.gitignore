@@ -11,7 +11,6 @@ node_modules/
 dist/
 
 # Apollo graphql generated types/schema
-!/src/types/graphql/
 schema.json
 
 # DotEnv
@@ -61,4 +60,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+
+#vscode
+.vscode
 

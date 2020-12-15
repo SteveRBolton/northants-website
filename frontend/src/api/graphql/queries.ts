@@ -23,3 +23,15 @@ export const getCMSContentOrRedirect = gql`
     }
   }
 `;
+
+export const getCMSGlobals = gql`
+  query GetCMSGlobals {
+    globals {
+      footerLinks {
+        title
+        url
+        external
+      }
+    }
+  }
+`;

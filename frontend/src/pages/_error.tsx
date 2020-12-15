@@ -1,11 +1,11 @@
 import { NextPageContext } from 'next';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type ErrorProps = {
   statusCode: number | undefined;
 };
 
-function Error({ statusCode }: ErrorProps) {
+export default function Error({ statusCode }: ErrorProps): ReactElement {
   return (
     <p>
       TODO: Implement custom Error page:{' '}

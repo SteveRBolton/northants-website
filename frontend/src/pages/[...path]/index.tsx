@@ -1,7 +1,7 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPageContext } from 'next';
 import React, { ReactElement } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
+import { BreadcrumbsProps } from 'northants-design-system/build/library/Structure/Breadcrumbs/Breadcrumbs.types';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import ServicePage from '../../cmsPages/ServicePage';
@@ -9,12 +9,10 @@ import {
   GetCMSContentOrRedirect,
   GetCMSContentOrRedirectVariables,
 } from '../../api/graphql/__generated__/GetCMSContentOrRedirect';
+import { initializeApollo } from '../../lib/apolloClient';
 
-export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) => {
-  const client = new ApolloClient({
-    uri: process.env.NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT,
-    cache: new InMemoryCache(),
-  });
+export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
+  const client = initializeApollo();
 
   return client
     .query<GetCMSContentOrRedirect, GetCMSContentOrRedirectVariables>({
@@ -23,9 +21,9 @@ export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) =>
         path: resolvedUrl,
       },
     })
-    .then((res) => {
+    .then((queryRes) => {
       return {
-        props: res,
+        props: queryRes,
       };
     });
 };
