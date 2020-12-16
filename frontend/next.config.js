@@ -3,6 +3,7 @@ require('dotenv').config();
 const webpack = require('webpack');
 
 module.exports = (phase, { defaultConfig }) => {
+    console.log(defaultConfig);
     return Object.assign(
       {},
       defaultConfig,
@@ -22,6 +23,12 @@ module.exports = (phase, { defaultConfig }) => {
             });
           }
           return config;
+        },
+        env: {
+            NODE_ENV: process.env.NODE_ENV,
+            CMS_GRAPHQL_ENDPOINT: process.env.CMS_GRAPHQL_ENDPOINT,
+            NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT: process.env.NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT,
+            NEXT_PUBLIC_THEME: process.env.NEXT_PUBLIC_THEME,
         },
       },
       {
