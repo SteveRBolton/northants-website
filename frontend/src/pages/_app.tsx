@@ -10,11 +10,11 @@ import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
 
 function NorthantsApp({ Component, pageProps, router, globals }: AppProps & GetCMSGlobals): ReactElement {
-  const theme = process.env.NEXT_PUBLIC_THEME
-    ? { north: north_theme, west: west_theme, gds: GDS_theme }[process.env.NEXT_PUBLIC_THEME]
-    : GDS_theme;
+  // const theme = process.env.NEXT_PUBLIC_THEME
+  //   ? { north: north_theme, west: west_theme, gds: GDS_theme }[process.env.NEXT_PUBLIC_THEME]
+  //   : GDS_theme;
 
-  console.log(process.env.NEXT_PUBLIC_THEME);
+  const theme = west_theme;
 
   const isHomePage = router.pathname === '/';
 
