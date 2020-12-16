@@ -2,7 +2,7 @@ import { ApolloGateway } from '@apollo/gateway';
 import { ApolloServer } from 'apollo-server-micro';
 
 const gateway = new ApolloGateway({
-  serviceList: [{ name: 'drupal', url: process.env.CMS_GRAPHQL_ENDPOINT }],
+  serviceList: [{ name: 'drupal', url: process.env.NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT }],
   // Experimental: Enabling this enables the query plan view in Playground.
   __exposeQueryPlanExperimental: true,
 });
