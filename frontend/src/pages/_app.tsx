@@ -8,43 +8,55 @@ import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
 import { getCMSGlobals } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
+enum Theme { North = "north", West = "west", GDS = "gds" }
 
-function NorthantsApp({ Component, pageProps, router, globals, theme }: AppProps & GetCMSGlobals): ReactElement {
+function NorthantsApp({ Component, pageProps, router, globals, theme }: AppProps & GetCMSGlobals & { theme: Theme}): ReactElement {
   // const theme = process.env.NEXT_PUBLIC_THEME
   //   ? { north: north_theme, west: west_theme, gds: GDS_theme }[process.env.NEXT_PUBLIC_THEME]
   //   : GDS_theme;
 
-  console.log(theme);
+  let actualThemeObject ;
+  switch (theme) {
+    case Theme.North:
+      actualThemeObject = north_theme;
+      break;
+    case Theme.West:
+      actualThemeObject = west_theme;
+      break;
+    default:
+      actualThemeObject = GDS_theme;
+  }
 
-  const isHomePage = router.pathname === '/';
+      const isHomePage = router.pathname === '/';
 
-  return (
-    <>
-      <Head>
-        <title>Northants</title>
-      </Head>
-      <ThemeProvider theme={theme}>
-        <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
-        <Component {...pageProps} />
-        <ul>
-          <li>
-            <Link href="/service-page-test" shallow={false}>
-              <a>Service page test</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a>Home page</a>
-            </Link>
-          </li>
-        </ul>
-        <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
-      </ThemeProvider>
-    </>
-  );
+      return (
+          <>
+            <Head>
+              <title>Northants</title>
+            </Head>
+            <ThemeProvider theme={actualThemeObject}>
+              <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
+              <Component {...pageProps} />
+              <ul>
+                <li>
+                  <Link href="/service-page-test" shallow={false}>
+                    <a>Service page test</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/">
+                    <a>Home page</a>
+                  </Link>
+                </li>
+              </ul>
+              <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
+            </ThemeProvider>
+          </>
+      );
+  }
 }
 
-NorthantsApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps & GetCMSGlobals> => {
+NorthantsApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme }> => {
   const client = initializeApollo();
 
   // Get globals
@@ -59,7 +71,7 @@ NorthantsApp.getInitialProps = async (appContext: AppContext): Promise<AppInitia
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME };
+  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme };
 };
 
 export default NorthantsApp;
