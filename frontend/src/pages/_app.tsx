@@ -15,6 +15,7 @@ function NorthantsApp({ Component, pageProps, router, globals }: AppProps & GetC
   //   : GDS_theme;
 
   const theme = west_theme;
+  console.log(process.env);
 
   const isHomePage = router.pathname === '/';
 
