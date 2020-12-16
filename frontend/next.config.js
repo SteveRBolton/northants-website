@@ -3,7 +3,6 @@ require('dotenv').config();
 const webpack = require('webpack');
 
 module.exports = (phase, { defaultConfig }) => {
-    console.log(defaultConfig);
     return Object.assign(
       {},
       defaultConfig,
