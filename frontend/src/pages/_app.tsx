@@ -9,15 +9,12 @@ import { getCMSGlobals } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
 
-function NorthantsApp({ Component, pageProps, router, globals }: AppProps & GetCMSGlobals): ReactElement {
+function NorthantsApp({ Component, pageProps, router, globals, theme }: AppProps & GetCMSGlobals): ReactElement {
   // const theme = process.env.NEXT_PUBLIC_THEME
   //   ? { north: north_theme, west: west_theme, gds: GDS_theme }[process.env.NEXT_PUBLIC_THEME]
   //   : GDS_theme;
 
-  const theme = west_theme;
-
   console.log(theme);
-  console.log(process.env);
 
   const isHomePage = router.pathname === '/';
 
@@ -62,7 +59,7 @@ NorthantsApp.getInitialProps = async (appContext: AppContext): Promise<AppInitia
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps, globals };
+  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME };
 };
 
 export default NorthantsApp;
