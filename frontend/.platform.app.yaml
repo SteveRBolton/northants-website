@@ -11,6 +11,12 @@ dependencies:
 relationships:
   backend: 'backend:http'
 
+# The hooks that will be triggered when the package is deployed.
+hooks:
+  build: |
+    yarn
+    yarn build
+
 # The size of the persistent disk of the application (in MB).
 disk: 500
 
@@ -18,8 +24,3 @@ disk: 500
 web:
   commands:
     start: npx next start -p $PORT
-
-mounts:
-  '/.next':
-    source: local
-    source_path: next
