@@ -1,4 +1,4 @@
-import { MaxWidthContainer } from 'northants-design-system';
+import { MaxWidthContainer, PageMain } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
@@ -14,7 +14,9 @@ export default function ServicePage({ title, body }: ServicePageProps): ReactEle
         <title>{title}</title>
       </Head>
       <MaxWidthContainer>
-        <TextWithSlices {...body} />
+        <PageMain>
+          <TextWithSlices {...body} />
+        </PageMain>
       </MaxWidthContainer>
     </>
   );
