@@ -3,9 +3,6 @@ const webpack = require('webpack');
 
 module.exports = {
     webpack: (config, { dev }) => {
-        // Add the new plugin to the existing webpack plugins
-        config.plugins.push(new Dotenv({ silent: true, systemvars: true }));
-
         // Config
         const { isServer } = config;
         if (dev) {
