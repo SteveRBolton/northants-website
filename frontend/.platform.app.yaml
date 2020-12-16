@@ -11,11 +11,6 @@ dependencies:
 relationships:
   backend: 'backend:http'
 
-# The hooks that will be triggered when the package is deployed.
-hooks:
-  post_deploy: |
-    npm run build
-
 # The size of the persistent disk of the application (in MB).
 disk: 500
 
