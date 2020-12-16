@@ -53,7 +53,6 @@ function NorthantsApp({ Component, pageProps, router, globals, theme }: AppProps
             </ThemeProvider>
           </>
       );
-  }
 }
 
 NorthantsApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme }> => {
