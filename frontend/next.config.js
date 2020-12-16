@@ -6,6 +6,7 @@ module.exports = {
         // Add the new plugin to the existing webpack plugins
         config.plugins.push(new Dotenv({ silent: true }));
 
+        // Config
         const { isServer } = config;
         if (dev) {
             config.module.rules.push({
