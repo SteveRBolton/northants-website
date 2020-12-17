@@ -1,0 +1,48 @@
+uuid: 80c2fdb5-2a53-4a11-a40e-c6d567b4da25
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.council_signposting.field_other_council_link
+    - field.field.paragraph.council_signposting.field_signposting_top_line_text
+    - field.field.paragraph.council_signposting.field_signposts
+    - paragraphs.paragraphs_type.council_signposting
+  module:
+    - link
+    - paragraphs
+id: paragraph.council_signposting.default
+targetEntityType: paragraph
+bundle: council_signposting
+mode: default
+content:
+  field_other_council_link:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_signposting_top_line_text:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_signposts:
+    type: entity_reference_paragraphs
+    weight: 0
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

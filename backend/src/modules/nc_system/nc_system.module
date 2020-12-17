@@ -3,21 +3,29 @@
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
 use Drupal\nc_system\Entity\Node\ServicePage;
+use Drupal\nc_system\Entity\Paragraph\CouncilSignpost;
+use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
+use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 
 /**
  * Implements hook_entity_bundle_info_alter().
- *nfo
+ *
+ * Changes the bundle classes used by drupal, so when when an entity of
+ * a specific bundle is loaded, one of the below classes is used.
  * @param array $bundles
  */
 function nc_system_entity_bundle_info_alter(array &$bundles) {
-
   // Node bundles
   $bundles['node']['service_page']['class'] = ServicePage::class;
 
   // Paragraph bundles
   $bundles['paragraph']['call_to_action']['class'] = CallToAction::class;
+  $bundles['paragraph']['council_signpost']['class'] = CouncilSignpost::class;
+  $bundles['paragraph']['council_signposting']['class'] = CouncilSignposting::class;
 
-//  $bundles['taxonomy_term']['tags']['class'] = Tag::class;
+  // Taxonomy terms
+  $bundles['taxonomy_term']['sovereign_councils']['class'] = SovereignCouncil::class;
+
 }
 
 /**

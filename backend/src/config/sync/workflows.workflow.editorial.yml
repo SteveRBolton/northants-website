@@ -2,8 +2,6 @@ uuid: aa1da5fb-b452-443c-87c8-3d614b8d904e
 langcode: en
 status: true
 dependencies:
-  config:
-    - node.type.basic_page
   module:
     - content_moderation
 _core:
@@ -23,72 +21,56 @@ type_settings:
       published: false
       default_revision: false
       weight: -3
+    needs_review:
+      published: false
+      default_revision: false
+      label: 'Needs Review'
+      weight: -2
     published:
       label: Published
       published: true
       default_revision: true
       weight: -1
-    review:
-      published: false
-      default_revision: false
-      label: Review
-      weight: 2
   transitions:
-    approve:
-      label: Approve
-      from:
-        - review
-      to: published
-      weight: -2
     archive:
       label: Archive
       from:
-        - draft
         - published
       to: archived
-      weight: 1
+      weight: 0
     archived_draft:
       label: 'Restore to Draft'
       from:
         - archived
+        - needs_review
       to: draft
-      weight: 2
+      weight: 1
     archived_published:
       label: Restore
       from:
         - archived
       to: published
-      weight: 3
+      weight: 2
     create_new_draft:
       label: 'Create New Draft'
       to: draft
-      weight: -4
+      weight: -3
       from:
         - draft
         - published
     publish:
       label: Publish
       to: published
-      weight: 0
-      from:
-        - draft
-        - published
-    reject:
-      label: Reject
-      from:
-        - review
-      to: draft
       weight: -1
-    submit_for_review:
-      label: 'Submit for review'
       from:
-        - archived
         - draft
+        - needs_review
         - published
-        - review
-      to: review
-      weight: -3
-  entity_types:
-    node:
-      - basic_page
+    submit_for_review:
+      label: 'Submit for Review'
+      from:
+        - draft
+      to: needs_review
+      weight: -2
+  entity_types: {  }
   default_moderation_state: draft

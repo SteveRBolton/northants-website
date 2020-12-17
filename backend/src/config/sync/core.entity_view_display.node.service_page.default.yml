@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
   module:
+    - entity_reference_revisions
     - text
     - user
 id: node.service_page.default
@@ -13,6 +15,15 @@ targetEntityType: node
 bundle: service_page
 mode: default
 content:
+  field_signposting:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_wysiwyg_slices:
     weight: 101
     label: above

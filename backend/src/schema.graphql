@@ -104,6 +104,7 @@ enum EntityType {
   node
   paragraph
   embedded_paragraph
+  taxonomy_term
 }
 
 #
@@ -123,6 +124,7 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   title: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed!
+  signposting: CouncilSignpostingParagraph
 }
 
 #
@@ -137,3 +139,32 @@ type CallToActionParagraph implements Paragraph @entity(type: paragraph, bundle:
   id: String!
   link: LinkFieldWithTitle!
 }
+
+type CouncilSignpostParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signpost") {
+  id: String!
+  council: SovereignCouncil!
+  link: LinkField
+}
+
+type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signposting") {
+  id: String!
+  topLine: String
+  otherCouncil: LinkField
+  signposts: [CouncilSignpostParagraph!]!
+}
+
+#
+# Taxonomy term
+#
+
+interface TaxonomyTerm @entityType {
+  id: String!
+  name: String!
+}
+
+type SovereignCouncil implements TaxonomyTerm @entity(type: taxonomy_term, bundle: "sovereign_councils") {
+  id: String!
+  name: String!
+  homepage: LinkField!
+}
+

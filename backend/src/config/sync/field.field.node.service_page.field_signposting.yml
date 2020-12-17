@@ -1,0 +1,43 @@
+uuid: ed5308d5-6695-4d66-8fea-8be7969987b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_signposting
+    - node.type.service_page
+    - paragraphs.paragraphs_type.council_signposting
+  module:
+    - entity_reference_revisions
+id: node.service_page.field_signposting
+field_name: field_signposting
+entity_type: node
+bundle: service_page
+label: Signposting
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      council_signposting: council_signposting
+    target_bundles_drag_drop:
+      call_to_action:
+        weight: 6
+        enabled: false
+      council_signpost:
+        weight: 7
+        enabled: false
+      council_signposting:
+        enabled: true
+        weight: 8
+      pull_quote:
+        weight: 9
+        enabled: false
+      signpost:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

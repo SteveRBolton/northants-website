@@ -1,0 +1,52 @@
+<?php
+
+use Drupal\Core\Utility\UpdateException;
+use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
+
+/**
+ * Add terms to the "Sovereign Councils" taxonomy.
+ */
+function nc_system_update_9001() {
+
+  $vid = 'sovereign_councils';
+  $councilsVocabulary = \Drupal\taxonomy\Entity\Vocabulary::load($vid);
+
+  if (empty($councilsVocabulary)) {
+    throw new UpdateException('Could not find a "Sovereign Councils" taxonomy. You should import configuration');
+  }
+
+  // Delete any existing councils.
+  /* @var $councilTerms \Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil[] */
+  $councilTerms = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadTree($vid);
+  foreach ($councilTerms as $term) {
+    $term->delete();
+  }
+
+  // This is data for councils.
+  $councilData = [
+    "South Northamptonshire" => "https://www.southnorthants.gov.uk/",
+    "Northampton Borough" => "https://www.northampton.gov.uk/",
+    "Daventry" => "https://www.daventrydc.gov.uk/",
+    "Corby" => "https://www.corby.gov.uk/",
+    "East Northamptonshire" => "https://www.east-northamptonshire.gov.uk/",
+    "Kettering" => "https://www.kettering.gov.uk/",
+    "Wellingborough" => "http://www.wellingborough.gov.uk/",
+    "Northamptonshire County Council" => "https://www.northamptonshire.gov.uk/",
+  ];
+
+  // Create a new term for each council.
+  foreach($councilData as $name => $homepage) {
+    $council = SovereignCouncil::create([
+      'parent' => null,
+      'name' => $name,
+      'field_homepage' => [
+        'uri' => $homepage
+      ],
+      'vid' => $vid
+    ]);
+    $council->save();
+  }
+
+}
