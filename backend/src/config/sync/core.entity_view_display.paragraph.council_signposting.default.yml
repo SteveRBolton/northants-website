@@ -1,0 +1,47 @@
+uuid: aa82f78f-2835-4cf7-97df-7e4362a9d619
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.council_signposting.field_other_council_link
+    - field.field.paragraph.council_signposting.field_signposting_top_line_text
+    - field.field.paragraph.council_signposting.field_signposts
+    - paragraphs.paragraphs_type.council_signposting
+  module:
+    - entity_reference_revisions
+    - link
+id: paragraph.council_signposting.default
+targetEntityType: paragraph
+bundle: council_signposting
+mode: default
+content:
+  field_other_council_link:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_signposting_top_line_text:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_signposts:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

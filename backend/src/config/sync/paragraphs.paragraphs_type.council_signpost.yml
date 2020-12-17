@@ -1,0 +1,10 @@
+uuid: 1663991a-b677-4efa-a868-4edb011926a4
+langcode: en
+status: true
+dependencies: {  }
+id: council_signpost
+label: 'Council Signpost'
+icon_uuid: null
+icon_default: null
+description: "Used to link to a page on one of Northamptonshire's former councils websites.\r\n"
+behavior_plugins: {  }

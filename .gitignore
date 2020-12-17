@@ -6,3 +6,9 @@
 # IDEs
 .idea
 .vscode
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite

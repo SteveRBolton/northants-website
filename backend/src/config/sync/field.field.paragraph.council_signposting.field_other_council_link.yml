@@ -1,0 +1,23 @@
+uuid: ce18805c-0e71-4ffd-bb59-12e332c1aeeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_other_council_link
+    - paragraphs.paragraphs_type.council_signposting
+  module:
+    - link
+id: paragraph.council_signposting.field_other_council_link
+field_name: field_other_council_link
+entity_type: paragraph
+bundle: council_signposting
+label: 'Other Council Link'
+description: 'An optional link to a page on the other council''s website. This should link to the analogue of this page on the other council website.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

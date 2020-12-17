@@ -1,0 +1,35 @@
+uuid: 299e7953-a542-4038-ab18-5c1fe00eeee5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.sovereign_councils.field_homepage
+    - taxonomy.vocabulary.sovereign_councils
+  module:
+    - link
+    - text
+id: taxonomy_term.sovereign_councils.default
+targetEntityType: taxonomy_term
+bundle: sovereign_councils
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_homepage:
+    weight: 1
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden: {  }

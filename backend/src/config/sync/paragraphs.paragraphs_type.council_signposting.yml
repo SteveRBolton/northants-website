@@ -1,0 +1,10 @@
+uuid: 2497637c-bf95-494e-8e3a-4771cbff5ed3
+langcode: en
+status: true
+dependencies: {  }
+id: council_signposting
+label: 'Council Signposting'
+icon_uuid: null
+icon_default: null
+description: 'Used for signposting links to services on former councils websites.'
+behavior_plugins: {  }

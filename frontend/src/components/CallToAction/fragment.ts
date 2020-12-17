@@ -1,13 +1,13 @@
-import { gql } from "@apollo/react-hooks";
+import { gql } from '@apollo/react-hooks';
 
 const fragment = gql`
-    fragment CallToAction on CallToActionParagraph {
-        link {
-            title
-            url
-            external
-        }
+  fragment CallToAction on CallToActionParagraph {
+    link {
+      title
+      url
+      external
     }
+  }
 `;
 
 export default fragment;

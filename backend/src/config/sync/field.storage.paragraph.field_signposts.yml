@@ -1,14 +1,13 @@
-uuid: 61f1ce3f-5685-4e18-90a1-d8bf311bb59c
+uuid: 6e38228a-b016-436e-8334-fa7a5b546a1e
 langcode: en
 status: true
 dependencies:
   module:
     - entity_reference_revisions
-    - node
     - paragraphs
-id: node.field_page_slices
-field_name: field_page_slices
-entity_type: node
+id: paragraph.field_signposts
+field_name: field_signposts
+entity_type: paragraph
 type: entity_reference_revisions
 settings:
   target_type: paragraph
