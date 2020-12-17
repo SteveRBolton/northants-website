@@ -1,6 +1,5 @@
 import { GetServerSideProps, NextPageContext } from 'next';
 import React, { ReactElement } from 'react';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
@@ -10,6 +9,7 @@ import {
   GetCMSContentOrRedirectVariables,
 } from '../../api/graphql/__generated__/GetCMSContentOrRedirect';
 import { initializeApollo } from '../../lib/apolloClient';
+import transformSignposting from '../../components/Signposting/transform';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
@@ -60,8 +60,15 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
     };
     const { node } = route;
     if (isGraphQLType(node, 'ServicePageNode')) {
-      const { title, body } = node;
-      return <ServicePage title={title} body={{ html: body.value, embeds: body.embeds }} />;
+      const { title, body, signposting } = node;
+
+      return (
+        <ServicePage
+          title={title}
+          body={{ html: body.value, embeds: body.embeds }}
+          signposting={signposting ? transformSignposting(signposting) : undefined}
+        />
+      );
     }
   }
 

@@ -7,17 +7,23 @@
 // GraphQL fragment: EmbeddedParagraph
 // ====================================================
 
-export interface EmbeddedParagraph_paragraph_link {
+export interface EmbeddedParagraph_paragraph_CouncilSignpostParagraph {
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+}
+
+export interface EmbeddedParagraph_paragraph_CallToActionParagraph_link {
   __typename: "LinkFieldWithTitle";
   title: string;
   url: string;
   external: boolean;
 }
 
-export interface EmbeddedParagraph_paragraph {
+export interface EmbeddedParagraph_paragraph_CallToActionParagraph {
   __typename: "CallToActionParagraph";
-  link: EmbeddedParagraph_paragraph_link;
+  link: EmbeddedParagraph_paragraph_CallToActionParagraph_link;
 }
+
+export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_CouncilSignpostParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph;
 
 export interface EmbeddedParagraph {
   __typename: "EmbeddedParagraph";
