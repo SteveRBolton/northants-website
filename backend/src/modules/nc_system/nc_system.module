@@ -3,6 +3,7 @@
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
 use Drupal\nc_system\Entity\Node\ServicePage;
+use Drupal\nc_system\Entity\Node\ServiceLandingPage;
 
 /**
  * Implements hook_entity_bundle_info_alter().
@@ -13,6 +14,7 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
 
   // Node bundles
   $bundles['node']['service_page']['class'] = ServicePage::class;
+  $bundles['node']['service_landing_page']['class'] = ServiceLandingPage::class;
 
   // Paragraph bundles
   $bundles['paragraph']['call_to_action']['class'] = CallToAction::class;

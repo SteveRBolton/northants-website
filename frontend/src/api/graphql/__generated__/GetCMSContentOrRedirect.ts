@@ -11,36 +11,69 @@ export interface GetCMSContentOrRedirect_route_DrupalAccessDeniedRoute {
   __typename: "DrupalAccessDeniedRoute";
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_link {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_link {
   __typename: "LinkFieldWithTitle";
   title: string;
   url: string;
   external: boolean;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph {
   __typename: "CallToActionParagraph";
-  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_link;
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_link;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds {
   __typename: "EmbeddedParagraph";
   id: string;
-  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body {
   __typename: "FormattedFieldWithParagraphsEmbed";
   value: string;
-  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds[];
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds[];
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  id: string;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph {
+  __typename: "CallToActionParagraph";
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_link;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds[];
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   id: string;
-  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body;
 }
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute {
   __typename: "DrupalNodeRoute";

@@ -1,17 +1,16 @@
-uuid: 407e80da-f885-4d9e-8e0c-9be7212d2494
+uuid: cd4e4961-7fa8-4d25-ac1f-11b9a901a265
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.service_page.field_parent
-    - field.field.node.service_page.field_wysiwyg_slices
-    - node.type.service_page
+    - field.field.node.service_landing_page.field_wysiwyg_slices
+    - node.type.service_landing_page
   module:
     - user
-id: node.service_page.teaser
+id: node.service_landing_page.teaser
 targetEntityType: node
-bundle: service_page
+bundle: service_landing_page
 mode: teaser
 content:
   links:
@@ -20,5 +19,4 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_parent: true
   field_wysiwyg_slices: true

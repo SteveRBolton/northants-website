@@ -125,6 +125,13 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   body: FormattedFieldWithParagraphsEmbed!
 }
 
+type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
+  id: String!
+  title: String!
+  status: Boolean!
+  body: FormattedFieldWithParagraphsEmbed!
+}
+
 #
 # Paragraph types
 #
