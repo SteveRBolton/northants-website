@@ -1,0 +1,22 @@
+uuid: cd4e4961-7fa8-4d25-ac1f-11b9a901a265
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.service_landing_page.field_wysiwyg_slices
+    - node.type.service_landing_page
+  module:
+    - user
+id: node.service_landing_page.teaser
+targetEntityType: node
+bundle: service_landing_page
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_wysiwyg_slices: true

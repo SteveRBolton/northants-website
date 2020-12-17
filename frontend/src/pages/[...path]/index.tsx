@@ -4,6 +4,7 @@ import { BreadcrumbsProps } from 'northants-design-system/build/library/structur
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import ServicePage from '../../cmsPages/ServicePage';
+import ServiceLandingPage from '../../cmsPages/ServiceLandingPage';
 import {
   GetCMSContentOrRedirect,
   GetCMSContentOrRedirectVariables,
@@ -67,6 +68,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           title={title}
           body={{ html: body.value, embeds: body.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
+        />
+      );
+    }
+    if (isGraphQLType(node, 'ServiceLandingPageNode')) {
+      const { title, body } = node;
+      return (
+        <ServiceLandingPage
+          title={title}
+          body={{ html: body.value, embeds: body.embeds }}
+          heading={{ level: 1, text: title }}
         />
       );
     }

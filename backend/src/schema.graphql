@@ -127,6 +127,13 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   signposting: CouncilSignpostingParagraph
 }
 
+type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
+  id: String!
+  title: String!
+  status: Boolean!
+  body: FormattedFieldWithParagraphsEmbed!
+}
+
 #
 # Paragraph types
 #

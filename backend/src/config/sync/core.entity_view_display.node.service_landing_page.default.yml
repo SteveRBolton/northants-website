@@ -1,0 +1,28 @@
+uuid: 9cd58f2f-7c3f-48a5-970f-c9ee936cfe45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.service_landing_page.field_wysiwyg_slices
+    - node.type.service_landing_page
+  module:
+    - text
+    - user
+id: node.service_landing_page.default
+targetEntityType: node
+bundle: service_landing_page
+mode: default
+content:
+  field_wysiwyg_slices:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

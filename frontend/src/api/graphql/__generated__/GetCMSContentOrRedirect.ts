@@ -11,77 +11,116 @@ export interface GetCMSContentOrRedirect_route_DrupalAccessDeniedRoute {
   __typename: "DrupalAccessDeniedRoute";
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_CouncilSignpostParagraph {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CouncilSignpostParagraph {
   __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_CallToActionParagraph_link {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CallToActionParagraph_link {
   __typename: "LinkFieldWithTitle";
   title: string;
   url: string;
   external: boolean;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_CallToActionParagraph {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CallToActionParagraph {
   __typename: "CallToActionParagraph";
-  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_CallToActionParagraph_link;
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CallToActionParagraph_link;
 }
 
-export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_CouncilSignpostParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph_CallToActionParagraph;
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CouncilSignpostParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CallToActionParagraph;
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds {
   __typename: "EmbeddedParagraph";
   id: string;
-  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds_paragraph;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body {
   __typename: "FormattedFieldWithParagraphsEmbed";
   value: string;
-  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body_embeds[];
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds[];
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_otherCouncil {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  id: string;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CouncilSignpostParagraph {
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CouncilSignpostParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CallToActionParagraph;
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds[];
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_otherCouncil {
   __typename: "LinkField";
   url: string;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts_council_homepage {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council_homepage {
   __typename: "LinkField";
   url: string;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts_council {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council {
   __typename: "SovereignCouncil";
   name: string;
-  homepage: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts_council_homepage;
+  homepage: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council_homepage;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts_link {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_link {
   __typename: "LinkField";
   url: string;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts {
   __typename: "CouncilSignpostParagraph";
-  council: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts_council;
-  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts_link | null;
+  council: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council;
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_link | null;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting {
   __typename: "CouncilSignpostingParagraph";
   topLine: string | null;
-  otherCouncil: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_otherCouncil | null;
-  signposts: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting_signposts[];
+  otherCouncil: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_otherCouncil | null;
+  signposts: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts[];
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   id: string;
-  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_body;
-  signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_signposting | null;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body;
+  signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
 }
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute {
   __typename: "DrupalNodeRoute";
