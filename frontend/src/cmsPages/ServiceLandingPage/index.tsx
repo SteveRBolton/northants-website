@@ -1,4 +1,4 @@
-import { Heading, MaxWidthContainer } from 'northants-design-system';
+import {Heading, MaxWidthContainer, PageMain} from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
@@ -21,8 +21,10 @@ export default function ServiceLandingPage({ title, heading, body }: ServiceLand
         <title>{title}</title>
       </Head>
       <MaxWidthContainer>
-        <Heading {...heading} />
-        <TextWithSlices {...body} />
+        <PageMain>
+          <Heading {...heading} />
+          <TextWithSlices {...body} />
+        </PageMain>
       </MaxWidthContainer>
     </>
   );
