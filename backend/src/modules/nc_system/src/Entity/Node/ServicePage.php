@@ -3,15 +3,39 @@
 namespace Drupal\nc_system\Entity\Node;
 
 use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
+use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Drupal\node\Entity\Node;
 use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
+
+/**
+ * Class ServicePage
+ *
+ * Service pages are used for the majority of the content on the site.
+ * They consist of a WYSIWYG 'body' field with embedded paragraphs
+ * as well as an optional Signposting paragraph,
+ * and automatically generated 'In this section' links.
+ *
+ * See:
+ * @type \Drupal\nc_system\Entity\EmbeddedParagraphs
+ * @type \Drupal\nc_system\Entity\Paragraph\CouncilSignposting
+ * @type \Drupal\nc_system\Entity\Node\ServiceLandingPage
+ * @type Section
+ *
+ * @package Drupal\nc_system\Entity\Node
+ */
 class ServicePage extends Node implements GraphQLEntityFieldResolver {
 
   public function getBody(): TextItemBase {
     return $this->get('field_wysiwyg_slices')->first();
+  }
+
+  public function getSummary(): string {
+    /* @var $summaryField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
+    $summaryField = $this->get('field_summary');
+    return $summaryField->getString();
   }
 
   public function getSignposting(): ?CouncilSignposting {
@@ -26,10 +50,52 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
   }
 
   /**
-   * @param string $fieldName
+   * @return \Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage|null
+   */
+  public function getParent() {
+    /* @var $parentField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
+    $parentField = $this->get('field_parent');
+    /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
+    $parents = $parentField->referencedEntities();
+    if(!empty($parents)) {
+      return $parents[0];
+    }
+    return null;
+  }
+
+  /**
+   * Determines the 'canonical' Section this ServicePage belongs to (if any).
    *
-   * @return array|mixed|null
-   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   * The 'canonical' Section is the first section (if any) in the ServicePages's parent that references the ServicePage.
+   * If no 'canonical' Section is found, null is returned.
+   *
+   * @return \Drupal\nc_system\Entity\Paragraph\Section|null
+   */
+  public function getCanonicalSection(): ?Section  {
+    $parent = $this->getParent();
+    $uuid = $this->uuid();
+    if($parent instanceof ServiceLandingPage) {
+      $sections = $parent->getSections();
+      foreach($sections as $section) {
+        $pageUUIDS = array_map(fn($page) => $page->uuid(), $section->getPages());
+        if(in_array($uuid, $pageUUIDS)) {
+          return $section;
+        }
+      }
+    }
+    return null;
+  }
+
+  /**
+   * @return array<Section>
+   */
+  public function getSections(): array {
+    //TODO: Figure out what sections this page is in. Use drupal entityQuery??
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function resolveGraphQLFieldToValue(string $fieldName) {
     if ($fieldName === "body") {
@@ -37,9 +103,26 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       return GraphQLFieldResolver::resolveTextItem($body);
     }
 
+    if($fieldName === "summary") {
+      return $this->getSummary();
+    }
+
     if ($fieldName === "signposting") {
       return $this->getSignposting();
     }
+
+    if($fieldName === "canonicalSection") {
+      return $this->getCanonicalSection();
+    }
+
+    if($fieldName === "sections") {
+      return $this->getSections();
+    }
+
+    if($fieldName === "url") {
+      return $this->toUrl('canonical')->toString();
+    }
+
     throw new \Exception("Unable to resolve value via ServicePage resolve.");
   }
 

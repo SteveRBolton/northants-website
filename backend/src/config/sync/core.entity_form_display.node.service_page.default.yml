@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.service_page.field_parent
+    - field.field.node.service_page.field_sections
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
@@ -69,15 +69,17 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_parent:
-    weight: 12
+  field_sections:
+    type: entity_reference_paragraphs
+    weight: 101
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
     region: content
   field_signposting:
     type: entity_reference_paragraphs
@@ -92,7 +94,7 @@ content:
     third_party_settings: {  }
     region: content
   field_wysiwyg_slices:
-    weight: 14
+    weight: 1
     settings:
       rows: 5
       placeholder: ''

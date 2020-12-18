@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.service_page.field_sections
     - field.field.node.service_page.field_signposting
-    - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
   module:
@@ -21,6 +21,6 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_parent: true
+  field_sections: true
   field_signposting: true
   field_wysiwyg_slices: true

@@ -10,6 +10,7 @@ scalar HTML
 
 # Directives
 directive @entityType on INTERFACE | UNION | OBJECT
+#directive @slice on UNION
 # TODO Use this to auto-resolve entities to graphql types
 directive @entity(type: EntityType!, bundle: String!) on OBJECT
 
@@ -126,6 +127,8 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
   signposting: CouncilSignpostingParagraph
+  canonicalSection: SectionParagraph
+  sections: [SectionParagraph!]! # All the sections this service page is in.
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
@@ -168,6 +171,10 @@ type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "sec
   name: String!
   pages: [ServicePageNode!]!
 }
+
+# Slices
+
+#union Slice @slice = CallToActionParagraph
 
 #
 # Taxonomy term
