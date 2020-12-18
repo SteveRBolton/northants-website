@@ -113,25 +113,28 @@ enum EntityType {
 
 interface Node  @entityType {
   id: String!
+  url: String!
   title: String!
   status: Boolean!
 }
 
-
-
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
   id: String!
   title: String!
+  url: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed!
+  summary: String!
   signposting: CouncilSignpostingParagraph
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
   id: String!
   title: String!
+  url: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed!
+  sections: [SectionParagraph!]!
 }
 
 #
@@ -158,6 +161,12 @@ type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, b
   topLine: String
   otherCouncil: LinkField
   signposts: [CouncilSignpostParagraph!]!
+}
+
+type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "section") {
+  id: String!
+  name: String!
+  pages: [ServicePageNode!]!
 }
 
 #
