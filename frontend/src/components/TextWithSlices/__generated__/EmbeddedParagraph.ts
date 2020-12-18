@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface EmbeddedParagraph_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
 
 export interface EmbeddedParagraph_paragraph_CallToActionParagraph_link {

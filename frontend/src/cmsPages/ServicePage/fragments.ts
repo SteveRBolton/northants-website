@@ -1,10 +1,12 @@
 import { gql } from '@apollo/react-hooks';
 import callToActionFragment from '../../components/CallToAction/fragment';
 import signpostingFragment from '../../components/Signposting/fragment';
+import sidebarSectionFragment from '../../components/SectionSidebar/fragment';
 
 const servicePageNodeFull = gql`
   ${callToActionFragment}
   ${signpostingFragment}
+  ${sidebarSectionFragment}
   fragment ServicePageNodeFull on ServicePageNode {
     __typename
     title
@@ -14,14 +16,15 @@ const servicePageNodeFull = gql`
       embeds {
         id
         paragraph {
-          ... on CallToActionParagraph {
-            ...CallToAction
-          }
+          ...CallToAction
         }
       }
     }
     signposting {
       ...CouncilSignposting
+    }
+    canonicalSection {
+      ...SidebarSection
     }
   }
 `;

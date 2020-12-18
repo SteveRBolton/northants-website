@@ -1,20 +1,22 @@
-import {Heading, MaxWidthContainer, PageMain} from 'northants-design-system';
+import { Heading, MaxWidthContainer, PageMain, SectionLinks } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
+import { SectionLinksProps } from 'northants-design-system/build/library/structure/SectionLinks/SectionLinks.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 
-type ServiceLandingPageProps = {
-  title: string;
-  heading: Heading;
-  body: TextWithSlicesProps;
-};
-
-type Heading = {
+type HeadingProps = {
   level: 1;
   text: string;
 };
 
-export default function ServiceLandingPage({ title, heading, body }: ServiceLandingPageProps): ReactElement {
+type ServiceLandingPageProps = {
+  title: string;
+  heading: HeadingProps;
+  body: TextWithSlicesProps;
+  sections: SectionLinksProps[];
+};
+
+export default function ServiceLandingPage({ title, heading, body, sections }: ServiceLandingPageProps): ReactElement {
   return (
     <>
       <Head>
@@ -24,6 +26,9 @@ export default function ServiceLandingPage({ title, heading, body }: ServiceLand
         <PageMain>
           <Heading {...heading} />
           <TextWithSlices {...body} />
+          {sections.map((section) => (
+            <SectionLinks {...section} />
+          ))}
         </PageMain>
       </MaxWidthContainer>
     </>

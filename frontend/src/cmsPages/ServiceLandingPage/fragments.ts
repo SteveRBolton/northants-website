@@ -1,6 +1,10 @@
 import { gql } from '@apollo/react-hooks';
+import callToActionFragment from '../../components/CallToAction/fragment';
+import sectionFragment from '../../components/Section/fragment';
 
 const serviceLandingPageNodeFull = gql`
+  ${callToActionFragment}
+  ${sectionFragment}
   fragment ServiceLandingPageNodeFull on ServiceLandingPageNode {
     __typename
     title
@@ -10,16 +14,12 @@ const serviceLandingPageNodeFull = gql`
       embeds {
         id
         paragraph {
-          ... on CallToActionParagraph {
-            __typename
-            link {
-              title
-              url
-              external
-            }
-          }
+          ...CallToAction
         }
       }
+    }
+    sections {
+      ...Section
     }
   }
 `;

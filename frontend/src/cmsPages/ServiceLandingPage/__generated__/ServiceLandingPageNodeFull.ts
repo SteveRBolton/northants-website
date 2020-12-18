@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ServiceLandingPageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
 
 export interface ServiceLandingPageNodeFull_body_embeds_paragraph_CallToActionParagraph_link {
@@ -37,9 +37,23 @@ export interface ServiceLandingPageNodeFull_body {
   embeds: ServiceLandingPageNodeFull_body_embeds[];
 }
 
+export interface ServiceLandingPageNodeFull_sections_pages {
+  __typename: "ServicePageNode";
+  title: string;
+  url: string;
+  summary: string;
+}
+
+export interface ServiceLandingPageNodeFull_sections {
+  __typename: "SectionParagraph";
+  name: string;
+  pages: ServiceLandingPageNodeFull_sections_pages[];
+}
+
 export interface ServiceLandingPageNodeFull {
   __typename: "ServiceLandingPageNode";
   title: string;
   id: string;
   body: ServiceLandingPageNodeFull_body;
+  sections: ServiceLandingPageNodeFull_sections[];
 }

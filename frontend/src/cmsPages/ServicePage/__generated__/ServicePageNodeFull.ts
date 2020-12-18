@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
 
 export interface ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph_link {
@@ -71,10 +71,23 @@ export interface ServicePageNodeFull_signposting {
   signposts: ServicePageNodeFull_signposting_signposts[];
 }
 
+export interface ServicePageNodeFull_canonicalSection_pages {
+  __typename: "ServicePageNode";
+  title: string;
+  url: string;
+}
+
+export interface ServicePageNodeFull_canonicalSection {
+  __typename: "SectionParagraph";
+  name: string;
+  pages: ServicePageNodeFull_canonicalSection_pages[];
+}
+
 export interface ServicePageNodeFull {
   __typename: "ServicePageNode";
   title: string;
   id: string;
   body: ServicePageNodeFull_body;
   signposting: ServicePageNodeFull_signposting | null;
+  canonicalSection: ServicePageNodeFull_canonicalSection | null;
 }
