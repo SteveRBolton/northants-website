@@ -1,8 +1,9 @@
 import { gql } from '@apollo/react-hooks';
 
-const fragment = gql`
-  fragment SidebarSection on SectionParagraph {
+export const sectionPagesFragment = gql`
+  fragment SectionPages on SectionParagraph {
     name
+    id
     pages {
       title
       url
@@ -11,4 +12,12 @@ const fragment = gql`
   }
 `;
 
-export default fragment;
+export const sectionParentLinkFragment = gql`
+  fragment SectionParentLink on SectionParagraph {
+    name
+    id
+    parent {
+      url
+    }
+  }
+`;

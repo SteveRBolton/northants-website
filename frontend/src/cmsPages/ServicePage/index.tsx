@@ -9,9 +9,16 @@ type ServicePageProps = {
   title: string;
   body: TextWithSlicesProps;
   signposting?: SignpostLinksProps;
-  sectionSidebar?: SectionLinksSidebarProps;
+  inThisSection?: SectionLinksSidebarProps;
+  alsoIn?: SectionLinksSidebarProps;
 };
-export default function ServicePage({ title, body, signposting, sectionSidebar }: ServicePageProps): ReactElement {
+export default function ServicePage({
+  title,
+  body,
+  signposting,
+  inThisSection,
+  alsoIn,
+}: ServicePageProps): ReactElement {
   return (
     <>
       <Head>
@@ -22,7 +29,11 @@ export default function ServicePage({ title, body, signposting, sectionSidebar }
           <TextWithSlices {...body} />
           {signposting && <SignpostLinks {...signposting} />}
         </PageMain>
-        {sectionSidebar && <SectionLinksSidebar {...sectionSidebar} />}
+        {/* TODO: Replace with proper sidebar */}
+        <div className="sidebar-temporary">
+          {inThisSection && <SectionLinksSidebar {...inThisSection} />}
+          {alsoIn && <SectionLinksSidebar {...alsoIn} />}
+        </div>
       </MaxWidthContainer>
     </>
   );

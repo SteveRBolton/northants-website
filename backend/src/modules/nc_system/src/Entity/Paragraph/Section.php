@@ -1,10 +1,10 @@
 <?php
 
-
 namespace Drupal\nc_system\Entity\Paragraph;
 
-
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
+use Drupal\nc_system\Entity\Node\ServiceLandingPage;
 use Drupal\nc_system\Entity\Node\ServicePage;
 use Drupal\paragraphs\Entity\Paragraph;
 
@@ -36,6 +36,10 @@ class Section extends Paragraph implements GraphQLEntityFieldResolver {
 
     if($fieldName === "pages") {
       return $this->getPages();
+    }
+
+    if($fieldName === "parent") {
+      return $this->getParentEntity();
     }
     throw new \Exception("Unable to resolve value for field via Section resolver");
   }

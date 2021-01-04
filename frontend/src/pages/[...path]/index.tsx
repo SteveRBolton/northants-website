@@ -11,7 +11,7 @@ import {
 import { initializeApollo } from '../../lib/apolloClient';
 import transformSignposting from '../../components/Signposting/transform';
 import transformSection from '../../components/Section/transform';
-import transformCanonicalSection from '../../components/SectionSidebar/transform';
+import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) => {
   const client = initializeApollo();
@@ -46,14 +46,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'ServicePageNode')) {
-      const { title, body, signposting, canonicalSection } = node;
+      const { title, body, signposting, canonicalSection, sections } = node;
+      const otherSections = sections.filter((section) => section.id !== canonicalSection?.id);
 
       return (
         <ServicePage
           title={title}
           body={{ html: body.value, embeds: body.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
-          sectionSidebar={canonicalSection ? transformCanonicalSection(canonicalSection, node.id) : undefined}
+          inThisSection={canonicalSection ? transformInThisSection(canonicalSection, node.id) : undefined}
+          alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
         />
       );
     }

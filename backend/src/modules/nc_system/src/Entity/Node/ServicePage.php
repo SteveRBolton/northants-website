@@ -87,11 +87,13 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
   }
 
   /**
+   * Loads all sections that reference this page.
+   *
    * @return array<Section>
    */
   public function getSections(): array {
-    //TODO: Figure out what sections this page is in. Use drupal entityQuery??
-    return [];
+    $sectionIDs = \Drupal::entityQuery('paragraph')->condition('type', 'section')->condition('field_pages', $this->id())->execute();
+    return Section::loadMultiple($sectionIDs);
   }
 
   /**

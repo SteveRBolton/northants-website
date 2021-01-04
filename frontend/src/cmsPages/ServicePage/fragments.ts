@@ -1,12 +1,13 @@
 import { gql } from '@apollo/react-hooks';
 import callToActionFragment from '../../components/CallToAction/fragment';
 import signpostingFragment from '../../components/Signposting/fragment';
-import sidebarSectionFragment from '../../components/SectionSidebar/fragment';
+import { sectionPagesFragment, sectionParentLinkFragment } from '../../components/SectionSidebar/fragment';
 
 const servicePageNodeFull = gql`
   ${callToActionFragment}
   ${signpostingFragment}
-  ${sidebarSectionFragment}
+  ${sectionPagesFragment}
+  ${sectionParentLinkFragment}
   fragment ServicePageNodeFull on ServicePageNode {
     __typename
     title
@@ -24,7 +25,10 @@ const servicePageNodeFull = gql`
       ...CouncilSignposting
     }
     canonicalSection {
-      ...SidebarSection
+      ...SectionPages
+    }
+    sections {
+      ...SectionParentLink
     }
   }
 `;

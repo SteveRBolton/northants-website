@@ -81,7 +81,20 @@ export interface ServicePageNodeFull_canonicalSection_pages {
 export interface ServicePageNodeFull_canonicalSection {
   __typename: "SectionParagraph";
   name: string;
+  id: string;
   pages: ServicePageNodeFull_canonicalSection_pages[];
+}
+
+export interface ServicePageNodeFull_sections_parent {
+  __typename: "ServiceLandingPageNode";
+  url: string;
+}
+
+export interface ServicePageNodeFull_sections {
+  __typename: "SectionParagraph";
+  name: string;
+  id: string;
+  parent: ServicePageNodeFull_sections_parent;
 }
 
 export interface ServicePageNodeFull {
@@ -91,4 +104,5 @@ export interface ServicePageNodeFull {
   body: ServicePageNodeFull_body;
   signposting: ServicePageNodeFull_signposting | null;
   canonicalSection: ServicePageNodeFull_canonicalSection | null;
+  sections: ServicePageNodeFull_sections[];
 }

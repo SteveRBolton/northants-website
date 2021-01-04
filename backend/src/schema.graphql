@@ -170,6 +170,7 @@ type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "sec
   id: String!
   name: String!
   pages: [ServicePageNode!]!
+  parent: ServiceLandingPageNode!
 }
 
 # Slices
