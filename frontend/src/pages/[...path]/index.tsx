@@ -53,7 +53,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           title={title}
           body={{ html: body.value, embeds: body.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
-          sectionSidebar={canonicalSection ? transformCanonicalSection(canonicalSection) : undefined}
+          sectionSidebar={canonicalSection ? transformCanonicalSection(canonicalSection, node.id) : undefined}
         />
       );
     }

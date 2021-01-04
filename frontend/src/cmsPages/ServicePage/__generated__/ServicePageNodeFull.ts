@@ -75,6 +75,7 @@ export interface ServicePageNodeFull_canonicalSection_pages {
   __typename: "ServicePageNode";
   title: string;
   url: string;
+  id: string;
 }
 
 export interface ServicePageNodeFull_canonicalSection {

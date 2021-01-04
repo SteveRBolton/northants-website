@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import parse, { domToReact } from 'html-react-parser';
+import parse, { DomElement, domToReact } from 'html-react-parser';
 import { CallToAction, Heading } from 'northants-design-system';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 
@@ -34,7 +34,8 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
        *
        * @param node
        */
-      const getText = (node: { type: string; data: string; children: any[] }): string => {
+
+      const getText = (node: DomElement): string => {
         if (node.type === 'text') {
           return node.data;
         }
@@ -49,16 +50,16 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
       }
 
       if (domNode.name === 'h3' && domNode.children) {
-        return <Heading level={3} text={domNode.text} />;
+        return <Heading level={3} text={getText(domNode)} />;
       }
 
       if (domNode.name === 'h4' && domNode.children) {
-        return <Heading level={4} text={domNode.text} />;
+        return <Heading level={4} text={getText(domNode)} />;
       }
 
       if (domNode.name === 'drupal-paragraph') {
-        if (domNode.attribs['data-paragraph-id']) {
-          const embedded = embeds.find(({ id }) => id === domNode.attribs['data-paragraph-id']);
+        if (domNode.attribs?.['data-paragraph-id']) {
+          const embedded = embeds.find(({ id }) => id === domNode.attribs?.['data-paragraph-id']);
           if (embedded) {
             const { paragraph } = embedded;
             return renderParagraph(paragraph);

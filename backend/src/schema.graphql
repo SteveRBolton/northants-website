@@ -112,7 +112,7 @@ enum EntityType {
 # Content types (Nodes)
 #
 
-interface Node  @entityType {
+interface Node @entityType {
   id: String!
   url: String!
   title: String!
