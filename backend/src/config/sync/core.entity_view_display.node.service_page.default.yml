@@ -3,8 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.service_page.field_sections
+    - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_signposting
+    - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
   module:
@@ -16,15 +17,6 @@ targetEntityType: node
 bundle: service_page
 mode: default
 content:
-  field_sections:
-    type: entity_reference_revisions_entity_view
-    weight: 103
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: content
   field_signposting:
     type: entity_reference_revisions_entity_view
     weight: 102
@@ -33,6 +25,13 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
+  field_summary:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
     region: content
   field_wysiwyg_slices:
     weight: 101
@@ -46,4 +45,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_parent: true

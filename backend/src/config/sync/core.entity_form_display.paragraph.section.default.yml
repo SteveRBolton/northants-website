@@ -12,7 +12,7 @@ bundle: section
 mode: default
 content:
   field_name:
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
@@ -20,7 +20,7 @@ content:
     type: string_textfield
     region: content
   field_pages:
-    weight: 0
+    weight: 1
     settings:
       match_operator: CONTAINS
       match_limit: 10

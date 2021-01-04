@@ -1,21 +1,21 @@
-uuid: fbaf706b-5f52-4895-b583-554f40fe293d
+uuid: 192d3a84-c195-4abb-92f6-fd0a93527484
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_sections
-    - node.type.service_page
+    - node.type.service_landing_page
     - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
-id: node.service_page.field_sections
+id: node.service_landing_page.field_sections
 field_name: field_sections
 entity_type: node
-bundle: service_page
+bundle: service_landing_page
 label: Sections
 description: ''
-required: false
-translatable: false
+required: true
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
