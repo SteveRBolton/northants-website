@@ -93,7 +93,14 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
    */
   public function getSections(): array {
     $sectionIDs = \Drupal::entityQuery('paragraph')->condition('type', 'section')->condition('field_pages', $this->id())->execute();
-    return Section::loadMultiple($sectionIDs);
+    /* @var $sections array<Section> */
+    $sections =  Section::loadMultiple($sectionIDs);
+
+    // Filter out orphaned 'sections.
+    // If you delete a service landing page referencing a section, the section is not immediately deleted, so the entityQuery above will see it.
+    // We don't want those sections, so they are filtered out here:
+    // See https://www.drupal.org/project/entity_reference_revisions/issues/2771531
+    return array_filter($sections, fn($section) => $section->getParentEntity() !== null);
   }
 
   /**
