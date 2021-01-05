@@ -1,6 +1,8 @@
 import { gql } from '@apollo/react-hooks';
+import breadcrumbsFragment from '../../components/Breadcrumbs/fragment';
 
 const serviceLandingPageNodeFull = gql`
+  ${breadcrumbsFragment}
   fragment ServiceLandingPageNodeFull on ServiceLandingPageNode {
     __typename
     title
@@ -20,6 +22,9 @@ const serviceLandingPageNodeFull = gql`
           }
         }
       }
+    }
+    breadcrumbs {
+      ...Breadcrumbs
     }
   }
 `;

@@ -25,6 +25,29 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
     return null;
   }
 
+  public function getBreadcrumbs() {
+    $breadcrumbs = [
+      ['title' => 'Home',
+        'url' => '/']
+    ];
+    $parentField = $this->get('field_parent');
+    $entities = $parentField->referencedEntities();
+    if(!empty($parentField)) {
+      $parentPage = [
+        'title' => $entities[0]->getTitle(),
+        'url' => $entities[0]->toUrl()->toString()
+      ];
+      array_push($breadcrumbs, $parentPage);
+    }
+
+    $currentPage = [
+      'title' => $this->getTitle(),
+      'url' => $this->toUrl()->toString()
+    ];
+    array_push($breadcrumbs, $currentPage);
+    return $breadcrumbs;
+  }
+
   /**
    * @param string $fieldName
    *
@@ -39,6 +62,10 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
 
     if ($fieldName === "signposting") {
       return $this->getSignposting();
+    }
+
+    if ($fieldName === "breadcrumbs") {
+      return $this->getBreadcrumbs();
     }
     throw new \Exception("Unable to resolve value via ServicePage resolve.");
   }

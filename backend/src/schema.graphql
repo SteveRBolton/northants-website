@@ -88,8 +88,10 @@ type LinkFieldWithTitle {
   external: Boolean!
 }
 
-
-
+type Breadcrumb {
+  url: String!
+  title: String!
+}
 
 # TODO: Use this later?
 #enum VersionStatus {
@@ -117,14 +119,13 @@ interface Node  @entityType {
   status: Boolean!
 }
 
-
-
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
   id: String!
   title: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed!
   signposting: CouncilSignpostingParagraph
+  breadcrumbs: [Breadcrumb!]!
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
@@ -132,6 +133,7 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   title: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed!
+  breadcrumbs: [Breadcrumb!]!
 }
 
 #

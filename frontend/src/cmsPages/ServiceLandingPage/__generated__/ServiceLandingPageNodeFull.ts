@@ -37,9 +37,16 @@ export interface ServiceLandingPageNodeFull_body {
   embeds: ServiceLandingPageNodeFull_body_embeds[];
 }
 
+export interface ServiceLandingPageNodeFull_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface ServiceLandingPageNodeFull {
   __typename: "ServiceLandingPageNode";
   title: string;
   id: string;
   body: ServiceLandingPageNodeFull_body;
+  breadcrumbs: ServiceLandingPageNodeFull_breadcrumbs[];
 }

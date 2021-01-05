@@ -41,11 +41,18 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds[];
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode {
   __typename: "ServiceLandingPageNode";
   title: string;
   id: string;
   body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body;
+  breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CouncilSignpostParagraph {
@@ -112,12 +119,19 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   signposts: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts[];
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   id: string;
   body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body;
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
+  breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs[];
 }
 
 export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;

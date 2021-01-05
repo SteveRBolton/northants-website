@@ -71,10 +71,17 @@ export interface ServicePageNodeFull_signposting {
   signposts: ServicePageNodeFull_signposting_signposts[];
 }
 
+export interface ServicePageNodeFull_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface ServicePageNodeFull {
   __typename: "ServicePageNode";
   title: string;
   id: string;
   body: ServicePageNodeFull_body;
   signposting: ServicePageNodeFull_signposting | null;
+  breadcrumbs: ServicePageNodeFull_breadcrumbs[];
 }
