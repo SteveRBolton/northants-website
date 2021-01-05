@@ -1,0 +1,23 @@
+uuid: c835981d-c73a-4ca6-830c-33cd3a9866af
+langcode: en
+status: true
+dependencies: {  }
+id: content_designer
+label: 'Content Designer'
+weight: -5
+is_admin: null
+permissions:
+  - 'create service_landing_page content'
+  - 'create service_page content'
+  - 'edit own service_landing_page content'
+  - 'edit own service_page content'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'use editorial transition submit_for_review'
+  - 'use text format embed_basic_html'
+  - 'view any unpublished content'
+  - 'view latest version'
+  - 'view own unpublished content'

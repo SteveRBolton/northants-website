@@ -1,0 +1,20 @@
+uuid: b4a745cd-2547-4009-bc5c-fb9a063250bc
+langcode: en
+status: true
+dependencies: {  }
+id: subject_matter_expert
+label: 'Subject Matter Expert'
+weight: -8
+is_admin: null
+permissions:
+  - 'access content'
+  - 'create service_landing_page content'
+  - 'create service_page content'
+  - 'edit own service_landing_page content'
+  - 'edit own service_page content'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition submit_for_review'
+  - 'use text format embed_basic_html'
+  - 'view any unpublished content'
+  - 'view latest version'
+  - 'view own unpublished content'
