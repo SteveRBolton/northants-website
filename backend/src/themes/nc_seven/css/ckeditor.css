@@ -58,32 +58,6 @@
   cursor: pointer !important;
 }
 
-.paragraph--type--pull-quote {
-  margin: 20px 0;
-  padding: 15px 0 15px 40px;
-  border-left: 5px solid rgb(120, 61, 246);
-}
-
-.field--name-quote-text {
-  color: rgb(0, 0, 0);
-  font-family: HelveticaNeueLTPro-Bd, HelveticaNeue, "Helvetica Neue", Helvetica, "Open Sans", Arial, "Lucida Grande", sans-serif;
-  display: block;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.field--name-quote-text::before {
-  content: open-quote;
-}
-
-.field--name-quote-text::after {
-  content: close-quote;
-}
-
-.field--name-citation {
-  margin-top: 15px;
-}
-
 .paragraph--type--file-download {
   margin: 25px 0px;
   display: block;
