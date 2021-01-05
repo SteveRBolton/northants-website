@@ -23,7 +23,13 @@ export interface ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph
   link: ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph_link;
 }
 
-export type ServicePageNodeFull_body_embeds_paragraph = ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph;
+export interface ServicePageNodeFull_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type ServicePageNodeFull_body_embeds_paragraph = ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph | ServicePageNodeFull_body_embeds_paragraph_BlockQuoteParagraph;
 
 export interface ServicePageNodeFull_body_embeds {
   __typename: "EmbeddedParagraph";
