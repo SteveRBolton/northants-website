@@ -1,0 +1,34 @@
+uuid: ba0861e8-d277-426e-9fea-d49efa33a53f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section.field_name
+    - field.field.paragraph.section.field_pages
+    - paragraphs.paragraphs_type.section
+id: paragraph.section.default
+targetEntityType: paragraph
+bundle: section
+mode: default
+content:
+  field_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_pages:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true

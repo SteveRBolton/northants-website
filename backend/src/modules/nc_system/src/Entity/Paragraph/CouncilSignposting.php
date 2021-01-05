@@ -33,6 +33,9 @@ class CouncilSignposting extends Paragraph implements GraphQLEntityFieldResolver
     return $signpostsField->referencedEntities();
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function resolveGraphQLFieldToValue(string $fieldName) {
 
     if($fieldName === "topLine") {

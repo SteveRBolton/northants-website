@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.service_landing_page.field_sections
     - field.field.node.service_landing_page.field_wysiwyg_slices
     - node.type.service_landing_page
   module:
@@ -19,4 +20,5 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_sections: true
   field_wysiwyg_slices: true

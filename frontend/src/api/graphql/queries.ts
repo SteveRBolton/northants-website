@@ -10,8 +10,6 @@ export const getCMSContentOrRedirect = gql`
       ... on DrupalNodeRoute {
         node {
           ...ServiceLandingPageNodeFull
-        }
-        node {
           ...ServicePageNodeFull
         }
       }

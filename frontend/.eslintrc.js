@@ -30,10 +30,19 @@ module.exports = {
     'no-nested-ternary': 0,
     'no-underscore-dangle': 0,
     'eslint-comments/no-unlimited-disable': 0,
-    'eslint-comments/disable-enable-pair': 0
+    'eslint-comments/disable-enable-pair': 0,
+    'react/require-default-props': 0,
+    '@typescript-eslint/naming-convention': [
+      'error', {
+        selector: 'variable',
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+        leadingUnderscore: 'allow'
+      }
+    ]
   },
   ignorePatterns: [
     '.eslintrc.js',
-    'next.config.js'
+    'next.config.js',
+    'next-env.d.ts'
   ],
 };
