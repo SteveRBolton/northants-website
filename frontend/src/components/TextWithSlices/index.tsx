@@ -57,6 +57,15 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
         return <Heading level={4} text={getText(domNode)} />;
       }
 
+      if (domNode.name === 'table' && domNode.children) {
+        /* Wrap tables in a div so design system can apply additional styling */
+        return (
+          <div className="table-container">
+            {React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children))}
+          </div>
+        );
+      }
+
       if (domNode.name === 'drupal-paragraph') {
         if (domNode.attribs?.['data-paragraph-id']) {
           const embedded = embeds.find(({ id }) => id === domNode.attribs?.['data-paragraph-id']);
