@@ -173,6 +173,12 @@ type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "sec
   parent: ServiceLandingPageNode!
 }
 
+type BlockQuoteParagraph implements Paragraph @entity(type: paragraph, bundle: "pull_quote") {
+  id: String!
+  quote: String!
+  citation: String
+}
+
 # Slices
 
 #union Slice @slice = CallToActionParagraph

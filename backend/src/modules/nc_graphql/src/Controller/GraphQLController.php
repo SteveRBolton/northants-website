@@ -51,6 +51,10 @@ class GraphQLController extends ControllerBase {
       case 'paragraph':
         $paragraphTypes = [
           'call_to_action' => 'CallToActionParagraph',
+          'council_signpost' => 'CouncilSignpostParagraph',
+          'council_signposting' => 'CouncilSignpostingParagraph',
+          'pull_quote' => 'BlockQuoteParagraph',
+          'section' => 'SectionParagraph'
         ];
         return $paragraphTypes[$entity->bundle()];
       case 'embedded_paragraphs':

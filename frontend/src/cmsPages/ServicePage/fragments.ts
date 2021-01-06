@@ -1,10 +1,10 @@
 import { gql } from '@apollo/react-hooks';
-import callToActionFragment from '../../components/CallToAction/fragment';
 import signpostingFragment from '../../components/Signposting/fragment';
 import { sectionPagesFragment, sectionParentLinkFragment } from '../../components/SectionSidebar/fragment';
+import embeddedParagraphFragment from '../../components/TextWithSlices/fragment';
 
 const servicePageNodeFull = gql`
-  ${callToActionFragment}
+  ${embeddedParagraphFragment}
   ${signpostingFragment}
   ${sectionPagesFragment}
   ${sectionParentLinkFragment}
@@ -15,10 +15,7 @@ const servicePageNodeFull = gql`
     body {
       value
       embeds {
-        id
-        paragraph {
-          ...CallToAction
-        }
+        ...EmbeddedParagraph
       }
     }
     signposting {
