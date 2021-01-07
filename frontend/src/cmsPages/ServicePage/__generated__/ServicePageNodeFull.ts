@@ -103,6 +103,12 @@ export interface ServicePageNodeFull_sections {
   parent: ServicePageNodeFull_sections_parent;
 }
 
+export interface ServicePageNodeFull_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface ServicePageNodeFull {
   __typename: "ServicePageNode";
   title: string;
@@ -111,4 +117,5 @@ export interface ServicePageNodeFull {
   signposting: ServicePageNodeFull_signposting | null;
   canonicalSection: ServicePageNodeFull_canonicalSection | null;
   sections: ServicePageNodeFull_sections[];
+  breadcrumbs: ServicePageNodeFull_breadcrumbs[];
 }

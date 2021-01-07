@@ -56,10 +56,17 @@ export interface ServiceLandingPageNodeFull_sections {
   pages: ServiceLandingPageNodeFull_sections_pages[];
 }
 
+export interface ServiceLandingPageNodeFull_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface ServiceLandingPageNodeFull {
   __typename: "ServiceLandingPageNode";
   title: string;
   id: string;
   body: ServiceLandingPageNodeFull_body;
   sections: ServiceLandingPageNodeFull_sections[];
+  breadcrumbs: ServiceLandingPageNodeFull_breadcrumbs[];
 }

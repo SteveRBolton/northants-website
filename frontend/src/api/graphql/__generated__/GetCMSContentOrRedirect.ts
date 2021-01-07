@@ -97,12 +97,19 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   pages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_sections_pages[];
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode {
   __typename: "ServiceLandingPageNode";
   title: string;
   id: string;
   body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body;
   sections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_sections[];
+  breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CouncilSignpostParagraph {
@@ -201,6 +208,12 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   parent: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections_parent;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
@@ -209,6 +222,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;
   sections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections[];
+  breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs[];
 }
 
 export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;
