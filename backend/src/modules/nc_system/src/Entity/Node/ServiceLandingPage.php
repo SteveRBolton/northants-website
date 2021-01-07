@@ -12,6 +12,19 @@ class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
     return $this->get('field_wysiwyg_slices')->first();
   }
 
+  public function getBreadcrumbs() {
+    $breadcrumbs = [
+      ['title' => 'Home',
+        'url' => '/']
+    ];
+    $currentPage = [
+      'title' => $this->getTitle(),
+      'url' => $this->toUrl()->toString()
+    ];
+    array_push($breadcrumbs, $currentPage);
+    return $breadcrumbs;
+  }
+
   /**
    * @return \Drupal\nc_system\Entity\Paragraph\Section[]
    */
@@ -39,6 +52,10 @@ class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
 
     if($fieldName === "url") {
       return $this->toUrl('canonical')->toString();
+    }
+
+    if ($fieldName === "breadcrumbs") {
+      return $this->getBreadcrumbs();
     }
 
     throw new \Exception("Unable to resolve value via ServiceLandingPage resolve.");

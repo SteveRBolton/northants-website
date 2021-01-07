@@ -89,8 +89,10 @@ type LinkFieldWithTitle {
   external: Boolean!
 }
 
-
-
+type Breadcrumb {
+  url: String!
+  title: String!
+}
 
 # TODO: Use this later?
 #enum VersionStatus {
@@ -127,6 +129,7 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
   signposting: CouncilSignpostingParagraph
+  breadcrumbs: [Breadcrumb!]!
   canonicalSection: SectionParagraph
   sections: [SectionParagraph!]! # All the sections this service page is in.
 }
@@ -137,6 +140,7 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   url: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed!
+  breadcrumbs: [Breadcrumb!]!
   sections: [SectionParagraph!]!
 }
 
