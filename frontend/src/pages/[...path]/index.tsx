@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
+import Homepage from '../../cmsPages/Homepage';
 import ServicePage from '../../cmsPages/ServicePage';
 import ServiceLandingPage from '../../cmsPages/ServiceLandingPage';
 import {
@@ -46,6 +47,12 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
+    if (isGraphQLType(node, 'HomepageNode')) {
+      const { title, body } = node;
+      return (
+        <Homepage title={title} body={{ html: body.value, embeds: body.embeds }} heading={{ level: 1, text: title }} />
+      );
+    }
     if (isGraphQLType(node, 'ServicePageNode')) {
       const { title, body, signposting, breadcrumbs, canonicalSection, sections } = node;
       const otherSections = sections.filter((section) => section.id !== canonicalSection?.id);

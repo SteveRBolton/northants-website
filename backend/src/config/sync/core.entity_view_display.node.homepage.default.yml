@@ -1,0 +1,28 @@
+uuid: 2f57dd9f-a73c-4803-bc5a-623f2393de82
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.homepage.field_wysiwyg_slices
+    - node.type.homepage
+  module:
+    - text
+    - user
+id: node.homepage.default
+targetEntityType: node
+bundle: homepage
+mode: default
+content:
+  field_wysiwyg_slices:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

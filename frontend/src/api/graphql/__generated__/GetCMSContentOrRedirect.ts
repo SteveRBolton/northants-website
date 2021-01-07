@@ -11,6 +11,43 @@ export interface GetCMSContentOrRedirect_route_DrupalAccessDeniedRoute {
   __typename: "DrupalAccessDeniedRoute";
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CouncilSignpostParagraph {
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CouncilSignpostParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph;
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds[];
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
+  __typename: "HomepageNode";
+  title: string;
+  id: string;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CouncilSignpostParagraph {
   __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
@@ -174,7 +211,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   sections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections[];
 }
 
-export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute {
   __typename: "DrupalNodeRoute";
