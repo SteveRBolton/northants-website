@@ -9,4 +9,3 @@ db:
 
 cache:
   type: redis:6.0
-  size: S
