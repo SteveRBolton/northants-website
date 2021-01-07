@@ -3,7 +3,6 @@ name: 'frontend'
 
 # The type key specifies the language and version for your application.
 type: 'nodejs:14'
-size: S
 
 dependencies:
   nodejs:
