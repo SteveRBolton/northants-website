@@ -8,7 +8,6 @@ name: 'backend'
 
 # The runtime the application uses.
 type: 'php:7.4'
-size: S
 
 runtime:
   # Enable the redis extension so Drupal can communicate with the Redis cache.
