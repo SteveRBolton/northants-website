@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
 import React, { ReactElement } from 'react';
-import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import Homepage from '../../cmsPages/Homepage';
