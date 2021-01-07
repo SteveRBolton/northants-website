@@ -6,30 +6,17 @@ use Drupal\Component\Serialization\Json;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\Core\Field\FieldItemInterface;
-use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
-use Drupal\Core\Url;
-use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Drupal\nc_system\GraphQLFieldResolver;
-use Drupal\paragraphs_entity_embed\Entity\EmbeddedParagraphs;
-use Drupal\text\Plugin\Field\FieldType\TextItemBase;
-use Drupal\text\Plugin\Field\FieldType\TextWithSummaryItem;
-use GraphQL\GraphQL;
-use GraphQL\Language\Parser;
+use Drupal\paragraphs\ParagraphInterface;
 use GraphQL\Server\RequestError;
 use GraphQL\Server\StandardServer;
 use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\ResolveInfo;
-use GraphQL\Utils\AST;
 use GraphQL\Utils\BuildSchema;
-use GraphQL\Utils\SchemaPrinter;
-use GraphQL\Validator\DocumentValidator;
 use GraphQL\Validator\Rules\DisableIntrospection;
 use GraphQL\Validator\Rules\QueryComplexity;
 use GraphQL\Validator\Rules\QueryDepth;
-use GraphQL\Validator\ValidationContext;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Psr\Http\Message\ServerRequestInterface;
@@ -64,6 +51,10 @@ class GraphQLController extends ControllerBase {
       case 'paragraph':
         $paragraphTypes = [
           'call_to_action' => 'CallToActionParagraph',
+          'council_signpost' => 'CouncilSignpostParagraph',
+          'council_signposting' => 'CouncilSignpostingParagraph',
+          'pull_quote' => 'BlockQuoteParagraph',
+          'section' => 'SectionParagraph'
         ];
         return $paragraphTypes[$entity->bundle()];
       case 'embedded_paragraphs':
@@ -74,6 +65,9 @@ class GraphQLController extends ControllerBase {
     throw new \Exception("Cannot identify type for {$entity->getEntityTypeId()} {$entity->bundle()}");
   }
 
+  static function resolveSlice(ParagraphInterface $paragraph, $context, ResolveInfo $info) {
+    return self::resolveEntityType($paragraph, $context, $info);
+  }
   /**
    * Maps fields on drupal entities to graphql types.
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
@@ -82,7 +76,6 @@ class GraphQLController extends ControllerBase {
    * @param \GraphQL\Type\Definition\ResolveInfo $info
    *
    * @return mixed
-   * @throws \Drupal\Core\Entity\EntityMalformedException
    * @throws \Drupal\Core\TypedData\Exception\MissingDataException
    */
 static function resolveEntityField(ContentEntityInterface $entity, $args, $context, ResolveInfo $info) {
@@ -180,6 +173,10 @@ static function resolveEntityField(ContentEntityInterface $entity, $args, $conte
       foreach ($typeDefinitionNode->directives as $d) {
         if ($d->name->value === 'entityType') {
           $typeConfig['resolveType'] = self::class . '::resolveEntityType';
+          break;
+        }
+        if($d->name->value === 'slice') {
+          $typeConfig['resolveType'] = self::class . '::resolveSlice';
           break;
         }
       }

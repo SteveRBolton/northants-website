@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import parse, { domToReact } from 'html-react-parser';
-import { CallToAction, Heading } from 'northants-design-system';
+import parse, { DomElement, domToReact } from 'html-react-parser';
+import { BlockQuote, CallToAction, Heading } from 'northants-design-system';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 
 /**
@@ -11,9 +11,9 @@ import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/
 const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement => {
   switch (paragraph.__typename) {
     case 'CallToActionParagraph':
-      return (
-        <CallToAction label={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />
-      );
+      return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
+    case 'BlockQuoteParagraph':
+      return <BlockQuote quote={paragraph.quote} citation={paragraph.citation ?? undefined} />;
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
   }
@@ -34,7 +34,8 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
        *
        * @param node
        */
-      const getText = (node: { type: string; data: string; children: any[] }): string => {
+
+      const getText = (node: DomElement): string => {
         if (node.type === 'text') {
           return node.data;
         }
@@ -49,16 +50,25 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
       }
 
       if (domNode.name === 'h3' && domNode.children) {
-        return <Heading level={3} text={domNode.text} />;
+        return <Heading level={3} text={getText(domNode)} />;
       }
 
       if (domNode.name === 'h4' && domNode.children) {
-        return <Heading level={4} text={domNode.text} />;
+        return <Heading level={4} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'table' && domNode.children) {
+        /* Wrap tables in a div so design system can apply additional styling */
+        return (
+          <div className="table-container">
+            {React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children))}
+          </div>
+        );
       }
 
       if (domNode.name === 'drupal-paragraph') {
-        if (domNode.attribs['data-paragraph-id']) {
-          const embedded = embeds.find(({ id }) => id === domNode.attribs['data-paragraph-id']);
+        if (domNode.attribs?.['data-paragraph-id']) {
+          const embedded = embeds.find(({ id }) => id === domNode.attribs?.['data-paragraph-id']);
           if (embedded) {
             const { paragraph } = embedded;
             return renderParagraph(paragraph);

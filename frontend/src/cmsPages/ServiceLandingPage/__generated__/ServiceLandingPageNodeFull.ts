@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ServiceLandingPageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
 
 export interface ServiceLandingPageNodeFull_body_embeds_paragraph_CallToActionParagraph_link {
@@ -23,7 +23,13 @@ export interface ServiceLandingPageNodeFull_body_embeds_paragraph_CallToActionPa
   link: ServiceLandingPageNodeFull_body_embeds_paragraph_CallToActionParagraph_link;
 }
 
-export type ServiceLandingPageNodeFull_body_embeds_paragraph = ServiceLandingPageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServiceLandingPageNodeFull_body_embeds_paragraph_CallToActionParagraph;
+export interface ServiceLandingPageNodeFull_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type ServiceLandingPageNodeFull_body_embeds_paragraph = ServiceLandingPageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServiceLandingPageNodeFull_body_embeds_paragraph_CallToActionParagraph | ServiceLandingPageNodeFull_body_embeds_paragraph_BlockQuoteParagraph;
 
 export interface ServiceLandingPageNodeFull_body_embeds {
   __typename: "EmbeddedParagraph";
@@ -37,10 +43,17 @@ export interface ServiceLandingPageNodeFull_body {
   embeds: ServiceLandingPageNodeFull_body_embeds[];
 }
 
-export interface ServiceLandingPageNodeFull_breadcrumbs {
-  __typename: "Breadcrumb";
+export interface ServiceLandingPageNodeFull_sections_pages {
+  __typename: "ServicePageNode";
   title: string;
   url: string;
+  summary: string;
+}
+
+export interface ServiceLandingPageNodeFull_sections {
+  __typename: "SectionParagraph";
+  name: string;
+  pages: ServiceLandingPageNodeFull_sections_pages[];
 }
 
 export interface ServiceLandingPageNodeFull {
@@ -48,5 +61,5 @@ export interface ServiceLandingPageNodeFull {
   title: string;
   id: string;
   body: ServiceLandingPageNodeFull_body;
-  breadcrumbs: ServiceLandingPageNodeFull_breadcrumbs[];
+  sections: ServiceLandingPageNodeFull_sections[];
 }

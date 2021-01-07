@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
 
 export interface ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph_link {
@@ -23,7 +23,13 @@ export interface ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph
   link: ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph_link;
 }
 
-export type ServicePageNodeFull_body_embeds_paragraph = ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph;
+export interface ServicePageNodeFull_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type ServicePageNodeFull_body_embeds_paragraph = ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph | ServicePageNodeFull_body_embeds_paragraph_BlockQuoteParagraph;
 
 export interface ServicePageNodeFull_body_embeds {
   __typename: "EmbeddedParagraph";
@@ -71,10 +77,30 @@ export interface ServicePageNodeFull_signposting {
   signposts: ServicePageNodeFull_signposting_signposts[];
 }
 
-export interface ServicePageNodeFull_breadcrumbs {
-  __typename: "Breadcrumb";
+export interface ServicePageNodeFull_canonicalSection_pages {
+  __typename: "ServicePageNode";
   title: string;
   url: string;
+  id: string;
+}
+
+export interface ServicePageNodeFull_canonicalSection {
+  __typename: "SectionParagraph";
+  name: string;
+  id: string;
+  pages: ServicePageNodeFull_canonicalSection_pages[];
+}
+
+export interface ServicePageNodeFull_sections_parent {
+  __typename: "ServiceLandingPageNode";
+  url: string;
+}
+
+export interface ServicePageNodeFull_sections {
+  __typename: "SectionParagraph";
+  name: string;
+  id: string;
+  parent: ServicePageNodeFull_sections_parent;
 }
 
 export interface ServicePageNodeFull {
@@ -83,5 +109,6 @@ export interface ServicePageNodeFull {
   id: string;
   body: ServicePageNodeFull_body;
   signposting: ServicePageNodeFull_signposting | null;
-  breadcrumbs: ServicePageNodeFull_breadcrumbs[];
+  canonicalSection: ServicePageNodeFull_canonicalSection | null;
+  sections: ServicePageNodeFull_sections[];
 }

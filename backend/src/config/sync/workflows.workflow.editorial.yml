@@ -2,6 +2,9 @@ uuid: aa1da5fb-b452-443c-87c8-3d614b8d904e
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.service_landing_page
+    - node.type.service_page
   module:
     - content_moderation
 _core:
@@ -24,53 +27,76 @@ type_settings:
     needs_review:
       published: false
       default_revision: false
-      label: 'Needs Review'
+      label: Review
       weight: -2
     published:
       label: Published
       published: true
       default_revision: true
+      weight: 0
+    ready_to_publish:
+      published: false
+      default_revision: false
+      label: 'Ready to publish'
       weight: -1
   transitions:
+    approve:
+      label: Approve
+      from:
+        - needs_review
+      to: ready_to_publish
+      weight: -2
     archive:
       label: Archive
       from:
+        - draft
         - published
       to: archived
-      weight: 0
+      weight: 1
     archived_draft:
       label: 'Restore to Draft'
       from:
         - archived
-        - needs_review
       to: draft
-      weight: 1
+      weight: 2
     archived_published:
-      label: Restore
+      label: 'Restore to Published'
       from:
         - archived
       to: published
-      weight: 2
+      weight: 3
     create_new_draft:
       label: 'Create New Draft'
       to: draft
-      weight: -3
+      weight: -4
       from:
         - draft
         - published
     publish:
       label: Publish
       to: published
-      weight: -1
+      weight: 0
       from:
         - draft
-        - needs_review
         - published
+        - ready_to_publish
+    reject:
+      label: Reject
+      from:
+        - needs_review
+      to: draft
+      weight: -1
     submit_for_review:
       label: 'Submit for Review'
       from:
+        - archived
         - draft
+        - needs_review
+        - published
       to: needs_review
-      weight: -2
-  entity_types: {  }
+      weight: -3
+  entity_types:
+    node:
+      - service_landing_page
+      - service_page
   default_moderation_state: draft

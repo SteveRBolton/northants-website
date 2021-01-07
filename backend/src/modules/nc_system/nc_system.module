@@ -1,11 +1,13 @@
 <?php
 
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\nc_system\Entity\Paragraph\BlockQuote;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
 use Drupal\nc_system\Entity\Node\ServicePage;
 use Drupal\nc_system\Entity\Node\ServiceLandingPage;
 use Drupal\nc_system\Entity\Paragraph\CouncilSignpost;
 use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
+use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 
 /**
@@ -24,6 +26,8 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   $bundles['paragraph']['call_to_action']['class'] = CallToAction::class;
   $bundles['paragraph']['council_signpost']['class'] = CouncilSignpost::class;
   $bundles['paragraph']['council_signposting']['class'] = CouncilSignposting::class;
+  $bundles['paragraph']['pull_quote']['class'] = BlockQuote::class;
+  $bundles['paragraph']['section']['class'] = Section::class;
 
   // Taxonomy terms
   $bundles['taxonomy_term']['sovereign_councils']['class'] = SovereignCouncil::class;

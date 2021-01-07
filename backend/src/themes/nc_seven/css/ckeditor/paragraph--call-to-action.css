@@ -5,8 +5,8 @@
   font-weight: bold;
   font-size: 1.14rem;
   line-height: 1.6;
-  color: #ffffff;
-  background: #386193;
+  color: var(--ckeditor-theme--white);
+  background: var(--ckeditor-theme--action);
   text-decoration: none;
   padding: 10px 25px;
   z-index: 2;

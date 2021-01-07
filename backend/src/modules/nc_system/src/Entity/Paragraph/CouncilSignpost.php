@@ -27,11 +27,9 @@ class CouncilSignpost extends Paragraph implements GraphQLEntityFieldResolver {
     $entities = $councilField->referencedEntities();
     return $entities[0];
   }
+
   /**
-   * @param string $fieldName
-   *
-   * @return array|mixed|null
-   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   * {@inheritdoc}
    */
   public function resolveGraphQLFieldToValue(string $fieldName) {
 

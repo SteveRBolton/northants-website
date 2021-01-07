@@ -1,5 +1,6 @@
-import { GetServerSideProps, NextPageContext } from 'next';
+import { GetServerSideProps } from 'next';
 import React, { ReactElement } from 'react';
+import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import ServicePage from '../../cmsPages/ServicePage';
@@ -10,8 +11,10 @@ import {
 } from '../../api/graphql/__generated__/GetCMSContentOrRedirect';
 import { initializeApollo } from '../../lib/apolloClient';
 import transformSignposting from '../../components/Signposting/transform';
+import transformSection from '../../components/Section/transform';
+import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 
-export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) => {
   const client = initializeApollo();
 
   return client
@@ -44,24 +47,29 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'ServicePageNode')) {
-      const { title, body, signposting, breadcrumbs } = node;
+      const { title, body, signposting, breadcrumbs, canonicalSection, sections } = node;
+      const otherSections = sections.filter((section) => section.id !== canonicalSection?.id);
+
       return (
         <ServicePage
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           title={title}
           body={{ html: body.value, embeds: body.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
+          inThisSection={canonicalSection ? transformInThisSection(canonicalSection, node.id) : undefined}
+          alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
         />
       );
     }
     if (isGraphQLType(node, 'ServiceLandingPageNode')) {
-      const { title, body, breadcrumbs } = node;
+      const { title, body, breadcrumbs, sections } = node;
       return (
         <ServiceLandingPage
           title={title}
           body={{ html: body.value, embeds: body.embeds }}
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
+          sections={sections.map(transformSection)}
         />
       );
     }

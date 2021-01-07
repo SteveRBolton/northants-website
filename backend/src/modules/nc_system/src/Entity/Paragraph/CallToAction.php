@@ -15,11 +15,9 @@ class CallToAction extends Paragraph implements GraphQLEntityFieldResolver {
   public function getLink(): ?LinkItemInterface {
     return $this->field_link->first();
   }
+
   /**
-   * @param string $fieldName
-   *
-   * @return array|mixed|null
-   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   * {@inheritDoc}
    */
   public function resolveGraphQLFieldToValue(string $fieldName) {
 

@@ -1,19 +1,21 @@
-import { Breadcrumbs, Heading, MaxWidthContainer, PageMain } from 'northants-design-system';
+import { Breadcrumbs, Heading, MaxWidthContainer, PageMain, SectionLinks } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
+import { SectionLinksProps } from 'northants-design-system/build/library/structure/SectionLinks/SectionLinks.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
+
+type HeadingProps = {
+  level: 1;
+  text: string;
+};
 
 type ServiceLandingPageProps = {
   title: string;
-  heading: Heading;
+  heading: HeadingProps;
   body: TextWithSlicesProps;
   breadcrumbs: BreadcrumbsProps;
-};
-
-type Heading = {
-  level: 1;
-  text: string;
+  sections: SectionLinksProps[];
 };
 
 export default function ServiceLandingPage({
@@ -21,6 +23,7 @@ export default function ServiceLandingPage({
   heading,
   body,
   breadcrumbs,
+  sections,
 }: ServiceLandingPageProps): ReactElement {
   return (
     <>
@@ -32,6 +35,9 @@ export default function ServiceLandingPage({
         <PageMain>
           <Heading {...heading} />
           <TextWithSlices {...body} />
+          {sections.map((section) => (
+            <SectionLinks {...section} />
+          ))}
         </PageMain>
       </MaxWidthContainer>
     </>

@@ -1,0 +1,15 @@
+:root {
+  --ckeditor-theme--black: #000000;
+  --ckeditor-theme--grey-dark: #757575;
+  --ckeditor-theme--grey: #C6C6C6;
+  --ckeditor-theme--grey-light: #F5F5F5;
+  --ckeditor-theme--white: #FFFFFF;
+
+  --ckeditor-theme--action: #05873A;
+  --ckeditor-theme--action-light: #F3F9F5;
+  --ckeditor-theme--action-dark: #065325;
+  --ckeditor-theme--positive: #1A9DD9;
+  --ckeditor-theme--negative: #B73131;
+
+  --ckeditor-theme--focus: #E2CA76;
+}

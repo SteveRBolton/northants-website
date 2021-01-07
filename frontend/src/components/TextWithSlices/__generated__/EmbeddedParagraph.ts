@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface EmbeddedParagraph_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
 }
 
 export interface EmbeddedParagraph_paragraph_CallToActionParagraph_link {
@@ -23,7 +23,13 @@ export interface EmbeddedParagraph_paragraph_CallToActionParagraph {
   link: EmbeddedParagraph_paragraph_CallToActionParagraph_link;
 }
 
-export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_CouncilSignpostParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph;
+export interface EmbeddedParagraph_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_CouncilSignpostParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_BlockQuoteParagraph;
 
 export interface EmbeddedParagraph {
   __typename: "EmbeddedParagraph";
