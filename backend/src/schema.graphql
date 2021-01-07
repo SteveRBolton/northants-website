@@ -119,6 +119,14 @@ interface Node @entityType {
   status: Boolean!
 }
 
+type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
+  id: String!
+  url: String!
+  title: String!
+  status: Boolean!
+  body: FormattedFieldWithParagraphsEmbed!
+}
+
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
   id: String!
   title: String!

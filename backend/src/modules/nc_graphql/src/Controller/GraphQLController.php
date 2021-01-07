@@ -44,6 +44,7 @@ class GraphQLController extends ControllerBase {
     switch ($entity->getEntityTypeId()) {
       case 'node':
         $contentTypes = [
+          'homepage' => 'HomepageNode',
           'service_page' => 'ServicePageNode',
           'service_landing_page' => 'ServiceLandingPageNode',
         ];
