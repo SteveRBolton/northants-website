@@ -1,4 +1,12 @@
-import { Breadcrumbs, MaxWidthContainer, PageMain, SignpostLinks, SectionLinksSidebar } from 'northants-design-system';
+import {
+  Breadcrumbs,
+  MaxWidthContainer,
+  PageMain,
+  SignpostLinks,
+  SectionLinksSidebar,
+  PageWithSidebarContainer,
+  PageSidebar,
+} from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { SignpostLinksProps } from 'northants-design-system/build/library/structure/SignpostLinks/SignpostLinks.types';
@@ -22,6 +30,23 @@ export default function ServicePage({
   inThisSection,
   alsoIn,
 }: ServicePageProps): ReactElement {
+  /* At least one defined sidebar element */
+  const showSidebar = [inThisSection, alsoIn].filter((s) => s !== undefined).length > 0;
+
+  const main = (
+    <PageMain>
+      <TextWithSlices {...body} />
+      {signposting && <SignpostLinks {...signposting} />}
+    </PageMain>
+  );
+
+  const sidebar = (
+    <PageSidebar>
+      {inThisSection && <SectionLinksSidebar {...inThisSection} />}
+      {alsoIn && <SectionLinksSidebar {...alsoIn} />}
+    </PageSidebar>
+  );
+
   return (
     <>
       <Head>
@@ -29,15 +54,13 @@ export default function ServicePage({
       </Head>
       <MaxWidthContainer>
         <Breadcrumbs {...breadcrumbs} />
-        <PageMain>
-          <TextWithSlices {...body} />
-          {signposting && <SignpostLinks {...signposting} />}
-        </PageMain>
-        {/* TODO: Replace with proper sidebar */}
-        <div className="sidebar-temporary">
-          {inThisSection && <SectionLinksSidebar {...inThisSection} />}
-          {alsoIn && <SectionLinksSidebar {...alsoIn} />}
-        </div>
+        {showSidebar && (
+          <PageWithSidebarContainer>
+            {main}
+            {sidebar}
+          </PageWithSidebarContainer>
+        )}
+        {!showSidebar && main}
       </MaxWidthContainer>
     </>
   );
