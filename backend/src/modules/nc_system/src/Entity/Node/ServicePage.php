@@ -54,9 +54,11 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       ['title' => 'Home',
         'url' => '/']
     ];
+    /* @var $parentField  \Drupal\Core\Field\EntityReferenceFieldItemList */
     $parentField = $this->get('field_parent');
+    /* @var $entities  array<Node> */
     $entities = $parentField->referencedEntities();
-    if(!empty($parentField)) {
+    if(!empty($entities)) {
       $parentPage = [
         'title' => $entities[0]->getTitle(),
         'url' => $entities[0]->toUrl()->toString()
