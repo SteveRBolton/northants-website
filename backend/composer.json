@@ -113,6 +113,9 @@
       "drupal/paragraphs_entity_embed": {
         "Toggle between dropdown button/button on add paragraph": "src/patches/paragraph_entity_embed_button.patch",
         "Add an option to only let paragraphs be used once": "src/patches/paragraph_entity_embed_single_use_paragraph.patch"
+      },
+      "drupal/embed": {
+        "Disable caching of the previews for embedded entities": "src/patches/embed_preview_no_cache.patch"
       }
     }
   },
