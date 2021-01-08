@@ -56,7 +56,7 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
     ];
     $parentField = $this->get('field_parent');
     $entities = $parentField->referencedEntities();
-    if(!empty($parentField)) {
+    if(!empty($entities)) {
       $parentPage = [
         'title' => $entities[0]->getTitle(),
         'url' => $entities[0]->toUrl()->toString()
