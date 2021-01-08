@@ -1,0 +1,24 @@
+diff --git a/src/Controller/EmbedController.php b/src/Controller/EmbedController.php
+index 42c6009..a17dbcc 100644
+--- a/src/Controller/EmbedController.php
++++ b/src/Controller/EmbedController.php
+@@ -85,16 +85,9 @@ class EmbedController extends ControllerBase {
+     }
+     else {
+       $html = $this->renderer->renderPlain($build);
+-      // Note that we intentionally do not use:
+-      // - \Drupal\Core\Cache\CacheableResponse because caching it on the server
+-      //   side is wasteful, hence there is no need for cacheability metadata.
+-      // - \Drupal\Core\Render\HtmlResponse because there is no need for
+-      //   attachments nor cacheability metadata.
+-      return (new Response($html))
+-        // Do not allow any intermediary to cache the response, only end user.
+-        ->setPrivate()
+-        // Allow the end user to cache it for up to 5 minutes.
+-        ->setMaxAge(300);
++
++      // Explicitly disable caching. This is a preview render. We always want the most up-to-date version.
++      return (new Response($html, 200, ['cache-control' => ['no-store', 'max-age=0']]));
+     }
+   }
+ 
