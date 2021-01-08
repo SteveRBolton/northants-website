@@ -54,7 +54,9 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       ['title' => 'Home',
         'url' => '/']
     ];
+    /* @var $parentField  \Drupal\Core\Field\EntityReferenceFieldItemList */
     $parentField = $this->get('field_parent');
+    /* @var $entities  array<Node> */
     $entities = $parentField->referencedEntities();
     if(!empty($entities)) {
       $parentPage = [
