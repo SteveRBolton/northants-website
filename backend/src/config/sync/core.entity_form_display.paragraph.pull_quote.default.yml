@@ -14,7 +14,7 @@ content:
   field_citation:
     weight: 1
     settings:
-      rows: 5
+      rows: 2
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
