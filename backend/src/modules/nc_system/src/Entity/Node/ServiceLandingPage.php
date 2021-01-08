@@ -17,11 +17,7 @@ class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
       ['title' => 'Home',
         'url' => '/']
     ];
-    $currentPage = [
-      'title' => $this->getTitle(),
-      'url' => $this->toUrl()->toString()
-    ];
-    array_push($breadcrumbs, $currentPage);
+
     return $breadcrumbs;
   }
 
