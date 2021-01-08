@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
-import { BlockQuote, CallToAction, Heading } from 'northants-design-system';
+import { BlockQuote, CallToAction, Heading, Divider } from 'northants-design-system';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 
 /**
@@ -64,6 +64,11 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
             {React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children))}
           </div>
         );
+      }
+
+      /* Replace <hr> with custom React component from design system. */
+      if (domNode.name === 'hr') {
+        return <Divider />;
       }
 
       if (domNode.name === 'drupal-paragraph') {
