@@ -147,7 +147,7 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   title: String!
   url: String!
   status: Boolean!
-  body: FormattedFieldWithParagraphsEmbed!
+  body: FormattedFieldWithParagraphsEmbed
   breadcrumbs: [Breadcrumb!]!
   sections: [SectionParagraph!]!
 }
