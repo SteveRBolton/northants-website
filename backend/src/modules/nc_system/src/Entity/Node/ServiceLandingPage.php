@@ -8,8 +8,14 @@ use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
 
-  public function getBody(): TextItemBase {
-    return $this->get('field_wysiwyg_slices')->first();
+  public function getBody(): ?TextItemBase {
+    /* @var $bodyField \Drupal\Core\Field\FieldItemList */
+    $bodyField = $this->get('field_wysiwyg_slices');
+
+    /* @var $bodyItem TextItemBase|null */
+    $bodyItem = $bodyField->first();
+
+    return $bodyItem;
   }
 
   public function getBreadcrumbs() {
@@ -39,7 +45,10 @@ class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
   public function resolveGraphQLFieldToValue(string $fieldName) {
     if($fieldName === "body") {
       $body = $this->getBody();
-      return GraphQLFieldResolver::resolveTextItem($body);
+      if($body) {
+        return GraphQLFieldResolver::resolveTextItem($body);
+      }
+      return null;
     }
 
     if($fieldName === "sections") {

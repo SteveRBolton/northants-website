@@ -13,7 +13,7 @@ type HeadingProps = {
 type ServiceLandingPageProps = {
   title: string;
   heading: HeadingProps;
-  body: TextWithSlicesProps;
+  body?: TextWithSlicesProps;
   breadcrumbs: BreadcrumbsProps;
   sections: SectionLinksProps[];
 };
@@ -34,7 +34,7 @@ export default function ServiceLandingPage({
         <Breadcrumbs {...breadcrumbs} />
         <PageMain>
           <Heading {...heading} />
-          <TextWithSlices {...body} />
+          {body && <TextWithSlices {...body} />}
           {sections.map((section) => (
             <SectionLinks {...section} />
           ))}

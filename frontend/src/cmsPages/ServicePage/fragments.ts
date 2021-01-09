@@ -14,7 +14,7 @@ const servicePageNodeFull = gql`
     __typename
     title
     id
-    body {
+    serviceBody: body {
       value
       embeds {
         ...EmbeddedParagraph
