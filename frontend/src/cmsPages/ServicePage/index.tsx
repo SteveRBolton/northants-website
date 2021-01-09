@@ -6,6 +6,7 @@ import {
   SectionLinksSidebar,
   PageWithSidebarContainer,
   PageSidebar,
+  Heading,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -35,6 +36,7 @@ export default function ServicePage({
 
   const main = (
     <PageMain>
+      <Heading level={1} text={title} />
       <TextWithSlices {...body} />
       {signposting && <SignpostLinks {...signposting} />}
     </PageMain>
