@@ -1,16 +1,16 @@
 import { gql } from '@apollo/react-hooks';
-import signpostingFragment from '../../components/Signposting/fragment';
-import { sectionPagesFragment, sectionParentLinkFragment } from '../../components/SectionSidebar/fragment';
-import embeddedParagraphFragment from '../../components/TextWithSlices/fragment';
-import breadcrumbsFragment from '../../components/Breadcrumbs/fragment';
+import signpostingFragment from '../../../components/Signposting/fragment';
+import { sectionPagesFragment, sectionParentLinkFragment } from '../../../components/SectionSidebar/fragment';
+import embeddedParagraphFragment from '../../../components/TextWithSlices/fragment';
+import breadcrumbsFragment from '../../../components/Breadcrumbs/fragment';
 
-const servicePageNodeFull = gql`
+export default gql`
   ${embeddedParagraphFragment}
   ${signpostingFragment}
   ${sectionPagesFragment}
   ${sectionParentLinkFragment}
   ${breadcrumbsFragment}
-  fragment ServicePageNodeFull on ServicePageNode {
+  fragment ServicePageNode_Full on ServicePageNode {
     __typename
     title
     id
@@ -26,7 +26,7 @@ const servicePageNodeFull = gql`
     canonicalSection {
       ...SectionPages
     }
-    sections {
+    inSections {
       ...SectionParentLink
     }
     breadcrumbs {
@@ -34,5 +34,3 @@ const servicePageNodeFull = gql`
     }
   }
 `;
-
-export { servicePageNodeFull };

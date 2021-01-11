@@ -1,19 +1,19 @@
 import { gql } from '@apollo/react-hooks';
 import { homepageNodeFull } from '../../cmsPages/Homepage/fragments';
-import { servicePageNodeFull } from '../../cmsPages/ServicePage/fragments';
-import { serviceLandingPageNodeFull } from '../../cmsPages/ServiceLandingPage/fragments';
+import servicePageNode_Full from '../../cmsPages/ServicePage/fragments/full';
+import serviceLandingPageNode_Full from '../../cmsPages/ServiceLandingPage/fragments/full';
 
 export const getCMSContentOrRedirect = gql`
   ${homepageNodeFull}
-  ${serviceLandingPageNodeFull}
-  ${servicePageNodeFull}
+  ${serviceLandingPageNode_Full}
+  ${servicePageNode_Full}
   query GetCMSContentOrRedirect($path: String!) {
     route(path: $path) {
       ... on DrupalNodeRoute {
         node {
           ...HomepageNodeFull
-          ...ServiceLandingPageNodeFull
-          ...ServicePageNodeFull
+          ...ServiceLandingPageNode_Full
+          ...ServicePageNode_Full
         }
       }
       ... on DrupalNotFoundRoute {
