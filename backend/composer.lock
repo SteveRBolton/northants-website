@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35621d06f6f1ed332427330aae5ec5f6",
+    "content-hash": "4947514290ba45151cd501b151d95205",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2477,6 +2477,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Disable caching of the previews for embedded entities": "src/patches/embed_preview_no_cache.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
