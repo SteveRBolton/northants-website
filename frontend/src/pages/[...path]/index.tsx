@@ -73,13 +73,14 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
     }
     if (isGraphQLType(node, 'ServiceLandingPageNode')) {
       const { title, serviceLandingBody, breadcrumbs, sections } = node;
+
       return (
         <ServiceLandingPage
           title={title}
           body={serviceLandingBody ? { html: serviceLandingBody.value, embeds: serviceLandingBody.embeds } : undefined}
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
-          sections={sections.map(transformSection)}
+          sections={sections.map((section) => transformSection(section, sections.length > 1))}
         />
       );
     }
