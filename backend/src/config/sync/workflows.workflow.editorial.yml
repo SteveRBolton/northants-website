@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.homepage
     - node.type.service_landing_page
     - node.type.service_page
   module:
@@ -97,6 +98,7 @@ type_settings:
       weight: -3
   entity_types:
     node:
+      - homepage
       - service_landing_page
       - service_page
   default_moderation_state: draft

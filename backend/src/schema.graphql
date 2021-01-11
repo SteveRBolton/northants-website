@@ -139,7 +139,7 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   signposting: CouncilSignpostingParagraph
   breadcrumbs: [Breadcrumb!]!
   canonicalSection: SectionParagraph
-  sections: [SectionParagraph!]! # All the sections this service page is in.
+  inSections: [SectionParagraph!]! # All the sections this service page is in.
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
@@ -148,8 +148,10 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   url: String!
   status: Boolean!
   body: FormattedFieldWithParagraphsEmbed
+  summary: String!
   breadcrumbs: [Breadcrumb!]!
-  sections: [SectionParagraph!]!
+  inSections: [SectionParagraph!]! # All the sections this service landing page is in.
+  hasSections: [SectionParagraph!]! # All the sections ON this service landing page.
 }
 
 #
@@ -178,10 +180,11 @@ type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, b
   signposts: [CouncilSignpostParagraph!]!
 }
 
+union SectionPage @entityType = ServicePageNode | ServiceLandingPageNode
 type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "section") {
   id: String!
   name: String!
-  pages: [ServicePageNode!]!
+  pages: [SectionPage!]!
   parent: ServiceLandingPageNode!
 }
 

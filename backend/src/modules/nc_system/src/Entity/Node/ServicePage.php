@@ -49,24 +49,29 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
     return null;
   }
 
+
+  /**
+   * @return \string[][]
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
   public function getBreadcrumbs() {
-    $breadcrumbs = [
-      ['title' => 'Home',
-        'url' => '/']
-    ];
-    /* @var $parentField  \Drupal\Core\Field\EntityReferenceFieldItemList */
-    $parentField = $this->get('field_parent');
-    /* @var $entities  array<Node> */
-    $entities = $parentField->referencedEntities();
-    if(!empty($entities)) {
-      $parentPage = [
-        'title' => $entities[0]->getTitle(),
-        'url' => $entities[0]->toUrl()->toString()
-      ];
-      array_push($breadcrumbs, $parentPage);
+    $breadcrumbs = [];
+    // Start with parent
+    $current = $this->getParent();
+    // Keep adding breadcrumbs until we reach the top (getParent() return null)
+    while(!empty($current)) {
+      array_push($breadcrumbs, [
+        'title' => $current->getTitle(),
+        'url' => $current->toUrl()->toString()
+      ]);
+      $current = $current->getParent();
     }
 
-    return $breadcrumbs;
+    array_push($breadcrumbs, [
+      'title' => 'Home',
+        'url' => '/'
+    ]);
+    return array_reverse($breadcrumbs);
   }
 
   /**
@@ -111,7 +116,7 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
    *
    * @return array<Section>
    */
-  public function getSections(): array {
+  public function getInSections(): array {
     $sectionIDs = \Drupal::entityQuery('paragraph')->condition('type', 'section')->condition('field_pages', $this->id())->execute();
     /* @var $sections array<Section> */
     $sections =  Section::loadMultiple($sectionIDs);
@@ -144,8 +149,8 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       return $this->getCanonicalSection();
     }
 
-    if($fieldName === "sections") {
-      return $this->getSections();
+    if($fieldName === "inSections") {
+      return $this->getInSections();
     }
 
     if($fieldName === "url") {
