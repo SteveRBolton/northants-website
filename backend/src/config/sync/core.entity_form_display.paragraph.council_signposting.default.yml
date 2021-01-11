@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.council_signposting.field_other_council_link
-    - field.field.paragraph.council_signposting.field_signposting_top_line_text
     - field.field.paragraph.council_signposting.field_signposts
     - paragraphs.paragraphs_type.council_signposting
   module:
@@ -22,14 +21,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_signposting_top_line_text:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_signposts:
     type: entity_reference_paragraphs

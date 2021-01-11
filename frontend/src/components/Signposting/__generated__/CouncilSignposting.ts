@@ -36,7 +36,6 @@ export interface CouncilSignposting_signposts {
 
 export interface CouncilSignposting {
   __typename: "CouncilSignpostingParagraph";
-  topLine: string | null;
   otherCouncil: CouncilSignposting_otherCouncil | null;
   signposts: CouncilSignposting_signposts[];
 }

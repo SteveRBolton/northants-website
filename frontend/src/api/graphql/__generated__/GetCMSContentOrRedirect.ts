@@ -183,7 +183,6 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting {
   __typename: "CouncilSignpostingParagraph";
-  topLine: string | null;
   otherCouncil: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_otherCouncil | null;
   signposts: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts[];
 }

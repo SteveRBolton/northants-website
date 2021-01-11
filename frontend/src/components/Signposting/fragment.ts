@@ -2,7 +2,6 @@ import { gql } from '@apollo/react-hooks';
 
 const fragment = gql`
   fragment CouncilSignposting on CouncilSignpostingParagraph {
-    topLine
     otherCouncil {
       url
     }

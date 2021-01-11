@@ -3,7 +3,6 @@ import { CouncilSignposting } from './__generated__/CouncilSignposting';
 
 export default function transform(from: CouncilSignposting): SignpostLinksProps {
   return {
-    TopLineText: from.topLine ?? undefined,
     OtherCouncilLink: from.otherCouncil?.url,
     SignpostLinksArray: from.signposts.map((signpost) => ({
       areaName: signpost.council.name,
