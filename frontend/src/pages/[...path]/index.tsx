@@ -53,7 +53,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         <Homepage
           title={title}
           body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
-          heading={{ level: 1, text: title }}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
         />
       );
