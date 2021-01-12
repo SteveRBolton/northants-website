@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.homepage.field_service_links_list
     - field.field.node.homepage.field_wysiwyg_slices
     - node.type.homepage
   module:
@@ -19,4 +20,5 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_service_links_list: true
   field_wysiwyg_slices: true

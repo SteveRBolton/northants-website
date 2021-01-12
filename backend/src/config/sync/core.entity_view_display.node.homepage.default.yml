@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.homepage.field_service_links_list
     - field.field.node.homepage.field_wysiwyg_slices
     - node.type.homepage
   module:
+    - entity_reference_revisions
     - text
     - user
 id: node.homepage.default
@@ -13,6 +15,15 @@ targetEntityType: node
 bundle: homepage
 mode: default
 content:
+  field_service_links_list:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_wysiwyg_slices:
     weight: 101
     label: above

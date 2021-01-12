@@ -1,0 +1,30 @@
+uuid: 54991ca9-7345-460a-a8c9-c2b3f9b74e8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.service_links.field_service_landing_page
+    - field.field.paragraph.service_links.field_service_pages
+    - paragraphs.paragraphs_type.service_links
+id: paragraph.service_links.default
+targetEntityType: paragraph
+bundle: service_links
+mode: default
+content:
+  field_service_landing_page:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_service_pages:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }
