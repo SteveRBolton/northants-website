@@ -100,7 +100,7 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
     $parent = $this->getParent();
     $uuid = $this->uuid();
     if($parent instanceof ServiceLandingPage) {
-      $sections = $parent->getSections();
+      $sections = $parent->getHasSections();
       foreach($sections as $section) {
         $pageUUIDS = array_map(fn($page) => $page->uuid(), $section->getPages());
         if(in_array($uuid, $pageUUIDS)) {
