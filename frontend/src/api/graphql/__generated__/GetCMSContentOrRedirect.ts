@@ -11,8 +11,8 @@ export interface GetCMSContentOrRedirect_route_DrupalAccessDeniedRoute {
   __typename: "DrupalAccessDeniedRoute";
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph_link {
@@ -27,7 +27,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph_link;
 }
 
-export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CouncilSignpostParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph;
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_BlockQuoteParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds_paragraph_CallToActionParagraph;
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds {
   __typename: "EmbeddedParagraph";
@@ -41,15 +41,34 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body_embeds[];
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_serviceLandingPage {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  url: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_servicePages {
+  __typename: "ServicePageNode";
+  title: string;
+  url: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks {
+  __typename: "ServiceLinksParagraph";
+  serviceLandingPage: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_serviceLandingPage;
+  servicePages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_servicePages[];
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
   __typename: "HomepageNode";
   title: string;
   id: string;
   body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_body;
+  serviceLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_body_embeds_paragraph_CallToActionParagraph_link {
@@ -113,7 +132,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_body_embeds_paragraph_CallToActionParagraph_link {

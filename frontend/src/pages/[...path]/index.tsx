@@ -12,6 +12,7 @@ import {
 import { initializeApollo } from '../../lib/apolloClient';
 import transformSignposting from '../../components/Signposting/transform';
 import transformSection from '../../components/Section/transform';
+import transformServiceLinks from '../../components/ServiceLinks/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) => {
@@ -47,9 +48,14 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'HomepageNode')) {
-      const { title, body } = node;
+      const { title, body, serviceLinks } = node;
       return (
-        <Homepage title={title} body={{ html: body.value, embeds: body.embeds }} heading={{ level: 1, text: title }} />
+        <Homepage
+          title={title}
+          body={{ html: body.value, embeds: body.embeds }}
+          heading={{ level: 1, text: title }}
+          serviceLinks={serviceLinks.map(transformServiceLinks)}
+        />
       );
     }
     if (isGraphQLType(node, 'ServicePageNode')) {

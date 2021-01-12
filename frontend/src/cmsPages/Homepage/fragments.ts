@@ -1,8 +1,10 @@
 import { gql } from '@apollo/react-hooks';
 import callToActionFragment from '../../components/CallToAction/fragment';
+import serviceLinksFragment from '../../components/ServiceLinks/fragment';
 
 const homepageNodeFull = gql`
   ${callToActionFragment}
+  ${serviceLinksFragment}
   fragment HomepageNodeFull on HomepageNode {
     __typename
     title
@@ -15,6 +17,9 @@ const homepageNodeFull = gql`
           ...CallToAction
         }
       }
+    }
+    serviceLinks {
+      ...ServiceLinks
     }
   }
 `;
