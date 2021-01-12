@@ -126,7 +126,8 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   url: String!
   title: String!
   status: Boolean!
-  body: FormattedFieldWithParagraphsEmbed!
+  body: FormattedFieldWithParagraphsEmbed
+  serviceLinks: [ServiceLinksParagraph!]!
 }
 
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
@@ -175,7 +176,6 @@ type CouncilSignpostParagraph implements Paragraph @entity(type: paragraph, bund
 
 type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signposting") {
   id: String!
-  topLine: String
   otherCouncil: LinkField
   signposts: [CouncilSignpostParagraph!]!
 }
@@ -192,6 +192,12 @@ type BlockQuoteParagraph implements Paragraph @entity(type: paragraph, bundle: "
   id: String!
   quote: String!
   citation: String
+}
+
+type ServiceLinksParagraph implements Paragraph @entity(type: paragraph, bundle: "service_links") {
+  id: String!
+  serviceLandingPage: ServiceLandingPageNode!
+  servicePages: [ServicePageNode!]!
 }
 
 # Slices

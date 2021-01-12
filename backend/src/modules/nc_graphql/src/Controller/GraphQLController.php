@@ -55,7 +55,8 @@ class GraphQLController extends ControllerBase {
           'council_signpost' => 'CouncilSignpostParagraph',
           'council_signposting' => 'CouncilSignpostingParagraph',
           'pull_quote' => 'BlockQuoteParagraph',
-          'section' => 'SectionParagraph'
+          'section' => 'SectionParagraph',
+          'service_links' => 'ServiceLinksParagraph',
         ];
         return $paragraphTypes[$entity->bundle()];
       case 'embedded_paragraphs':

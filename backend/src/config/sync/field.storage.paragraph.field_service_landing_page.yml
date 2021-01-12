@@ -1,17 +1,16 @@
-uuid: e22149f7-e648-4fc0-815f-9ec9932b08be
+uuid: 7d60bb4d-c461-4278-8ac5-1bc5bd4f5dad
 langcode: en
 status: true
 dependencies:
   module:
+    - node
     - paragraphs
-id: paragraph.field_signposting_top_line_text
-field_name: field_signposting_top_line_text
+id: paragraph.field_service_landing_page
+field_name: field_service_landing_page
 entity_type: paragraph
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  target_type: node
 module: core
 locked: false
 cardinality: 1

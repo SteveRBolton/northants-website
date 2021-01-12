@@ -9,6 +9,7 @@ use Drupal\nc_system\Entity\Node\ServiceLandingPage;
 use Drupal\nc_system\Entity\Paragraph\CouncilSignpost;
 use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
 use Drupal\nc_system\Entity\Paragraph\Section;
+use Drupal\nc_system\Entity\Paragraph\ServiceLinks;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 
 /**
@@ -30,6 +31,7 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   $bundles['paragraph']['council_signposting']['class'] = CouncilSignposting::class;
   $bundles['paragraph']['pull_quote']['class'] = BlockQuote::class;
   $bundles['paragraph']['section']['class'] = Section::class;
+  $bundles['paragraph']['service_links']['class'] = ServiceLinks::class;
 
   // Taxonomy terms
   $bundles['taxonomy_term']['sovereign_councils']['class'] = SovereignCouncil::class;

@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ServicePageNodeFull_serviceBody_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface ServicePageNodeFull_serviceBody_embeds_paragraph_CallToActionParagraph_link {
@@ -72,7 +72,6 @@ export interface ServicePageNodeFull_signposting_signposts {
 
 export interface ServicePageNodeFull_signposting {
   __typename: "CouncilSignpostingParagraph";
-  topLine: string | null;
   otherCouncil: ServicePageNodeFull_signposting_otherCouncil | null;
   signposts: ServicePageNodeFull_signposting_signposts[];
 }
