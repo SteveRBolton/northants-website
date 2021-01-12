@@ -69,7 +69,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   __typename: "HomepageNode";
   title: string;
   id: string;
-  homepageBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody;
+  homepageBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody | null;
   serviceLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks[];
 }
 

@@ -126,7 +126,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   url: String!
   title: String!
   status: Boolean!
-  body: FormattedFieldWithParagraphsEmbed!
+  body: FormattedFieldWithParagraphsEmbed
   serviceLinks: [ServiceLinksParagraph!]!
 }
 

@@ -65,6 +65,6 @@ export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
   id: string;
-  homepageBody: HomepageNodeFull_homepageBody;
+  homepageBody: HomepageNodeFull_homepageBody | null;
   serviceLinks: HomepageNodeFull_serviceLinks[];
 }

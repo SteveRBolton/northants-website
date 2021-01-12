@@ -12,7 +12,7 @@ type HeadingProps = {
 type HomepageProps = {
   title: string;
   heading: HeadingProps;
-  body: TextWithSlicesProps;
+  body?: TextWithSlicesProps;
   serviceLinks: PageLinkProp[];
 };
 
@@ -25,7 +25,7 @@ export default function Homepage({ title, heading, body, serviceLinks }: Homepag
       <MaxWidthContainer>
         <PageMain>
           <Heading {...heading} />
-          <TextWithSlices {...body} />
+          {body && <TextWithSlices {...body} />}
           <ServicesLinksList serviceLinksArray={serviceLinks} />
         </PageMain>
       </MaxWidthContainer>

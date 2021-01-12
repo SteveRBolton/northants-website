@@ -52,7 +52,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       return (
         <Homepage
           title={title}
-          body={{ html: homepageBody.value, embeds: homepageBody.embeds }}
+          body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
           heading={{ level: 1, text: title }}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
         />
