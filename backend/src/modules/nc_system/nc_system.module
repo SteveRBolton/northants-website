@@ -47,3 +47,43 @@ function nc_system_entity_type_alter(&$entity_types) {
     $entity_types['embedded_paragraphs']->setClass('Drupal\nc_system\Entity\EmbeddedParagraphs');
   }
 }
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * Changes the admin toolbar colour
+ * @param array $variables
+ */
+function nc_system_page_attachments_alter(array &$page) {
+  if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
+    $admin_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+
+    if ($admin_theme === 'nc_seven') {
+      $background_color = '';
+
+      switch ($_ENV['NEXT_PUBLIC_THEME']) {
+        case 'west':
+          $background_color = '#386193';
+          break;
+
+        case 'north':
+          $background_color = '#05873a';
+          break;
+
+        default:
+          break;
+      }
+
+      if (!empty($background_color)) {
+        $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; }";
+        $page['#attached']['html_head'][] = [
+          [
+            '#tag' => 'style',
+            '#value' => $css,
+          ],
+          'admin-toolbar-custom-css'
+        ];
+      }
+    }
+  }
+}

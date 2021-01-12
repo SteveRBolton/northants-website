@@ -26,6 +26,7 @@ services:
       D4D_HOSTNAME: ${PROJECT_BASE_URL}
       DRUPAL_HASH_SALT: ${DRUPAL_HASH_SALT}
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      NEXT_PUBLIC_THEME: west
       DB_HOST: mariadb
       DB_USER: drupal
       DB_PASSWORD: drupal
