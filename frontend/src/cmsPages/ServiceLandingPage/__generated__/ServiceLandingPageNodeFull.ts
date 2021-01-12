@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ServiceLandingPageNodeFull_serviceLandingBody_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface ServiceLandingPageNodeFull_serviceLandingBody_embeds_paragraph_CallToActionParagraph_link {

@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_CallToActionParagraph_link {
@@ -43,9 +43,28 @@ export interface HomepageNodeFull_homepageBody {
   embeds: HomepageNodeFull_homepageBody_embeds[];
 }
 
+export interface HomepageNodeFull_serviceLinks_serviceLandingPage {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  url: string;
+}
+
+export interface HomepageNodeFull_serviceLinks_servicePages {
+  __typename: "ServicePageNode";
+  title: string;
+  url: string;
+}
+
+export interface HomepageNodeFull_serviceLinks {
+  __typename: "ServiceLinksParagraph";
+  serviceLandingPage: HomepageNodeFull_serviceLinks_serviceLandingPage;
+  servicePages: HomepageNodeFull_serviceLinks_servicePages[];
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
   id: string;
   homepageBody: HomepageNodeFull_homepageBody;
+  serviceLinks: HomepageNodeFull_serviceLinks[];
 }
