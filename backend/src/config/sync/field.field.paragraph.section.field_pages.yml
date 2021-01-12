@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_pages
+    - node.type.service_landing_page
     - node.type.service_page
     - paragraphs.paragraphs_type.section
 id: paragraph.section.field_pages
@@ -20,9 +21,10 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
+      service_landing_page: service_landing_page
       service_page: service_page
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: service_landing_page
 field_type: entity_reference

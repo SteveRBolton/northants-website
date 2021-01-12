@@ -58,8 +58,8 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ServicePageNode')) {
-      const { title, serviceBody, signposting, breadcrumbs, canonicalSection, sections } = node;
-      const otherSections = sections.filter((section) => section.id !== canonicalSection?.id);
+      const { title, serviceBody, signposting, breadcrumbs, canonicalSection, inSections } = node;
+      const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
 
       return (
         <ServicePage
@@ -73,7 +73,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ServiceLandingPageNode')) {
-      const { title, serviceLandingBody, breadcrumbs, sections } = node;
+      const { title, serviceLandingBody, breadcrumbs, hasSections } = node;
 
       return (
         <ServiceLandingPage
@@ -81,7 +81,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           body={serviceLandingBody ? { html: serviceLandingBody.value, embeds: serviceLandingBody.embeds } : undefined}
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
-          sections={sections.map((section) => transformSection(section, sections.length > 1))}
+          sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
         />
       );
     }

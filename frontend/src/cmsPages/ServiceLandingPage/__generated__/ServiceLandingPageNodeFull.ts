@@ -43,12 +43,20 @@ export interface ServiceLandingPageNodeFull_serviceLandingBody {
   embeds: ServiceLandingPageNodeFull_serviceLandingBody_embeds[];
 }
 
-export interface ServiceLandingPageNodeFull_sections_pages {
+export interface ServiceLandingPageNodeFull_sections_pages_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   url: string;
   summary: string;
 }
+
+export interface ServiceLandingPageNodeFull_sections_pages_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  url: string;
+}
+
+export type ServiceLandingPageNodeFull_sections_pages = ServiceLandingPageNodeFull_sections_pages_ServicePageNode | ServiceLandingPageNodeFull_sections_pages_ServiceLandingPageNode;
 
 export interface ServiceLandingPageNodeFull_sections {
   __typename: "SectionParagraph";

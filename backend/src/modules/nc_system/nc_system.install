@@ -7,7 +7,6 @@ use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
  * Add terms to the "Sovereign Councils" taxonomy.
  */
 function nc_system_update_9001() {
-
   $vid = 'sovereign_councils';
   $councilsVocabulary = \Drupal\taxonomy\Entity\Vocabulary::load($vid);
 
@@ -49,4 +48,47 @@ function nc_system_update_9001() {
     $council->save();
   }
 
+}
+
+/**
+ * Use batching process to provide default values to new required 'Service Landing Page' summary field.
+ *
+ * @param $sandbox
+ *
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function nc_system_update_9002(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'service_landing_page')
+      ->execute();
+    $sandbox['total'] = count($nids);
+    $sandbox['current'] = 0;
+  }
+
+  $nodes_per_batch = 25;
+
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'service_landing_page')
+    ->range($sandbox['current'], $sandbox['current'] + $nodes_per_batch)
+    ->execute();
+
+  foreach ($nids as $nid) {
+    /* @var $node  \Drupal\nc_system\Entity\Node\ServiceLandingPage */
+    $node = \Drupal\nc_system\Entity\Node\ServiceLandingPage::load($nid);
+    $summary = $node->getSummary();
+    if(empty($summary)) {
+      $node->set('field_summary', 'Example Summary');
+      $node->save();
+    }
+    $sandbox['current']++;
+  }
+
+  \Drupal::logger('nc_system')->info('Hook update 9002: ' . $sandbox['current'] . ' nodes processed.');
+
+  if ($sandbox['total'] == 0) {
+    $sandbox['#finished'] = 1;
+  } else {
+    $sandbox['#finished'] = ($sandbox['current']/$sandbox['total']);
+  }
 }

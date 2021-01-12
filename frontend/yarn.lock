@@ -7524,9 +7524,9 @@ normalize-url@^4.1.0:
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
 northants-design-system@^0.1.14:
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.18.tgz#9e40a31cac678e2885a538b60d11b8a734facb23"
-  integrity sha512-5KLPYJAj3pXkx4l2KY9B+/pxaF8DzjVK2aYMYs0F1S85wHcncnyfsh9g6mYYf7t3Rx0QinSYMd/PzvR8Wzu1AA==
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.20.tgz#fc92bd30fe12db1e9d8caa3cb75e2733f6eda171"
+  integrity sha512-brcdHRKu1iv4t7X8J2UrTn1v0oKBKmZtYmgfgP09hRAQ/zXM4XN9fmTnbkT09JYCPmaOdPa+rekbo6X4tXEVzA==
 
 npm-run-path@^2.0.0:
   version "2.0.2"

@@ -109,17 +109,28 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds[];
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_sections_pages {
-  __typename: "ServicePageNode";
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections_pages_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
   title: string;
   url: string;
+  id: string;
   summary: string;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_sections {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections_pages_ServicePageNode {
+  __typename: "ServicePageNode";
+  title: string;
+  url: string;
+  id: string;
+  summary: string;
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections_pages = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections_pages_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections_pages_ServicePageNode;
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections {
   __typename: "SectionParagraph";
   name: string;
-  pages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_sections_pages[];
+  pages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections_pages[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs {
@@ -133,7 +144,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   title: string;
   id: string;
   serviceLandingBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody | null;
-  sections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_sections[];
+  hasSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
 }
 
@@ -206,12 +217,21 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   signposts: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts[];
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   url: string;
   id: string;
 }
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  url: string;
+  id: string;
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages_ServicePageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages_ServiceLandingPageNode;
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection {
   __typename: "SectionParagraph";
@@ -220,16 +240,16 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   pages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection_pages[];
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections_parent {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_inSections_parent {
   __typename: "ServiceLandingPageNode";
   url: string;
 }
 
-export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections {
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_inSections {
   __typename: "SectionParagraph";
   name: string;
   id: string;
-  parent: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections_parent;
+  parent: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_inSections_parent;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs {
@@ -245,7 +265,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   serviceBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody;
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;
-  sections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_sections[];
+  inSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_inSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs[];
 }
 

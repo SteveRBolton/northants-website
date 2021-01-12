@@ -76,12 +76,21 @@ export interface ServicePageNodeFull_signposting {
   signposts: ServicePageNodeFull_signposting_signposts[];
 }
 
-export interface ServicePageNodeFull_canonicalSection_pages {
+export interface ServicePageNodeFull_canonicalSection_pages_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  url: string;
+  id: string;
+}
+
+export interface ServicePageNodeFull_canonicalSection_pages_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   url: string;
   id: string;
 }
+
+export type ServicePageNodeFull_canonicalSection_pages = ServicePageNodeFull_canonicalSection_pages_ServiceLandingPageNode | ServicePageNodeFull_canonicalSection_pages_ServicePageNode;
 
 export interface ServicePageNodeFull_canonicalSection {
   __typename: "SectionParagraph";

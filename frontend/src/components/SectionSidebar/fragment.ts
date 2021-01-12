@@ -1,13 +1,16 @@
 import { gql } from '@apollo/react-hooks';
+import servicePageNode_SectionSidebar from '../../cmsPages/ServicePage/fragments/sectionSidebar';
+import serviceLandingPageNode_SectionSidebar from '../../cmsPages/ServiceLandingPage/fragments/sectionSidebar';
 
 export const sectionPagesFragment = gql`
+  ${servicePageNode_SectionSidebar}
+  ${serviceLandingPageNode_SectionSidebar}
   fragment SectionPages on SectionParagraph {
     name
     id
     pages {
-      title
-      url
-      id
+      ...ServicePageNode_SectionSidebar
+      ...ServiceLandingPageNode_SectionSidebar
     }
   }
 `;
