@@ -15,7 +15,7 @@ const serviceLandingPageNodeFull = gql`
     __typename
     title
     id
-    body {
+    serviceLandingBody: body {
       value
       embeds {
         ...EmbeddedParagraph

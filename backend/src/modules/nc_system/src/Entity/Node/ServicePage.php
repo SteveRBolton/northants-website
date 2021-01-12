@@ -66,11 +66,6 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       array_push($breadcrumbs, $parentPage);
     }
 
-    $currentPage = [
-      'title' => $this->getTitle(),
-      'url' => $this->toUrl()->toString()
-    ];
-    array_push($breadcrumbs, $currentPage);
     return $breadcrumbs;
   }
 

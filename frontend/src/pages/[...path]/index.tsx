@@ -48,25 +48,25 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'HomepageNode')) {
-      const { title, body, serviceLinks } = node;
+      const { title, homepageBody, serviceLinks } = node;
       return (
         <Homepage
           title={title}
-          body={{ html: body.value, embeds: body.embeds }}
+          body={{ html: homepageBody.value, embeds: homepageBody.embeds }}
           heading={{ level: 1, text: title }}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
         />
       );
     }
     if (isGraphQLType(node, 'ServicePageNode')) {
-      const { title, body, signposting, breadcrumbs, canonicalSection, sections } = node;
+      const { title, serviceBody, signposting, breadcrumbs, canonicalSection, sections } = node;
       const otherSections = sections.filter((section) => section.id !== canonicalSection?.id);
 
       return (
         <ServicePage
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           title={title}
-          body={{ html: body.value, embeds: body.embeds }}
+          body={{ html: serviceBody.value, embeds: serviceBody.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
           inThisSection={canonicalSection ? transformInThisSection(canonicalSection, node.id) : undefined}
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
@@ -74,14 +74,15 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ServiceLandingPageNode')) {
-      const { title, body, breadcrumbs, sections } = node;
+      const { title, serviceLandingBody, breadcrumbs, sections } = node;
+
       return (
         <ServiceLandingPage
           title={title}
-          body={{ html: body.value, embeds: body.embeds }}
+          body={serviceLandingBody ? { html: serviceLandingBody.value, embeds: serviceLandingBody.embeds } : undefined}
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
-          sections={sections.map(transformSection)}
+          sections={sections.map((section) => transformSection(section, sections.length > 1))}
         />
       );
     }
