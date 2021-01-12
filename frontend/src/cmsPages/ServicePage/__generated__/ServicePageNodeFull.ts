@@ -72,7 +72,6 @@ export interface ServicePageNodeFull_signposting_signposts {
 
 export interface ServicePageNodeFull_signposting {
   __typename: "CouncilSignpostingParagraph";
-  topLine: string | null;
   otherCouncil: ServicePageNodeFull_signposting_otherCouncil | null;
   signposts: ServicePageNodeFull_signposting_signposts[];
 }

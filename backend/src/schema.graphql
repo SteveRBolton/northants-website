@@ -173,7 +173,6 @@ type CouncilSignpostParagraph implements Paragraph @entity(type: paragraph, bund
 
 type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signposting") {
   id: String!
-  topLine: String
   otherCouncil: LinkField
   signposts: [CouncilSignpostParagraph!]!
 }
