@@ -6,16 +6,15 @@ type: 'nodejs:14'
 
 dependencies:
   nodejs:
-    yarn: "^1.22.0"
+    yarn: '^1.22.0'
 
 relationships:
   backend: 'backend:http'
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
-  build: |
-    yarn
-    yarn build
+  build: yarn
+  deploy: yarn build
 
 # The size of the persistent disk of the application (in MB).
 disk: 500
