@@ -23,3 +23,11 @@ disk: 500
 web:
   commands:
     start: npx next start -p $PORT
+
+mounts:
+  '/.cache':
+    source: local
+    source_path: cache
+  '/.next':
+    source: local
+    source_path: next
