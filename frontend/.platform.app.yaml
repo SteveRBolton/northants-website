@@ -28,6 +28,6 @@ mounts:
   '/.cache':
     source: local
     source_path: cache
-  '/.next':
+  '/build':
     source: local
-    source_path: next
+    source_path: build

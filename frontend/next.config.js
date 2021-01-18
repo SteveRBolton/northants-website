@@ -5,6 +5,7 @@
 // }
 
 module.exports = {
+    distDir: 'build',
     webpack: (config, { dev }) => {
         // Config
         const { isServer } = config;
