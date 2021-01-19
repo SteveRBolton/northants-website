@@ -1,0 +1,52 @@
+uuid: 7b12a8cc-8d06-485f-ba96-e6b2b6c1d65b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.accordion_item
+  module:
+    - entity_reference_revisions
+id: paragraph.accordion.field_section
+field_name: field_section
+entity_type: paragraph
+bundle: accordion
+label: Section
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      accordion_item: accordion_item
+    target_bundles_drag_drop:
+      accordion:
+        weight: 9
+        enabled: false
+      accordion_item:
+        enabled: true
+        weight: 10
+      call_to_action:
+        weight: 11
+        enabled: false
+      council_signpost:
+        weight: 12
+        enabled: false
+      council_signposting:
+        weight: 13
+        enabled: false
+      pull_quote:
+        weight: 14
+        enabled: false
+      section:
+        weight: 15
+        enabled: false
+      service_links:
+        weight: 16
+        enabled: false
+field_type: entity_reference_revisions
