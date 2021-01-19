@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
-import { BlockQuote, CallToAction, Heading, Divider } from 'northants-design-system';
+import { Accordion, BlockQuote, CallToAction, Heading, Divider } from 'northants-design-system';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
+import transformAccordion from '../Accordion/transform';
 
 /**
  * Render a slice from its GraphQL object representation.
@@ -10,6 +11,8 @@ import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/
  */
 const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement => {
   switch (paragraph.__typename) {
+    case 'AccordionParagraph':
+      return <Accordion sections={paragraph.sections.map((section) => transformAccordion(section))} />;
     case 'CallToActionParagraph':
       return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
     case 'BlockQuoteParagraph':
