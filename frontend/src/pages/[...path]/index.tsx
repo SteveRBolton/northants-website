@@ -67,7 +67,11 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           title={title}
           body={{ html: serviceBody.value, embeds: serviceBody.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
-          inThisSection={canonicalSection ? transformInThisSection(canonicalSection, node.id) : undefined}
+          inThisSection={
+            canonicalSection && canonicalSection.pages.length > 1
+              ? transformInThisSection(canonicalSection, node.id)
+              : undefined
+          }
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
         />
       );
