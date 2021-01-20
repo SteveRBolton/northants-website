@@ -13,8 +13,9 @@ relationships:
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
-  build: yarn
-  deploy: yarn build
+  build: |
+    yarn
+    yarn build
 
 # The size of the persistent disk of the application (in MB).
 disk: 500
