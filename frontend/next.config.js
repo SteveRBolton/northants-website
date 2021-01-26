@@ -5,7 +5,7 @@
 // }
 
 module.exports = {
-    distDir: '/app/build/next',
+    distDir: 'build/next',
     webpack: (config, { dev }) => {
         // Config
         const { isServer } = config;
