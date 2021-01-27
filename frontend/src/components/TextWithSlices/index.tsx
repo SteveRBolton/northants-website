@@ -19,47 +19,6 @@ export type AccordionEmbedProps = {
   embeds: EmbeddedParagraphAccordion[];
 };
 
-export type EmbedProps = {
-  props: TextWithSlicesProps | AccordionEmbedProps;
-};
-
-const processHtml = (domNode: DomElement): ReactElement => {
-  const getText = (node: DomElement): string => {
-    if (node.type === 'text') {
-      return node.data;
-    }
-    if (node.children) {
-      return node.children.map(getText).join('');
-    }
-    return '';
-  };
-  if (domNode.name === 'h2' && domNode.children) {
-    return <Heading level={2} text={getText(domNode)} />;
-  }
-
-  if (domNode.name === 'h3' && domNode.children) {
-    return <Heading level={3} text={getText(domNode)} />;
-  }
-
-  if (domNode.name === 'h4' && domNode.children) {
-    return <Heading level={4} text={getText(domNode)} />;
-  }
-
-  if (domNode.name === 'table' && domNode.children) {
-    /* Wrap tables in a div so design system can apply additional styling */
-    return (
-      <div className="table-container">
-        {React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children))}
-      </div>
-    );
-  }
-  /* Replace <hr> with custom React component from design system. */
-  if (domNode.name === 'hr') {
-    return <Divider />;
-  }
-  return <></>;
-};
-
 const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement => {
   switch (paragraph.__typename) {
     case 'AccordionParagraph':
@@ -84,8 +43,9 @@ const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragrap
   }
 };
 
+// TODO: Refactor so code isn't repeated.
 const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => {
-  const element = parse(html, {
+  const processed = parse(html, {
     replace: (domNode) => {
       /**
        * Get all text in this DOM node or any of its children.
@@ -94,7 +54,42 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
        *
        * @param node
        */
-      processHtml(domNode);
+
+      const getText = (node: DomElement): string => {
+        if (node.type === 'text') {
+          return node.data;
+        }
+        if (node.children) {
+          return node.children.map(getText).join('');
+        }
+        return '';
+      };
+
+      if (domNode.name === 'h2' && domNode.children) {
+        return <Heading level={2} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'h3' && domNode.children) {
+        return <Heading level={3} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'h4' && domNode.children) {
+        return <Heading level={4} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'table' && domNode.children) {
+        /* Wrap tables in a div so design system can apply additional styling */
+        return (
+          <div className="table-container">
+            {React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children))}
+          </div>
+        );
+      }
+
+      /* Replace <hr> with custom React component from design system. */
+      if (domNode.name === 'hr') {
+        return <Divider />;
+      }
 
       if (domNode.name === 'drupal-paragraph') {
         if (domNode.attribs?.['data-paragraph-id']) {
@@ -105,16 +100,18 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
           }
         }
       }
+
       if (domNode.children && domNode.name) {
         return React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children));
       }
       return <></>;
     },
   });
-  return <>{element}</>;
+
+  return <>{processed}</>;
 };
 const AccordionEmbed = ({ html, embeds }: AccordionEmbedProps): ReactElement => {
-  const element = parse(html, {
+  const processed = parse(html, {
     replace: (domNode) => {
       /**
        * Get all text in this DOM node or any of its children.
@@ -123,7 +120,42 @@ const AccordionEmbed = ({ html, embeds }: AccordionEmbedProps): ReactElement => 
        *
        * @param node
        */
-      processHtml(domNode);
+
+      const getText = (node: DomElement): string => {
+        if (node.type === 'text') {
+          return node.data;
+        }
+        if (node.children) {
+          return node.children.map(getText).join('');
+        }
+        return '';
+      };
+
+      if (domNode.name === 'h2' && domNode.children) {
+        return <Heading level={2} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'h3' && domNode.children) {
+        return <Heading level={3} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'h4' && domNode.children) {
+        return <Heading level={4} text={getText(domNode)} />;
+      }
+
+      if (domNode.name === 'table' && domNode.children) {
+        /* Wrap tables in a div so design system can apply additional styling */
+        return (
+          <div className="table-container">
+            {React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children))}
+          </div>
+        );
+      }
+
+      /* Replace <hr> with custom React component from design system. */
+      if (domNode.name === 'hr') {
+        return <Divider />;
+      }
 
       if (domNode.name === 'drupal-paragraph') {
         if (domNode.attribs?.['data-paragraph-id']) {
@@ -134,13 +166,15 @@ const AccordionEmbed = ({ html, embeds }: AccordionEmbedProps): ReactElement => 
           }
         }
       }
+
       if (domNode.children && domNode.name) {
         return React.createElement(domNode.name, { ...domNode.attribs }, domToReact(domNode.children));
       }
       return <></>;
     },
   });
-  return <>{element}</>;
+
+  return <>{processed}</>;
 };
 
 const transformAccordion = (accordion: Accordion_sections): AccordionSectionProps => {
