@@ -10,7 +10,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT, // Server URL (must be absolute)
+      uri: 'https://beta.develop-sr3snxi-buviaip2abrdc.uk-1.platformsh.site/api/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache({}),
