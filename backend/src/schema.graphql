@@ -200,6 +200,18 @@ type ServiceLinksParagraph implements Paragraph @entity(type: paragraph, bundle:
   servicePages: [ServicePageNode!]!
 }
 
+type AccordionParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion") {
+  id: String!
+  sections: [AccordionItemParagraph!]!
+}
+
+type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion_item") {
+  id: String!
+  title: String!
+  summary: String
+  body: FormattedFieldWithParagraphsEmbed!
+}
+
 # Slices
 
 #union Slice @slice = CallToActionParagraph

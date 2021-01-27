@@ -7,8 +7,8 @@
 // GraphQL fragment: HomepageNodeFull
 // ====================================================
 
-export interface HomepageNodeFull_homepageBody_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_CallToActionParagraph_link {
@@ -29,7 +29,56 @@ export interface HomepageNodeFull_homepageBody_embeds_paragraph_BlockQuoteParagr
   citation: string | null;
 }
 
-export type HomepageNodeFull_homepageBody_embeds_paragraph = HomepageNodeFull_homepageBody_embeds_paragraph_CouncilSignpostParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_CallToActionParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_BlockQuoteParagraph;
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+}
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph = HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph;
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph;
+}
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds[];
+}
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections {
+  __typename: "AccordionItemParagraph";
+  id: string;
+  title: string;
+  summary: string | null;
+  body: HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body;
+}
+
+export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph {
+  __typename: "AccordionParagraph";
+  sections: HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections[];
+}
+
+export type HomepageNodeFull_homepageBody_embeds_paragraph = HomepageNodeFull_homepageBody_embeds_paragraph_AccordionItemParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_CallToActionParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_BlockQuoteParagraph | HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph;
 
 export interface HomepageNodeFull_homepageBody_embeds {
   __typename: "EmbeddedParagraph";
