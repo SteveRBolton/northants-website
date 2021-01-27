@@ -1,8 +1,13 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
 import { Accordion, BlockQuote, CallToAction, Heading, Divider } from 'northants-design-system';
+import { AccordionSectionProps } from 'northants-design-system/build/library/slices/Accordion/Accordion.types';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
-import transformAccordion from '../Accordion/transform';
+import {
+  EmbeddedParagraphAccordion,
+  EmbeddedParagraphAccordion_paragraph,
+} from '../Accordion/__generated__/EmbeddedParagraphAccordion';
+import { Accordion_sections } from '../Accordion/__generated__/Accordion';
 
 /**
  * Render a slice from its GraphQL object representation.
@@ -22,12 +27,38 @@ const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement =
   }
 };
 
+const transformAccordion = (accordion: Accordion_sections): AccordionSectionProps => {
+  return {
+    accordionSectionId: parseInt(accordion.id, 10),
+    title: accordion.title,
+    summary: accordion.summary ?? undefined,
+    content: <TextWithSlices {...{ html: accordion.body.value, embeds: accordion.body.embeds }} />,
+    isExpanded: false,
+  };
+};
+
+const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragraph): ReactElement => {
+  switch (paragraph.__typename) {
+    case 'CallToActionParagraph':
+      return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
+    case 'BlockQuoteParagraph':
+      return <BlockQuote quote={paragraph.quote} citation={paragraph.citation ?? undefined} />;
+    default:
+      return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
+  }
+};
+
 export type TextWithSlicesProps = {
   html: string;
   embeds: EmbeddedParagraph[];
 };
 
-const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => {
+export type AccordionEmbedProps = {
+  html: string;
+  embeds: EmbeddedParagraphAccordion[];
+};
+
+const TextWithSlices = ({ html, embeds }: TextWithSlicesProps | AccordionEmbedProps): ReactElement => {
   const processed = parse(html, {
     replace: (domNode) => {
       /**
@@ -79,6 +110,9 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
           const embedded = embeds.find(({ id }) => id === domNode.attribs?.['data-paragraph-id']);
           if (embedded) {
             const { paragraph } = embedded;
+            if (paragraph.__typename === 'AccordionItemParagraph') {
+              return renderAccordionParagraph(paragraph);
+            }
             return renderParagraph(paragraph);
           }
         }
