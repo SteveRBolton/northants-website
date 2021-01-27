@@ -205,7 +205,7 @@ type AccordionParagraph implements Paragraph @entity(type: paragraph, bundle: "a
   sections: [AccordionItemParagraph!]!
 }
 
-type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion") {
+type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion_item") {
   id: String!
   title: String!
   summary: String
