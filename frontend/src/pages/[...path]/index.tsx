@@ -15,8 +15,9 @@ import transformSection from '../../components/Section/transform';
 import transformServiceLinks from '../../components/ServiceLinks/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 
-export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, query, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
+
   return client
     .query<GetCMSContentOrRedirect, GetCMSContentOrRedirectVariables>({
       query: getCMSContentOrRedirect,
