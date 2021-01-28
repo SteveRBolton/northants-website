@@ -1,18 +1,15 @@
-uuid: de95c7e3-13de-449d-a12b-4ccb5ba58231
+uuid: 73c5bb9d-10bd-476e-95fb-a97f4a90473f
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs_entity_embed
-_core:
-  default_config_hash: 3jVoYpSR2ShbuMqe5rN-xMHdwMItu9lWs0t-PPK2bcc
-label: Paragraphs
-id: paragraphs
+label: 'Paragraphs (for Accordion)'
+id: paragraphs_for_accordion_
 type_id: paragraphs_entity_embed
 type_settings:
   enable_paragraph_type_filter: 1
   paragraphs_type_filter:
-    accordion: accordion
     call_to_action: call_to_action
     pull_quote: pull_quote
   enable_single_use_paragraph: 1
