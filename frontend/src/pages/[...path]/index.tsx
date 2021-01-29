@@ -15,7 +15,7 @@ import transformSection from '../../components/Section/transform';
 import transformServiceLinks from '../../components/ServiceLinks/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 
-export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) => {
+export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
 
   return client
@@ -26,6 +26,11 @@ export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl }) =>
       },
     })
     .then((queryRes) => {
+      if (isGraphQLType(queryRes.data.route, 'DrupalRedirectRoute')) {
+        const { status, destination } = queryRes.data.route;
+        res.writeHead(status, { location: destination });
+        res.end();
+      }
       return {
         props: queryRes,
       };
@@ -38,11 +43,6 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
-
-  // Redirect found for the provided path
-  if (isGraphQLType(route, 'DrupalRedirectRoute')) {
-    return <p>TODO: Implement redirects</p>;
-  }
 
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
