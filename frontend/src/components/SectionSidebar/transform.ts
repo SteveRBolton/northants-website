@@ -21,7 +21,7 @@ export function transformAlsoFoundIn(otherSections: SectionParentLink[]): Sectio
     Sections: [
       {
         SectionLinks: otherSections.map(({ name, parent }) => {
-          const url = new URL(parent.url, 'https://beta.develop-sr3snxi-buviaip2abrdc.uk-1.platformsh.site/');
+          const url = new URL(parent.url, window.location.origin);
           url.hash = slug(name);
           return { title: name, url: url.toString() };
         }),
