@@ -11,6 +11,12 @@ This project is intended to be used in conjuction with the Northants CMS (TODO: 
 
 First, copy the `.env.example` file to `.env.local` (not `.env`) and update values as necessary.
 
+Next, update you `/etc/hosts` file for the Drupal backend and add:
+
+```bash
+127.0.0.1 core-cms.northants.localhost
+```
+
 Next, install the required packages:
 
 ```bash
@@ -18,22 +24,17 @@ yarn
 ```
 
 Now, generate up-to-date graphQL types for communication with the CMS (the CMS must be running for this to work):
-Install apollo via:
 
-```bash
-npm i -g apollo
-```
-
-Then perform code generation:
-
-```bash
-yarn codegen
-```
-
-Then run the development server:
+Start the project:
 
 ```bash
 yarn dev
+```
+
+Open a new terminal and perform code generation:
+
+```bash
+yarn codegen
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
