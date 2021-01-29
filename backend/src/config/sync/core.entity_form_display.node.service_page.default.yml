@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.service_page.field_parent
+    - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
@@ -11,6 +12,7 @@ dependencies:
     - workflows.workflow.editorial
   module:
     - content_moderation
+    - datetime
     - field_group
     - paragraphs
     - path
@@ -25,6 +27,7 @@ third_party_settings:
         - title
         - field_summary
         - field_wysiwyg_slices
+        - field_revision_date
       parent_name: group_tabs
       weight: 12
       format_type: tab
@@ -84,6 +87,12 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_revision_date:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_signposting:
     type: entity_reference_paragraphs
     weight: 13

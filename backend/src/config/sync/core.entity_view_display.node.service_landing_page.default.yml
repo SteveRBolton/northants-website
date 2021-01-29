@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.service_landing_page.field_parent
+    - field.field.node.service_landing_page.field_revision_date
     - field.field.node.service_landing_page.field_sections
     - field.field.node.service_landing_page.field_summary
     - field.field.node.service_landing_page.field_wysiwyg_slices
     - node.type.service_landing_page
   module:
+    - datetime
     - entity_reference_revisions
     - text
     - user
@@ -19,9 +21,9 @@ mode: default
 content:
   content_moderation_control:
     weight: -20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_parent:
     weight: 103
     label: above
@@ -29,6 +31,15 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_revision_date:
+    weight: 105
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_sections:
     weight: 102
@@ -55,7 +66,7 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

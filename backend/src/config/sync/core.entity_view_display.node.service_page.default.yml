@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.service_page.field_parent
+    - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
   module:
+    - datetime
     - entity_reference_revisions
     - text
     - user
@@ -17,6 +19,20 @@ targetEntityType: node
 bundle: service_page
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_revision_date:
+    weight: 104
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_signposting:
     type: entity_reference_revisions_entity_view
     weight: 102
