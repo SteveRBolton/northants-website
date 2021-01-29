@@ -21,6 +21,8 @@ export function transformAlsoFoundIn(otherSections: SectionParentLink[]): Sectio
     Sections: [
       {
         SectionLinks: otherSections.map(({ name, parent }) => {
+          console.log(process.env);
+          console.log(process.env.NEXT_PUBLIC_BASE_URL);
           const url = new URL(parent.url, process.env.NEXT_PUBLIC_BASE_URL);
           url.hash = slug(name);
           return { title: name, url: url.toString() };
