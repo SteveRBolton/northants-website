@@ -118,6 +118,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   __typename: "HomepageNode";
   title: string;
   id: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   homepageBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody | null;
   serviceLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks[];
 }
@@ -240,6 +243,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode {
   __typename: "ServiceLandingPageNode";
   title: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   id: string;
   serviceLandingBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody | null;
   hasSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections[];
@@ -409,6 +415,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   __typename: "ServicePageNode";
   title: string;
   id: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   serviceBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody;
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;

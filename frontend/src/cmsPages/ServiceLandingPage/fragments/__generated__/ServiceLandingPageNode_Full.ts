@@ -125,6 +125,9 @@ export interface ServiceLandingPageNode_Full_breadcrumbs {
 export interface ServiceLandingPageNode_Full {
   __typename: "ServiceLandingPageNode";
   title: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   id: string;
   serviceLandingBody: ServiceLandingPageNode_Full_serviceLandingBody | null;
   hasSections: ServiceLandingPageNode_Full_hasSections[];

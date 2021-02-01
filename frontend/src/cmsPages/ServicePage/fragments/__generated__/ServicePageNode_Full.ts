@@ -170,6 +170,9 @@ export interface ServicePageNode_Full {
   __typename: "ServicePageNode";
   title: string;
   id: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   serviceBody: ServicePageNode_Full_serviceBody;
   signposting: ServicePageNode_Full_signposting | null;
   canonicalSection: ServicePageNode_Full_canonicalSection | null;

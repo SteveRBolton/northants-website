@@ -12,7 +12,6 @@ class Accordion extends Paragraph implements GraphQLEntityFieldResolver {
   public function getSections(): array {
     /* @var $sectionsField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
     $sectionsField = $this->get('field_section');
-    $hello  = $sectionsField->referencedEntities();
     return $sectionsField->referencedEntities();
   }
 
