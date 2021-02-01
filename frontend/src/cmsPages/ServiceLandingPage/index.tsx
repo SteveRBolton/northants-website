@@ -12,6 +12,9 @@ type HeadingProps = {
 
 type ServiceLandingPageProps = {
   title: string;
+  metaTitle: string;
+  metaDescription?: string;
+  metaKeywords?: string;
   heading: HeadingProps;
   body?: TextWithSlicesProps;
   breadcrumbs: BreadcrumbsProps;
@@ -20,6 +23,9 @@ type ServiceLandingPageProps = {
 
 export default function ServiceLandingPage({
   title,
+  metaTitle,
+  metaDescription,
+  metaKeywords,
   heading,
   body,
   breadcrumbs,
@@ -28,7 +34,9 @@ export default function ServiceLandingPage({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{metaTitle}</title>
+        {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
+        {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
         <Breadcrumbs {...breadcrumbs} />

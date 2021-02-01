@@ -1,0 +1,19 @@
+uuid: acbf1cd2-1c08-429e-9955-94508695d3f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_keywords
+    - node.type.homepage
+id: node.homepage.field_keywords
+field_name: field_keywords
+entity_type: node
+bundle: homepage
+label: Keywords
+description: 'A comma-separated list of keywords about the page. This meta tag is <em>no longer</em> supported by most search engines.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
