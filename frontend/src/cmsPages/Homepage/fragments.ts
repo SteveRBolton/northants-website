@@ -11,6 +11,9 @@ const homepageNodeFull = gql`
     __typename
     title
     id
+    metaTitle
+    metaDescription
+    metaKeywords
     homepageBody: body {
       value
       embeds {

@@ -4,7 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.homepage.field_keywords
+    - field.field.node.homepage.field_meta_description
+    - field.field.node.homepage.field_meta_title
     - field.field.node.homepage.field_service_links_list
+    - field.field.node.homepage.field_summary
     - field.field.node.homepage.field_wysiwyg_slices
     - node.type.homepage
   module:
@@ -25,5 +29,9 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_keywords: true
+  field_meta_description: true
+  field_meta_title: true
   field_service_links_list: true
+  field_summary: true
   field_wysiwyg_slices: true

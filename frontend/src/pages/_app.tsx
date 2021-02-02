@@ -37,9 +37,6 @@ function NorthantsApp({
 
   return (
     <>
-      <Head>
-        <title>Northants</title>
-      </Head>
       <ThemeProvider theme={actualThemeObject}>
         <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />

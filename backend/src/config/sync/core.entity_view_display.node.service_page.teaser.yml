@@ -4,7 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.service_page.field_keywords
+    - field.field.node.service_page.field_meta_description
+    - field.field.node.service_page.field_meta_title
     - field.field.node.service_page.field_parent
+    - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
@@ -27,7 +31,11 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_keywords: true
+  field_meta_description: true
+  field_meta_title: true
   field_parent: true
+  field_revision_date: true
   field_signposting: true
   field_summary: true
   field_wysiwyg_slices: true
