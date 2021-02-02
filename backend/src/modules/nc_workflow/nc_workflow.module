@@ -1,0 +1,38 @@
+<?php
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_cron().
+ *
+ */
+function nc_workflow_cron() {
+  $user_tz = date_default_timezone_get();
+  $now = new DrupalDateTime('now', $user_tz);
+  $now = $now->format('Y-m-d');
+
+  if( date('G') == 04){
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', ['service_landing_page', 'service_page'], 'in')
+      ->condition('field_revision_date', $now, '<')
+      ->condition('status', 1);
+    $results = $query->execute();
+
+    if (!empty($results)) {
+      foreach ($results as $node_id) {
+        $node = Node::load($node_id);
+        $node->status = 0;
+        $node->setPublished(FALSE);
+        $node->set('moderation_state', "archived");
+        $node->save();
+      }
+    }
+  }
+}
+
+function nc_workflow_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  $test = $entity->get('field_revision_date')->getValue();
+  $test2 = $entity->field_revision_date->value;
+  \Drupal::logger('nc_workflow_entity_view_alter')->notice('Cron ran');
+}
