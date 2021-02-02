@@ -33,7 +33,7 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
     //Metadata
     if ($fieldName === "metaTitle") {
-      return $this->getMetaTitle();
+      return $this->getCouncilName();
     }
     if ($fieldName === "metaDescription") {
       return $this->getMetaDescription();

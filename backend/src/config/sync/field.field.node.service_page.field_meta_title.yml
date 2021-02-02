@@ -10,7 +10,7 @@ field_name: field_meta_title
 entity_type: node
 bundle: service_page
 label: 'Meta title'
-description: ''
+description: 'The text to display in the title bar of a visitor''s web browser when they view this page. This will default to the page title if not set.'
 required: false
 translatable: true
 default_value: {  }
