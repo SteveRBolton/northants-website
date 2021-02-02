@@ -44,6 +44,7 @@ class GraphQLController extends ControllerBase {
     switch ($entity->getEntityTypeId()) {
       case 'node':
         $contentTypes = [
+          'homepage' => 'HomepageNode',
           'service_page' => 'ServicePageNode',
           'service_landing_page' => 'ServiceLandingPageNode',
         ];
@@ -51,6 +52,13 @@ class GraphQLController extends ControllerBase {
       case 'paragraph':
         $paragraphTypes = [
           'call_to_action' => 'CallToActionParagraph',
+          'council_signpost' => 'CouncilSignpostParagraph',
+          'council_signposting' => 'CouncilSignpostingParagraph',
+          'pull_quote' => 'BlockQuoteParagraph',
+          'section' => 'SectionParagraph',
+          'service_links' => 'ServiceLinksParagraph',
+          'accordion' => 'AccordionParagraph',
+          'accordion_item' => 'AccordionItemParagraph',
         ];
         return $paragraphTypes[$entity->bundle()];
       case 'embedded_paragraphs':

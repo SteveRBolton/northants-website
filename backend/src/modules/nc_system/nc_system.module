@@ -1,12 +1,17 @@
 <?php
 
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\nc_system\Entity\Paragraph\BlockQuote;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
+use Drupal\nc_system\Entity\Node\Homepage;
 use Drupal\nc_system\Entity\Node\ServicePage;
 use Drupal\nc_system\Entity\Node\ServiceLandingPage;
 use Drupal\nc_system\Entity\Paragraph\CouncilSignpost;
 use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
 use Drupal\nc_system\Entity\Paragraph\Section;
+use Drupal\nc_system\Entity\Paragraph\ServiceLinks;
+use Drupal\nc_system\Entity\Paragraph\Accordion;
+use Drupal\nc_system\Entity\Paragraph\AccordionItem;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 
 /**
@@ -18,6 +23,7 @@ use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
  */
 function nc_system_entity_bundle_info_alter(array &$bundles) {
   // Node bundles
+  $bundles['node']['homepage']['class'] = Homepage::class;
   $bundles['node']['service_page']['class'] = ServicePage::class;
   $bundles['node']['service_landing_page']['class'] = ServiceLandingPage::class;
 
@@ -25,7 +31,11 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   $bundles['paragraph']['call_to_action']['class'] = CallToAction::class;
   $bundles['paragraph']['council_signpost']['class'] = CouncilSignpost::class;
   $bundles['paragraph']['council_signposting']['class'] = CouncilSignposting::class;
+  $bundles['paragraph']['pull_quote']['class'] = BlockQuote::class;
   $bundles['paragraph']['section']['class'] = Section::class;
+  $bundles['paragraph']['service_links']['class'] = ServiceLinks::class;
+  $bundles['paragraph']['accordion']['class'] = Accordion::class;
+  $bundles['paragraph']['accordion_item']['class'] = AccordionItem::class;
 
   // Taxonomy terms
   $bundles['taxonomy_term']['sovereign_councils']['class'] = SovereignCouncil::class;
@@ -39,5 +49,45 @@ function nc_system_entity_type_alter(&$entity_types) {
   if (isset($entity_types['embedded_paragraphs'])) {
     // Use our own EmbeddedParagraphs class which supports GraphQL entity field resolution.
     $entity_types['embedded_paragraphs']->setClass('Drupal\nc_system\Entity\EmbeddedParagraphs');
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * Changes the admin toolbar colour
+ * @param array $variables
+ */
+function nc_system_page_attachments_alter(array &$page) {
+  if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
+    $admin_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+
+    if ($admin_theme === 'nc_seven') {
+      $background_color = '';
+
+      switch ($_ENV['NEXT_PUBLIC_THEME']) {
+        case 'west':
+          $background_color = '#386193';
+          break;
+
+        case 'north':
+          $background_color = '#05873a';
+          break;
+
+        default:
+          break;
+      }
+
+      if (!empty($background_color)) {
+        $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; }";
+        $page['#attached']['html_head'][] = [
+          [
+            '#tag' => 'style',
+            '#value' => $css,
+          ],
+          'admin-toolbar-custom-css'
+        ];
+      }
+    }
   }
 }

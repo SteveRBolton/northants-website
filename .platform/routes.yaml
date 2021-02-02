@@ -3,13 +3,13 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://{default}/":
+"https://beta.{default}/":
   type: upstream
   upstream: "frontend:http"
 
-"https://www.{default}/":
-  type: redirect
-  to: "https://{default}/"
+# "https://www.{default}/":
+#   type: redirect
+#   to: "https://{default}/"
 
 "https://cms.{default}/":
   type: upstream
@@ -18,7 +18,3 @@
     enabled: true
     # Base the cache on the session cookie and custom Drupal cookies. Ignore all other cookies.
     cookies: ['/^SS?ESS/', '/^Drupal.visitor/']
-
-"https://www.backend.{default}/":
-  type: redirect
-  to: "https://backend.{default}/"

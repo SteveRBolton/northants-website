@@ -7,34 +7,40 @@
 // GraphQL fragment: ServicePageNodeFull
 // ====================================================
 
-export interface ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+export interface ServicePageNodeFull_serviceBody_embeds_paragraph_CouncilSignpostParagraph {
+  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
-export interface ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph_link {
+export interface ServicePageNodeFull_serviceBody_embeds_paragraph_CallToActionParagraph_link {
   __typename: "LinkFieldWithTitle";
   title: string;
   url: string;
   external: boolean;
 }
 
-export interface ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph {
+export interface ServicePageNodeFull_serviceBody_embeds_paragraph_CallToActionParagraph {
   __typename: "CallToActionParagraph";
-  link: ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph_link;
+  link: ServicePageNodeFull_serviceBody_embeds_paragraph_CallToActionParagraph_link;
 }
 
-export type ServicePageNodeFull_body_embeds_paragraph = ServicePageNodeFull_body_embeds_paragraph_CouncilSignpostParagraph | ServicePageNodeFull_body_embeds_paragraph_CallToActionParagraph;
+export interface ServicePageNodeFull_serviceBody_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
 
-export interface ServicePageNodeFull_body_embeds {
+export type ServicePageNodeFull_serviceBody_embeds_paragraph = ServicePageNodeFull_serviceBody_embeds_paragraph_CouncilSignpostParagraph | ServicePageNodeFull_serviceBody_embeds_paragraph_CallToActionParagraph | ServicePageNodeFull_serviceBody_embeds_paragraph_BlockQuoteParagraph;
+
+export interface ServicePageNodeFull_serviceBody_embeds {
   __typename: "EmbeddedParagraph";
   id: string;
-  paragraph: ServicePageNodeFull_body_embeds_paragraph;
+  paragraph: ServicePageNodeFull_serviceBody_embeds_paragraph;
 }
 
-export interface ServicePageNodeFull_body {
+export interface ServicePageNodeFull_serviceBody {
   __typename: "FormattedFieldWithParagraphsEmbed";
   value: string;
-  embeds: ServicePageNodeFull_body_embeds[];
+  embeds: ServicePageNodeFull_serviceBody_embeds[];
 }
 
 export interface ServicePageNodeFull_signposting_otherCouncil {
@@ -66,17 +72,25 @@ export interface ServicePageNodeFull_signposting_signposts {
 
 export interface ServicePageNodeFull_signposting {
   __typename: "CouncilSignpostingParagraph";
-  topLine: string | null;
   otherCouncil: ServicePageNodeFull_signposting_otherCouncil | null;
   signposts: ServicePageNodeFull_signposting_signposts[];
 }
 
-export interface ServicePageNodeFull_canonicalSection_pages {
+export interface ServicePageNodeFull_canonicalSection_pages_ServiceLandingPageNode {
+  __typename: "ServiceLandingPageNode";
+  title: string;
+  url: string;
+  id: string;
+}
+
+export interface ServicePageNodeFull_canonicalSection_pages_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
   url: string;
   id: string;
 }
+
+export type ServicePageNodeFull_canonicalSection_pages = ServicePageNodeFull_canonicalSection_pages_ServiceLandingPageNode | ServicePageNodeFull_canonicalSection_pages_ServicePageNode;
 
 export interface ServicePageNodeFull_canonicalSection {
   __typename: "SectionParagraph";
@@ -97,12 +111,19 @@ export interface ServicePageNodeFull_sections {
   parent: ServicePageNodeFull_sections_parent;
 }
 
+export interface ServicePageNodeFull_breadcrumbs {
+  __typename: "Breadcrumb";
+  title: string;
+  url: string;
+}
+
 export interface ServicePageNodeFull {
   __typename: "ServicePageNode";
   title: string;
   id: string;
-  body: ServicePageNodeFull_body;
+  serviceBody: ServicePageNodeFull_serviceBody;
   signposting: ServicePageNodeFull_signposting | null;
   canonicalSection: ServicePageNodeFull_canonicalSection | null;
   sections: ServicePageNodeFull_sections[];
+  breadcrumbs: ServicePageNodeFull_breadcrumbs[];
 }

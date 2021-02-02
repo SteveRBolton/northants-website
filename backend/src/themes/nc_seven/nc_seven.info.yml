@@ -23,6 +23,9 @@ regions_hidden:
 ckeditor_stylesheets:
   - css/ckeditor.css
   - css/ckeditor/colorscheme/west.css # Replace with 'north.css' for north site.
+  - css/ckeditor/divider.css
+  - css/ckeditor/paragraph--accordion.css
+  - css/ckeditor/paragraph--block-quote.css
   - css/ckeditor/paragraph--call-to-action.css
   - css/ckeditor/tables.css
 

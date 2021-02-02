@@ -6,8 +6,6 @@ use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
 use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
-use Drupal\node\Entity\Node;
-use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 
 /**
@@ -26,11 +24,7 @@ use Drupal\text\Plugin\Field\FieldType\TextItemBase;
  *
  * @package Drupal\nc_system\Entity\Node
  */
-class ServicePage extends Node implements GraphQLEntityFieldResolver {
-
-  public function getBody(): TextItemBase {
-    return $this->get('field_wysiwyg_slices')->first();
-  }
+class ServicePage extends Content implements GraphQLEntityFieldResolver {
 
   public function getSummary(): string {
     /* @var $summaryField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
@@ -75,7 +69,7 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
     $parent = $this->getParent();
     $uuid = $this->uuid();
     if($parent instanceof ServiceLandingPage) {
-      $sections = $parent->getSections();
+      $sections = $parent->getHasSections();
       foreach($sections as $section) {
         $pageUUIDS = array_map(fn($page) => $page->uuid(), $section->getPages());
         if(in_array($uuid, $pageUUIDS)) {
@@ -91,7 +85,7 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
    *
    * @return array<Section>
    */
-  public function getSections(): array {
+  public function getInSections(): array {
     $sectionIDs = \Drupal::entityQuery('paragraph')->condition('type', 'section')->condition('field_pages', $this->id())->execute();
     /* @var $sections array<Section> */
     $sections =  Section::loadMultiple($sectionIDs);
@@ -124,12 +118,28 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       return $this->getCanonicalSection();
     }
 
-    if($fieldName === "sections") {
-      return $this->getSections();
+    if($fieldName === "inSections") {
+      return $this->getInSections();
     }
 
     if($fieldName === "url") {
       return $this->toUrl('canonical')->toString();
+    }
+
+
+    if ($fieldName === "breadcrumbs") {
+      return $this->getBreadcrumbs();
+    }
+
+    //Metadata
+    if ($fieldName === "metaTitle") {
+      return $this->getMetaTitle();
+    }
+    if ($fieldName === "metaDescription") {
+      return $this->getMetaDescription();
+    }
+    if ($fieldName === "metaKeywords") {
+      return $this->getMetaKeywords();
     }
 
     throw new \Exception("Unable to resolve value via ServicePage resolve.");

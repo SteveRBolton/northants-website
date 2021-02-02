@@ -6,7 +6,7 @@ type: 'nodejs:14'
 
 dependencies:
   nodejs:
-    yarn: "^1.22.0"
+    yarn: '^1.22.0'
 
 relationships:
   backend: 'backend:http'

@@ -1,11 +1,11 @@
-uuid: e22149f7-e648-4fc0-815f-9ec9932b08be
+uuid: ff793e1e-27aa-43d6-b911-4a489b3ce684
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_signposting_top_line_text
-field_name: field_signposting_top_line_text
+id: paragraph.field_title
+field_name: field_title
 entity_type: paragraph
 type: string
 settings:

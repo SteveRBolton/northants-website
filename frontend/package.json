@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "start:server": "NODE_TLS_REJECT_UNAUTHORIZED='0' node src/server/graphql",
-    "precodegen": "NODE_TLS_REJECT_UNAUTHORIZED='0' apollo schema:download --endpoint=https://master-7rqtwti-buviaip2abrdc.uk-1.platformsh.site/api/graphql",
+    "precodegen": "NODE_TLS_REJECT_UNAUTHORIZED='0' apollo schema:download --endpoint=http://localhost:3000/api/graphql",
     "codegen": "apollo codegen:generate --globalTypesFile=src/types/graphql/__generated__/global.d.ts --queries='src/**/!(*.local).{ts,tsx}' --addTypename --localSchemaFile schema.json --target typescript"
   },
   "dependencies": {
@@ -28,8 +28,6 @@
     "apollo-server": "^2.18.2",
     "apollo-server-micro": "^2.19.0",
     "deepmerge": "^4.2.2",
-    "dotenv": "^8.2.0",
-    "dotenv-webpack": "^6.0.0",
     "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.0.0",

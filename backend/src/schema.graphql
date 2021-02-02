@@ -89,8 +89,16 @@ type LinkFieldWithTitle {
   external: Boolean!
 }
 
+type Breadcrumb {
+  url: String!
+  title: String!
+}
 
-
+type MetaData {
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
+}
 
 # TODO: Use this later?
 #enum VersionStatus {
@@ -117,6 +125,21 @@ interface Node @entityType {
   url: String!
   title: String!
   status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
+}
+
+type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
+  id: String!
+  url: String!
+  title: String!
+  status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
+  body: FormattedFieldWithParagraphsEmbed
+  serviceLinks: [ServiceLinksParagraph!]!
 }
 
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
@@ -124,11 +147,15 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   title: String!
   url: String!
   status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
   signposting: CouncilSignpostingParagraph
+  breadcrumbs: [Breadcrumb!]!
   canonicalSection: SectionParagraph
-  sections: [SectionParagraph!]! # All the sections this service page is in.
+  inSections: [SectionParagraph!]! # All the sections this service page is in.
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
@@ -136,8 +163,14 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   title: String!
   url: String!
   status: Boolean!
-  body: FormattedFieldWithParagraphsEmbed!
-  sections: [SectionParagraph!]!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
+  body: FormattedFieldWithParagraphsEmbed
+  summary: String!
+  breadcrumbs: [Breadcrumb!]!
+  inSections: [SectionParagraph!]! # All the sections this service landing page is in.
+  hasSections: [SectionParagraph!]! # All the sections ON this service landing page.
 }
 
 #
@@ -161,16 +194,40 @@ type CouncilSignpostParagraph implements Paragraph @entity(type: paragraph, bund
 
 type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signposting") {
   id: String!
-  topLine: String
   otherCouncil: LinkField
   signposts: [CouncilSignpostParagraph!]!
 }
 
+union SectionPage @entityType = ServicePageNode | ServiceLandingPageNode
 type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "section") {
   id: String!
   name: String!
-  pages: [ServicePageNode!]!
+  pages: [SectionPage!]!
   parent: ServiceLandingPageNode!
+}
+
+type BlockQuoteParagraph implements Paragraph @entity(type: paragraph, bundle: "pull_quote") {
+  id: String!
+  quote: String!
+  citation: String
+}
+
+type ServiceLinksParagraph implements Paragraph @entity(type: paragraph, bundle: "service_links") {
+  id: String!
+  serviceLandingPage: ServiceLandingPageNode!
+  servicePages: [ServicePageNode!]!
+}
+
+type AccordionParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion") {
+  id: String!
+  sections: [AccordionItemParagraph!]!
+}
+
+type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion_item") {
+  id: String!
+  title: String!
+  summary: String
+  body: FormattedFieldWithParagraphsEmbed!
 }
 
 # Slices

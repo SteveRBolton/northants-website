@@ -12,6 +12,7 @@ type_id: paragraphs_entity_embed
 type_settings:
   enable_paragraph_type_filter: 1
   paragraphs_type_filter:
+    accordion: accordion
     call_to_action: call_to_action
     pull_quote: pull_quote
   enable_single_use_paragraph: 1

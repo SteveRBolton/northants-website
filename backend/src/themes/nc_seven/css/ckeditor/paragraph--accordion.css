@@ -1,0 +1,32 @@
+.paragraph--type--accordion {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--ckeditor-theme--grey);
+}
+
+.paragraph--type--accordion .field__item {
+  padding-top: 15px;
+}
+
+.paragraph--type--accordion-item {
+  border-top: 1px solid var(--ckeditor-theme--grey);
+}
+
+.paragraph--type--accordion-item .field--name-field-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--ckeditor-theme--action);
+
+}
+
+.paragraph--type--accordion-item .field--name-field-summary {
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: var(--ckeditor-theme--action);
+}
+
+.paragraph--type--accordion-item .field--name-field-wysiwyg-slices {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}

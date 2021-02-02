@@ -3,7 +3,6 @@ import { Header, north_theme, GDS_theme, west_theme, Footer } from 'northants-de
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import React, { ReactElement } from 'react';
-import Link from 'next/link';
 import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
 import { getCMSGlobals } from '../api/graphql/queries';
 import '../css/reset.css';
@@ -38,24 +37,9 @@ function NorthantsApp({
 
   return (
     <>
-      <Head>
-        <title>Northants</title>
-      </Head>
       <ThemeProvider theme={actualThemeObject}>
         <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />
-        <ul>
-          <li>
-            <Link href="/service-page-test" shallow={false}>
-              <a>Service page test</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a>Home page</a>
-            </Link>
-          </li>
-        </ul>
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>
     </>

@@ -1,0 +1,37 @@
+uuid: 2bb238ad-74ce-4d9a-b6f0-a01b27eb887b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.homepage.field_keywords
+    - field.field.node.homepage.field_meta_description
+    - field.field.node.homepage.field_meta_title
+    - field.field.node.homepage.field_service_links_list
+    - field.field.node.homepage.field_summary
+    - field.field.node.homepage.field_wysiwyg_slices
+    - node.type.homepage
+  module:
+    - user
+id: node.homepage.teaser
+targetEntityType: node
+bundle: homepage
+mode: teaser
+content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_keywords: true
+  field_meta_description: true
+  field_meta_title: true
+  field_service_links_list: true
+  field_summary: true
+  field_wysiwyg_slices: true
