@@ -6,8 +6,6 @@ use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
 use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
-use Drupal\node\Entity\Node;
-use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 
 /**
@@ -26,11 +24,7 @@ use Drupal\text\Plugin\Field\FieldType\TextItemBase;
  *
  * @package Drupal\nc_system\Entity\Node
  */
-class ServicePage extends Node implements GraphQLEntityFieldResolver {
-
-  public function getBody(): TextItemBase {
-    return $this->get('field_wysiwyg_slices')->first();
-  }
+class ServicePage extends Content implements GraphQLEntityFieldResolver {
 
   public function getSummary(): string {
     /* @var $summaryField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
@@ -47,31 +41,6 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
       return $entities[0];
     }
     return null;
-  }
-
-
-  /**
-   * @return \string[][]
-   * @throws \Drupal\Core\Entity\EntityMalformedException
-   */
-  public function getBreadcrumbs() {
-    $breadcrumbs = [];
-    // Start with parent
-    $current = $this->getParent();
-    // Keep adding breadcrumbs until we reach the top (getParent() return null)
-    while(!empty($current)) {
-      array_push($breadcrumbs, [
-        'title' => $current->getTitle(),
-        'url' => $current->toUrl()->toString()
-      ]);
-      $current = $current->getParent();
-    }
-
-    array_push($breadcrumbs, [
-      'title' => 'Home',
-        'url' => '/'
-    ]);
-    return array_reverse($breadcrumbs);
   }
 
   /**
@@ -161,6 +130,18 @@ class ServicePage extends Node implements GraphQLEntityFieldResolver {
     if ($fieldName === "breadcrumbs") {
       return $this->getBreadcrumbs();
     }
+
+    //Metadata
+    if ($fieldName === "metaTitle") {
+      return $this->getMetaTitle();
+    }
+    if ($fieldName === "metaDescription") {
+      return $this->getMetaDescription();
+    }
+    if ($fieldName === "metaKeywords") {
+      return $this->getMetaKeywords();
+    }
+
     throw new \Exception("Unable to resolve value via ServicePage resolve.");
   }
 

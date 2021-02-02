@@ -11,7 +11,7 @@ id: node.service_page.field_revision_date
 field_name: field_revision_date
 entity_type: node
 bundle: service_page
-label: 'Revision Date'
+label: 'Review Date'
 description: 'Set a review date for when this page is due to be reviewed. The default is set to 1 year after creation date.'
 required: false
 translatable: true

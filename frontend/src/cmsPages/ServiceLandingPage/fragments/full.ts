@@ -14,6 +14,9 @@ export default gql`
   fragment ServiceLandingPageNode_Full on ServiceLandingPageNode {
     __typename
     title
+    metaTitle
+    metaDescription
+    metaKeywords
     id
     serviceLandingBody: body {
       value
