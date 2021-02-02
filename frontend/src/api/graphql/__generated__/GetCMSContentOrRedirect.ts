@@ -343,6 +343,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council {
   __typename: "SovereignCouncil";
+  code: string;
   name: string;
   homepage: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council_homepage;
 }

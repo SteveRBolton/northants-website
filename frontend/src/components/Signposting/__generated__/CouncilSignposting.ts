@@ -19,6 +19,7 @@ export interface CouncilSignposting_signposts_council_homepage {
 
 export interface CouncilSignposting_signposts_council {
   __typename: "SovereignCouncil";
+  code: string;
   name: string;
   homepage: CouncilSignposting_signposts_council_homepage;
 }
