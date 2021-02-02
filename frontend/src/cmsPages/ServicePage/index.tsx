@@ -17,6 +17,9 @@ import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSl
 
 type ServicePageProps = {
   title: string;
+  metaTitle: string;
+  metaDescription?: string;
+  metaKeywords?: string;
   body: TextWithSlicesProps;
   signposting?: SignpostLinksProps;
   breadcrumbs: BreadcrumbsProps;
@@ -25,6 +28,9 @@ type ServicePageProps = {
 };
 export default function ServicePage({
   title,
+  metaTitle,
+  metaDescription,
+  metaKeywords,
   body,
   signposting,
   breadcrumbs,
@@ -52,7 +58,9 @@ export default function ServicePage({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{metaTitle}</title>
+        {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
+        {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
         <Breadcrumbs {...breadcrumbs} />

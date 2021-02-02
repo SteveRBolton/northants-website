@@ -14,6 +14,9 @@ export default gql`
     __typename
     title
     id
+    metaTitle
+    metaDescription
+    metaKeywords
     serviceBody: body {
       value
       embeds {

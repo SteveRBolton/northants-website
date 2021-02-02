@@ -48,21 +48,36 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'HomepageNode')) {
-      const { title, homepageBody, serviceLinks } = node;
+      const { metaTitle, metaDescription, metaKeywords, homepageBody, serviceLinks } = node;
       return (
         <Homepage
-          title={title}
+          metaTitle={metaTitle}
+          metaDescription={metaDescription || undefined}
+          metaKeywords={metaKeywords || undefined}
           body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
         />
       );
     }
     if (isGraphQLType(node, 'ServicePageNode')) {
-      const { title, serviceBody, signposting, breadcrumbs, canonicalSection, inSections } = node;
+      const {
+        metaTitle,
+        metaDescription,
+        metaKeywords,
+        title,
+        serviceBody,
+        signposting,
+        breadcrumbs,
+        canonicalSection,
+        inSections,
+      } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
 
       return (
         <ServicePage
+          metaTitle={metaTitle}
+          metaDescription={metaDescription || undefined}
+          metaKeywords={metaKeywords || undefined}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           title={title}
           body={{ html: serviceBody.value, embeds: serviceBody.embeds }}
@@ -77,10 +92,13 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ServiceLandingPageNode')) {
-      const { title, serviceLandingBody, breadcrumbs, hasSections } = node;
+      const { metaTitle, metaDescription, metaKeywords, title, serviceLandingBody, breadcrumbs, hasSections } = node;
 
       return (
         <ServiceLandingPage
+          metaTitle={metaTitle}
+          metaDescription={metaDescription || undefined}
+          metaKeywords={metaKeywords || undefined}
           title={title}
           body={serviceLandingBody ? { html: serviceLandingBody.value, embeds: serviceLandingBody.embeds } : undefined}
           heading={{ level: 1, text: title }}
