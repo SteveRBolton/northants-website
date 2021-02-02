@@ -114,6 +114,9 @@ export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
   id: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   homepageBody: HomepageNodeFull_homepageBody | null;
   serviceLinks: HomepageNodeFull_serviceLinks[];
 }

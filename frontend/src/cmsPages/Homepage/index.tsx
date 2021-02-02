@@ -5,16 +5,26 @@ import { PageLinkProp } from 'northants-design-system/build/library/structure/Se
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 
 type HomepageProps = {
-  title: string;
   body?: TextWithSlicesProps;
   serviceLinks: PageLinkProp[];
+  metaTitle: string;
+  metaDescription?: string;
+  metaKeywords?: string;
 };
 
-export default function Homepage({ title, body, serviceLinks }: HomepageProps): ReactElement {
+export default function Homepage({
+  body,
+  serviceLinks,
+  metaTitle,
+  metaDescription,
+  metaKeywords,
+}: HomepageProps): ReactElement {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{metaTitle}</title>
+        {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
+        {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
         <PageMain>
