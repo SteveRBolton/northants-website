@@ -7,8 +7,8 @@
 // GraphQL fragment: ServiceLandingPageNode_Full
 // ====================================================
 
-export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_CallToActionParagraph_link {
@@ -29,7 +29,56 @@ export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph
   citation: string | null;
 }
 
-export type ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph = ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_CouncilSignpostParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_CallToActionParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_BlockQuoteParagraph;
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+}
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph = ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph;
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph;
+}
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds[];
+}
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections {
+  __typename: "AccordionItemParagraph";
+  id: string;
+  title: string;
+  summary: string | null;
+  body: ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body;
+}
+
+export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph {
+  __typename: "AccordionParagraph";
+  sections: ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections[];
+}
+
+export type ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph = ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionItemParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_CallToActionParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_BlockQuoteParagraph | ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph;
 
 export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds {
   __typename: "EmbeddedParagraph";
@@ -76,6 +125,9 @@ export interface ServiceLandingPageNode_Full_breadcrumbs {
 export interface ServiceLandingPageNode_Full {
   __typename: "ServiceLandingPageNode";
   title: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   id: string;
   serviceLandingBody: ServiceLandingPageNode_Full_serviceLandingBody | null;
   hasSections: ServiceLandingPageNode_Full_hasSections[];

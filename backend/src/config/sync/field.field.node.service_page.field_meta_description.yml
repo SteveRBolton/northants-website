@@ -1,0 +1,19 @@
+uuid: c0e43779-aede-45b9-8598-8d4d2ff099b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_description
+    - node.type.service_page
+id: node.service_page.field_meta_description
+field_name: field_meta_description
+entity_type: node
+bundle: service_page
+label: 'Meta description'
+description: 'This is a short description of this page that is used for Search Engine listings. This will default to the page summary if not set.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

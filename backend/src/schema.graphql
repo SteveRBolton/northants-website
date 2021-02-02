@@ -94,6 +94,12 @@ type Breadcrumb {
   title: String!
 }
 
+type MetaData {
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
+}
+
 # TODO: Use this later?
 #enum VersionStatus {
 #  PUBLISHED
@@ -119,6 +125,9 @@ interface Node @entityType {
   url: String!
   title: String!
   status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
 }
 
 type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
@@ -126,6 +135,9 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   url: String!
   title: String!
   status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   serviceLinks: [ServiceLinksParagraph!]!
 }
@@ -135,6 +147,9 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   title: String!
   url: String!
   status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
   signposting: CouncilSignpostingParagraph
@@ -148,6 +163,9 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   title: String!
   url: String!
   status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   summary: String!
   breadcrumbs: [Breadcrumb!]!
@@ -198,6 +216,18 @@ type ServiceLinksParagraph implements Paragraph @entity(type: paragraph, bundle:
   id: String!
   serviceLandingPage: ServiceLandingPageNode!
   servicePages: [ServicePageNode!]!
+}
+
+type AccordionParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion") {
+  id: String!
+  sections: [AccordionItemParagraph!]!
+}
+
+type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion_item") {
+  id: String!
+  title: String!
+  summary: String
+  body: FormattedFieldWithParagraphsEmbed!
 }
 
 # Slices

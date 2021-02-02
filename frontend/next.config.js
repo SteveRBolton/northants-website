@@ -1,5 +1,8 @@
-const Dotenv = require("dotenv-webpack");
-const webpack = require('webpack');
+
+// if (process.env.NODE_ENV === 'development') {
+//     // Only load from .env files in development mode?
+//     const Dotenv = require("dotenv-webpack");
+// }
 
 module.exports = {
     webpack: (config, { dev }) => {
@@ -19,12 +22,5 @@ module.exports = {
         }
 
         return config;
-    },
-    // Have to list all the environment variables used here to make it available
-    // to the client code
-    env: {
-        CMS_GRAPHQL_ENDPOINT: process.env.CMS_GRAPHQL_ENDPOINT,
-        NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT: process.env.NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT,
-        NEXT_PUBLIC_THEME: process.env.NEXT_PUBLIC_THEME,
     },
 };

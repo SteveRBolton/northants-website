@@ -3,9 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.homepage.field_keywords
+    - field.field.node.homepage.field_meta_description
+    - field.field.node.homepage.field_meta_title
     - field.field.node.homepage.field_service_links_list
+    - field.field.node.homepage.field_summary
     - field.field.node.homepage.field_wysiwyg_slices
     - node.type.homepage
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - field_group
@@ -19,6 +24,7 @@ third_party_settings:
     group_tabs:
       children:
         - group_main
+        - group_seo
       parent_name: ''
       weight: 13
       format_type: tabs
@@ -31,6 +37,7 @@ third_party_settings:
     group_main:
       children:
         - title
+        - field_summary
         - field_wysiwyg_slices
         - field_service_links_list
       parent_name: group_tabs
@@ -44,6 +51,22 @@ third_party_settings:
         formatter: closed
         required_fields: true
       label: Main
+    group_seo:
+      children:
+        - field_meta_title
+        - field_meta_description
+        - field_keywords
+      parent_name: group_tabs
+      weight: 21
+      format_type: tab
+      region: content
+      format_settings:
+        description: 'SEO Title and Description default to use the page title and summary, only use these fields if you want the meta data to be different or unique from the title and summary.'
+        formatter: closed
+        required_fields: true
+        id: ''
+        classes: ''
+      label: SEO
 id: node.homepage.default
 targetEntityType: node
 bundle: homepage
@@ -55,9 +78,33 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_keywords:
+    weight: 28
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_meta_description:
+    weight: 27
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_meta_title:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_service_links_list:
     type: entity_reference_paragraphs
-    weight: 2
+    weight: 3
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -67,8 +114,16 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
-  field_wysiwyg_slices:
+  field_summary:
     weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_wysiwyg_slices:
+    weight: 2
     settings:
       rows: 5
       placeholder: ''

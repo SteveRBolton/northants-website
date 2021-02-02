@@ -7,45 +7,12 @@ use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Drupal\node\Entity\Node;
 use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
-class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
-
-  public function getBody(): ?TextItemBase {
-    /* @var $bodyField \Drupal\Core\Field\FieldItemList */
-    $bodyField = $this->get('field_wysiwyg_slices');
-
-    /* @var $bodyItem TextItemBase|null */
-    $bodyItem = $bodyField->first();
-
-    return $bodyItem;
-  }
+class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
 
   public function getSummary(): string {
     /* @var $summaryField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
     $summaryField = $this->get('field_summary');
     return $summaryField->getString();
-  }
-  /**
-   * @return \string[][]
-   * @throws \Drupal\Core\Entity\EntityMalformedException
-   */
-  public function getBreadcrumbs() {
-    $breadcrumbs = [];
-    // Start with parent
-    $current = $this->getParent();
-    // Keep adding breadcrumbs until we reach the top (getParent() return null)
-    while(!empty($current)) {
-      array_push($breadcrumbs, [
-        'title' => $current->getTitle(),
-        'url' => $current->toUrl()->toString()
-      ]);
-      $current = $current->getParent();
-    }
-
-    array_push($breadcrumbs, [
-      'title' => 'Home',
-        'url' => '/'
-    ]);
-    return array_reverse($breadcrumbs);
   }
 
   /**
@@ -90,7 +57,6 @@ class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
     return array_filter($sections, fn($section) => $section->getParentEntity() !== null);
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -121,6 +87,17 @@ class ServiceLandingPage extends Node implements GraphQLEntityFieldResolver {
 
     if ($fieldName === "breadcrumbs") {
       return $this->getBreadcrumbs();
+    }
+
+    //Metadata
+    if ($fieldName === "metaTitle") {
+      return $this->getMetaTitle();
+    }
+    if ($fieldName === "metaDescription") {
+      return $this->getMetaDescription();
+    }
+    if ($fieldName === "metaKeywords") {
+      return $this->getMetaKeywords();
     }
 
     throw new \Exception("Unable to resolve value via ServiceLandingPage resolve.");

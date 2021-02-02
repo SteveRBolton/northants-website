@@ -3,7 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.service_landing_page.field_keywords
+    - field.field.node.service_landing_page.field_meta_description
+    - field.field.node.service_landing_page.field_meta_title
     - field.field.node.service_landing_page.field_parent
+    - field.field.node.service_landing_page.field_revision_date
     - field.field.node.service_landing_page.field_sections
     - field.field.node.service_landing_page.field_summary
     - field.field.node.service_landing_page.field_wysiwyg_slices
@@ -11,6 +15,7 @@ dependencies:
     - workflows.workflow.editorial
   module:
     - content_moderation
+    - datetime
     - field_group
     - paragraphs
     - path
@@ -25,6 +30,7 @@ third_party_settings:
         - title
         - field_summary
         - field_wysiwyg_slices
+        - field_revision_date
       parent_name: group_tabs
       weight: 13
       format_type: tab
@@ -40,6 +46,7 @@ third_party_settings:
       children:
         - group_main
         - group_sections
+        - group_seo
       parent_name: ''
       weight: 12
       format_type: tabs
@@ -63,6 +70,22 @@ third_party_settings:
         formatter: closed
         required_fields: true
       label: Sections
+    group_seo:
+      children:
+        - field_meta_title
+        - field_meta_description
+        - field_keywords
+      parent_name: group_tabs
+      weight: 15
+      format_type: tab
+      region: content
+      format_settings:
+        description: 'SEO Title and Description default to use the page title and summary, only use these fields if you want the meta data to be different or unique from the title and summary.'
+        formatter: closed
+        required_fields: true
+        id: ''
+        classes: ''
+      label: SEO
 id: node.service_landing_page.default
 targetEntityType: node
 bundle: service_landing_page
@@ -74,6 +97,30 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_keywords:
+    weight: 107
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_meta_description:
+    weight: 106
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_meta_title:
+    weight: 105
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_parent:
     weight: 101
     settings:
@@ -83,6 +130,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_revision_date:
+    weight: 105
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_sections:
     weight: 11

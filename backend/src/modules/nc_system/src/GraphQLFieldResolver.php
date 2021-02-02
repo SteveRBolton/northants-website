@@ -67,7 +67,7 @@ class GraphQLFieldResolver {
    * @return array
    */
   public static function resolveTextItem(TextItemBase $item): array {
-      if($item->format === "embed_basic_html") {
+      if($item->format === "embed_basic_html" || $item->format === "basic_html_with_embed_for_accordion") {
         // Maps to FormattedFieldWithParagraphEmbed
         /* @var $embedded_service \Drupal\nc_nodes\EmbeddedParagraphsService  */
         $embedded_service = Drupal::service('nc_nodes.embedded_paragraphs');

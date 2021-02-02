@@ -7,8 +7,8 @@
 // GraphQL fragment: ServicePageNode_Full
 // ====================================================
 
-export interface ServicePageNode_Full_serviceBody_embeds_paragraph_CouncilSignpostParagraph {
-  __typename: "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph";
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface ServicePageNode_Full_serviceBody_embeds_paragraph_CallToActionParagraph_link {
@@ -29,7 +29,56 @@ export interface ServicePageNode_Full_serviceBody_embeds_paragraph_BlockQuotePar
   citation: string | null;
 }
 
-export type ServicePageNode_Full_serviceBody_embeds_paragraph = ServicePageNode_Full_serviceBody_embeds_paragraph_CouncilSignpostParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_CallToActionParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_BlockQuoteParagraph;
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+}
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph = ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph;
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph;
+}
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds[];
+}
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections {
+  __typename: "AccordionItemParagraph";
+  id: string;
+  title: string;
+  summary: string | null;
+  body: ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections_body;
+}
+
+export interface ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph {
+  __typename: "AccordionParagraph";
+  sections: ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph_sections[];
+}
+
+export type ServicePageNode_Full_serviceBody_embeds_paragraph = ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionItemParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_CallToActionParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_BlockQuoteParagraph | ServicePageNode_Full_serviceBody_embeds_paragraph_AccordionParagraph;
 
 export interface ServicePageNode_Full_serviceBody_embeds {
   __typename: "EmbeddedParagraph";
@@ -121,6 +170,9 @@ export interface ServicePageNode_Full {
   __typename: "ServicePageNode";
   title: string;
   id: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
   serviceBody: ServicePageNode_Full_serviceBody;
   signposting: ServicePageNode_Full_signposting | null;
   canonicalSection: ServicePageNode_Full_canonicalSection | null;

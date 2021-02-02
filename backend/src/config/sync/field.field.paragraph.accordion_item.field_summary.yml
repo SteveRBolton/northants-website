@@ -1,0 +1,19 @@
+uuid: 1fde4eed-3989-4747-99f7-eef465cffbf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary
+    - paragraphs.paragraphs_type.accordion_item
+id: paragraph.accordion_item.field_summary
+field_name: field_summary
+entity_type: paragraph
+bundle: accordion_item
+label: Summary
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
