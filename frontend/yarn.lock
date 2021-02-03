@@ -4713,9 +4713,9 @@ entities@^1.1.1:
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
 
 entities@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/entities/-/entities-2.1.0.tgz#992d3129cf7df6870b96c57858c249a120f8b8b5"
-  integrity sha512-hCx1oky9PFrJ611mf0ifBLBRW8lUUVRlFolb5gWRfIELabBlbp9xZvrqZLZAs+NxFnbfQoeGd8wDkygjg7U85w==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"
+  integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
 
 env-ci@3.2.2:
   version "3.2.2"
@@ -7549,12 +7549,13 @@ normalize-url@^4.1.0:
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
 northants-design-system@^0.1.14:
-  version "0.1.28"
-  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.28.tgz#a4989d525b61dbae818c08cb51b406c9fcc1b2b2"
-  integrity sha512-lViByMrrmnke4WvJvUKva5r3WfeXnLLpZL4BelPTkgGeb4HSu5Zn9jfEvqF/xyALZ/Aht7tT3b1Zre5HVGsEvQ==
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.31.tgz#239281ff3dfdb0aef44f3c527aaa227e7b79b6f7"
+  integrity sha512-JC9333+VM17UTnbARxUPgyK4cY6gJMbLFFHXE26/4Be159R088rSikrSEjUUsRdQnR7Ta+IOM8eKx9dwwFVuRQ==
   dependencies:
     axios "^0.21.1"
     html-react-parser "^1.2.1"
+    react-lazy-progressive-image "^1.5.5"
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -8377,6 +8378,13 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
+react-lazy-progressive-image@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/react-lazy-progressive-image/-/react-lazy-progressive-image-1.5.5.tgz#86fd6c35c73f56440ac40c6273712ecc3223674d"
+  integrity sha512-s4lcvHElRElEXyajtlr+j8LKaBmcYbzRcLmyjQrtIe5VYV+5+nHN9POzmc1OoDS2EiAc1x+qGMhnV2LgkYgEPw==
+  dependencies:
+    react-visibility-sensor "^5.1.1"
+
 react-property@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-property/-/react-property-1.0.1.tgz#4ae4211557d0a0ae050a71aa8ad288c074bea4e6"
@@ -8386,6 +8394,13 @@ react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-visibility-sensor@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-visibility-sensor/-/react-visibility-sensor-5.1.1.tgz#5238380960d3a0b2be0b7faddff38541e337f5a9"
+  integrity sha512-cTUHqIK+zDYpeK19rzW6zF9YfT4486TIgizZW53wEZ+/GPBbK7cNS0EHyJVyHYacwFEvvHLEKfgJndbemWhB/w==
+  dependencies:
+    prop-types "^15.7.2"
 
 react@^17.0.1:
   version "17.0.1"
