@@ -245,6 +245,7 @@ interface TaxonomyTerm @entityType {
 
 type SovereignCouncil implements TaxonomyTerm @entity(type: taxonomy_term, bundle: "sovereign_councils") {
   id: String!
+  code: String!
   name: String!
   homepage: LinkField!
 }

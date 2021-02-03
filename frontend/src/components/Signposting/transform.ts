@@ -3,8 +3,9 @@ import { CouncilSignposting } from './__generated__/CouncilSignposting';
 
 export default function transform(from: CouncilSignposting): SignpostLinksProps {
   return {
-    OtherCouncilLink: from.otherCouncil?.url,
-    SignpostLinksArray: from.signposts.map((signpost) => ({
+    otherCouncilLink: from.otherCouncil?.url,
+    signpostLinksArray: from.signposts.map((signpost) => ({
+      sovereignCode: parseInt(signpost.council.code, 10),
       areaName: signpost.council.name,
       url: signpost.link?.url ?? signpost.council.homepage.url,
     })),

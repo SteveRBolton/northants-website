@@ -104,6 +104,7 @@ export interface ServicePageNode_Full_signposting_signposts_council_homepage {
 
 export interface ServicePageNode_Full_signposting_signposts_council {
   __typename: "SovereignCouncil";
+  code: string;
   name: string;
   homepage: ServicePageNode_Full_signposting_signposts_council_homepage;
 }
