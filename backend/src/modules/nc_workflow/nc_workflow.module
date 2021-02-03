@@ -12,7 +12,7 @@ function nc_workflow_cron() {
   $now = new DrupalDateTime('now', $user_tz);
   $now = $now->format('Y-m-d');
 
-  if( date('G') == 04){
+  if( date('G') == 4){
     \Drupal::logger('nc_workflow_cron')->notice('nc_workflow cron ran');
 
     $query = \Drupal::entityQuery('node')
