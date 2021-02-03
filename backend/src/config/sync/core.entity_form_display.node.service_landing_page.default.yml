@@ -80,11 +80,11 @@ third_party_settings:
       format_type: tab
       region: content
       format_settings:
-        id: ''
-        classes: ''
-        description: ''
+        description: 'SEO Title and Description default to use the page title and summary, only use these fields if you want the meta data to be different or unique from the title and summary.'
         formatter: closed
         required_fields: true
+        id: ''
+        classes: ''
       label: SEO
 id: node.service_landing_page.default
 targetEntityType: node

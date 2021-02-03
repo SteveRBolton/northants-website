@@ -94,7 +94,21 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     // If you delete a service landing page referencing a section, the section is not immediately deleted, so the entityQuery above will see it.
     // We don't want those sections, so they are filtered out here:
     // See https://www.drupal.org/project/entity_reference_revisions/issues/2771531
-    return array_filter($sections, fn($section) => $section->getParentEntity() !== null);
+    // and;
+    // If the section is in a revision we don't want these so we compare with the sections in the current revision
+    return array_filter($sections, function($section) {
+      $parentEntity = $section->getParentEntity();
+
+      if ($parentEntity !== null) {
+        $currentSectionIDs = array_column($parentEntity->field_sections->getValue(), 'target_id');
+
+        if (in_array($section->id(), $currentSectionIDs)) {
+          return true;
+        }
+      }
+
+      return false;
+    });
   }
 
   /**

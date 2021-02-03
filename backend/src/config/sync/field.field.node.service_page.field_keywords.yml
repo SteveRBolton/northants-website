@@ -10,7 +10,7 @@ field_name: field_keywords
 entity_type: node
 bundle: service_page
 label: Keywords
-description: ''
+description: 'A comma-separated list of keywords about the page. This meta tag is <em>no longer</em> supported by most search engines.'
 required: false
 translatable: true
 default_value: {  }
