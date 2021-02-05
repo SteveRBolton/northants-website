@@ -69,9 +69,6 @@ function NorthantsApp({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <ThemeProvider theme={actualThemeObject}>
-        <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
-        <Component {...pageProps} />
-        <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
         <CookieBanner
           title="Tell us whether you accept cookies"
           paragraph={
@@ -84,6 +81,9 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
+        <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
+        <Component {...pageProps} />
+        <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>
     </>
   );
