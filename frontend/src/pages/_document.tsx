@@ -30,7 +30,6 @@ class NorthantsDocument extends Document {
   render(): ReactElement {
     return (
       <Html lang="en">
-        <Head />
         <body>
           <Main />
           <NextScript />
