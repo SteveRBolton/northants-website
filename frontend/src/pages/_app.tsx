@@ -25,17 +25,20 @@ function NorthantsApp({
   router,
   globals,
   theme,
-}: AppProps & GetCMSGlobals & { theme: Theme }): ReactElement {
+  gtm,
+}: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }): ReactElement {
   let actualThemeObject;
   let faviconPath = '/favicon/';
   useEffect(() => {
     if (document.cookie.includes('"cookiesAccepted":true')) {
-      const tag = document.createElement('script');
-      tag.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_CODE}`;
-      document.getElementsByTagName('head')[0].appendChild(tag);
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push('js', new Date());
-      window.dataLayer.push('config', `${process.env.NEXT_PUBLIC_GTM_CODE}`);
+      if (gtm) {
+        const tag = document.createElement('script');
+        tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
+        document.getElementsByTagName('head')[0].appendChild(tag);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push('js', new Date());
+        window.dataLayer.push('config', `${gtm}`);
+      }
     }
   }, []);
   switch (theme) {
@@ -91,7 +94,7 @@ function NorthantsApp({
 
 NorthantsApp.getInitialProps = async (
   appContext: AppContext
-): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme }> => {
+): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }> => {
   const client = initializeApollo();
 
   // Get globals
@@ -106,7 +109,7 @@ NorthantsApp.getInitialProps = async (
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme };
+  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme, gtm: process.env.NEXT_PUBLIC_GTM_CODE };
 };
 
 export default NorthantsApp;
