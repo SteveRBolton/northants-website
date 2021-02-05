@@ -31,14 +31,12 @@ function NorthantsApp({
   let faviconPath = '/favicon/';
   useEffect(() => {
     if (document.cookie.includes('"cookiesAccepted":true')) {
-      if (gtm) {
-        const tag = document.createElement('script');
-        tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
-        document.getElementsByTagName('head')[0].appendChild(tag);
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push('js', new Date());
-        window.dataLayer.push('config', `${gtm}`);
-      }
+      const tag = document.createElement('script');
+      tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
+      document.getElementsByTagName('head')[0].appendChild(tag);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push('js', new Date());
+      window.dataLayer.push('config', `${gtm}`);
     }
   }, []);
   switch (theme) {
