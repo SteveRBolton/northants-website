@@ -1,13 +1,18 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
-import { Header, north_theme, GDS_theme, west_theme, Footer } from 'northants-design-system';
+import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner } from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
 import { getCMSGlobals } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
 
+declare global {
+  interface Window {
+    dataLayer: Array<string | Date>;
+  }
+}
 enum Theme {
   North = 'north',
   West = 'west',
@@ -23,7 +28,17 @@ function NorthantsApp({
 }: AppProps & GetCMSGlobals & { theme: Theme }): ReactElement {
   let actualThemeObject;
   let faviconPath = '/favicon/';
-
+  useEffect(() => {
+    if (document.cookie.includes('"cookiesAccepted":true')) {
+      console.log('loading trackers');
+      const tag = document.createElement('script');
+      tag.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_CODE}`;
+      document.getElementsByTagName('head')[0].appendChild(tag);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push('js', new Date());
+      window.dataLayer.push('config', `${process.env.NEXT_PUBLIC_GTM_CODE}`);
+    }
+  }, []);
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
@@ -58,6 +73,17 @@ function NorthantsApp({
         <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
+        <CookieBanner
+          acceptButtonText="Accept cookies policy"
+          acceptCallback={() => {}}
+          paragraph={
+            <p>
+              By clicking the Accept button, you agree to us doing so. <a href="#">More info on our cookie policy</a>
+            </p>
+          }
+          rejectButtonText="No, thanks"
+          title="We use cookies on this site to enhance your user experience"
+        />
       </ThemeProvider>
     </>
   );
