@@ -73,15 +73,16 @@ function NorthantsApp({
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
         <CookieBanner
-          acceptButtonText="Accept cookies policy"
-          acceptCallback={() => {}}
+          title="Tell us whether you accept cookies"
           paragraph={
             <p>
-              By clicking the Accept button, you agree to us doing so. <a href="#">More info on our cookie policy</a>
+              We use <a href="#">cookies to collect information</a> about how you use GOV.UK. We use this information to
+              make the website work as well as possible and improve government services.
             </p>
           }
-          rejectButtonText="No, thanks"
-          title="We use cookies on this site to enhance your user experience"
+          acceptButtonText="Accept all cookies"
+          rejectButtonText="Reject all cookies"
+          acceptCallback={() => {}}
         />
       </ThemeProvider>
     </>
