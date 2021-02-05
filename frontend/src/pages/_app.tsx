@@ -28,15 +28,16 @@ function NorthantsApp({
   gtm,
 }: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }): ReactElement {
   let actualThemeObject;
+  let gtmCode = gtm;;
   let faviconPath = '/favicon/';
   useEffect(() => {
     if (document.cookie.includes('"cookiesAccepted":true')) {
       const tag = document.createElement('script');
-      tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
+      tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtmCode}`;
       document.getElementsByTagName('head')[0].appendChild(tag);
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push('js', new Date());
-      window.dataLayer.push('config', `${gtm}`);
+      window.dataLayer.push('config', `${gtmCode}`);
     }
   }, []);
   switch (theme) {
