@@ -30,7 +30,6 @@ function NorthantsApp({
   let faviconPath = '/favicon/';
   useEffect(() => {
     if (document.cookie.includes('"cookiesAccepted":true')) {
-      console.log('loading trackers');
       const tag = document.createElement('script');
       tag.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_CODE}`;
       document.getElementsByTagName('head')[0].appendChild(tag);
