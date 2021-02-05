@@ -10,7 +10,7 @@ field_name: field_meta_description
 entity_type: node
 bundle: service_page
 label: 'Meta description'
-description: ''
+description: 'This is a short description of this page that is used for Search Engine listings. This will default to the page summary if not set.'
 required: false
 translatable: true
 default_value: {  }

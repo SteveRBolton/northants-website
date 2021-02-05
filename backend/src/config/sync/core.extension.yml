@@ -43,6 +43,7 @@ module:
   nc_graphql: 0
   nc_nodes: 0
   nc_system: 0
+  nc_workflow: 0
   node: 0
   options: 0
   page_cache: 0

@@ -3,7 +3,7 @@
 /**
  * @file
  *
- * Hook implementations for the bfi_nodes module.
+ * Hook implementations for the nc_nodes module.
  */
 
 use Drupal\Core\Site\Settings;

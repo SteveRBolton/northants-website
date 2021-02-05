@@ -22,21 +22,38 @@ function NorthantsApp({
   theme,
 }: AppProps & GetCMSGlobals & { theme: Theme }): ReactElement {
   let actualThemeObject;
+  let faviconPath = '/favicon/';
+
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
+      faviconPath += Theme.North;
       break;
     case Theme.West:
       actualThemeObject = west_theme;
+      faviconPath += Theme.West;
       break;
     default:
       actualThemeObject = GDS_theme;
   }
 
   const isHomePage = router.pathname === '/';
-
   return (
     <>
+      <Head>
+        <title>Northants</title>
+        <link rel="apple-touch-icon" sizes="180x180" href={`${faviconPath}/apple-touch-icon.png`} />
+        <link rel="icon" type="image/png" sizes="32x32" href={`${faviconPath}/favicon-32x32.png`} />
+        <link rel="icon" type="image/png" sizes="16x16" href={`${faviconPath}/favicon-16x16.png`} />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link
+          rel="mask-icon"
+          href={`${faviconPath}/favicon-16x16.png`}
+          color={theme === 'north' ? '#05873a' : '#386193'}
+        />
+        <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
       <ThemeProvider theme={actualThemeObject}>
         <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />

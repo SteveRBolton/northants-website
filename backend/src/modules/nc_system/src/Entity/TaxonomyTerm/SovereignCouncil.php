@@ -18,6 +18,12 @@ use Drupal\taxonomy\Entity\Term;
  */
 class SovereignCouncil extends Term implements GraphQLEntityFieldResolver {
 
+  public function getCode(): string {
+    /* @var $code \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
+    $code = $this->get('field_sovereign_code');
+    return $code->getString();
+  }
+
   /**
    * Gets the SovereignCouncil homepage as a LinkItem
    * @return \Drupal\link\LinkItemInterface
@@ -34,6 +40,10 @@ class SovereignCouncil extends Term implements GraphQLEntityFieldResolver {
    * @throws \Drupal\Core\TypedData\Exception\MissingDataException
    */
   public function resolveGraphQLFieldToValue(string $fieldName) {
+
+    if($fieldName === "code") {
+      return $this->getCode();
+    }
 
     if($fieldName === "name") {
       return $this->getName();

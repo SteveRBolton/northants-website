@@ -7,6 +7,27 @@ use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 class Content extends Node implements GraphQLEntityFieldResolver {
 
+  public function getCouncilName(): string {
+    $councilName = '';
+
+    if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
+      switch ($_ENV['NEXT_PUBLIC_THEME']) {
+        case 'west':
+          $councilName = 'West Northamptonshire Council';
+          break;
+
+        case 'north':
+          $councilName = 'North Northamptonshire Council';
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    return $councilName;
+  }
+
   public function getBody(): ?TextItemBase {
     /* @var $bodyField \Drupal\Core\Field\FieldItemList */
     $bodyField = $this->get('field_wysiwyg_slices');
@@ -21,6 +42,7 @@ class Content extends Node implements GraphQLEntityFieldResolver {
     $metaTitleField = $this->get('field_meta_title');
     $titleField = $this->getTitle();
     $metaTitle = $metaTitleField->getString() ? $metaTitleField->getString() : $titleField;
+    $metaTitle = $metaTitle . (!empty($this->getCouncilName()) ? ' | ' . $this->getCouncilName() : '');
     return $metaTitle;
   }
 
