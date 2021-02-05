@@ -1,4 +1,4 @@
-uuid: eec07ce9-4dca-43f0-af97-b0e16c1ca937
+uuid: f9c1d92f-5f18-4eab-a299-405b399332f8
 langcode: en
 status: true
 dependencies:
@@ -16,10 +16,10 @@ dependencies:
     - user
 _core:
   default_config_hash: Kjqf5d4F134C3zua0tXV7LA3m5OEeS_Fowa2dP9kk2I
-id: moderated_content
-label: 'Awaiting Review'
+id: ready_to_publish
+label: 'Ready To Publish'
 module: views
-description: 'All content waiting to be reviewd.'
+description: 'All content waiting to be published.'
 tag: ''
 base_table: node_field_revision
 base_field: vid
@@ -690,7 +690,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            editorial-needs_review: editorial-needs_review
+            editorial-ready_to_publish: editorial-ready_to_publish
           group: 2
           exposed: false
           expose:
@@ -731,7 +731,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            editorial-needs_review: editorial-needs_review
+            editorial-ready_to_publish: editorial-ready_to_publish
           group: 2
           exposed: false
           expose:
@@ -764,7 +764,7 @@ display:
           entity_type: node
           plugin_id: moderation_state_filter
       sorts: {  }
-      title: 'Awaiting Review'
+      title: 'Ready To Publish'
       header: {  }
       footer: {  }
       empty:
@@ -820,24 +820,29 @@ display:
         - user.roles
       tags:
         - 'config:workflow_list'
-  moderated_content:
+  ready_to_publish:
     display_plugin: page
-    id: moderated_content
-    display_title: 'Awaiting Review'
+    id: ready_to_publish
+    display_title: 'Ready To Publish'
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/content/moderated
+      path: admin/content/ready-to-publish
       display_description: ''
       menu:
-        type: none
-        title: 'Awaiting Review'
+        type: tab
+        title: 'Ready To Publish'
         description: ''
         expanded: false
         parent: system.admin_content
         weight: -10
         context: '0'
         menu_name: admin
+      tab_options:
+        type: none
+        title: ''
+        description: ''
+        weight: 0
     cache_metadata:
       max-age: -1
       contexts:

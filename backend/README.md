@@ -1,6 +1,6 @@
 # Northants Core CMS
 
-This is the Northant's Core Drupal 8 CMS application.
+This is the Northant's Core Drupal 9 CMS application.
 
 ## Dependencies
 
@@ -17,8 +17,6 @@ You should configure the project for your needs now. The following amendments ne
 `.env:` Change the PROJECT_NAME and PROJECT_BASE_URL for your project (the url must end in .localhost). Make up a new HASH_SALT string.
 
 `src/settings/environment.inc:` Configure your domain names here if you know what the remote ones are going to be.
-
-`src/settings/02-shield.settings.inc:` Configure basic-auth access details to protect your dev sites (Acquia only)
 
 ## Build and install
 
@@ -80,7 +78,7 @@ composer update drupal/redirect
 
 ### To update Drupal core:
 ```bash
-composer update drupal/core --with-dependencies
+composer update drupal/core-recommended --with-dependencies
 ```
 
 **You should commit your composer.lock file to the repository as this will guarantee that any subsequent builds will use the same exact version of all
@@ -94,22 +92,6 @@ Composer project usage guide:
 
 https://getcomposer.org/doc/01-basic-usage.md
 
-## Xdebug
-
-You need to run `sudo ifconfig lo0 alias 10.254.254.254` before Xdebug connections will work. This is usually required each time you log-in to your development machine, but is safe to run periodically.
-
-## Running tests
-
-This repository contains the starting point for running both Behat and PHPUnit test suites as well as Drupal coding standards checks with PHPCS.
-
-PHPUnit tests should be defined within you custom modules, in the tests/ sub-directory.
-
-Behat tests should be defined in the behat-tests directory in the project root.
-
-```bash
-make test
-```
-will run all of the Project's automated tests.
 
 ## Project structure
 
@@ -124,9 +106,6 @@ This contains all of your project source code. As follows:
 
 #### src/config/
 This contains Drupal's CMI configuration files.
-
-#### src/frontend/
-For all your front end needs. This makes use of our front end setup, you can find out how here : https://github.com/teamdeeson/deeson-webpack-config
 
 #### src/modules/
 This is where you place your custom modules.
@@ -144,8 +123,6 @@ Anything within `src/themes/` will be made available in `docroot/themes/custom/`
 ### vendor/
 This is the composer vendor directory, which contains project dependencies, tools and libraries. This should be excluded from your repository.
 
-### web/
-This and `docroot/` are symlinked to the same location for wider compatibility and should also be excluded from your repository.
 
 # Docker commands
 
@@ -203,14 +180,14 @@ Note that this method is up to 33% faster than the drush method `pv database_exp
 This site uses the (config pages)[https://www.drupal.org/project/config_pages] module to set some global configuration including the homepage.
 To set this, navigate to `/admin/structure/config_pages` and choose a page to modify.
 
-# Known issues
 
-## Deeson Docker Proxy not running.
+# Things to know
 
-`ERROR: Network proxy declared as external, but could not be found. Please create the network manually using 'docker network create proxy' and try again.`
-
-The Docker proxy needs to be running. See dependencies above.
-
+## User roles and embed editor permissions
+When creating new roles make sure the role has permission to use both the "Basic HTML (with Embed)" and "Basic HTML (with Embed)
+for Accordion" text formats.
 
 
-
+## New slices for the embed editor
+When creating a new slice for the embed editor make sure it is added to the "Basic HTML (with Embed)" and the "Basic HTML (with Embed)
+for Accordion" text formats.

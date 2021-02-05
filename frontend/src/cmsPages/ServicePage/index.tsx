@@ -1,6 +1,7 @@
 import {
   Breadcrumbs,
   MaxWidthContainer,
+  PhaseBanner,
   PageMain,
   SignpostLinks,
   SectionLinksSidebar,
@@ -63,6 +64,7 @@ export default function ServicePage({
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
         <Breadcrumbs {...breadcrumbs} />
         {showSidebar && (
           <PageWithSidebarContainer>

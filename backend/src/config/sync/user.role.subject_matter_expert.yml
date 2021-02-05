@@ -1,0 +1,38 @@
+uuid: b4a745cd-2547-4009-bc5c-fb9a063250bc
+langcode: en
+status: true
+dependencies: {  }
+id: subject_matter_expert
+label: 'Subject Matter Expert'
+weight: -8
+is_admin: null
+permissions:
+  - 'access content'
+  - 'access content overview'
+  - 'access toolbar'
+  - 'add paragraphs entity embed'
+  - 'create service_landing_page content'
+  - 'create service_page content'
+  - 'delete paragraphs entity embed'
+  - 'edit any homepage content'
+  - 'edit any service_landing_page content'
+  - 'edit any service_page content'
+  - 'edit own service_landing_page content'
+  - 'edit own service_page content'
+  - 'edit paragraphs entity embed'
+  - 'revert homepage revisions'
+  - 'revert service_landing_page revisions'
+  - 'revert service_page revisions'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition submit_for_review'
+  - 'use text format basic_html_with_embed_for_accordion'
+  - 'use text format embed_basic_html'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view homepage revisions'
+  - 'view latest version'
+  - 'view own unpublished content'
+  - 'view paragraphs entity embed'
+  - 'view service_landing_page revisions'
+  - 'view service_page revisions'
