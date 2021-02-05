@@ -1,0 +1,14 @@
+uuid: 8a1e94b9-e5da-4f99-ae0d-954b7822b4bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_designer
+  module:
+    - user
+id: user_add_role_action.content_designer
+label: 'Add the Content Designer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: content_designer

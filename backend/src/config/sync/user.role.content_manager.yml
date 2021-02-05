@@ -1,0 +1,24 @@
+uuid: 3252a67a-8e7f-4486-aec7-8e3cc53254de
+langcode: en
+status: true
+dependencies: {  }
+id: content_manager
+label: 'Content Manager'
+weight: -6
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access toolbar'
+  - 'delete any homepage content'
+  - 'delete any service_landing_page content'
+  - 'delete any service_page content'
+  - 'delete homepage revisions'
+  - 'delete own homepage content'
+  - 'delete own service_landing_page content'
+  - 'delete own service_page content'
+  - 'delete service_landing_page revisions'
+  - 'delete service_page revisions'
+  - 'use editorial transition approve'
+  - 'use editorial transition archive'
+  - 'use editorial transition reject'
+  - 'use text format embed_basic_html'
