@@ -20,13 +20,13 @@ enum Theme {
 }
 
 function NorthantsApp({
-    Component,
-    pageProps,
-    router,
-    globals,
-    theme,
-    gtm,
-  }: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }): ReactElement {
+  Component,
+  pageProps,
+  router,
+  globals,
+  theme,
+  gtm,
+}: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }): ReactElement {
   let actualThemeObject;
   let faviconPath = '/favicon/';
   useEffect(() => {
@@ -56,56 +56,56 @@ function NorthantsApp({
 
   const isHomePage = router.pathname === '/';
   return (
-      <>
-        <Head>
-          <title>Northants</title>
-          <link rel="apple-touch-icon" sizes="180x180" href={`${faviconPath}/apple-touch-icon.png`} />
-          <link rel="icon" type="image/png" sizes="32x32" href={`${faviconPath}/favicon-32x32.png`} />
-          <link rel="icon" type="image/png" sizes="16x16" href={`${faviconPath}/favicon-16x16.png`} />
-          <link rel="manifest" href="/favicon/site.webmanifest" />
-          <link
-              rel="mask-icon"
-              href={`${faviconPath}/favicon-16x16.png`}
-              color={theme === 'north' ? '#05873a' : '#386193'}
-          />
-          <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
-          <meta name="theme-color" content="#ffffff" />
-        </Head>
-        <ThemeProvider theme={actualThemeObject}>
-          <CookieBanner
-              title="Tell us whether you accept cookies"
-              paragraph={
-                <p>
-                  We use <a href="#">cookies to collect information</a> about how you use GOV.UK. We use this information to
-                  make the website work as well as possible and improve government services.
-                </p>
-              }
-              acceptButtonText="Accept all cookies"
-              rejectButtonText="Reject all cookies"
-              acceptCallback={() => {}}
-          />
-          <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
-          <Component {...pageProps} />
-          <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
-        </ThemeProvider>
-      </>
+    <>
+      <Head>
+        <title>Northants</title>
+        <link rel="apple-touch-icon" sizes="180x180" href={`${faviconPath}/apple-touch-icon.png`} />
+        <link rel="icon" type="image/png" sizes="32x32" href={`${faviconPath}/favicon-32x32.png`} />
+        <link rel="icon" type="image/png" sizes="16x16" href={`${faviconPath}/favicon-16x16.png`} />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link
+          rel="mask-icon"
+          href={`${faviconPath}/favicon-16x16.png`}
+          color={theme === 'north' ? '#05873a' : '#386193'}
+        />
+        <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+      <ThemeProvider theme={actualThemeObject}>
+        <CookieBanner
+          title="Tell us whether you accept cookies"
+          paragraph={
+            <p>
+              We use <a href="#">cookies to collect information</a> about how you use GOV.UK. We use this information to
+              make the website work as well as possible and improve government services.
+            </p>
+          }
+          acceptButtonText="Accept all cookies"
+          rejectButtonText="Reject all cookies"
+          acceptCallback={() => {}}
+        />
+        <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
+        <Component {...pageProps} />
+        <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
+      </ThemeProvider>
+    </>
   );
 }
 
 NorthantsApp.getInitialProps = async (
-    appContext: AppContext
+  appContext: AppContext
 ): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }> => {
   const client = initializeApollo();
 
   // Get globals
   const globals = await client
-      .query<GetCMSGlobals>({
-        query: getCMSGlobals,
-        variables: {},
-      })
-      .then((res) => {
-        return res.data.globals;
-      });
+    .query<GetCMSGlobals>({
+      query: getCMSGlobals,
+      variables: {},
+    })
+    .then((res) => {
+      return res.data.globals;
+    });
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
