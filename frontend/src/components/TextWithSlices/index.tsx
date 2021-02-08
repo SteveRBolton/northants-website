@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
 import { Accordion, BlockQuote, CallToAction, Heading, Divider } from 'northants-design-system';
-import { AccordionSectionProps } from 'northants-design-system/build/library/Slices/Accordion/Accordion.types';
+import { AccordionSectionProps } from 'northants-design-system/build/library/slices/Accordion/Accordion.types';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 import {
   EmbeddedParagraphAccordion,
