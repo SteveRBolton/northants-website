@@ -50,6 +50,7 @@ export const getSearchResults = gql`
       total
       pageSize
       page
+      text
       result_list {
         ...SearchResult
       }

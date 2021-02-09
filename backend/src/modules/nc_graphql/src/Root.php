@@ -234,6 +234,7 @@ class Root {
       "total" => $resultSet->getResultCount(),
       "pageSize" => $pageSize,
       "page" => $page,
+      "text" => $text,
       "result_list" => $result_list,
     ];
   }

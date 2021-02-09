@@ -28,6 +28,7 @@ export interface GetSearchResults_search {
   total: number;
   pageSize: number;
   page: number;
+  text: string;
   result_list: GetSearchResults_search_result_list[] | null;
 }
 

@@ -10,6 +10,7 @@ type SearchResults {
   total: Int!
   pageSize: Int!
   page: Int!
+  text: String!
   result_list: [SearchResult!]
 }
 
