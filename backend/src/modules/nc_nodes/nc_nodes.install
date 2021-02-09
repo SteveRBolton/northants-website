@@ -1,0 +1,22 @@
+<?php
+
+use Drupal\node\Entity\Node;
+
+/**
+ * Backfilling revision_date fields with correct date
+ */
+function nc_nodes_update_8001(&$sandbox) {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', ['service_landing_page', 'service_page'], 'in')
+    ->notExists('field_revision_date');
+  $results = $query->execute();
+
+  if (!empty($results)) {
+    foreach ($results as $node_id) {
+      print('node id: '.$node_id);
+      $node = Node::load($node_id);
+      $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
+      $node->save();
+    }
+  }
+}
