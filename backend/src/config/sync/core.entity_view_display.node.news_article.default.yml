@@ -1,0 +1,64 @@
+uuid: d4f7c369-cb96-49b5-a834-099ddd0b13b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_article.field_keywords
+    - field.field.node.news_article.field_meta_description
+    - field.field.node.news_article.field_meta_title
+    - field.field.node.news_article.field_press_release
+    - field.field.node.news_article.field_publish_date
+    - field.field.node.news_article.field_service_landing_page
+    - field.field.node.news_article.field_summary
+    - field.field.node.news_article.field_wysiwyg_slices
+    - node.type.news_article
+  module:
+    - text
+    - user
+id: node.news_article.default
+targetEntityType: node
+bundle: news_article
+mode: default
+content:
+  field_press_release:
+    weight: 4
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_service_landing_page:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_summary:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_wysiwyg_slices:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_keywords: true
+  field_meta_description: true
+  field_meta_title: true
+  field_publish_date: true
