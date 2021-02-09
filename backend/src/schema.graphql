@@ -19,7 +19,7 @@ type SearchResult {
   url: String!
   title: String!
   teaser: String!
-  signposts: [CouncilData]
+  signposts: [CouncilData!]
 }
 
 type CouncilData {
