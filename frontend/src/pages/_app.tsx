@@ -4,9 +4,10 @@ import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import React, { ReactElement } from 'react';
 import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
-import { getCMSGlobals } from '../api/graphql/queries';
+import { getCMSGlobals, getSearchResults } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
+import { GetSearchResults, GetSearchResultsVariables } from '../api/graphql/__generated__/GetSearchResults';
 
 enum Theme {
   North = 'north',
