@@ -3,6 +3,28 @@
 type Query {
   route(path: String!): DrupalRoute!
   globals: DrupalGlobals!
+  search(text: String!, page: Int!): SearchResults!
+}
+
+type SearchResults {
+  total: Int!
+  pageSize: Int!
+  page: Int!
+  result_list: [SearchResult!]
+}
+
+type SearchResult {
+  id: String!
+  url: String!
+  title: String!
+  teaser: String!
+  signposts: [CouncilData]
+}
+
+type CouncilData {
+  code: String!
+  name: String!
+  homepage: String!
 }
 
 # Scalars

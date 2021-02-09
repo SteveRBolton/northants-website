@@ -84,6 +84,11 @@ else
 	./vendor/bin/drush uli
 endif
 
+#Note: solr instance needs to be running first, which you can do with `docker-compose up solr`
+# The 'search_api_solr_4.1.9' should match the currently installed version of 'search_api_solr'.
+solr-create-core:
+	docker-compose exec solr solr create_core -c main -n main -d /opt/docker-solr/configsets/search_api_solr_4.1.9/
+
 #
 # Linting / testing / formatting.
 #
