@@ -1,14 +1,19 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
-import { Header, north_theme, GDS_theme, west_theme, Footer } from 'northants-design-system';
+import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner } from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
 import { getCMSGlobals, getSearchResults } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
 import { GetSearchResults, GetSearchResultsVariables } from '../api/graphql/__generated__/GetSearchResults';
 
+declare global {
+  interface Window {
+    dataLayer: Array<string | Date>;
+  }
+}
 enum Theme {
   North = 'north',
   West = 'west',
@@ -21,10 +26,22 @@ function NorthantsApp({
   router,
   globals,
   theme,
-}: AppProps & GetCMSGlobals & { theme: Theme }): ReactElement {
+  gtm,
+}: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }): ReactElement {
   let actualThemeObject;
   let faviconPath = '/favicon/';
-
+  useEffect(() => {
+    if (document.cookie.includes('"cookiesAccepted":true')) {
+      if (gtm) {
+        const tag = document.createElement('script');
+        tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
+        document.getElementsByTagName('head')[0].appendChild(tag);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push('js', new Date());
+        window.dataLayer.push('config', `${gtm}`);
+      }
+    }
+  }, []);
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
@@ -56,6 +73,18 @@ function NorthantsApp({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <ThemeProvider theme={actualThemeObject}>
+        <CookieBanner
+          title="Tell us whether you accept cookies"
+          paragraph={
+            <p>
+              We use <a href="#">cookies to collect information</a> about how you use GOV.UK. We use this information to
+              make the website work as well as possible and improve government services.
+            </p>
+          }
+          acceptButtonText="Accept all cookies"
+          rejectButtonText="Reject all cookies"
+          acceptCallback={() => {}}
+        />
         <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
@@ -66,7 +95,7 @@ function NorthantsApp({
 
 NorthantsApp.getInitialProps = async (
   appContext: AppContext
-): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme }> => {
+): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }> => {
   const client = initializeApollo();
 
   // Get globals
@@ -81,7 +110,7 @@ NorthantsApp.getInitialProps = async (
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme };
+  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme, gtm: process.env.NEXT_PUBLIC_GTM_CODE };
 };
 
 export default NorthantsApp;

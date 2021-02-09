@@ -5,5 +5,5 @@
  * @param name
  */
 export default function sectionSlug(name: string): string {
-  return name.toLowerCase().replace(/\s+/, '-');
+  return name.toLowerCase().replace(/[^A-Za-z\w\-:.]+/g, '-');
 }
