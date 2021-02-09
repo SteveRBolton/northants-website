@@ -1,0 +1,7 @@
+name: NC Solr Search
+description: Northants solr search.
+core_version_requirement: ^9
+type: module
+
+dependencies:
+  - search_api_solr

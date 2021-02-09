@@ -18,6 +18,20 @@ services:
     networks:
       - default
 
+  solr:
+    image: $SOLR_TAG
+    container_name: "${PROJECT_NAME}_solr"
+    environment:
+      SOLR_HEAP: 1024m
+    volumes:
+      - solr:/opt/solr/server/solr/main
+    networks:
+      - default
+    labels:
+      - 'traefik.docker.network=proxy'
+      - 'traefik.port=8983'
+      - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
+
   php:
     image: wodby/drupal-php:7.4-4.18.2
     container_name: "${PROJECT_NAME}_php"
@@ -99,4 +113,5 @@ networks:
 
 volumes:
   mariadb:
+  solr:
   files:
