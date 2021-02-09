@@ -9,3 +9,15 @@ db:
 
 cache:
   type: redis:6.0
+
+# Solr service for indexing drupal content.
+solrsearch:
+  type: solr:8.6
+  disk: 1024
+  configuration:
+    cores:
+      main:
+        conf_dir: !archive "solr_8.x_config/"
+    endpoints:
+      main:
+        core: main
