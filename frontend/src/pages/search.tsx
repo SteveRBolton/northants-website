@@ -21,8 +21,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     .query<GetSearchResults, GetSearchResultsVariables>({
       query: getSearchResults,
       variables: {
-        text: searchTerm,
-        page: page ? parseInt(page, 10) : 0,
+        text: searchTerm as string,
+        page: page ? parseInt(page as string, 10) : 0,
       },
     })
     .then((queryRes) => {
@@ -49,17 +49,23 @@ export default function Search(page: SearchPageProps): ReactElement {
           <Searchbar isLarge isLight submitInfo={[{ postTo: '/search', params: { type: 'search', page: 'page' } }]} />
           <SearchResultsList
             searchTerm={search.text}
-            results={search.result_list.map((result) => ({
-              title: result.title,
-              link: result.url,
-              summary: result.teaser,
-              url: result.url,
-              signpostLinksArray: result.signposts.map((signpost) => ({
-                sovereignCode: parseInt(signpost.code, 10),
-                areaName: signpost.name,
-                url: signpost.homepage,
-              })),
-            }))}
+            results={
+              search.result_list
+                ? search.result_list.map((result) => ({
+                    title: result.title,
+                    link: result.url,
+                    summary: result.teaser,
+                    url: result.url,
+                    signpostLinksArray: result.signposts
+                      ? result.signposts.map((signpost) => ({
+                          sovereignCode: parseInt(signpost.code, 10),
+                          areaName: signpost.name,
+                          url: signpost.homepage,
+                        }))
+                      : [],
+                  }))
+                : []
+            }
           />
           <Pagination currentPage={search.page} totalResults={search.total} />
         </PageMain>

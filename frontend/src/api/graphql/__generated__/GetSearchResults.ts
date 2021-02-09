@@ -20,7 +20,7 @@ export interface GetSearchResults_search_result_list {
   url: string;
   title: string;
   teaser: string;
-  signposts: (GetSearchResults_search_result_list_signposts | null)[] | null;
+  signposts: GetSearchResults_search_result_list_signposts[] | null;
 }
 
 export interface GetSearchResults_search {
