@@ -7,6 +7,7 @@ type Query {
 }
 
 type SearchResults {
+  council_name: String!
   total: Int!
   pageSize: Int!
   page: Int!
@@ -19,6 +20,7 @@ type SearchResult {
   url: String!
   title: String!
   teaser: String!
+  parent: String
   signposts: [CouncilData!]
 }
 

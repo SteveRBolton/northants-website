@@ -20,5 +20,6 @@ export interface SearchResult {
   url: string;
   title: string;
   teaser: string;
+  parent: string | null;
   signposts: SearchResult_signposts[] | null;
 }

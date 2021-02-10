@@ -4,15 +4,14 @@ status: true
 dependencies:
   module:
     - search_api_solr
-    - paragraphs
     - node
+    - paragraphs
     - search_api
   config:
     - field.storage.node.field_wysiwyg_slices
+    - field.storage.node.field_parent
     - field.storage.node.field_signposting
-    - field.storage.paragraph.field_council
     - field.storage.paragraph.field_signposts
-    - field.storage.paragraph.field_link
     - field.storage.node.field_summary
     - search_api.server.solr_server_main
 third_party_settings:
@@ -66,27 +65,24 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_wysiwyg_slices
-  council:
-    label: 'Signposting » Paragraph » Signposts » Paragraph » Council'
+  parent:
+    label: 'Parent » Content » Title'
     datasource_id: 'entity:node'
-    property_path: 'field_signposting:entity:field_signposts:entity:field_council'
+    property_path: 'field_parent:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_parent
+      module:
+        - node
+  signposts:
+    label: 'Signposting » Paragraph » Signposts'
+    datasource_id: 'entity:node'
+    property_path: 'field_signposting:entity:field_signposts'
     type: integer
     dependencies:
       config:
         - field.storage.node.field_signposting
-        - field.storage.paragraph.field_council
-        - field.storage.paragraph.field_signposts
-      module:
-        - paragraphs
-  link:
-    label: 'Signposting » Paragraph » Signposts » Paragraph » Link'
-    datasource_id: 'entity:node'
-    property_path: 'field_signposting:entity:field_signposts:entity:field_link'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_signposting
-        - field.storage.paragraph.field_link
         - field.storage.paragraph.field_signposts
       module:
         - paragraphs

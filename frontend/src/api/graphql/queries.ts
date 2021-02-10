@@ -47,6 +47,7 @@ export const getSearchResults = gql`
   ${searchResult}
   query GetSearchResults($text: String!, $page: Int!) {
     search(text: $text, page: $page) {
+      council_name
       total
       pageSize
       page
