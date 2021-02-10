@@ -7,14 +7,13 @@ dependencies:
     - field.field.node.news_article.field_meta_description
     - field.field.node.news_article.field_meta_title
     - field.field.node.news_article.field_press_release
-    - field.field.node.news_article.field_publish_date
     - field.field.node.news_article.field_service_landing_page
     - field.field.node.news_article.field_summary
     - field.field.node.news_article.field_wysiwyg_slices
     - node.type.news_article
+    - workflows.workflow.editorial
   module:
     - content_moderation
-    - datetime
     - field_group
     - path
     - scheduler
@@ -37,10 +36,11 @@ third_party_settings:
       label: Tabs
     group_main:
       children:
+        - field_service_landing_page
         - title
         - field_summary
         - field_wysiwyg_slices
-        - field_service_landing_page
+        - field_press_release
       parent_name: group_tabs
       weight: 20
       format_type: tab
@@ -104,17 +104,11 @@ content:
     type: string_textfield
     region: content
   field_press_release:
-    weight: 13
+    weight: 20
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: content
-  field_publish_date:
-    weight: 12
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_service_landing_page:
     weight: 16
@@ -127,7 +121,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_summary:
-    weight: 14
+    weight: 18
     settings:
       rows: 5
       placeholder: ''
@@ -135,13 +129,20 @@ content:
     type: string_textarea
     region: content
   field_wysiwyg_slices:
-    weight: 15
+    weight: 19
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
     weight: 14
@@ -173,6 +174,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  scheduler_settings:
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
@@ -189,7 +195,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 13
+    weight: 17
     region: content
     settings:
       size: 60
