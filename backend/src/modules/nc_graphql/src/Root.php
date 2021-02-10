@@ -10,6 +10,7 @@ use Drupal\Core\Menu\MenuTreeParameters;
 use \Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\nc_solr\SolrServiceProvider;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -196,12 +197,39 @@ class Root {
   }
 
   /**
+   * Returns the council name for the active theme
+   *
+   * @return string
+   */
+  public static function getCouncilName(): string {
+    $councilName = '';
+
+    if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
+      switch ($_ENV['NEXT_PUBLIC_THEME']) {
+        case 'west':
+          $councilName = 'West Northamptonshire Council';
+          break;
+
+        case 'north':
+          $councilName = 'North Northamptonshire Council';
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    return $councilName;
+  }
+
+  /**
    * Function to return a paginated list of search results.
    * Actual search
    * @param $text
    * @param int $page (The page of results to request)
    */
   public static function searchSolr($text, $page = 0) {
+    $councilName = self::getCouncilName();
     $pageSize = 10;
     /* @var $solr \Drupal\nc_solr\SolrServiceProvider */
     $solr = \Drupal::service('nc-solr.solr.search');
@@ -209,15 +237,18 @@ class Root {
 
     $result_list = [];
     /* @var $result \Drupal\search_api\Item\Item */
+
     foreach($resultSet->getIterator() as $result) {
-      $signposts = [];
-      $taxonomyTerms = $result->getField('council')->getValues();
-      foreach($taxonomyTerms as $taxonomy) {
-        $term = Term::load($taxonomy);
-        $signposts[] = [
-          'code' => $term->get('field_sovereign_code')->value,
-          'name' => $term->get('name')->value,
-          'homepage' => $term->get('field_homepage')->uri,
+      $signpostsArr = [];
+      $signposts = $result->getField('signposts')->getValues();
+      foreach($signposts as $signpostId) {
+        $signpost = Paragraph::load($signpostId);
+        $councilId = $signpost->get('field_council')->getValue()[0]['target_id'];
+        $council = Term::load($councilId);
+        $signpostsArr[] = [
+          'code' => $council->get('field_sovereign_code')->value,
+          'name' => $council->get('name')->value,
+          'homepage' => $signpost->get('field_link')->uri ? $signpost->get('field_link')->uri : $council->get('field_homepage')->uri,
         ];
       }
 
@@ -226,11 +257,13 @@ class Root {
         'url' => $result->getField('url')->getValues()[0],
         'title' => $result->getField('title')->getValues()[0],
         'teaser' => $result->getField('summary')->getValues()[0],
-        'signposts' => $signposts,
+        'parent' => $result->getField('parent')->getValues()[0],
+        'signposts' => $signpostsArr,
       ];
     }
 
     return [
+      "council_name" => $councilName,
       "total" => $resultSet->getResultCount(),
       "pageSize" => $pageSize,
       "page" => $page,

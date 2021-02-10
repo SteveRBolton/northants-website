@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       query: getSearchResults,
       variables: {
         text: searchTerm as string,
-        page: page ? parseInt(page as string, 10) : 0,
+        page: page ? parseInt(page as string, 10) - 1 : 0,
       },
     })
     .then((queryRes) => {
@@ -41,12 +41,19 @@ export default function Search(page: SearchPageProps): ReactElement {
   return (
     <>
       <Head>
-        <title> Search | Northants </title>
+        <title>
+          Search results for &quot;{search.text}&quot; | {search.council_name}
+        </title>
       </Head>
       <MaxWidthContainer>
         <PageMain>
-          <Heading text="Search Results" level={1} />
-          <Searchbar isLarge isLight submitInfo={[{ postTo: '/search', params: { type: 'search', page: 'page' } }]} />
+          <Heading text="Search results" level={1} />
+          <Searchbar
+            isLarge
+            isLight
+            submitInfo={[{ postTo: '/search', params: { type: 'search' } }]}
+            searchTerm={search.text}
+          />
           <SearchResultsList
             searchTerm={search.text}
             results={
@@ -56,18 +63,19 @@ export default function Search(page: SearchPageProps): ReactElement {
                     link: result.url,
                     summary: result.teaser,
                     url: result.url,
-                    signpostLinksArray: result.signposts
+                    service: result.parent ? result.parent : '',
+                    signpostLinksArray: result.signposts?.length
                       ? result.signposts.map((signpost) => ({
                           sovereignCode: parseInt(signpost.code, 10),
                           areaName: signpost.name,
                           url: signpost.homepage,
                         }))
-                      : [],
+                      : undefined,
                   }))
                 : []
             }
           />
-          <Pagination currentPage={search.page} totalResults={search.total} />
+          <Pagination currentPage={search.page + 1} totalResults={search.total} />
         </PageMain>
       </MaxWidthContainer>
     </>

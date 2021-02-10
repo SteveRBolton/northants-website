@@ -20,11 +20,13 @@ export interface GetSearchResults_search_result_list {
   url: string;
   title: string;
   teaser: string;
+  parent: string | null;
   signposts: GetSearchResults_search_result_list_signposts[] | null;
 }
 
 export interface GetSearchResults_search {
   __typename: "SearchResults";
+  council_name: string;
   total: number;
   pageSize: number;
   page: number;

@@ -6,6 +6,7 @@ const fragment = gql`
     url
     title
     teaser
+    parent
     signposts {
       code
       name
