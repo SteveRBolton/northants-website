@@ -1,0 +1,23 @@
+uuid: 87da9bb6-dfde-4908-85cb-c3362a707115
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_press_release
+    - node.type.news_article
+id: node.news_article.field_press_release
+field_name: field_press_release
+entity_type: node
+bundle: news_article
+label: 'Press release'
+description: 'Check this box to select this article as a press release'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

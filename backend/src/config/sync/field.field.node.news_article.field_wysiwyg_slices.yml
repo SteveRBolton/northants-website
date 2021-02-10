@@ -1,0 +1,30 @@
+uuid: b6737e48-0fd3-48b2-ab11-ffecfa67a605
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_wysiwyg_slices
+    - node.type.news_article
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    embed_basic_html: embed_basic_html
+    basic_html: '0'
+    basic_html_with_embed_for_accordion: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: node.news_article.field_wysiwyg_slices
+field_name: field_wysiwyg_slices
+entity_type: node
+bundle: news_article
+label: Body
+description: 'Main content for this news article page.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

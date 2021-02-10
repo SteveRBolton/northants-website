@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - node.type.homepage
+    - node.type.news_article
     - node.type.service_landing_page
     - node.type.service_page
   module:
@@ -99,6 +100,7 @@ type_settings:
   entity_types:
     node:
       - homepage
+      - news_article
       - service_landing_page
       - service_page
   default_moderation_state: draft
