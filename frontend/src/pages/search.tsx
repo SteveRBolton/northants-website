@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     .query<GetSearchResults, GetSearchResultsVariables>({
       query: getSearchResults,
       variables: {
-        text: searchTerm as string,
+        text: searchTerm ? (searchTerm as string) : ' ',
         page: page ? parseInt(page as string, 10) - 1 : 0,
       },
     })
