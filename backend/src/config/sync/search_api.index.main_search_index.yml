@@ -75,6 +75,14 @@ field_settings:
         - field.storage.node.field_parent
       module:
         - node
+  processed:
+    label: 'Body » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_wysiwyg_slices:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_wysiwyg_slices
   signposts:
     label: 'Signposting » Paragraph » Signposts'
     datasource_id: 'entity:node'
