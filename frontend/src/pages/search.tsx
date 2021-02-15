@@ -55,6 +55,8 @@ export default function Search(page: SearchPageProps): ReactElement {
             searchTerm={search.text}
           />
           <SearchResultsList
+            totalResults={search.total}
+            pageNumber={search.page}
             searchTerm={search.text}
             results={
               search.result_list

@@ -77,8 +77,8 @@ function NorthantsApp({
           title="Tell us whether you accept cookies"
           paragraph={
             <p>
-              We use <a href="/your-council/cookies">cookies to collect information</a> about how you use GOV.UK. We use
-              this information to make the website work as well as possible and improve government services.
+              We use <a href="/your-council/cookies">cookies to collect information</a> about how you use this website.
+              We use this information to make it work as well as possible and help make improvements.
             </p>
           }
           acceptButtonText="Accept all cookies"
