@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "462d559b34f8ca5c07d4d04372e1c3d0",
+    "content-hash": "529c7109371feec22feffac9efb11f22",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2780,6 +2780,50 @@
                 "issues": "https://www.drupal.org/project/issues/field_group"
             },
             "time": "2020-06-09T21:44:00+00:00"
+        },
+        {
+            "name": "drupal/filemime",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/filemime.git",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/filemime-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "a226eaf98ac77aff5b8bd491bf7f60594d6fa38a"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1578637687",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mfb",
+                    "homepage": "https://www.drupal.org/user/12302"
+                }
+            ],
+            "description": "Rewrite the MIME type for each file upload based on a server-side mime.types file and/or custom settings.",
+            "homepage": "https://www.drupal.org/project/filemime",
+            "support": {
+                "source": "https://git.drupalcode.org/project/filemime"
+            }
         },
         {
             "name": "drupal/focal_point",
