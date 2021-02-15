@@ -74,15 +74,14 @@ function NorthantsApp({
       </Head>
       <ThemeProvider theme={actualThemeObject}>
         <CookieBanner
-          title="Tell us whether you accept cookies"
+          title="We use cookies on this site to enhance your user experience"
           paragraph={
             <p>
-              We use <a href="/your-council/cookies">cookies to collect information</a> about how you use GOV.UK. We use
-              this information to make the website work as well as possible and improve government services.
+              By clicking the Accept button, you agree to us doing so. <a href="/your-council/cookies">More info on our cookie policy</a>.
             </p>
           }
-          acceptButtonText="Accept all cookies"
-          rejectButtonText="Reject all cookies"
+          acceptButtonText="Accept cookies policy"
+          rejectButtonText="No, thanks"
           acceptCallback={() => {}}
         />
         <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
