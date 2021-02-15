@@ -1,4 +1,4 @@
-import { Breadcrumbs, Heading, MaxWidthContainer, PageMain, SectionLinks } from 'northants-design-system';
+import { Breadcrumbs, Heading, MaxWidthContainer, PhaseBanner, PageMain, SectionLinks } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
@@ -39,6 +39,7 @@ export default function ServiceLandingPage({
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
         <Breadcrumbs {...breadcrumbs} />
         <PageMain>
           <Heading {...heading} />

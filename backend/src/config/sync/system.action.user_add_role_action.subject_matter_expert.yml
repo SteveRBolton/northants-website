@@ -1,0 +1,14 @@
+uuid: 2c856f69-4414-40ec-8f54-c5a2893df22e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.subject_matter_expert
+  module:
+    - user
+id: user_add_role_action.subject_matter_expert
+label: 'Add the Subject Matter Expert role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: subject_matter_expert

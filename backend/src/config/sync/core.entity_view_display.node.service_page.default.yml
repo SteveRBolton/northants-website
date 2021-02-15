@@ -60,3 +60,5 @@ hidden:
   field_meta_title: true
   field_parent: true
   field_revision_date: true
+  langcode: true
+  search_api_excerpt: true

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.sovereign_councils.field_homepage
+    - field.field.taxonomy_term.sovereign_councils.field_sovereign_code
     - taxonomy.vocabulary.sovereign_councils
   module:
     - link
@@ -32,4 +33,14 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-hidden: {  }
+  field_sovereign_code:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

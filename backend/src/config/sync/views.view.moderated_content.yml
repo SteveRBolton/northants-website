@@ -3,6 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - user.role.administrator
+    - user.role.content_designer
+    - user.role.content_manager
     - workflows.workflow.editorial
   enforced:
     module:
@@ -14,9 +17,9 @@ dependencies:
 _core:
   default_config_hash: Kjqf5d4F134C3zua0tXV7LA3m5OEeS_Fowa2dP9kk2I
 id: moderated_content
-label: 'Moderated content'
+label: 'Awaiting Review'
 module: views
-description: 'Find and moderate content.'
+description: 'All content waiting to be reviewd.'
 tag: ''
 base_table: node_field_revision
 base_field: vid
@@ -28,9 +31,12 @@ display:
     position: 0
     display_options:
       access:
-        type: perm
+        type: role
         options:
-          perm: 'view any unpublished content'
+          role:
+            content_manager: content_manager
+            content_designer: content_designer
+            administrator: administrator
       cache:
         type: tag
         options: {  }
@@ -632,50 +638,6 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        moderation_state:
-          id: moderation_state
-          table: node_field_revision
-          field: moderation_state
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value:
-            editorial-draft: editorial-draft
-            editorial-archived: editorial-archived
-          group: 1
-          exposed: true
-          expose:
-            operator_id: moderation_state_op
-            label: 'Moderation state'
-            description: ''
-            use_operator: false
-            operator: moderation_state_op
-            identifier: moderation_state
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            reduce: true
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          plugin_id: moderation_state_filter
         langcode:
           id: langcode
           table: node_field_revision
@@ -728,8 +690,49 @@ display:
           admin_label: ''
           operator: in
           value:
-            editorial-review: editorial-review
-          group: 1
+            editorial-needs_review: editorial-needs_review
+          group: 2
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          plugin_id: moderation_state_filter
+        moderation_state:
+          id: moderation_state
+          table: node_field_data
+          field: moderation_state
+          relationship: nid
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            editorial-needs_review: editorial-needs_review
+          group: 2
           exposed: false
           expose:
             operator_id: ''
@@ -761,7 +764,7 @@ display:
           entity_type: node
           plugin_id: moderation_state_filter
       sorts: {  }
-      title: 'Moderated content'
+      title: 'Awaiting Review'
       header: {  }
       footer: {  }
       empty:
@@ -805,6 +808,7 @@ display:
         operator: AND
         groups:
           1: AND
+          2: OR
     cache_metadata:
       max-age: -1
       contexts:
@@ -813,18 +817,27 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:workflow_list'
   moderated_content:
     display_plugin: page
     id: moderated_content
-    display_title: 'Moderated content'
+    display_title: 'Awaiting Review'
     position: 1
     display_options:
       display_extenders: {  }
       path: admin/content/moderated
       display_description: ''
+      menu:
+        type: none
+        title: 'Awaiting Review'
+        description: ''
+        expanded: false
+        parent: system.admin_content
+        weight: -10
+        context: '0'
+        menu_name: admin
     cache_metadata:
       max-age: -1
       contexts:
@@ -833,6 +846,6 @@ display:
         - url
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:workflow_list'

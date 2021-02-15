@@ -22,9 +22,10 @@ runtime:
 relationships:
   database: 'db:mysql'
   redis: 'cache:redis'
+  search: 'solrsearch:main'
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 1024
 
 # The 'mounts' describe writable, persistent filesystem mounts in the application.
 mounts:

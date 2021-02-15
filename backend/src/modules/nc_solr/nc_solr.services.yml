@@ -1,0 +1,4 @@
+services:
+  nc-solr.solr.search:
+    class: Drupal\nc_solr\SolrServiceProvider
+    arguments: ['@config.factory', '@logger.factory']

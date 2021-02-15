@@ -2,19 +2,16 @@
 
 namespace Drupal\nc_graphql;
 
-use Drupal\block_content\BlockContentInterface;
-use Drupal\block_content\Entity\BlockContent;
-use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepository;
 use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\Core\Menu\MenuTreeParameters;
 use \Drupal\Core\Url;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
+use Drupal\nc_solr\SolrServiceProvider;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
@@ -101,6 +98,9 @@ class Root {
           ];
         }
         throw new \Exception('Cannot return a route for path ' . $args['path']);
+      },
+      'search' => function ($root, $args, $context, $info) {
+        return Root::searchSolr($args['text'], $args['page']);
       },
       'globals' => function ($root, $args, $context) {
         return Root::getGlobals();
@@ -193,6 +193,82 @@ class Root {
     return [
       '__typename' => 'DrupalGlobals',
       'footerLinks' => Root::getMenuLinks('footer', NULL, true)
+    ];
+  }
+
+  /**
+   * Returns the council name for the active theme
+   *
+   * @return string
+   */
+  public static function getCouncilName(): string {
+    $councilName = '';
+
+    if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
+      switch ($_ENV['NEXT_PUBLIC_THEME']) {
+        case 'west':
+          $councilName = 'West Northamptonshire Council';
+          break;
+
+        case 'north':
+          $councilName = 'North Northamptonshire Council';
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    return $councilName;
+  }
+
+  /**
+   * Function to return a paginated list of search results.
+   * Actual search
+   * @param $text
+   * @param int $page (The page of results to request)
+   */
+  public static function searchSolr($text, $page = 0) {
+    $councilName = self::getCouncilName();
+    $pageSize = 10;
+    /* @var $solr \Drupal\nc_solr\SolrServiceProvider */
+    $solr = \Drupal::service('nc-solr.solr.search');
+    $resultSet = $solr->search($text, $page, $pageSize);
+
+    $result_list = [];
+    /* @var $result \Drupal\search_api\Item\Item */
+
+    foreach($resultSet->getIterator() as $result) {
+      $signpostsArr = [];
+      $signposts = $result->getField('signposts')->getValues();
+      foreach($signposts as $signpostId) {
+        $signpost = Paragraph::load($signpostId);
+        $councilId = $signpost->get('field_council')->getValue()[0]['target_id'];
+        $council = Term::load($councilId);
+        $signpostsArr[] = [
+          'code' => $council->get('field_sovereign_code')->value,
+          'name' => $council->get('name')->value,
+          'homepage' => $signpost->get('field_link')->uri ? $signpost->get('field_link')->uri : $council->get('field_homepage')->uri,
+        ];
+      }
+
+      $result_list[] = [
+        'id' => $result->getId(),
+        'url' => $result->getField('url')->getValues()[0],
+        'title' => $result->getField('title')->getValues()[0],
+        'teaser' => $result->getField('summary')->getValues()[0],
+        'parent' => $result->getField('parent')->getValues()[0],
+        'signposts' => $signpostsArr,
+      ];
+    }
+
+    return [
+      "council_name" => $councilName,
+      "total" => $resultSet->getResultCount(),
+      "pageSize" => $pageSize,
+      "page" => $page,
+      "text" => $text,
+      "result_list" => $result_list,
     ];
   }
 }

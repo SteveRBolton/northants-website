@@ -3,6 +3,31 @@
 type Query {
   route(path: String!): DrupalRoute!
   globals: DrupalGlobals!
+  search(text: String!, page: Int!): SearchResults!
+}
+
+type SearchResults {
+  council_name: String!
+  total: Int!
+  pageSize: Int!
+  page: Int!
+  text: String!
+  result_list: [SearchResult!]
+}
+
+type SearchResult {
+  id: String!
+  url: String!
+  title: String!
+  teaser: String!
+  parent: String
+  signposts: [CouncilData!]
+}
+
+type CouncilData {
+  code: String!
+  name: String!
+  homepage: String!
 }
 
 # Scalars
@@ -245,6 +270,7 @@ interface TaxonomyTerm @entityType {
 
 type SovereignCouncil implements TaxonomyTerm @entity(type: taxonomy_term, bundle: "sovereign_councils") {
   id: String!
+  code: String!
   name: String!
   homepage: LinkField!
 }

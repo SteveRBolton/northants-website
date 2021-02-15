@@ -7,6 +7,7 @@ const fragment = gql`
     }
     signposts {
       council {
+        code
         name
         homepage {
           url

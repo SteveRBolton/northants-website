@@ -160,3 +160,31 @@ foreach ($platformsh->variables() as $name => $value) {
       break;
   }
 }
+
+//---------------------------------------------------------
+// Use new platform sh config reader for below configuration.
+//---------------------------------------------------------
+$platformsh = new \Platformsh\ConfigReader\Config();
+if (!$platformsh->inRuntime()) {
+  return;
+}
+
+$platformsh->registerFormatter('drupal-solr', function($solr) {
+  // Default the solr core name to `collection1` for pre-Solr-6.x instances.
+  return [
+    'core' => substr($solr['path'], 5) ? : 'collection1',
+    'path' => '',
+    'host' => $solr['host'],
+    'port' => $solr['port'],
+  ];
+});
+
+// Update these values to the relationship name (from .platform.app.yaml)
+// and the machine name of the server from your Drupal configuration.
+$relationship_name = 'search';
+// This is machine name of search api server.
+$solr_server_name = 'solr_server_main';
+if ($platformsh->hasRelationship($relationship_name)) {
+  // Set the connector configuration to the appropriate value, as defined by the formatter above.
+  $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config'] = $platformsh->formattedCredentials($relationship_name, 'drupal-solr');
+}

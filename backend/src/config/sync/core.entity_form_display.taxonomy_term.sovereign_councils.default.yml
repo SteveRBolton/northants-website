@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.sovereign_councils.field_homepage
+    - field.field.taxonomy_term.sovereign_councils.field_sovereign_code
     - taxonomy.vocabulary.sovereign_councils
   module:
     - link
@@ -13,16 +14,31 @@ bundle: sovereign_councils
 mode: default
 content:
   field_homepage:
-    weight: 1
+    weight: 2
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
+  field_sovereign_code:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -32,7 +48,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 2
+    weight: 3
     region: content
     third_party_settings: {  }
 hidden:
