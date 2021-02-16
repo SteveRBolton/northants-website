@@ -9,32 +9,35 @@ import {
   Button,
   PageMain,
 } from 'northants-design-system';
+import { ButtonProps } from 'northants-design-system/build/library/Components/Button/Button.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 
 type ArticlePageProps = {
   body: TextWithSlicesProps;
+  title: string;
+  parent: ButtonProps | null;
   metaTitle: string;
   metaDescription?: string;
   metaKeywords?: string;
+  date: string;
 };
 
 export default function ArticlePage({
   body,
+  title,
+  date,
+  parent,
   metaTitle,
   metaDescription,
   metaKeywords,
 }: ArticlePageProps): ReactElement {
-  const date = new Date();
-
+  const currentDate = new Date();
   const dummydata = {
-    date: '02/10/2021',
-    buttonText: 'Testing',
-    url: 'https://www.google.com/',
     image1440: 'http://placehold.it/1440x810',
     image144: 'http://placehold.it/144x81',
   };
-  const dummydate = new Date(dummydata.date);
-  const oldPost = Math.ceil(Math.abs(date.getTime() - dummydate.getTime()) / (1000 * 60 * 60 * 24)) < 365;
+  const dateObject = new Date(date);
+  const oldPost = Math.ceil(Math.abs(currentDate.getTime() - dateObject.getTime()) / (1000 * 60 * 60 * 24)) < 365;
   return (
     <>
       <Head>
@@ -45,9 +48,10 @@ export default function ArticlePage({
       <MaxWidthContainer>
         <PageMain>
           {oldPost ? null : <NewsArticleOldBanner />}
-          <Heading level={1} text={metaTitle} />
-          <Button primary={false} text={dummydata.buttonText} url={dummydata.url} />
-          <NewsArticleDate text={dummydata.date} />
+          <Heading level={1} text={title} />
+
+          {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
+          <NewsArticleDate text={date} />
           {/* If article has featured image: */}
           {dummydata.image144 || dummydata.image1440 ? null : (
             <NewsArticleImage image1440x810={dummydata.image1440} image144x81={dummydata.image144} />

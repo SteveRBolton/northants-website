@@ -177,7 +177,9 @@ type ArticlePageNode implements Node @entity(type: node, bundle: "news_article")
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
-  #parent: SectionParagraph
+  parentTitle: String
+  parentUrl: String
+  date: String!
 }
 
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {

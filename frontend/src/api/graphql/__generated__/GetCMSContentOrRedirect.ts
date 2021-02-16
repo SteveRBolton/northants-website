@@ -520,6 +520,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
   metaKeywords: string | null;
   body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body;
   summary: string;
+  parentTitle: string | null;
+  parentUrl: string | null;
+  date: string;
 }
 
 export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode;

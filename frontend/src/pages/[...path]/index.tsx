@@ -110,11 +110,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ArticlePageNode')) {
-      const { body, metaTitle, metaDescription, metaKeywords } = node;
+      console.log(node);
+      const { body, metaTitle, metaDescription, metaKeywords, title, parentTitle, parentUrl, date } = node;
+      const parent = parentTitle && parentUrl ? { text: parentTitle, url: parentUrl } : null;
       return (
         <ArticlePage
           body={{ html: body.value, embeds: body.embeds }}
+          parent={parent}
           metaTitle={metaTitle}
+          title={title}
+          date={date}
           metaDescription={metaDescription || undefined}
           metaKeywords={metaKeywords || undefined}
         />

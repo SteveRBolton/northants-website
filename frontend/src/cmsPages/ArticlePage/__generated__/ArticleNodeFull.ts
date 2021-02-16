@@ -101,4 +101,7 @@ export interface ArticleNodeFull {
   metaKeywords: string | null;
   body: ArticleNodeFull_body;
   summary: string;
+  parentTitle: string | null;
+  parentUrl: string | null;
+  date: string;
 }

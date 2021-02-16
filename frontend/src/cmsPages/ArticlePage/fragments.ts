@@ -17,6 +17,9 @@ const articleNodeFull = gql`
       }
     }
     summary
+    parentTitle
+    parentUrl
+    date
   }
 `;
 

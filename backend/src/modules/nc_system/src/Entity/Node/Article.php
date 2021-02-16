@@ -13,15 +13,29 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     $summaryField = $this->get('field_summary');
     return $summaryField->getString();
   }
-  public function getParent() {
+  public function getParentTitle() {
     /* @var $parentField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
     $parentField = $this->get('field_service_landing_page');
     /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
     $parents = $parentField->referencedEntities();
     if(!empty($parents)) {
-      return $parents[0];
+      return $parents[0]->getTitle();
     }
     return null;
+  }
+  public function getParentUrl() {
+    /* @var $parentField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
+    $parentField = $this->get('field_service_landing_page');
+    /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
+    $parents = $parentField->referencedEntities();
+    if(!empty($parents)) {
+      return $parents[0]->toUrl()->toString();
+    }
+    return null;
+  }
+  public function getDate() {
+    $date = date('j F Y', $this->getChangedTime());
+    return $date;
   }
   /**
    * {@inheritdoc}
@@ -46,9 +60,15 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "metaKeywords") {
       return $this->getMetaKeywords();
     }
-    // if($fieldName === "parent"){
-    //   return $this->getParent();
-    // }
+    if ($fieldName === "parentUrl") {
+      return $this->getParentUrl();
+    }
+    if ($fieldName === "parentTitle") {
+      return $this->getParentTitle();
+    }
+    if ($fieldName === "date"){
+      return $this->getDate();
+    }
     if($fieldName === "summary"){
       return $this->getSummary();
     }
