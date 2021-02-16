@@ -18,6 +18,8 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     $parentField = $this->get('field_service_landing_page');
     /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
     $parents = $parentField->referencedEntities();
+    return json_encode($parentField);
+
     if(!empty($parents)) {
       return $parents[0]->getTitle();
     }
@@ -34,7 +36,7 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     return null;
   }
   public function getDate() {
-    $date = date('j F Y', $this->getChangedTime());
+    $date = date('j F Y', $this->getCreatedTime());
     return $date;
   }
   /**
