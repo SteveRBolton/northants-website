@@ -14,6 +14,7 @@ import transformSignposting from '../../components/Signposting/transform';
 import transformSection from '../../components/Section/transform';
 import transformServiceLinks from '../../components/ServiceLinks/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
+import ArticlePage from '../../cmsPages/ArticlePage';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
@@ -43,7 +44,7 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
-
+  console.log(page.data);
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
@@ -59,6 +60,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         />
       );
     }
+
     if (isGraphQLType(node, 'ServicePageNode')) {
       const {
         metaTitle,
@@ -104,6 +106,17 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
+        />
+      );
+    }
+    if (isGraphQLType(node, 'ArticlePageNode')) {
+      const { body, metaTitle, metaDescription, metaKeywords } = node;
+      return (
+        <ArticlePage
+          body={{ html: body.value, embeds: body.embeds }}
+          metaTitle={metaTitle}
+          metaDescription={metaDescription || undefined}
+          metaKeywords={metaKeywords || undefined}
         />
       );
     }
