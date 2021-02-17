@@ -17,7 +17,6 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     $parentField = $this->get('field_service_landing_page');
     /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
     $parents = $parentField->referencedEntities();
-    return json_encode($parentField);
     if(!empty($parents)) {
       return $parents[0]->getTitle();
     }
