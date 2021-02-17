@@ -7,7 +7,6 @@ use Exception;
 
 class Article extends Content implements GraphQLEntityFieldResolver {
 
-
   public function getSummary(): string {
     /* @var $summaryField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
     $summaryField = $this->get('field_summary');
@@ -19,7 +18,6 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
     $parents = $parentField->referencedEntities();
     return json_encode($parentField);
-
     if(!empty($parents)) {
       return $parents[0]->getTitle();
     }
@@ -52,10 +50,8 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     }
     //Metadata
     if ($fieldName === "metaTitle") {
-      return $this->getCouncilName();
-      
+      return $this->getCouncilName(); 
     }
-
     if ($fieldName === "metaDescription") {
       return $this->getMetaDescription();
     }

@@ -26,7 +26,6 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   // Node bundles
   $bundles['node']['homepage']['class'] = Homepage::class;
   $bundles['node']['news_article']['class'] = Article::class;
-
   $bundles['node']['service_page']['class'] = ServicePage::class;
   $bundles['node']['service_landing_page']['class'] = ServiceLandingPage::class;
 

@@ -44,7 +44,6 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
-  console.log(page.data);
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
@@ -110,7 +109,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ArticlePageNode')) {
-      console.log(node);
       const { body, metaTitle, metaDescription, metaKeywords, title, parentTitle, parentUrl, date } = node;
       const parent = parentTitle && parentUrl ? { text: parentTitle, url: parentUrl } : null;
       return (
