@@ -1,37 +1,39 @@
 <?php
 
-namespace Drupal\drush9_custom_commands\Commands;
+namespace Drupal\nc_nodes\Commands;
 
 use Drush\Commands\DrushCommands;
+use Drupal\node\Entity\Node;
 
 /**
  * A drush command file.
  *
  * @package Drupal\drush9_custom_commands\Commands
  */
-class Drush9CustomCommands extends DrushCommands {
+class Drush9CustomCommands extends DrushCommands
+{
 
   /**
-   * Drush command that displays the given text.
+   * Drush command that updates review dates
    *
-   * @param string $text
-   *   Argument with message to be displayed.
-   * @command drush9_custom_commands:message
-   * @aliases d9-message d9-msg
-   * @option uppercase
-   *   Uppercase the message.
-   * @option reverse
-   *   Reverse the message.
-   * @usage drush9_custom_commands:message --uppercase --reverse drupal8
+   * @command drush9_custom_commands:review
+   * @aliases d9-review-date
+   * @usage drush9_custom_commands:d9-review-date
    */
-  public function message($text = 'Hello world!', $options = ['uppercase' => FALSE, 'reverse' => FALSE]) {
-    if ($options['uppercase']) {
-      $text = strtoupper($text);
-    }
-    if ($options['reverse']) {
-      $text = strrev($text);
-    }
-    $this->output()->writeln($text);
-  }
+  public function review_dates()
+  {
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', ['service_landing_page', 'service_page'], 'in')
+      ->notExists('field_revision_date');
+    $results = $query->execute();
 
+    if (!empty($results)) {
+      foreach ($results as $node_id) {
+        $node = Node::load($node_id);
+        $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
+        $url_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'. $node_id, 'en');
+        $node->save();
+      }
+    }
+  }
 }
