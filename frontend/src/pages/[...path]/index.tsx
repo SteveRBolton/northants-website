@@ -44,6 +44,7 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
+
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
@@ -59,7 +60,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         />
       );
     }
-
     if (isGraphQLType(node, 'ServicePageNode')) {
       const {
         metaTitle,
