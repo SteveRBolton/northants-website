@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
-import { Accordion, BlockQuote, CallToAction, Heading, Divider } from 'northants-design-system';
+import { Accordion, BlockQuote, CallToAction, Heading, Divider, DownloadableFiles } from 'northants-design-system';
 import { AccordionSectionProps } from 'northants-design-system/build/library/slices/Accordion/Accordion.types';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 import {
@@ -8,6 +8,7 @@ import {
   EmbeddedParagraphAccordion_paragraph,
 } from '../Accordion/__generated__/EmbeddedParagraphAccordion';
 import { Accordion_sections } from '../Accordion/__generated__/Accordion';
+import transformFileDownload from '../FileDownload/transform';
 
 export type TextWithSlicesProps = {
   html: string;
@@ -27,6 +28,8 @@ const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement =
       return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
     case 'BlockQuoteParagraph':
       return <BlockQuote quote={paragraph.quote} citation={paragraph.citation ?? undefined} />;
+    case 'FileDownloadParagraph':
+      return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
   }
@@ -38,6 +41,8 @@ const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragrap
       return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
     case 'BlockQuoteParagraph':
       return <BlockQuote quote={paragraph.quote} citation={paragraph.citation ?? undefined} />;
+    case 'FileDownloadParagraph':
+      return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
   }

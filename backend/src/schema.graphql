@@ -35,9 +35,11 @@ scalar HTML
 
 # Directives
 directive @entityType on INTERFACE | UNION | OBJECT
+directive @mediaType on INTERFACE | UNION | OBJECT
 #directive @slice on UNION
 # TODO Use this to auto-resolve entities to graphql types
 directive @entity(type: EntityType!, bundle: String!) on OBJECT
+directive @media(type: MediaType!, bundle: String!) on OBJECT
 
 # Drupal routes
 
@@ -139,6 +141,31 @@ enum EntityType {
   paragraph
   embedded_paragraph
   taxonomy_term
+}
+
+enum MediaType {
+  document
+  image
+  audio
+  video
+}
+
+#
+# Media types
+#
+
+interface Media @mediaType {
+  title: String!
+  url: String!
+  type: String!
+  size: String!
+}
+
+type Document implements Media @media(type: document, bundle: "document") {
+  title: String!
+  url: String!
+  type: String!
+  size: String!
 }
 
 #
@@ -253,6 +280,11 @@ type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle
   title: String!
   summary: String
   body: FormattedFieldWithParagraphsEmbed!
+}
+
+type FileDownloadParagraph implements Paragraph @entity(type: paragraph, bundle: "file_download") {
+  id: String!
+  files: [Document!]!
 }
 
 # Slices
