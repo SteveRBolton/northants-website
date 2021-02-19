@@ -109,7 +109,19 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ArticlePageNode')) {
-      const { body, metaTitle, metaDescription, metaKeywords, title, parentTitle, parentUrl, date } = node;
+      const {
+        body,
+        metaTitle,
+        metaDescription,
+        metaKeywords,
+        title,
+        parentTitle,
+        parentUrl,
+        date,
+        featuredImage1440x810,
+        featuredImage144x81,
+        featuredImageCaption,
+      } = node;
       const parent = parentTitle || parentUrl ? { text: parentTitle, url: parentUrl } : null;
       return (
         <ArticlePage
@@ -120,6 +132,23 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           date={date}
           metaDescription={metaDescription || undefined}
           metaKeywords={metaKeywords || undefined}
+          featuredImage1440x810={
+            featuredImage1440x810
+              ? {
+                  url: featuredImage1440x810.url,
+                  altText: featuredImage1440x810.altText ? featuredImage1440x810.altText : undefined,
+                }
+              : undefined
+          }
+          featuredImage144x81={
+            featuredImage144x81
+              ? {
+                  url: featuredImage144x81.url,
+                  altText: featuredImage144x81.altText ? featuredImage144x81.altText : undefined,
+                }
+              : undefined
+          }
+          featuredImageCaption={featuredImageCaption || undefined}
         />
       );
     }

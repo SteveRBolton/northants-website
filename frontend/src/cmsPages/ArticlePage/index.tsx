@@ -9,8 +9,13 @@ import {
   Button,
   PageMain,
 } from 'northants-design-system';
-import { ButtonProps } from 'northants-design-system/build/library/Components/Button/Button.types';
+import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
+
+type FeaturedImageProps = {
+  url: string;
+  altText?: string;
+};
 
 type ArticlePageProps = {
   body: TextWithSlicesProps;
@@ -20,6 +25,9 @@ type ArticlePageProps = {
   metaDescription?: string;
   metaKeywords?: string;
   date: string;
+  featuredImage1440x810?: FeaturedImageProps;
+  featuredImage144x81?: FeaturedImageProps;
+  featuredImageCaption?: string;
 };
 
 export default function ArticlePage({
@@ -30,6 +38,9 @@ export default function ArticlePage({
   metaTitle,
   metaDescription,
   metaKeywords,
+  featuredImage1440x810,
+  featuredImage144x81,
+  featuredImageCaption,
 }: ArticlePageProps): ReactElement {
   const currentDate = new Date();
   const dateObject = new Date(date);
@@ -45,10 +56,16 @@ export default function ArticlePage({
         <PageMain>
           {oldPost ? null : <NewsArticleOldBanner />}
           <Heading level={1} text={title} />
-
           {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
           <NewsArticleDate text={date} />
-          {/* If article has featured image: */}
+          {featuredImage1440x810 && featuredImage144x81 ? (
+            <NewsArticleImage
+              image1440x810={featuredImage1440x810?.url}
+              image144x81={featuredImage144x81?.url}
+              imageAltText={featuredImage1440x810?.altText}
+              imageCaption={featuredImageCaption}
+            />
+          ) : null}
           <TextWithSlices {...body} />
         </PageMain>
       </MaxWidthContainer>

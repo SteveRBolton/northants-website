@@ -511,6 +511,18 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
   embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds[];
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_featuredImage144x81 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode {
   __typename: "ArticlePageNode";
   title: string;
@@ -520,6 +532,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
   metaKeywords: string | null;
   body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body;
   summary: string;
+  featuredImage1440x810: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_featuredImage1440x810 | null;
+  featuredImage144x81: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_featuredImage144x81 | null;
+  featuredImageCaption: string | null;
   parentTitle: string | null;
   parentUrl: string | null;
   date: string;

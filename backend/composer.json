@@ -7,6 +7,10 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/teamdeeson/responsive_image_effect.git"
     }
   ],
   "require": {
@@ -45,6 +49,7 @@
     "drush/drush": "10.3.5",
     "platformsh/config-reader": "^2.4",
     "ramsey/uuid": "4.1.1",
+    "teamdeeson/responsive_image_effect": "^9.0",
     "webonyx/graphql-php": "14.4.0"
   },
   "require-dev": {

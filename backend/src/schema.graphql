@@ -35,9 +35,11 @@ scalar HTML
 
 # Directives
 directive @entityType on INTERFACE | UNION | OBJECT
+directive @mediaType on INTERFACE | UNION | OBJECT
 #directive @slice on UNION
 # TODO Use this to auto-resolve entities to graphql types
 directive @entity(type: EntityType!, bundle: String!) on OBJECT
+directive @media(type: MediaType!, bundle: String!) on OBJECT
 
 # Drupal routes
 
@@ -141,6 +143,28 @@ enum EntityType {
   taxonomy_term
 }
 
+enum MediaType {
+  document
+  image
+  audio
+  video
+}
+
+#
+# Media types
+#
+
+interface Media @mediaType {
+  id: String!
+  url: String!
+}
+
+type Image implements Media @media(type: image, bundle: "image") {
+  id: String!
+  url: String!
+  altText: String
+}
+
 #
 # Content types (Nodes)
 #
@@ -177,6 +201,9 @@ type ArticlePageNode implements Node @entity(type: node, bundle: "news_article")
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
+  featuredImage1440x810: Image
+  featuredImage144x81: Image
+  featuredImageCaption: String
   parentTitle: String
   parentUrl: String
   date: String!

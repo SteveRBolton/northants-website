@@ -92,6 +92,18 @@ export interface ArticleNodeFull_body {
   embeds: ArticleNodeFull_body_embeds[];
 }
 
+export interface ArticleNodeFull_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface ArticleNodeFull_featuredImage144x81 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
 export interface ArticleNodeFull {
   __typename: "ArticlePageNode";
   title: string;
@@ -101,6 +113,9 @@ export interface ArticleNodeFull {
   metaKeywords: string | null;
   body: ArticleNodeFull_body;
   summary: string;
+  featuredImage1440x810: ArticleNodeFull_featuredImage1440x810 | null;
+  featuredImage144x81: ArticleNodeFull_featuredImage144x81 | null;
+  featuredImageCaption: string | null;
   parentTitle: string | null;
   parentUrl: string | null;
   date: string;

@@ -5,8 +5,10 @@ use Drupal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\file\Entity\File;
 use Drupal\link\LinkItemInterface;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
+use Drupal\media\Entity\Media;
 use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 
@@ -58,6 +60,25 @@ class GraphQLFieldResolver {
       'url' => $item->getUrl()->toString(),
       'title' => $item->title,
       'external' => $item->getUrl()->isExternal()
+    ];
+  }
+
+  public static function resolveMediaImage($image, $width = NULL, $height = NULL) {
+    $mid = $image['target_id'];
+    $media = Media::load($mid);
+
+    $fid = $media->get('field_media_image')->target_id;
+    $file = File::load($fid);
+    $fileUri = $file->getFileUri();
+
+    $responsiveImageEffectService = \Drupal::getContainer()->get('responsive_image_effect.responsive_image_service');
+
+    $url = $responsiveImageEffectService->responsiveImageUrl($fileUri, ['w' => $width, 'h' => $height]);
+    $altText = $media->get('field_media_image')->alt;
+
+    return [
+      'url' => $url,
+      'altText' => $altText,
     ];
   }
 
