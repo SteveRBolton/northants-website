@@ -122,7 +122,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         featuredImage144x81,
         featuredImageCaption,
       } = node;
-      const parent = parentTitle || parentUrl ? { text: parentTitle, url: parentUrl } : null;
+      const parent = parentTitle || parentUrl ? { text: parentTitle || '', url: parentUrl || '' } : null;
       return (
         <ArticlePage
           body={{ html: body.value, embeds: body.embeds }}
