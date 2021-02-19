@@ -57,6 +57,7 @@ module:
   redirect_404: 0
   redis: 0
   reroute_email: 0
+  responsive_image_effect: 0
   save_edit: 0
   scheduler: 0
   scheduler_content_moderation_integration: 0
