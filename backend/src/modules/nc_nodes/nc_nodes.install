@@ -4,7 +4,6 @@ use Drupal\node\Entity\Node;
 
 /**
  * Backfilling revision_date fields with correct date
- * Inactive for now due to bug with pathauto patterns resetting to /node/xxx when run
  */
 function nc_nodes_update_8001(&$sandbox) {
   $query = \Drupal::entityQuery('node')
