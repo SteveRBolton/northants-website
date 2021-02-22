@@ -85,6 +85,9 @@ class GraphQLFieldResolver {
       'media_entity_download.download',
       [
         'media' => $mid,
+      ],
+      [
+        'absolute' => TRUE
       ]
     )->toString();
 
