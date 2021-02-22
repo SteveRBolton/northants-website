@@ -86,7 +86,7 @@ class GraphQLFieldResolver {
       [
         'media' => $mid,
       ]
-    );
+    )->toString();
 
     return [
       'title' => $name,
