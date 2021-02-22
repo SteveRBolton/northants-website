@@ -434,6 +434,15 @@ display:
         operator: AND
         groups:
           1: AND
+      menu:
+        type: tab
+        title: 'Review Date Next 30 Days'
+        description: 'View content with a review date in the next 30 days'
+        expanded: false
+        parent: system.admin_content
+        weight: 0
+        context: '0'
+        menu_name: admin
     cache_metadata:
       max-age: -1
       contexts:
