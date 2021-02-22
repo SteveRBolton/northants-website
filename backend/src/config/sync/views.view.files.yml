@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - file
+    - nc_filemime
     - user
 _core:
   default_config_hash: gLmoA0yjvlXfMRp9ihOhRKSSQQlbdLdvpDkbVwkYPrg
@@ -290,7 +291,21 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          type: file_filemime
+          click_sort_column: value
+          type: nice_filemime
+          settings:
+            link_to_file: 0
+            filemime_image: 0
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
           entity_type: file
           entity_field: filemime

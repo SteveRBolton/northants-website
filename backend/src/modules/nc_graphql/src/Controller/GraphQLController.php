@@ -59,6 +59,7 @@ class GraphQLController extends ControllerBase {
           'service_links' => 'ServiceLinksParagraph',
           'accordion' => 'AccordionParagraph',
           'accordion_item' => 'AccordionItemParagraph',
+          'file_download' => 'FileDownloadParagraph',
         ];
         return $paragraphTypes[$entity->bundle()];
       case 'embedded_paragraphs':

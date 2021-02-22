@@ -41,6 +41,7 @@ module:
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
+  nc_filemime: 0
   nc_graphql: 0
   nc_nodes: 0
   nc_solr: 0
