@@ -22,7 +22,14 @@ class Section extends Paragraph implements GraphQLEntityFieldResolver {
   public function getPages(): array {
     /* @var $pagesField  \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
     $pagesField = $this->get('field_pages');
-    return $pagesField->referencedEntities();
+    $pages = $pagesField->referencedEntities();
+    $publishedPages = [];
+    foreach($pages as $page){
+      if($page->isPublished()) {
+        $publishedPages[] = $page;
+      }
+    }
+    return $publishedPages;
   }
 
   /**

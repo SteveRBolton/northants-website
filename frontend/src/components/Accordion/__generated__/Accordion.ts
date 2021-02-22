@@ -29,7 +29,20 @@ export interface Accordion_sections_body_embeds_paragraph_BlockQuoteParagraph {
   citation: string | null;
 }
 
-export type Accordion_sections_body_embeds_paragraph = Accordion_sections_body_embeds_paragraph_AccordionItemParagraph | Accordion_sections_body_embeds_paragraph_CallToActionParagraph | Accordion_sections_body_embeds_paragraph_BlockQuoteParagraph;
+export interface Accordion_sections_body_embeds_paragraph_FileDownloadParagraph_files {
+  __typename: "Document";
+  title: string;
+  url: string;
+  type: string;
+  size: string;
+}
+
+export interface Accordion_sections_body_embeds_paragraph_FileDownloadParagraph {
+  __typename: "FileDownloadParagraph";
+  files: Accordion_sections_body_embeds_paragraph_FileDownloadParagraph_files[];
+}
+
+export type Accordion_sections_body_embeds_paragraph = Accordion_sections_body_embeds_paragraph_AccordionItemParagraph | Accordion_sections_body_embeds_paragraph_CallToActionParagraph | Accordion_sections_body_embeds_paragraph_BlockQuoteParagraph | Accordion_sections_body_embeds_paragraph_FileDownloadParagraph;
 
 export interface Accordion_sections_body_embeds {
   __typename: "EmbeddedParagraph";

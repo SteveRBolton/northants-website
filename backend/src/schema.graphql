@@ -165,6 +165,13 @@ type Image implements Media @media(type: image, bundle: "image") {
   altText: String
 }
 
+type Document implements Media @media(type: document, bundle: "document") {
+  title: String!
+  url: String!
+  type: String!
+  size: String!
+}
+
 #
 # Content types (Nodes)
 #
@@ -295,6 +302,11 @@ type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle
   title: String!
   summary: String
   body: FormattedFieldWithParagraphsEmbed!
+}
+
+type FileDownloadParagraph implements Paragraph @entity(type: paragraph, bundle: "file_download") {
+  id: String!
+  files: [Document!]!
 }
 
 # Slices

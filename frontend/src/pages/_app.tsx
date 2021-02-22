@@ -34,11 +34,12 @@ function NorthantsApp({
     if (document.cookie.includes('"cookiesAccepted":true')) {
       if (gtm) {
         const tag = document.createElement('script');
-        tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
+        tag.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                      })(window,document,'script','dataLayer','${gtm}');`;
         document.getElementsByTagName('head')[0].appendChild(tag);
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push('js', new Date());
-        window.dataLayer.push('config', `${gtm}`);
       }
     }
   }, []);
@@ -55,7 +56,7 @@ function NorthantsApp({
       actualThemeObject = GDS_theme;
   }
 
-  const isHomePage = router.pathname === '/';
+  const hideSearchBar = router.pathname === '/search';
   return (
     <>
       <Head>
@@ -77,15 +78,15 @@ function NorthantsApp({
           title="Tell us whether you accept cookies"
           paragraph={
             <p>
-              We use <a href="/your-council/cookies">cookies to collect information</a> about how you use GOV.UK. We use
-              this information to make the website work as well as possible and improve government services.
+              We use <a href="/your-council/cookies">cookies to collect information</a> about how you use this website.
+              We use this information to make it work as well as possible and help make improvements.
             </p>
           }
           acceptButtonText="Accept all cookies"
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
-        <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
+        <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>

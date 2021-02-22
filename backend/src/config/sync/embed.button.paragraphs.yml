@@ -14,6 +14,7 @@ type_settings:
   paragraphs_type_filter:
     accordion: accordion
     call_to_action: call_to_action
+    file_download: file_download
     pull_quote: pull_quote
   enable_single_use_paragraph: 1
   paragraphs_add_mode: button

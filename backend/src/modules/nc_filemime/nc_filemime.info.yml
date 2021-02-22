@@ -1,0 +1,4 @@
+name: 'Northants Filemime Processor'
+description: 'Provides more user friendly filemime names. Based on https://www.drupal.org/project/nice_filemime.'
+type: module
+core_version_requirement: ^9
