@@ -264,8 +264,8 @@ display:
           admin_label: ''
           operator: '<'
           value:
-            min: today
-            max: '+30 day'
+            min: ''
+            max: ''
             value: today
             type: date
           group: 1
@@ -342,7 +342,7 @@ display:
       display_description: ''
       menu:
         type: tab
-        title: 'Content Review '
+        title: 'Past Review Date'
         description: 'View content by review date'
         expanded: false
         parent: system.admin_content
@@ -362,7 +362,7 @@ display:
   page_2:
     display_plugin: page
     id: page_2
-    display_title: 'Conent review 30 days'
+    display_title: 'Content review 30 days'
     position: 2
     display_options:
       display_extenders: {  }

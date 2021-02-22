@@ -10,6 +10,7 @@ use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
 use GuzzleHttp\Exception\RequestException;
 use Ramsey\Uuid\Uuid as UuidLib;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -36,6 +37,13 @@ function nc_nodes_form_node_form_alter(&$form, &$form_state, $form_id) {
   // Remove the body label.
   if (!empty($form['body'])) {
     $form['body']['widget'][0]['#title'] = '';
+  }
+
+  // Set 'Unpublish on' date for news articles
+  if($form_id === 'node_news_article_form') {
+    $currentTime = new DrupalDateTime('now');
+    $unpublishDate = $currentTime->modify('+ 2 years');
+    $form['unpublish_on']['widget'][0]['value']['#default_value'] = $unpublishDate;
   }
 }
 

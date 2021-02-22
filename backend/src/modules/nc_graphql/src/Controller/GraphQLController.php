@@ -47,6 +47,7 @@ class GraphQLController extends ControllerBase {
           'homepage' => 'HomepageNode',
           'service_page' => 'ServicePageNode',
           'service_landing_page' => 'ServiceLandingPageNode',
+          'news_article' => 'ArticlePageNode',
         ];
         return $contentTypes[$entity->bundle()];
       case 'paragraph':
@@ -59,6 +60,7 @@ class GraphQLController extends ControllerBase {
           'service_links' => 'ServiceLinksParagraph',
           'accordion' => 'AccordionParagraph',
           'accordion_item' => 'AccordionItemParagraph',
+          'file_download' => 'FileDownloadParagraph',
         ];
         return $paragraphTypes[$entity->bundle()];
       case 'embedded_paragraphs':

@@ -5,8 +5,11 @@ use Drupal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
 use Drupal\link\LinkItemInterface;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
+use Drupal\media\Entity\Media;
 use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 
 
@@ -58,6 +61,41 @@ class GraphQLFieldResolver {
       'url' => $item->getUrl()->toString(),
       'title' => $item->title,
       'external' => $item->getUrl()->isExternal()
+    ];
+  }
+
+  public static function resolveFile($item) {
+    $mid = $item['target_id'];
+    $media = Media::load($mid);
+    $fid = $media->get('field_media_document')->target_id;
+    $file = File::load($fid);
+
+    $moduleHandler = \Drupal::service('module_handler');
+    if ($moduleHandler->moduleExists('nc_filemime')) {
+      $fileMime = \Drupal::service('nc_filemime.filemime')->getNiceFileMime($file->getMimeType());
+    }
+    else {
+      $fileMime = $file->getMimeType();
+    }
+
+    $name = $media->getName();
+    $size = format_size($file->getSize());
+    $type = $fileMime;
+    $url = Url::fromRoute(
+      'media_entity_download.download',
+      [
+        'media' => $mid,
+      ],
+      [
+        'absolute' => TRUE
+      ]
+    )->toString();
+
+    return [
+      'title' => $name,
+      'url' => $url,
+      'type' => $type,
+      'size' => $size,
     ];
   }
 
