@@ -47,6 +47,7 @@ class GraphQLController extends ControllerBase {
           'homepage' => 'HomepageNode',
           'service_page' => 'ServicePageNode',
           'service_landing_page' => 'ServiceLandingPageNode',
+          'news_article' => 'ArticlePageNode',
         ];
         return $contentTypes[$entity->bundle()];
       case 'paragraph':

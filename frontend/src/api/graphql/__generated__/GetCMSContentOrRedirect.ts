@@ -504,7 +504,106 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs[];
 }
 
-export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode;
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph {
+  __typename: "CallToActionParagraph";
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph {
+  __typename: "BlockQuoteParagraph";
+  quote: string;
+  citation: string | null;
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph;
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds[];
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections {
+  __typename: "AccordionItemParagraph";
+  id: string;
+  title: string;
+  summary: string | null;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph {
+  __typename: "AccordionParagraph";
+  sections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections[];
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionItemParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_CallToActionParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_BlockQuoteParagraph | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph;
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds {
+  __typename: "EmbeddedParagraph";
+  id: string;
+  paragraph: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body {
+  __typename: "FormattedFieldWithParagraphsEmbed";
+  value: string;
+  embeds: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds[];
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode {
+  __typename: "ArticlePageNode";
+  title: string;
+  id: string;
+  metaTitle: string;
+  metaDescription: string | null;
+  metaKeywords: string | null;
+  body: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body;
+  summary: string;
+  parentTitle: string | null;
+  parentUrl: string | null;
+  date: string;
+}
+
+export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode;
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute {
   __typename: "DrupalNodeRoute";

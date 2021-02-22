@@ -194,6 +194,21 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   serviceLinks: [ServiceLinksParagraph!]!
 }
 
+type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
+  id: String!
+  url: String!
+  title: String!
+  status: Boolean!
+  metaTitle: String!
+  metaDescription: String
+  metaKeywords: String
+  body: FormattedFieldWithParagraphsEmbed!
+  summary: String!
+  parentTitle: String
+  parentUrl: String
+  date: String!
+}
+
 type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
   id: String!
   title: String!
