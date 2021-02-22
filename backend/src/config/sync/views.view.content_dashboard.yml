@@ -342,7 +342,7 @@ display:
       display_description: ''
       menu:
         type: tab
-        title: 'Content Review '
+        title: 'Past Review Date'
         description: 'View content by review date'
         expanded: false
         parent: system.admin_content
