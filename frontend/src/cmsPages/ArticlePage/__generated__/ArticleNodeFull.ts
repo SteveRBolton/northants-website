@@ -51,7 +51,20 @@ export interface ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sectio
   citation: string | null;
 }
 
-export type ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph = ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph;
+export interface ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph_files {
+  __typename: "Document";
+  title: string;
+  url: string;
+  type: string;
+  size: string;
+}
+
+export interface ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph {
+  __typename: "FileDownloadParagraph";
+  files: ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph_files[];
+}
+
+export type ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph = ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph;
 
 export interface ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections_body_embeds {
   __typename: "EmbeddedParagraph";
@@ -78,7 +91,20 @@ export interface ArticleNodeFull_body_embeds_paragraph_AccordionParagraph {
   sections: ArticleNodeFull_body_embeds_paragraph_AccordionParagraph_sections[];
 }
 
-export type ArticleNodeFull_body_embeds_paragraph = ArticleNodeFull_body_embeds_paragraph_AccordionItemParagraph | ArticleNodeFull_body_embeds_paragraph_CallToActionParagraph | ArticleNodeFull_body_embeds_paragraph_BlockQuoteParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph;
+export interface ArticleNodeFull_body_embeds_paragraph_FileDownloadParagraph_files {
+  __typename: "Document";
+  title: string;
+  url: string;
+  type: string;
+  size: string;
+}
+
+export interface ArticleNodeFull_body_embeds_paragraph_FileDownloadParagraph {
+  __typename: "FileDownloadParagraph";
+  files: ArticleNodeFull_body_embeds_paragraph_FileDownloadParagraph_files[];
+}
+
+export type ArticleNodeFull_body_embeds_paragraph = ArticleNodeFull_body_embeds_paragraph_AccordionItemParagraph | ArticleNodeFull_body_embeds_paragraph_CallToActionParagraph | ArticleNodeFull_body_embeds_paragraph_BlockQuoteParagraph | ArticleNodeFull_body_embeds_paragraph_AccordionParagraph | ArticleNodeFull_body_embeds_paragraph_FileDownloadParagraph;
 
 export interface ArticleNodeFull_body_embeds {
   __typename: "EmbeddedParagraph";

@@ -166,6 +166,7 @@ type Image implements Media @media(type: image, bundle: "image") {
 }
 
 type Document implements Media @media(type: document, bundle: "document") {
+  id: String!
   title: String!
   url: String!
   type: String!
