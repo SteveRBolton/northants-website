@@ -51,7 +51,20 @@ export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_em
   citation: string | null;
 }
 
-export type EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph = EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph;
+export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph_files {
+  __typename: "Document";
+  title: string;
+  url: string;
+  type: string;
+  size: string;
+}
+
+export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph {
+  __typename: "FileDownloadParagraph";
+  files: EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph_files[];
+}
+
+export type EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph = EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph;
 
 export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds {
   __typename: "EmbeddedParagraph";
@@ -78,7 +91,20 @@ export interface EmbeddedParagraph_paragraph_AccordionParagraph {
   sections: EmbeddedParagraph_paragraph_AccordionParagraph_sections[];
 }
 
-export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph;
+export interface EmbeddedParagraph_paragraph_FileDownloadParagraph_files {
+  __typename: "Document";
+  title: string;
+  url: string;
+  type: string;
+  size: string;
+}
+
+export interface EmbeddedParagraph_paragraph_FileDownloadParagraph {
+  __typename: "FileDownloadParagraph";
+  files: EmbeddedParagraph_paragraph_FileDownloadParagraph_files[];
+}
+
+export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph | EmbeddedParagraph_paragraph_FileDownloadParagraph;
 
 export interface EmbeddedParagraph {
   __typename: "EmbeddedParagraph";
