@@ -5,6 +5,7 @@ use Drupal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\link\LinkItemInterface;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
@@ -80,7 +81,12 @@ class GraphQLFieldResolver {
     $name = $media->getName();
     $size = format_size($file->getSize());
     $type = $fileMime;
-    $url = file_create_url($file->getFileUri());
+    $url = Url::fromRoute(
+      'media_entity_download.download',
+      [
+        'media' => $mid,
+      ]
+    );
 
     return [
       'title' => $name,
