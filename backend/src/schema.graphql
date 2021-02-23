@@ -155,13 +155,18 @@ enum MediaType {
 #
 
 interface Media @mediaType {
-  title: String!
+  id: String!
   url: String!
-  type: String!
-  size: String!
+}
+
+type Image implements Media @media(type: image, bundle: "image") {
+  id: String!
+  url: String!
+  altText: String
 }
 
 type Document implements Media @media(type: document, bundle: "document") {
+  id: String!
   title: String!
   url: String!
   type: String!
@@ -204,6 +209,9 @@ type ArticlePageNode implements Node @entity(type: node, bundle: "news_article")
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
+  featuredImage1440x810: Image
+  featuredImage144x81: Image
+  featuredImageCaption: String
   parentTitle: String
   parentUrl: String
   date: String!

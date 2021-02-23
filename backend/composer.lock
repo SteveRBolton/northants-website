@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "462d559b34f8ca5c07d4d04372e1c3d0",
+    "content-hash": "a8db8fe8235d3c05f7acbaa414132e25",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8165,6 +8165,58 @@
                 }
             ],
             "time": "2020-05-20T08:37:50+00:00"
+        },
+        {
+            "name": "teamdeeson/responsive_image_effect",
+            "version": "9.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teamdeeson/responsive_image_effect.git",
+                "reference": "3ec5e23ebf63353d3bab6f6172945037e3b74679"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teamdeeson/responsive_image_effect/zipball/3ec5e23ebf63353d3bab6f6172945037e3b74679",
+                "reference": "3ec5e23ebf63353d3bab6f6172945037e3b74679",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\responsive_image_effect\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan James"
+                },
+                {
+                    "name": "John Ennew"
+                },
+                {
+                    "name": "Ben Dudiak-Fry"
+                }
+            ],
+            "description": "A Drupal 8 module to provide programatic responsive images via URL parameters.",
+            "keywords": [
+                "Drupal",
+                "responsive_image_effect"
+            ],
+            "support": {
+                "source": "https://github.com/teamdeeson/responsive_image_effect/tree/9.0.2",
+                "issues": "https://github.com/teamdeeson/responsive_image_effect/issues"
+            },
+            "time": "2020-08-22T08:45:50+00:00"
         },
         {
             "name": "teamdeeson/wardenapi",

@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.news_article.field_featured_image
+    - field.field.node.news_article.field_featured_image_caption
     - field.field.node.news_article.field_keywords
     - field.field.node.news_article.field_meta_description
     - field.field.node.news_article.field_meta_title
@@ -15,6 +17,7 @@ dependencies:
   module:
     - content_moderation
     - field_group
+    - media_library
     - path
     - scheduler
     - scheduler_content_moderation_integration
@@ -39,6 +42,8 @@ third_party_settings:
         - field_service_landing_page
         - title
         - field_summary
+        - field_featured_image
+        - field_featured_image_caption
         - field_wysiwyg_slices
         - field_press_release
       parent_name: group_tabs
@@ -79,6 +84,21 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_featured_image:
+    type: media_library_widget
+    weight: 19
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_featured_image_caption:
+    weight: 20
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_keywords:
     weight: 18
     settings:
@@ -104,7 +124,7 @@ content:
     type: string_textfield
     region: content
   field_press_release:
-    weight: 20
+    weight: 22
     settings:
       display_label: true
     third_party_settings: {  }
@@ -129,7 +149,7 @@ content:
     type: string_textarea
     region: content
   field_wysiwyg_slices:
-    weight: 19
+    weight: 21
     settings:
       rows: 5
       placeholder: ''

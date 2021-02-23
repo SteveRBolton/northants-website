@@ -17,6 +17,15 @@ const articleNodeFull = gql`
       }
     }
     summary
+    featuredImage1440x810 {
+      url
+      altText
+    }
+    featuredImage144x81 {
+      url
+      altText
+    }
+    featuredImageCaption
     parentTitle
     parentUrl
     date

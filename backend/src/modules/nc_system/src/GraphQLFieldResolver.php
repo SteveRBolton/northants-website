@@ -99,6 +99,25 @@ class GraphQLFieldResolver {
     ];
   }
 
+  public static function resolveMediaImage($image, $width = NULL, $height = NULL) {
+    $mid = $image['target_id'];
+    $media = Media::load($mid);
+
+    $fid = $media->get('field_media_image')->target_id;
+    $file = File::load($fid);
+    $fileUri = $file->getFileUri();
+
+    $responsiveImageEffectService = \Drupal::getContainer()->get('responsive_image_effect.responsive_image_service');
+
+    $url = $responsiveImageEffectService->responsiveImageUrl($fileUri, ['w' => $width, 'h' => $height]);
+    $altText = $media->get('field_media_image')->alt;
+
+    return [
+      'url' => $url,
+      'altText' => $altText,
+    ];
+  }
+
   /**
    * @param \Drupal\text\Plugin\Field\FieldType\TextItemBase $item
    *

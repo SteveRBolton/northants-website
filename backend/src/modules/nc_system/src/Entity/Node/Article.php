@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\nc_system\Entity\Node;
+
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Exception;
@@ -12,44 +13,58 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     $summaryField = $this->get('field_summary');
     return $summaryField->getString();
   }
+
   public function getParentTitle() {
     /* @var $parentField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
     $parentField = $this->get('field_service_landing_page');
     /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
     $parents = $parentField->referencedEntities();
-    if(!empty($parents)) {
+    if (!empty($parents)) {
       return $parents[0]->getTitle();
     }
-    return null;
+    return NULL;
   }
+
   public function getParentUrl() {
     /* @var $parentField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
     $parentField = $this->get('field_service_landing_page');
     /* @var $parents array<\Drupal\nc_system\Entity\Node\ServicePage|\Drupal\nc_system\Entity\Node\ServiceLandingPage> */
     $parents = $parentField->referencedEntities();
-    if(!empty($parents)) {
+    if (!empty($parents)) {
       return $parents[0]->toUrl()->toString();
     }
-    return null;
+    return NULL;
   }
+
   public function getDate() {
     $date = date('j F Y', $this->getCreatedTime());
     return $date;
   }
+
+  public function getImage() {
+    $image = $this->get('field_featured_image')->getValue();
+    return $image;
+  }
+
+  public function getImageCaption(): ?string {
+    $featuredImageCaption = $this->get('field_featured_image_caption');
+    return $featuredImageCaption ? $featuredImageCaption->getString() : NULL;
+  }
+
   /**
    * {@inheritdoc}
    */
   public function resolveGraphQLFieldToValue(string $fieldName) {
-    if($fieldName === "body") {
+    if ($fieldName === "body") {
       $body = $this->getBody();
-      if($body) {
+      if ($body) {
         return GraphQLFieldResolver::resolveTextItem($body);
       }
-      return null;
+      return NULL;
     }
     //Metadata
     if ($fieldName === "metaTitle") {
-      return $this->getCouncilName(); 
+      return $this->getCouncilName();
     }
     if ($fieldName === "metaDescription") {
       return $this->getMetaDescription();
@@ -63,11 +78,32 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "parentTitle") {
       return $this->getParentTitle();
     }
-    if ($fieldName === "date"){
+    if ($fieldName === "date") {
       return $this->getDate();
     }
-    if($fieldName === "summary"){
+    if ($fieldName === "summary") {
       return $this->getSummary();
+    }
+    if ($fieldName === "featuredImage1440x810") {
+      $image = $this->getImage();
+      $width = '1440';
+      $height = '810';
+      if ($image) {
+        return GraphQLFieldResolver::resolveMediaImage($image[0], $width, $height);
+      }
+      return NULL;
+    }
+    if ($fieldName === "featuredImage144x81") {
+      $image = $this->getImage();
+      $width = '144';
+      $height = '81';
+      if ($image) {
+        return GraphQLFieldResolver::resolveMediaImage($image[0], $width, $height);
+      }
+      return NULL;
+    }
+    if ($fieldName === "featuredImageCaption") {
+      return $this->getImageCaption();
     }
     throw new Exception("Unable to resolve value via Article resolve.");
   }
