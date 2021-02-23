@@ -9,7 +9,7 @@ import {
   Button,
   PageMain,
 } from 'northants-design-system';
-import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
+import { ButtonProps } from 'northants-design-system/build/library/Components/Button/Button.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 
 type FeaturedImageProps = {
