@@ -65,6 +65,13 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_wysiwyg_slices
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
   parent:
     label: 'Parent » Content » Title'
     datasource_id: 'entity:node'
@@ -94,6 +101,16 @@ field_settings:
         - field.storage.paragraph.field_signposts
       module:
         - paragraphs
+  status:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
   summary:
     label: Summary
     datasource_id: 'entity:node'
@@ -108,6 +125,16 @@ field_settings:
     property_path: title
     type: text
     boost: !!float 5
+    dependencies:
+      module:
+        - node
+  uid:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
     dependencies:
       module:
         - node
@@ -130,9 +157,14 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
   language_with_fallback: {  }
   rendered_item: {  }
-  solr_date_range: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo
