@@ -6,7 +6,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
- * Service for accessing Southbank Centre Solr Services.
+ * Service for accessing Northants Solr Services.
  */
 class SolrServiceProvider {
   /**
