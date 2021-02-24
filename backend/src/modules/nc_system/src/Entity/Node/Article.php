@@ -64,7 +64,7 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     }
     //Metadata
     if ($fieldName === "metaTitle") {
-      return $this->getCouncilName();
+      return $this->getMetaTitle();
     }
     if ($fieldName === "metaDescription") {
       return $this->getMetaDescription();
