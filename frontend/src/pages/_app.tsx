@@ -13,9 +13,8 @@ declare global {
   interface Window {
     dataLayer: [
       {
-        event: string;
-        js: Date;
-        config: string;
+        'gtm.start': number;
+        'event': string;
       }
     ];
   }
@@ -44,9 +43,8 @@ function NorthantsApp({
         document.getElementsByTagName('head')[0].appendChild(tag);
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-          event: 'gtm.js',
-          js: new Date(),
-          config: `${gtm}`,
+          'gtm.start': new Date().getTime(),
+          'event': 'gtm.js',
         });
       }
     }
