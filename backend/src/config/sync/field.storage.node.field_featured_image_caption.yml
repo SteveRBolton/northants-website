@@ -1,4 +1,4 @@
-uuid: a32c508e-bacd-414d-9ab4-bcb0c36f1355
+uuid: d3c8f9fe-8303-4edd-b2e6-67634f236c78
 langcode: en
 status: true
 dependencies:
@@ -7,8 +7,10 @@ dependencies:
 id: node.field_featured_image_caption
 field_name: field_featured_image_caption
 entity_type: node
-type: string_long
+type: string
 settings:
+  max_length: 255
+  is_ascii: false
   case_sensitive: false
 module: core
 locked: false
