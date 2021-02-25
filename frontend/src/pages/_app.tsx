@@ -13,8 +13,7 @@ declare global {
   interface Window {
     dataLayer: [
       {
-        'gtm.start': number;
-        'event': string;
+        event: string;
       }
     ];
   }
@@ -38,13 +37,8 @@ function NorthantsApp({
   useEffect(() => {
     if (document.cookie.includes('"cookiesAccepted":true')) {
       if (gtm) {
-        const tag = document.createElement('script');
-        tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
-        document.getElementsByTagName('head')[0].appendChild(tag);
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-          'gtm.start': new Date().getTime(),
-          'event': 'gtm.js',
+          event: 'consent_given',
         });
       }
     }
@@ -66,6 +60,20 @@ function NorthantsApp({
   return (
     <>
       <Head>
+        {/* Google Tag Manager */}
+        {gtm && (
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                      })(window,document,'script','dataLayer','${gtm}');`,
+            }}
+          />
+        )}
+        {/* End Google Tag Manager */}
         <title>Northants</title>
         <link rel="apple-touch-icon" sizes="180x180" href={`${faviconPath}/apple-touch-icon.png`} />
         <link rel="icon" type="image/png" sizes="32x32" href={`${faviconPath}/favicon-32x32.png`} />
