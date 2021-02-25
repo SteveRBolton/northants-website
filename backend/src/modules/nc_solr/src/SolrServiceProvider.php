@@ -38,7 +38,7 @@ class SolrServiceProvider {
     //Search for the provided text
     $query->keys($text);
     //Perform search on these fields
-    $query->setFulltextFields(['title', 'body', 'summary', 'url', 'parent', 'signposts', 'processed']);
+    $query->setFulltextFields(['title', 'body', 'summary', 'url', 'parent', 'signposts', 'processed', 'meta_keywords', 'meta_title', 'meta_summary']);
     // In English
     $query->setLanguages(['en']);
     // Get one page at a time
