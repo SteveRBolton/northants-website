@@ -62,7 +62,7 @@ function NorthantsApp({
       actualThemeObject = GDS_theme;
   }
 
-  const isHomePage = router.pathname === '/';
+  const hideSearchBar = router.pathname === '/search';
   return (
     <>
       <Head>
@@ -92,7 +92,7 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
-        <Header isHomepage={isHomePage} allServicesLink="/" homeLink="/" />
+        <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>
