@@ -11,7 +11,12 @@ import { GetSearchResults, GetSearchResultsVariables } from '../api/graphql/__ge
 
 declare global {
   interface Window {
-    dataLayer: Array<string | Date>;
+    dataLayer: [
+      {
+        'gtm.start': number;
+        'event': string;
+      }
+    ];
   }
 }
 enum Theme {
@@ -37,8 +42,10 @@ function NorthantsApp({
         tag.src = `https://www.googletagmanager.com/gtag/js?id=${gtm}`;
         document.getElementsByTagName('head')[0].appendChild(tag);
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push('js', new Date());
-        window.dataLayer.push('config', `${gtm}`);
+        window.dataLayer.push({
+          'gtm.start': new Date().getTime(),
+          'event': 'gtm.js',
+        });
       }
     }
   }, []);
