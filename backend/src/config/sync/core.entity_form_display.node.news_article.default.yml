@@ -94,10 +94,10 @@ content:
   field_featured_image_caption:
     weight: 20
     settings:
-      rows: 5
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
+    type: string_textfield
     region: content
   field_keywords:
     weight: 18
