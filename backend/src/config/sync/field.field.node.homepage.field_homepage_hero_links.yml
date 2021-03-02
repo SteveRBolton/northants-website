@@ -1,0 +1,23 @@
+uuid: a8d4befd-2a18-41c8-ae2a-c6164b7a2dd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_homepage_hero_links
+    - node.type.homepage
+  module:
+    - link
+id: node.homepage.field_homepage_hero_links
+field_name: field_homepage_hero_links
+entity_type: node
+bundle: homepage
+label: 'Homepage Hero Links'
+description: 'The main promoted links, you can choose 1-4, preferably 3'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

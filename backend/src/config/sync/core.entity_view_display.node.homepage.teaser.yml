@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.homepage.field_homepage_hero_images
+    - field.field.node.homepage.field_homepage_hero_links
     - field.field.node.homepage.field_keywords
     - field.field.node.homepage.field_meta_description
     - field.field.node.homepage.field_meta_title
@@ -29,6 +31,8 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_homepage_hero_images: true
+  field_homepage_hero_links: true
   field_keywords: true
   field_meta_description: true
   field_meta_title: true
