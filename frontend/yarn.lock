@@ -7549,9 +7549,9 @@ normalize-url@^4.1.0:
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
 northants-design-system@^0.1.34:
-  version "0.1.50"
-  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.50.tgz#786f3d7c6a726ba2c1863788c2920928bda1475f"
-  integrity sha512-TFJ8WUItlsEApgADP2VuMiVAfeHz2IVSleDU8ocwLoj0TsPZ7/kCSuNcMaWx5C72hC7Jq90XDG3F3KKR2lPG3A==
+  version "0.1.51"
+  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.51.tgz#4e1257775c1d3ba7e742169d900d05584fe48e05"
+  integrity sha512-6Kj+1LT8Ez5//KpT5u6GMxSH9QuTuRHz2AqbNHENF5Pcg+FVwrjD8sqEBMYo3K+8kvvTt7KISkfFXrVB/m10/A==
   dependencies:
     axios "^0.21.1"
     html-react-parser "^1.2.1"
