@@ -258,6 +258,7 @@ class Root {
         'title' => $result->getField('title')->getValues()[0],
         'teaser' => $result->getField('summary')->getValues()[0],
         'parent' => $result->getField('parent')->getValues()[0],
+        'topLineText' => $result->getField('top_line_text')->getValues()[0],
         'signposts' => $signpostsArr,
       ];
     }

@@ -1,0 +1,19 @@
+uuid: 07af6143-2e58-42cb-82e5-90dc323bbf5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_text
+    - paragraphs.paragraphs_type.council_signpost
+id: paragraph.council_signpost.field_cta_text
+field_name: field_cta_text
+entity_type: paragraph
+bundle: council_signpost
+label: 'CTA text'
+description: 'Optionally override the default link text of the name of the council'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

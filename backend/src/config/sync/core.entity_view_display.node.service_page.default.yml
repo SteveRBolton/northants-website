@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
+    - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
@@ -34,6 +35,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
+  field_signposting_title:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_summary:
     weight: 4

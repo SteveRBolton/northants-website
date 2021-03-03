@@ -18,7 +18,6 @@ import ArticlePage from '../../cmsPages/ArticlePage';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
-  console.log('test');
   return client
     .query<GetCMSContentOrRedirect, GetCMSContentOrRedirectVariables>({
       query: getCMSContentOrRedirect,
@@ -44,11 +43,9 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
-  console.log('route', route);
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
-    console.log('node', node);
     if (isGraphQLType(node, 'HomepageNode')) {
       const { metaTitle, metaDescription, metaKeywords, homepageBody, serviceLinks } = node;
       return (

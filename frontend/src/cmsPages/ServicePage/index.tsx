@@ -42,7 +42,6 @@ export default function ServicePage({
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
   const showSidebar = [inThisSection, alsoIn].filter((s) => s !== undefined).length > 0;
-  console.log('sign', signposting);
   const main = (
     <PageMain>
       <Heading level={1} text={title} />

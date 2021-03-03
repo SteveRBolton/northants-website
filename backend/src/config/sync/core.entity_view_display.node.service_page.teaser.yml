@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
+    - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
@@ -37,6 +38,7 @@ hidden:
   field_parent: true
   field_revision_date: true
   field_signposting: true
+  field_signposting_title: true
   field_summary: true
   field_wysiwyg_slices: true
   langcode: true
