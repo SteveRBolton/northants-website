@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.homepage.field_homepage_hero_images
-    - field.field.node.homepage.field_homepage_hero_links
     - field.field.node.homepage.field_keywords
     - field.field.node.homepage.field_meta_description
     - field.field.node.homepage.field_meta_title
@@ -14,7 +12,6 @@ dependencies:
     - node.type.homepage
   module:
     - entity_reference_revisions
-    - link
     - text
     - user
 id: node.homepage.default
@@ -26,27 +23,6 @@ content:
     weight: -20
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_homepage_hero_images:
-    type: entity_reference_entity_view
-    weight: 107
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    region: content
-  field_homepage_hero_links:
-    weight: 108
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
     region: content
   field_keywords:
     weight: 106

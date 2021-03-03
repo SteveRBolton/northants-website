@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.homepage.field_homepage_hero_images
-    - field.field.node.homepage.field_homepage_hero_links
     - field.field.node.homepage.field_keywords
     - field.field.node.homepage.field_meta_description
     - field.field.node.homepage.field_meta_title
@@ -16,8 +14,6 @@ dependencies:
   module:
     - content_moderation
     - field_group
-    - link
-    - media_library
     - paragraphs
     - path
     - scheduler
@@ -27,7 +23,6 @@ third_party_settings:
   field_group:
     group_tabs:
       children:
-        - group_hero
         - group_main
         - group_seo
       parent_name: ''
@@ -46,7 +41,7 @@ third_party_settings:
         - field_wysiwyg_slices
         - field_service_links_list
       parent_name: group_tabs
-      weight: 22
+      weight: 20
       format_type: tab
       region: content
       format_settings:
@@ -62,7 +57,7 @@ third_party_settings:
         - field_meta_description
         - field_keywords
       parent_name: group_tabs
-      weight: 23
+      weight: 21
       format_type: tab
       region: content
       format_settings:
@@ -72,21 +67,6 @@ third_party_settings:
         id: ''
         classes: ''
       label: SEO
-    group_hero:
-      children:
-        - field_homepage_hero_images
-        - field_homepage_hero_links
-      parent_name: group_tabs
-      weight: 21
-      format_type: tab
-      region: hidden
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        formatter: closed
-        required_fields: true
-      label: Hero
 id: node.homepage.default
 targetEntityType: node
 bundle: homepage
@@ -98,21 +78,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_homepage_hero_images:
-    type: media_library_widget
-    weight: 29
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-    region: content
-  field_homepage_hero_links:
-    weight: 30
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   field_keywords:
     weight: 28
     settings:
