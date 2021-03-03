@@ -13,7 +13,7 @@ declare global {
   interface Window {
     dataLayer: [
       {
-        event: string;
+        'event': string;
       }
     ];
   }
@@ -38,7 +38,7 @@ function NorthantsApp({
     if (document.cookie.includes('"cookiesAccepted":true')) {
       if (gtm) {
         window.dataLayer.push({
-          event: 'consent_given',
+          'event': 'consent_given',
         });
       }
     }
@@ -62,16 +62,16 @@ function NorthantsApp({
       <Head>
         {/* Google Tag Manager */}
         {gtm && (
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            <script
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                  __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                       })(window,document,'script','dataLayer','${gtm}');`,
-            }}
-          />
+                }}
+            />
         )}
         {/* End Google Tag Manager */}
         <title>Northants</title>
