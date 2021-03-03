@@ -1,0 +1,21 @@
+uuid: b4406459-b328-44c5-8d96-37169670c912
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_icon
+    - node.type.service_landing_page
+  module:
+    - options
+id: node.service_landing_page.field_icon
+field_name: field_icon
+entity_type: node
+bundle: service_landing_page
+label: Icon
+description: 'Select an icon relative to the service'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
