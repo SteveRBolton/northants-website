@@ -38,3 +38,13 @@ yarn codegen
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+## External Dependencies
+
+These URL locations must always exist as these are used by Capita
+
+```
+https://www.westnorthants.gov.uk/WNU-logo.png
+https://www.northnorthants.gov.uk/NNC-logo.png
+```
