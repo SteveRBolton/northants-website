@@ -144,6 +144,7 @@ export interface ServicePageNode_Full_signposting_signposts {
   __typename: "CouncilSignpostParagraph";
   council: ServicePageNode_Full_signposting_signposts_council;
   link: ServicePageNode_Full_signposting_signposts_link | null;
+  ctaText: string | null;
 }
 
 export interface ServicePageNode_Full_signposting {
@@ -200,6 +201,7 @@ export interface ServicePageNode_Full {
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;
+  topLineText: string | null;
   serviceBody: ServicePageNode_Full_serviceBody;
   signposting: ServicePageNode_Full_signposting | null;
   canonicalSection: ServicePageNode_Full_canonicalSection | null;

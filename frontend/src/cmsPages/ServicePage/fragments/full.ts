@@ -17,6 +17,7 @@ export default gql`
     metaTitle
     metaDescription
     metaKeywords
+    topLineText
     serviceBody: body {
       value
       embeds {

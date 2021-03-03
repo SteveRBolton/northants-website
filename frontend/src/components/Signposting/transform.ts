@@ -8,6 +8,7 @@ export default function transform(from: CouncilSignposting): SignpostLinksProps 
       sovereignCode: parseInt(signpost.council.code, 10),
       areaName: signpost.council.name,
       url: signpost.link?.url ?? signpost.council.homepage.url,
+      cta_text: signpost.ctaText ? signpost.ctaText : undefined,
     })),
   };
 }

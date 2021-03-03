@@ -32,6 +32,12 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     return $summaryField->getString();
   }
 
+  public function getSignpostingTitle(): string {
+    /* @var $titleField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
+    $titleField = $this->get('field_signposting_title');
+    return $titleField->getString();
+  }
+
   public function getSignposting(): ?CouncilSignposting {
     /* @var $entityReference \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList*/
     $signpostingField = $this->get('field_signposting');
@@ -140,9 +146,12 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
       return $this->toUrl('canonical')->toString();
     }
 
-
     if ($fieldName === "breadcrumbs") {
       return $this->getBreadcrumbs();
+    }
+
+    if ($fieldName === "topLineText") {
+      return $this->getSignpostingTitle() ? $this->getSignpostingTitle() : 'Select your local area for more information:';
     }
 
     //Metadata

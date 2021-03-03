@@ -26,6 +26,7 @@ type ServicePageProps = {
   breadcrumbs: BreadcrumbsProps;
   inThisSection?: SectionLinksSidebarProps;
   alsoIn?: SectionLinksSidebarProps;
+  topLineText?: string;
 };
 export default function ServicePage({
   title,
@@ -37,15 +38,16 @@ export default function ServicePage({
   breadcrumbs,
   inThisSection,
   alsoIn,
+  topLineText,
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
   const showSidebar = [inThisSection, alsoIn].filter((s) => s !== undefined).length > 0;
-
+  console.log('sign', signposting);
   const main = (
     <PageMain>
       <Heading level={1} text={title} />
       <TextWithSlices {...body} />
-      {signposting && <SignpostLinks {...signposting} />}
+      {signposting && <SignpostLinks {...signposting} TopLineText={topLineText} />}
     </PageMain>
   );
 

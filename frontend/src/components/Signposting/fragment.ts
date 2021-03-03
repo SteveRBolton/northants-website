@@ -16,6 +16,7 @@ const fragment = gql`
       link {
         url
       }
+      ctaText
     }
   }
 `;
