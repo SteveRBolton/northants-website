@@ -3,11 +3,13 @@ import { homepageNodeFull } from '../../cmsPages/Homepage/fragments';
 import servicePageNode_Full from '../../cmsPages/ServicePage/fragments/full';
 import serviceLandingPageNode_Full from '../../cmsPages/ServiceLandingPage/fragments/full';
 import searchResult from '../../components/Search/SearchResult/fragment';
+import { articleNodeFull } from '../../cmsPages/ArticlePage/fragments';
 
 export const getCMSContentOrRedirect = gql`
   ${homepageNodeFull}
   ${serviceLandingPageNode_Full}
   ${servicePageNode_Full}
+  ${articleNodeFull}
   query GetCMSContentOrRedirect($path: String!) {
     route(path: $path) {
       ... on DrupalNodeRoute {
@@ -15,6 +17,7 @@ export const getCMSContentOrRedirect = gql`
           ...HomepageNodeFull
           ...ServiceLandingPageNode_Full
           ...ServicePageNode_Full
+          ...ArticleNodeFull
         }
       }
       ... on DrupalNotFoundRoute {

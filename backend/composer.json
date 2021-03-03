@@ -7,6 +7,10 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/teamdeeson/responsive_image_effect.git"
     }
   ],
   "require": {
@@ -40,11 +44,12 @@
     "drupal/scheduler": "1.3.0",
     "drupal/scheduler_content_moderation_integration": "1.3.0",
     "drupal/search_api": "1.18",
-    "drupal/search_api_solr": "4.1.9",
+    "drupal/search_api_solr": "4.1.11",
     "drupal/warden": "^3.0",
     "drush/drush": "10.3.5",
     "platformsh/config-reader": "^2.4",
     "ramsey/uuid": "4.1.1",
+    "teamdeeson/responsive_image_effect": "^9.0",
     "webonyx/graphql-php": "14.4.0"
   },
   "require-dev": {
