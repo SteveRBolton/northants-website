@@ -1,13 +1,13 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
-import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner } from 'northants-design-system';
+import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner, AlertBanner } from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import React, { ReactElement, useEffect } from 'react';
 import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
-import { getCMSGlobals, getSearchResults } from '../api/graphql/queries';
+import { getCMSGlobals } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
-import { GetSearchResults, GetSearchResultsVariables } from '../api/graphql/__generated__/GetSearchResults';
+import TextWithSlices from '../components/TextWithSlices';
 
 declare global {
   interface Window {
@@ -18,6 +18,7 @@ declare global {
     ];
   }
 }
+
 enum Theme {
   North = 'north',
   West = 'west',
@@ -100,6 +101,17 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
+        {globals.sitewideAlerts ? (
+          <AlertBanner
+            title={globals.sitewideAlerts.title}
+            uid={globals.sitewideAlerts.id}
+            alertType={globals.sitewideAlerts.alertType ? globals.sitewideAlerts.alertType : undefined}
+          >
+            <TextWithSlices html={globals.sitewideAlerts.body.value} embeds={[]} />
+          </AlertBanner>
+        ) : (
+          ''
+        )}
         <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />

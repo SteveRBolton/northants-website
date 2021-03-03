@@ -30,6 +30,20 @@ type CouncilData {
   homepage: String!
 }
 
+enum AlertType {
+ alert
+ warning
+ positive
+ london_bridge
+}
+
+type Alert {
+  id: String!
+  title: String!
+  body: FormattedField!
+  alertType: AlertType
+}
+
 # Scalars
 scalar HTML
 
@@ -72,6 +86,7 @@ type DrupalAccessDeniedRoute {
 #
 
 type DrupalGlobals {
+  sitewideAlerts: Alert
   footerLinks: [LinkFieldWithTitle!]!
 }
 

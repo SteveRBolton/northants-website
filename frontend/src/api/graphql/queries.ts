@@ -42,6 +42,14 @@ export const getCMSGlobals = gql`
         url
         external
       }
+      sitewideAlerts {
+        id
+        title
+        body {
+          value
+        }
+        alertType
+      }
     }
   }
 `;

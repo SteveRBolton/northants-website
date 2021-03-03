@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\Core\Menu\MenuTreeParameters;
 use \Drupal\Core\Url;
+use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\node\Entity\Node;
 use Drupal\nc_solr\SolrServiceProvider;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -186,13 +187,40 @@ class Root {
   }
 
   /**
+   * Get specific menu, links (title, url) upto max-depth 2.
+   *
+   * @return array | null
+   */
+  public static function getSitewideAlerts(): ?array {
+    $config = config_pages_config('sitewide_alerts');
+    $active = $config->get('field_active')->getValue()[0]['value'];
+    if ($config && $active) {
+      $title = $config->get('field_title')->getValue()[0]['value'];
+      $body = GraphQLFieldResolver::resolveTextItem($config->get('field_body')->first());
+      $alertType = $config->get('field_alert_type')->getValue()[0]['value'];
+      $id = hash('MD5', $title . $body['value']);
+
+      $alert = [
+        'title' => $title,
+        'body' => [
+          'value' => $body['value'],
+        ],
+        'alertType' => $alertType,
+        'id' => $id,
+      ];
+    }
+    return $alert ? $alert : null;
+  }
+
+  /**
    * Get the global Drupal data
    * @return array
    */
   public static function getGlobals(): array {
     return [
       '__typename' => 'DrupalGlobals',
-      'footerLinks' => Root::getMenuLinks('footer', NULL, true)
+      'footerLinks' => Root::getMenuLinks('footer', NULL, true),
+      'sitewideAlerts' => Root::getSitewideAlerts(),
     ];
   }
 
@@ -270,6 +298,10 @@ class Root {
       "text" => $text,
       "result_list" => $result_list,
     ];
+  }
+
+  function getSitewideAlert() {
+
   }
 }
 
