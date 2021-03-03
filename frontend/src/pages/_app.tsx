@@ -38,7 +38,7 @@ function NorthantsApp({
     if (document.cookie.includes('"cookiesAccepted":true')) {
       if (gtm) {
         window.dataLayer.push({
-          'event': 'consent_given',
+          event: 'consent_given',
         });
       }
     }
