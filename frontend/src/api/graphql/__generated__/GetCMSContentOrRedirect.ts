@@ -126,6 +126,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   __typename: "ServiceLandingPageNode";
   title: string;
   url: string;
+  icon: string | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_servicePages {

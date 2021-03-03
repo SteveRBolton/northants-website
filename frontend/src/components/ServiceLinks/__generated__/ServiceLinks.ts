@@ -11,6 +11,7 @@ export interface ServiceLinks_serviceLandingPage {
   __typename: "ServiceLandingPageNode";
   title: string;
   url: string;
+  icon: string | null;
 }
 
 export interface ServiceLinks_servicePages {

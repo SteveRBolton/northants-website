@@ -243,6 +243,7 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   summary: String!
+  icon: String
   breadcrumbs: [Breadcrumb!]!
   inSections: [SectionParagraph!]! # All the sections this service landing page is in.
   hasSections: [SectionParagraph!]! # All the sections ON this service landing page.

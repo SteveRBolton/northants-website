@@ -5,6 +5,7 @@ const fragment = gql`
     serviceLandingPage {
       title
       url
+      icon
     }
     servicePages {
       title
