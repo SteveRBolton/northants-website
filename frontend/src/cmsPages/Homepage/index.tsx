@@ -1,4 +1,10 @@
-import { MaxWidthContainer, PhaseBanner, PageMain, ServicesLinksList } from 'northants-design-system';
+import {
+  MaxWidthContainer,
+  PhaseBanner,
+  PageMain,
+  ServicesLinksList,
+  HomeUnitarySection,
+} from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { PageLinkProp } from 'northants-design-system/build/library/structure/ServicesLinksList/ServicesLinksList.types';
@@ -31,6 +37,7 @@ export default function Homepage({
         <PageMain>
           {body && <TextWithSlices {...body} />}
           <ServicesLinksList serviceLinksArray={serviceLinks} />
+          <HomeUnitarySection />
         </PageMain>
       </MaxWidthContainer>
     </>
