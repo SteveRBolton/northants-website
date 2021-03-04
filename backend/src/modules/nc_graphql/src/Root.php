@@ -291,6 +291,7 @@ class Root {
     $councilName = self::getCouncilName();
     $nids = \Drupal::entityQuery('node')
       ->condition('type', 'news_article')
+      ->condition('status', '1')
       ->execute();
     $newsArticles = Node::loadMultiple($nids);
 
