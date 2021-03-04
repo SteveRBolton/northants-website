@@ -9,6 +9,7 @@ import {
   Button,
   PageMain,
   Breadcrumbs,
+  PageTitle,
 } from 'northants-design-system';
 import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
@@ -64,7 +65,9 @@ export default function ArticlePage({
             ]}
           />
           {oldPost ? null : <NewsArticleOldBanner />}
-          <Heading level={1} text={title} />
+          <PageTitle>
+            <Heading level={1} text={title} />
+          </PageTitle>
           {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
           <NewsArticleDate text={date} />
           {featuredImage1440x810 && featuredImage144x81 ? (
