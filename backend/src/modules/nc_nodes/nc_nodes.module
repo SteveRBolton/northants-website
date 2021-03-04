@@ -45,6 +45,7 @@ function nc_nodes_form_node_form_alter(&$form, &$form_state, $form_id) {
     $unpublishDate = $currentTime->modify('+ 2 years');
     $form['unpublish_on']['widget'][0]['value']['#default_value'] = $unpublishDate;
   }
+  $form['#validate'][] = 'nc_nodes_form_node_validate_date_time';
 }
 
 /**
@@ -77,4 +78,17 @@ function nc_nodes_node_presave(Drupal\node\Entity\Node $node) {
   }
 
   $node->field_page_slices = $embedded_paragraphs;
+}
+
+function nc_nodes_form_node_validate_date_time($form, &$form_state) {
+  $now = new DrupalDateTime('now');
+  $max_date =  $now->modify('+2 year');
+  $max_date = $max_date->format('Y-m-d');
+
+  if($form_state->getValue('field_revision_date')[0]['value']) {
+    $date = $form_state->getValue('field_revision_date')[0]['value']->format('Y-m-d');
+    if ($date > $max_date) {
+      $form_state->setErrorByName('field_revision_date', 'The vision date cannot be greater than 2 years from now.');
+    }
+  }
 }
