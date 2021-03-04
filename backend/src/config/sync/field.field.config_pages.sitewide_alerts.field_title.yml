@@ -1,0 +1,19 @@
+uuid: 7dad3e5f-7eac-4be3-929b-76c9c1955eed
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.sitewide_alerts
+    - field.storage.config_pages.field_title
+id: config_pages.sitewide_alerts.field_title
+field_name: field_title
+entity_type: config_pages
+bundle: sitewide_alerts
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
