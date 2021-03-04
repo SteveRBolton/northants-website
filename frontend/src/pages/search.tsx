@@ -1,10 +1,10 @@
 import {
-  MaxWidthContainer,
-  PageMain,
-  SearchResultsList,
-  Searchbar,
-  Heading,
-  Pagination,
+    MaxWidthContainer,
+    PageMain,
+    SearchResultsList,
+    Searchbar,
+    Heading,
+    Pagination, PhaseBanner,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -46,6 +46,7 @@ export default function Search(page: SearchPageProps): ReactElement {
         </title>
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
         <PageMain>
           <Heading text="Search results" level={1} />
           <Searchbar

@@ -10,6 +10,7 @@ import {
   PageMain,
   Breadcrumbs,
   PageTitle,
+  PhaseBanner,
 } from 'northants-design-system';
 import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
@@ -57,13 +58,14 @@ export default function ArticlePage({
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
+        <Breadcrumbs
+          breadcrumbsArray={[
+            { title: 'Home', url: '/' },
+            { title: 'News', url: '/news' },
+          ]}
+        />
         <PageMain>
-          <Breadcrumbs
-            breadcrumbsArray={[
-              { title: 'Home', url: '/' },
-              { title: 'News', url: '/news' },
-            ]}
-          />
           {oldPost ? null : <NewsArticleOldBanner />}
           <PageTitle>
             <Heading level={1} text={title} />
