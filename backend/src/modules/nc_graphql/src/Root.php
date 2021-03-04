@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\Core\Menu\MenuTreeParameters;
 use \Drupal\Core\Url;
+use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\node\Entity\Node;
 use Drupal\nc_solr\SolrServiceProvider;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -52,7 +53,8 @@ class Root {
         $rid = reset($r);
         if ($rid) {
           /** @var \Drupal\redirect\Entity\Redirect $redirect */
-          $redirect = $this->entityTypeManager->getStorage('redirect')->load($rid);
+          $redirect = $this->entityTypeManager->getStorage('redirect')
+            ->load($rid);
           $url = $redirect->getRedirectUrl();
           $url->setOption('nc_disable_path_processing', TRUE);
           return [
@@ -81,30 +83,31 @@ class Root {
           $entity = $this->findEntity($match_info);
           if ($entity && $entity instanceof Node) {
             return $r + [
-              '__typename' => 'DrupalNodeRoute',
-              'node' => $entity,
-            ];
+                '__typename' => 'DrupalNodeRoute',
+                'node' => $entity,
+              ];
           }
-        }
-        catch (ResourceNotFoundException $e) {
+        } catch (ResourceNotFoundException $e) {
           return [
             '__typename' => 'DrupalNotFoundRoute',
           ];
-        }
-        catch (AccessDeniedHttpException $e) {
+        } catch (AccessDeniedHttpException $e) {
           return [
             '__typename' => 'DrupalAccessDeniedRoute',
-            'reason' => 'TODO: Add reason for access denied to graphql response.'
+            'reason' => 'TODO: Add reason for access denied to graphql response.',
           ];
         }
         throw new \Exception('Cannot return a route for path ' . $args['path']);
+      },
+      'news' => function ($root, $args, $context) {
+        return Root::getNewsArticles($args['text'], $args['page']);
       },
       'search' => function ($root, $args, $context, $info) {
         return Root::searchSolr($args['text'], $args['page']);
       },
       'globals' => function ($root, $args, $context) {
         return Root::getGlobals();
-      }
+      },
     ];
   }
 
@@ -115,7 +118,8 @@ class Root {
       }
     }
     if ($match_info['_route'] === 'entity.node.revision' && $match_info['node_revision']) {
-      return $this->entityTypeManager->getStorage('node')->loadRevision($match_info['node_revision']);
+      return $this->entityTypeManager->getStorage('node')
+        ->loadRevision($match_info['node_revision']);
     }
     return NULL;
   }
@@ -128,7 +132,7 @@ class Root {
    *
    * @return array
    */
-  public static function getMenuLinks($menuName = 'footer', $maxDepth = 2, $flatten = false) {
+  public static function getMenuLinks($menuName = 'footer', $maxDepth = 2, $flatten = FALSE) {
     $menuTree = \Drupal::menuTree();
 
     $params = new MenuTreeParameters();
@@ -138,12 +142,12 @@ class Root {
     $tree = $menuTree->load($menuName, $params);
     $manipulators = [
       ['callable' => 'menu.default_tree_manipulators:checkAccess'],
-      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort']
+      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
 
-    if($flatten) {
+    if ($flatten) {
       $manipulators[] = [
-        'callable' => 'menu.default_tree_manipulators:flatten'
+        'callable' => 'menu.default_tree_manipulators:flatten',
       ];
     }
 
@@ -155,18 +159,22 @@ class Root {
 
       if ($urlObj->isExternal()) {
         $url = $urlObj->getUri();
-      } elseif ($urlObj->isRouted()) {
-        $url = \Drupal::service('path_alias.manager')->getAliasByPath('/'.$urlObj->getInternalPath());
-      } elseif (!$urlObj->isExternal() && !$urlObj->isRouted()) {
+      }
+      elseif ($urlObj->isRouted()) {
+        $url = \Drupal::service('path_alias.manager')
+          ->getAliasByPath('/' . $urlObj->getInternalPath());
+      }
+      elseif (!$urlObj->isExternal() && !$urlObj->isRouted()) {
         $url = Url::fromUri($urlObj->getUri())->toString();
-      } else {
+      }
+      else {
         $url = Url::fromUri($urlObj->getUri())->toString();
       }
 
       return [
         'title' => $element->link->getTitle(),
         'url' => $url,
-        'external' => $urlObj->isExternal()
+        'external' => $urlObj->isExternal(),
       ];
     };
 
@@ -174,7 +182,7 @@ class Root {
       $parentLinks = $resolveLink($parent);
       if ($subtree = $parent->subtree) {
         $childrenLinks = [];
-        foreach ($subtree as $children ) {
+        foreach ($subtree as $children) {
           array_push($childrenLinks, $resolveLink($children));
         }
         $parentLinks['children'] = $childrenLinks;
@@ -187,12 +195,13 @@ class Root {
 
   /**
    * Get the global Drupal data
+   *
    * @return array
    */
   public static function getGlobals(): array {
     return [
       '__typename' => 'DrupalGlobals',
-      'footerLinks' => Root::getMenuLinks('footer', NULL, true)
+      'footerLinks' => Root::getMenuLinks('footer', NULL, TRUE),
     ];
   }
 
@@ -225,6 +234,7 @@ class Root {
   /**
    * Function to return a paginated list of search results.
    * Actual search
+   *
    * @param $text
    * @param int $page (The page of results to request)
    */
@@ -238,12 +248,13 @@ class Root {
     $result_list = [];
     /* @var $result \Drupal\search_api\Item\Item */
 
-    foreach($resultSet->getIterator() as $result) {
+    foreach ($resultSet->getIterator() as $result) {
       $signpostsArr = [];
       $signposts = $result->getField('signposts')->getValues();
-      foreach($signposts as $signpostId) {
+      foreach ($signposts as $signpostId) {
         $signpost = Paragraph::load($signpostId);
-        $councilId = $signpost->get('field_council')->getValue()[0]['target_id'];
+        $councilId = $signpost->get('field_council')
+          ->getValue()[0]['target_id'];
         $council = Term::load($councilId);
         $signpostsArr[] = [
           'code' => $council->get('field_sovereign_code')->value,
@@ -267,6 +278,43 @@ class Root {
       "total" => $resultSet->getResultCount(),
       "pageSize" => $pageSize,
       "page" => $page,
+      "text" => $text,
+      "result_list" => $result_list,
+    ];
+  }
+
+  /**
+   * Function to return a list of the 30 most recent news articles.
+   * TODO: Integrate with solr
+   */
+  public static function getNewsArticles($text, $page = 0) {
+    $councilName = self::getCouncilName();
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'news_article')
+      ->execute();
+    $newsArticles = Node::loadMultiple($nids);
+
+    $result_list = [];
+
+    foreach ($newsArticles as $result) {
+      $thumbnail = $result->get('field_featured_image')->getValue() ?
+        GraphQLFieldResolver::resolveMediaImage($result->get('field_featured_image')->getValue()[0] , 420, 420)
+        : NULL;
+      $result_list[] = [
+        'id' => $result->id(),
+        'title' => $result->getTitle(),
+        'link' => \Drupal::service('path_alias.manager')
+          ->getAliasByPath('/node/' . $result->id()),
+        'excerpt' => $result->get('field_summary')->getValue()[0]['value'],
+        'date' => $result->get('publish_on')->value ? $result->get('publish_on')->value : $result->get('created')->value,
+        'thumbnail' => $thumbnail['url'],
+      ];
+    }
+    return [
+      "council_name" => $councilName,
+      "total" => 30,
+      "pageSize" => 30,
+      "page" => 0,
       "text" => $text,
       "result_list" => $result_list,
     ];

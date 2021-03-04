@@ -4,6 +4,7 @@ type Query {
   route(path: String!): DrupalRoute!
   globals: DrupalGlobals!
   search(text: String!, page: Int!): SearchResults!
+  news(text: String!, page: Int!): NewsArticles!
 }
 
 type SearchResults {
@@ -22,6 +23,24 @@ type SearchResult {
   teaser: String!
   parent: String
   signposts: [CouncilData!]
+}
+
+type NewsArticles {
+  council_name: String!
+  total: Int!
+  pageSize: Int!
+  page: Int!
+  text: String!
+  result_list: [NewsArticle!]
+}
+
+type NewsArticle {
+  id: String!
+  title: String!
+  link: String!
+  excerpt: String!
+  date: Int!
+  thumbnail: String
 }
 
 type CouncilData {
