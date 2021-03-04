@@ -1,4 +1,4 @@
-import { MaxWidthContainer, PageMain, ServicesLinksList, HomeHero } from 'northants-design-system';
+import { MaxWidthContainer, PageMain, ServicesLinksList, HomeHero, HomeUnitarySection } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import {
@@ -40,6 +40,7 @@ export default function Homepage({
         <PageMain>
           {body && <TextWithSlices {...body} />}
           <ServicesLinksList serviceLinksArray={serviceLinks} />
+          <HomeUnitarySection />
         </PageMain>
       </MaxWidthContainer>
     </>
