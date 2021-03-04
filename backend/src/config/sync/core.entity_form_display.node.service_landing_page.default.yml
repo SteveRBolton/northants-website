@@ -146,7 +146,7 @@ content:
     type: datetime_default
     region: content
   field_sections:
-    weight: 109
+    weight: 11
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -208,6 +208,11 @@ content:
   publish_state:
     type: scheduler_moderation
     weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
