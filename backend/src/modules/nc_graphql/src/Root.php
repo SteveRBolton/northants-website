@@ -193,8 +193,8 @@ class Root {
    */
   public static function getSitewideAlerts(): ?array {
     $config = config_pages_config('sitewide_alerts');
-    $active = $config->get('field_active')->getValue()[0]['value'];
-    if ($config && $active) {
+    $active = $config ? $config->get('field_active')->getValue()[0]['value'] : NULL;
+    if ($active) {
       $title = $config->get('field_title')->getValue()[0]['value'];
       $body = GraphQLFieldResolver::resolveTextItem($config->get('field_body')->first());
       $alertType = $config->get('field_alert_type')->getValue()[0]['value'];
