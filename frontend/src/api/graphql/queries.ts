@@ -3,6 +3,7 @@ import { homepageNodeFull } from '../../cmsPages/Homepage/fragments';
 import servicePageNode_Full from '../../cmsPages/ServicePage/fragments/full';
 import serviceLandingPageNode_Full from '../../cmsPages/ServiceLandingPage/fragments/full';
 import searchResult from '../../components/Search/SearchResult/fragment';
+import newsArticle from '../../components/News/NewsArticle/fragment';
 import { articleNodeFull } from '../../cmsPages/ArticlePage/fragments';
 
 export const getCMSContentOrRedirect = gql`
@@ -65,6 +66,22 @@ export const getSearchResults = gql`
       text
       result_list {
         ...SearchResult
+      }
+    }
+  }
+`;
+
+export const getNewsArticles = gql`
+  ${newsArticle}
+  query GetNewsArticles($text: String!, $page: Int!) {
+    news(text: $text, page: $page) {
+      council_name
+      total
+      pageSize
+      page
+      text
+      result_list {
+        ...NewsArticle
       }
     }
   }
