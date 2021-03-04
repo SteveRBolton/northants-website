@@ -1,10 +1,4 @@
-import {
-  MaxWidthContainer,
-  PhaseBanner,
-  PageMain,
-  ServicesLinksList,
-  HomeUnitarySection,
-} from 'northants-design-system';
+import { MaxWidthContainer, PageMain, ServicesLinksList, HomeHero, HomeUnitarySection } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { PageLinkProp } from 'northants-design-system/build/library/structure/ServicesLinksList/ServicesLinksList.types';
