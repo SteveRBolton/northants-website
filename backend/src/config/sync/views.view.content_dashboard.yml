@@ -213,7 +213,12 @@ display:
       title: 'Content Dashboard'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
@@ -307,10 +312,25 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        empty: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There is currently no content past the review date.'
+            format: basic_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -392,6 +412,7 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        empty: false
       filter_groups:
         operator: AND
         groups:
@@ -405,6 +426,20 @@ display:
         weight: 0
         context: '0'
         menu_name: admin
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There is currently no content due for review in the next 30 days.'
+            format: basic_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -489,6 +524,7 @@ display:
         filter_groups: false
         sorts: false
         fields: false
+        empty: false
       filter_groups:
         operator: AND
         groups:
@@ -685,6 +721,20 @@ display:
           destination: false
           entity_type: node
           plugin_id: entity_operations
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There has been no content published in the last 14 days.'
+            format: basic_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:

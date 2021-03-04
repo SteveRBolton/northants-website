@@ -18,7 +18,6 @@ declare global {
     ];
   }
 }
-
 enum Theme {
   North = 'north',
   West = 'west',
@@ -58,6 +57,7 @@ function NorthantsApp({
   }
 
   const hideSearchBar = router.pathname === '/search';
+  const isHomepage = router.pathname === '/';
   return (
     <>
       <Head>
@@ -101,6 +101,7 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
+        {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         {globals.sitewideAlerts ? (
           <AlertBanner
             title={globals.sitewideAlerts.title}

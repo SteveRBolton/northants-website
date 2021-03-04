@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.service_landing_page.field_icon
     - field.field.node.service_landing_page.field_keywords
     - field.field.node.service_landing_page.field_meta_description
     - field.field.node.service_landing_page.field_meta_title
@@ -14,6 +15,7 @@ dependencies:
     - node.type.service_landing_page
   module:
     - entity_reference_revisions
+    - options
     - text
     - user
 id: node.service_landing_page.default
@@ -26,6 +28,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_icon:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_parent:
     weight: 4
     label: above

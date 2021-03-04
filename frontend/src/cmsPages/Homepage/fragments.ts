@@ -23,7 +23,14 @@ const homepageNodeFull = gql`
     serviceLinks {
       ...ServiceLinks
     }
+    promotedLinks {
+      url
+      title
+    }
+    heroImages {
+      image1440x810
+      image144x81
+    }
   }
 `;
-
 export { homepageNodeFull };

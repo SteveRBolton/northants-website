@@ -30,6 +30,11 @@ type CouncilData {
   homepage: String!
 }
 
+type HeroImage {
+  image1440x810: String!
+  image144x81: String!
+}
+
 enum AlertType {
  alert
  warning
@@ -136,6 +141,11 @@ type Breadcrumb {
   title: String!
 }
 
+type PromotedLink {
+  url: String!
+  title: String!
+}
+
 type MetaData {
   metaTitle: String!
   metaDescription: String
@@ -212,6 +222,8 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   serviceLinks: [ServiceLinksParagraph!]!
+  promotedLinks: [PromotedLink!]!
+  heroImages: [HeroImage!]!
 }
 
 type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
@@ -258,6 +270,7 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   summary: String!
+  icon: String
   breadcrumbs: [Breadcrumb!]!
   inSections: [SectionParagraph!]! # All the sections this service landing page is in.
   hasSections: [SectionParagraph!]! # All the sections ON this service landing page.

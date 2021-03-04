@@ -126,6 +126,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   __typename: "ServiceLandingPageNode";
   title: string;
   url: string;
+  icon: string | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_servicePages {
@@ -140,6 +141,18 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   servicePages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks_servicePages[];
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promotedLinks {
+  __typename: "PromotedLink";
+  url: string;
+  title: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_heroImages {
+  __typename: "HeroImage";
+  image1440x810: string;
+  image144x81: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
   __typename: "HomepageNode";
   title: string;
@@ -149,6 +162,8 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   metaKeywords: string | null;
   homepageBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody | null;
   serviceLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_serviceLinks[];
+  promotedLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promotedLinks[];
+  heroImages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_heroImages[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
