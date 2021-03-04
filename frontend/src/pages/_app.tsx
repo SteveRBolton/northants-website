@@ -13,7 +13,7 @@ declare global {
   interface Window {
     dataLayer: [
       {
-        'event': string;
+        event: string;
       }
     ];
   }
@@ -57,21 +57,22 @@ function NorthantsApp({
   }
 
   const hideSearchBar = router.pathname === '/search';
+  const isHomepage = router.pathname === '/';
   return (
     <>
       <Head>
         {/* Google Tag Manager */}
         {gtm && (
-            <script
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                       })(window,document,'script','dataLayer','${gtm}');`,
-                }}
-            />
+            }}
+          />
         )}
         {/* End Google Tag Manager */}
         <title>Northants</title>
@@ -100,7 +101,7 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
-        <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
+        {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>

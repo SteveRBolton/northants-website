@@ -35,8 +35,8 @@ export default function Homepage({
         {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
+      <HomeHero imagesArray={heroImages} promotedLinksArray={promotedLinks} />
       <MaxWidthContainer>
-        <HomeHero imagesArray={heroImages} promotedLinksArray={promotedLinks} />
         <PageMain>
           {body && <TextWithSlices {...body} />}
           <ServicesLinksList serviceLinksArray={serviceLinks} />
