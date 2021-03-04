@@ -57,6 +57,7 @@ function NorthantsApp({
   }
 
   const hideSearchBar = router.pathname === '/search';
+  const isHomepage = router.pathname === '/';
   return (
     <>
       <Head>
@@ -100,7 +101,7 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
-        <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
+        {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>

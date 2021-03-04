@@ -30,6 +30,11 @@ type CouncilData {
   homepage: String!
 }
 
+type HeroImage {
+  image1440x810: String!
+  image144x81: String!
+}
+
 # Scalars
 scalar HTML
 
@@ -121,6 +126,11 @@ type Breadcrumb {
   title: String!
 }
 
+type PromotedLink {
+  url: String!
+  title: String!
+}
+
 type MetaData {
   metaTitle: String!
   metaDescription: String
@@ -197,6 +207,8 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   serviceLinks: [ServiceLinksParagraph!]!
+  promotedLinks: [PromotedLink!]!
+  heroImages: [HeroImage!]!
 }
 
 type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
