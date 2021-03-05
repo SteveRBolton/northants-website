@@ -1,4 +1,12 @@
-import { MaxWidthContainer, PageMain, NewsArticleList, Heading, Breadcrumbs, PageTitle } from 'northants-design-system';
+import {
+  MaxWidthContainer,
+  PageMain,
+  NewsArticleList,
+  Heading,
+  Breadcrumbs,
+  PageTitle,
+  PhaseBanner,
+} from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
@@ -37,8 +45,9 @@ export default function News(page: NewsListingProps): ReactElement {
         <title>Latest news | {news.council_name}</title>
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
+        <Breadcrumbs breadcrumbsArray={[{ title: 'Home', url: '/' }]} />
         <PageMain>
-          <Breadcrumbs breadcrumbsArray={[{ title: 'Home', url: '/' }]} />
           <PageTitle>
             <Heading text="News" level={1} />
           </PageTitle>
@@ -49,7 +58,7 @@ export default function News(page: NewsListingProps): ReactElement {
                 ? news.result_list.map((result) => ({
                     id: result.id,
                     title: result.title,
-                    link: result.link,
+                    url: result.link,
                     excerpt: result.excerpt,
                     date: result.date,
                     thumbnail: result.thumbnail ? result.thumbnail : '',

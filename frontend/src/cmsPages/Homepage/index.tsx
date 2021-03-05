@@ -1,4 +1,11 @@
-import { MaxWidthContainer, PageMain, ServicesLinksList, HomeHero, HomeUnitarySection } from 'northants-design-system';
+import {
+  MaxWidthContainer,
+  PageMain,
+  ServicesLinksList,
+  HomeHero,
+  HomeUnitarySection,
+  PromoBanner,
+} from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import {
@@ -7,6 +14,7 @@ import {
 } from 'northants-design-system/build/library/structure/HomeHero/HomeHero.types';
 import { PageLinkProp } from 'northants-design-system/build/library/structure/ServicesLinksList/ServicesLinksList.types';
 
+import { PromoBannerProps } from 'northants-design-system/build/library/structure/PromoBanner/PromoBanner.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 
 type HomepageProps = {
@@ -17,6 +25,8 @@ type HomepageProps = {
   metaKeywords?: string;
   heroImages: HeroImageProp[];
   promotedLinks: PromotedLinkProp[];
+  promoBanner?: PromoBannerProps;
+  promoBody?: TextWithSlicesProps;
 };
 
 export default function Homepage({
@@ -27,6 +37,8 @@ export default function Homepage({
   metaKeywords,
   heroImages,
   promotedLinks,
+  promoBanner,
+  promoBody,
 }: HomepageProps): ReactElement {
   return (
     <>
@@ -40,6 +52,19 @@ export default function Homepage({
         <PageMain>
           {body && <TextWithSlices {...body} />}
           <ServicesLinksList serviceLinksArray={serviceLinks} />
+          {promoBanner ? (
+            <PromoBanner
+              title={promoBanner.title}
+              ctaText={promoBanner.ctaText}
+              ctaUrl={promoBanner.ctaUrl}
+              image1440x810={promoBanner.image1440x810}
+              image144x81={promoBanner.image144x81}
+            >
+              {promoBody && <TextWithSlices {...promoBody} />}
+            </PromoBanner>
+          ) : (
+            ''
+          )}
           <HomeUnitarySection />
         </PageMain>
       </MaxWidthContainer>

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.homepage.field_keywords
     - field.field.node.homepage.field_meta_description
     - field.field.node.homepage.field_meta_title
+    - field.field.node.homepage.field_promotional_banner
     - field.field.node.homepage.field_service_links_list
     - field.field.node.homepage.field_summary
     - field.field.node.homepage.field_wysiwyg_slices
@@ -69,6 +70,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_promotional_banner:
+    type: entity_reference_revisions_entity_view
+    weight: 109
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
     region: content
   field_service_links_list:
     type: entity_reference_revisions_entity_view

@@ -8,8 +8,12 @@ import {
   Heading,
   Button,
   PageMain,
+  Breadcrumbs,
+  PageTitle,
+  PhaseBanner,
 } from 'northants-design-system';
 import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
+import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 
 type FeaturedImageProps = {
@@ -53,9 +57,18 @@ export default function ArticlePage({
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
+        <Breadcrumbs
+          breadcrumbsArray={[
+            { title: 'Home', url: '/' },
+            { title: 'News', url: '/news' },
+          ]}
+        />
         <PageMain>
           {oldPost ? null : <NewsArticleOldBanner />}
-          <Heading level={1} text={title} />
+          <PageTitle>
+            <Heading level={1} text={title} />
+          </PageTitle>
           {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
           <NewsArticleDate text={date} />
           {featuredImage1440x810 && featuredImage144x81 ? (
