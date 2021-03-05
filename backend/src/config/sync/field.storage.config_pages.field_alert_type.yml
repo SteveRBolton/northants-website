@@ -22,7 +22,7 @@ settings:
       label: Positive
     -
       value: london_bridge
-      label: 'London Bridge'
+      label: Memorial
   allowed_values_function: ''
 module: options
 locked: false

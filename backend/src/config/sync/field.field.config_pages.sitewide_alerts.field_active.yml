@@ -10,7 +10,7 @@ field_name: field_active
 entity_type: config_pages
 bundle: sitewide_alerts
 label: 'Active?'
-description: ''
+description: '<strong>Setting this alert active will make it appear across all pages of the website</strong>'
 required: false
 translatable: false
 default_value:
