@@ -101,7 +101,6 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
-        {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         {globals.sitewideAlerts ? (
           <AlertBanner
             title={globals.sitewideAlerts.title}
@@ -113,7 +112,7 @@ function NorthantsApp({
         ) : (
           ''
         )}
-        <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
+        {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>
