@@ -29,7 +29,6 @@ type ArticlePageProps = {
   metaDescription?: string;
   metaKeywords?: string;
   date: string;
-  breadcrumbs: BreadcrumbsProps;
   featuredImage1440x810?: FeaturedImageProps;
   featuredImage144x81?: FeaturedImageProps;
   featuredImageCaption?: string;
