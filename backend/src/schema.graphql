@@ -243,6 +243,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   serviceLinks: [ServiceLinksParagraph!]!
   promotedLinks: [PromotedLink!]!
   heroImages: [HeroImage!]!
+  promoBanner: PromoBannerParagraph
 }
 
 type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
@@ -355,6 +356,15 @@ type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle
 type FileDownloadParagraph implements Paragraph @entity(type: paragraph, bundle: "file_download") {
   id: String!
   files: [Document!]!
+}
+
+type PromoBannerParagraph implements Paragraph @entity(type: paragraph, bundle: "promotional_banner") {
+  id: String!
+  title: String!
+  body: FormattedField!
+  link: LinkFieldWithTitle!
+  image1440x810: Image!
+  image144x81: Image!
 }
 
 # Slices

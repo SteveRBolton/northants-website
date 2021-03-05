@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.homepage.field_keywords
     - field.field.node.homepage.field_meta_description
     - field.field.node.homepage.field_meta_title
+    - field.field.node.homepage.field_promotional_banner
     - field.field.node.homepage.field_service_links_list
     - field.field.node.homepage.field_summary
     - field.field.node.homepage.field_wysiwyg_slices
@@ -27,9 +28,9 @@ third_party_settings:
   field_group:
     group_tabs:
       children:
-        - group_hero
         - group_main
         - group_seo
+        - group_hero
       parent_name: ''
       weight: 13
       format_type: tabs
@@ -45,6 +46,7 @@ third_party_settings:
         - field_summary
         - field_wysiwyg_slices
         - field_service_links_list
+        - field_promotional_banner
       parent_name: group_tabs
       weight: 22
       format_type: tab
@@ -136,6 +138,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_promotional_banner:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
     region: content
   field_service_links_list:
     type: entity_reference_paragraphs

@@ -58,7 +58,7 @@ export default function News(page: NewsListingProps): ReactElement {
                 ? news.result_list.map((result) => ({
                     id: result.id,
                     title: result.title,
-                    link: result.link,
+                    url: result.link,
                     excerpt: result.excerpt,
                     date: result.date,
                     thumbnail: result.thumbnail ? result.thumbnail : '',
