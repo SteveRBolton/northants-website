@@ -49,7 +49,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'HomepageNode')) {
-      const { metaTitle, metaDescription, metaKeywords, homepageBody, serviceLinks, promotedLinks, heroImages } = node;
+      const {
+        metaTitle,
+        metaDescription,
+        metaKeywords,
+        homepageBody,
+        serviceLinks,
+        promotedLinks,
+        heroImages,
+        promoBanner,
+      } = node;
       return (
         <Homepage
           metaTitle={metaTitle}
@@ -59,6 +68,17 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           serviceLinks={serviceLinks.map(transformServiceLinks)}
           promotedLinks={promotedLinks}
           heroImages={heroImages}
+          promoBanner={
+            promoBanner
+              ? {
+                  title: promoBanner.title,
+                  ctaText: promoBanner.link.title,
+                  ctaUrl: promoBanner.link.url,
+                  image1440x810: promoBanner.image1440x810.url,
+                  image144x81: promoBanner.image144x81.url,
+                }
+              : undefined
+          }
         />
       );
     }

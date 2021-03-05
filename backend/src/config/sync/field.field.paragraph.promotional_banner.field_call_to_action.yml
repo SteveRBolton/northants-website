@@ -1,0 +1,23 @@
+uuid: 9f61346d-42bb-4534-a26d-a197775b7737
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_call_to_action
+    - paragraphs.paragraphs_type.promotional_banner
+  module:
+    - link
+id: paragraph.promotional_banner.field_call_to_action
+field_name: field_call_to_action
+entity_type: paragraph
+bundle: promotional_banner
+label: 'Call to action'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
