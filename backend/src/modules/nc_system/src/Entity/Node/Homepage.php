@@ -2,6 +2,7 @@
 
 namespace Drupal\nc_system\Entity\Node;
 use Drupal\link\LinkItemInterface;
+use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Exception;
@@ -39,6 +40,17 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return $heroImagesField;
   }
 
+  public function getPromoBanner(): ?PromoBanner{
+    /* @var $entityReference \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList*/
+    $promoBannerField = $this->get('field_promotional_banner');
+    /* @var $entities array<PromoBanner> */
+    $entities = $promoBannerField->referencedEntities();
+    if(!empty($entities)) {
+      return $entities[0];
+    }
+    return null;
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -64,6 +76,9 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
     if ($fieldName === "metaKeywords") {
       return $this->getMetaKeywords();
+    }
+    if ($fieldName === "promoBanner") {
+      return $this->getPromoBanner();
     }
     if ($fieldName === "promotedLinks") {
       $promotedLinks = [];
