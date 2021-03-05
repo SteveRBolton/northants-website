@@ -40,7 +40,7 @@ function nc_nodes_form_node_form_alter(&$form, &$form_state, $form_id) {
   }
 
   // Set 'Unpublish on' date for news articles
-  if($form_id === 'node_news_article_form') {
+  if ($form_id === 'node_news_article_form') {
     $currentTime = new DrupalDateTime('now');
     $unpublishDate = $currentTime->modify('+ 2 years');
     $form['unpublish_on']['widget'][0]['value']['#default_value'] = $unpublishDate;
@@ -53,7 +53,7 @@ function nc_nodes_form_node_form_alter(&$form, &$form_state, $form_id) {
     'node_service_page_edit_form'
   ];
 
-  if(in_array($form_id, $forms_list) ) {
+  if (in_array($form_id, $forms_list) ) {
     $form['#validate'][] = 'nc_nodes_form_node_validate_date_time';
   }
 
@@ -93,6 +93,7 @@ function nc_nodes_node_presave(Drupal\node\Entity\Node $node) {
 
 /**
  * Implements hook_ENTITY_TYPE_validate().
+ * This function validates field_revision_date and returns an error if the date is greater than two years from today's date
  */
 function nc_nodes_form_node_validate_date_time($form, &$form_state) {
   $now = new DrupalDateTime('now');
