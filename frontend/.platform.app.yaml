@@ -23,4 +23,4 @@ disk: 500
 # The configuration of the application when it is exposed to the web.
 web:
   commands:
-    start: npx next start -p $PORT
+    start: npx next-boost -p $PORT
