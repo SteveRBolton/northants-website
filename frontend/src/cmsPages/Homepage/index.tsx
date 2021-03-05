@@ -26,6 +26,7 @@ type HomepageProps = {
   heroImages: HeroImageProp[];
   promotedLinks: PromotedLinkProp[];
   promoBanner?: PromoBannerProps;
+  promoBody?: TextWithSlicesProps;
 };
 
 export default function Homepage({
@@ -37,6 +38,7 @@ export default function Homepage({
   heroImages,
   promotedLinks,
   promoBanner,
+  promoBody,
 }: HomepageProps): ReactElement {
   return (
     <>
@@ -58,7 +60,7 @@ export default function Homepage({
               image1440x810={promoBanner.image1440x810}
               image144x81={promoBanner.image144x81}
             >
-              {body && <TextWithSlices {...body} />}
+              {promoBody && <TextWithSlices {...promoBody} />}
             </PromoBanner>
           ) : (
             ''

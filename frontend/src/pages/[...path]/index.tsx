@@ -76,9 +76,11 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
                   ctaUrl: promoBanner.link.url,
                   image1440x810: promoBanner.image1440x810.url,
                   image144x81: promoBanner.image144x81.url,
+                  children: '',
                 }
               : undefined
           }
+          promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
         />
       );
     }
