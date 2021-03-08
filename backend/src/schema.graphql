@@ -278,6 +278,7 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   breadcrumbs: [Breadcrumb!]!
   canonicalSection: SectionParagraph
   inSections: [SectionParagraph!]! # All the sections this service page is in.
+  warningTextDisclaimer: Boolean!
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {

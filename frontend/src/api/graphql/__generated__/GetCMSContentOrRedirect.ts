@@ -546,6 +546,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;
+  warningTextDisclaimer: boolean;
   serviceBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody;
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;

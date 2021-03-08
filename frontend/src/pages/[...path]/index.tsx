@@ -95,6 +95,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         breadcrumbs,
         canonicalSection,
         inSections,
+        warningTextDisclaimer,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
 
@@ -113,6 +114,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
+          warningTextDisclaimer={warningTextDisclaimer}
         />
       );
     }
