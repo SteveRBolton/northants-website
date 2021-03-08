@@ -16,10 +16,10 @@ use Drupal\node\Entity\Node;
 //    foreach ($results as $node_id) {
 //      $node = Node::load($node_id);
 //      $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
-//      // Pathauto expects a pathauto property to be set on the node, there is none so when this saves
-//      // it gets overriden. This workaround prevents that
-//      $node->path = array('pathauto' => '');
 //      $node->save();
+//
+//      // Update the pathauto entry, doing this prevents it resetting
+//      \Drupal::service('pathauto.generator')->updateEntityAlias($node, 'update');
 //    }
 //  }
 //}
