@@ -103,7 +103,7 @@ function nc_nodes_form_node_validate_date_time($form, &$form_state) {
   if ($form_state->getValue('field_revision_date')[0]['value']) {
     $date = $form_state->getValue('field_revision_date')[0]['value']->format('Y-m-d');
     if ($date > $max_date) {
-      $form_state->setErrorByName('field_revision_date', 'The vision date cannot be greater than 2 years from now.');
+      $form_state->setErrorByName('field_revision_date', 'The review date cannot be greater than 2 years from now.');
     }
   }
 }
