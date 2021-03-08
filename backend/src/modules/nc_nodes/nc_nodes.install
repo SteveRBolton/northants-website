@@ -23,22 +23,3 @@ use Drupal\node\Entity\Node;
 //    }
 //  }
 //}
-
-/**
- * Backfilling field_content_warning a "1" value
- */
-function nc_nodes_update_8002(&$sandbox) {
-  $query = \Drupal::entityQuery('node')
-    ->condition('type', 'service_page', 'in')
-    ->notExists('field_revision_date');
-  $results = $query->execute();
-
-  if (!empty($results)) {
-    foreach ($results as $node_id) {
-      $node = Node::load($node_id);
-      $node->set('field_revision_date', '1');
-      $node->save();
-      die();
-    }
-  }
-}
