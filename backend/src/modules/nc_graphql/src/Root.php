@@ -318,6 +318,7 @@ class Root {
     $nids = \Drupal::entityQuery('node')
       ->condition('type', 'news_article')
       ->condition('status', '1')
+      ->sort('created' , 'DESC')
       ->execute();
     $newsArticles = Node::loadMultiple($nids);
 

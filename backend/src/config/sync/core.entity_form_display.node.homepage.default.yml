@@ -23,16 +23,16 @@ dependencies:
     - path
     - scheduler
     - scheduler_content_moderation_integration
-    - text
 third_party_settings:
   field_group:
     group_tabs:
       children:
-        - group_main
-        - group_seo
         - group_hero
+        - group_main
+        - group_promotional_banner
+        - group_seo
       parent_name: ''
-      weight: 13
+      weight: 14
       format_type: tabs
       region: content
       format_settings:
@@ -42,22 +42,18 @@ third_party_settings:
       label: Tabs
     group_main:
       children:
-        - title
-        - field_summary
-        - field_wysiwyg_slices
         - field_service_links_list
-        - field_promotional_banner
       parent_name: group_tabs
-      weight: 22
+      weight: 21
       format_type: tab
       region: content
       format_settings:
-        id: ''
-        classes: ''
         description: ''
         formatter: closed
         required_fields: true
-      label: Main
+        id: ''
+        classes: ''
+      label: Services
     group_seo:
       children:
         - field_meta_title
@@ -79,9 +75,9 @@ third_party_settings:
         - field_homepage_hero_images
         - field_homepage_hero_links
       parent_name: group_tabs
-      weight: 21
+      weight: 20
       format_type: tab
-      region: hidden
+      region: content
       format_settings:
         id: ''
         classes: ''
@@ -89,6 +85,20 @@ third_party_settings:
         formatter: closed
         required_fields: true
       label: Hero
+    group_promotional_banner:
+      children:
+        - field_promotional_banner
+      parent_name: group_tabs
+      weight: 22
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: 'Promotional Banner'
 id: node.homepage.default
 targetEntityType: node
 bundle: homepage
@@ -163,25 +173,9 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
-  field_summary:
-    weight: 1
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_wysiwyg_slices:
-    weight: 2
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
@@ -233,7 +227,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: 13
     region: content
     settings:
       size: 60
@@ -241,7 +235,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 0
     settings:
       match_operator: CONTAINS
       size: 60
@@ -266,4 +260,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_summary: true
+  field_wysiwyg_slices: true
