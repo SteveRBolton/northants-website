@@ -12,7 +12,7 @@ field_name: field_revision_date
 entity_type: node
 bundle: service_landing_page
 label: 'Review Date'
-description: 'Set a review date for when this page is due to be reviewed. The default is set to 1 year after creation date.'
+description: 'Set a review date for when this page is due to be reviewed. The default is set to 1 year after creation date, and the date must be within 2 years from today.'
 required: false
 translatable: false
 default_value:
