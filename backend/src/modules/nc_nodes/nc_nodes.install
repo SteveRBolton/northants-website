@@ -4,21 +4,22 @@ use Drupal\node\Entity\Node;
 
 /**
  * Backfilling revision_date fields with correct date
+ * Commented out due to causing the pathauto checkbox to unset
  */
-function nc_nodes_update_8001(&$sandbox) {
-  $query = \Drupal::entityQuery('node')
-    ->condition('type', ['service_landing_page', 'service_page'], 'in')
-    ->notExists('field_revision_date');
-  $results = $query->execute();
-
-  if (!empty($results)) {
-    foreach ($results as $node_id) {
-      $node = Node::load($node_id);
-      $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
-      // Pathauto expects a pathauto property to be set on the node, there is none so when this saves
-      // it gets overriden. This workaround prevents that
-      $node->path = array('pathauto' => '');
-      $node->save();
-    }
-  }
-}
+//function nc_nodes_update_8001(&$sandbox) {
+//  $query = \Drupal::entityQuery('node')
+//    ->condition('type', ['service_landing_page', 'service_page'], 'in')
+//    ->notExists('field_revision_date');
+//  $results = $query->execute();
+//
+//  if (!empty($results)) {
+//    foreach ($results as $node_id) {
+//      $node = Node::load($node_id);
+//      $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
+//      // Pathauto expects a pathauto property to be set on the node, there is none so when this saves
+//      // it gets overriden. This workaround prevents that
+//      $node->path = array('pathauto' => '');
+//      $node->save();
+//    }
+//  }
+//}
