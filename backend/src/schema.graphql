@@ -4,6 +4,7 @@ type Query {
   route(path: String!): DrupalRoute!
   globals: DrupalGlobals!
   search(text: String!, page: Int!): SearchResults!
+  news(text: String!, page: Int!): NewsArticles!
 }
 
 type SearchResults {
@@ -24,10 +25,47 @@ type SearchResult {
   signposts: [CouncilData!]
 }
 
+type NewsArticles {
+  council_name: String!
+  total: Int!
+  pageSize: Int!
+  page: Int!
+  text: String!
+  result_list: [NewsArticle!]
+}
+
+type NewsArticle {
+  id: String!
+  title: String!
+  link: String!
+  excerpt: String!
+  date: Int!
+  thumbnail: String
+}
+
 type CouncilData {
   code: String!
   name: String!
   homepage: String!
+}
+
+type HeroImage {
+  image1440x810: String!
+  image144x81: String!
+}
+
+enum AlertType {
+ alert
+ warning
+ positive
+ london_bridge
+}
+
+type Alert {
+  id: String!
+  title: String!
+  body: FormattedField!
+  alertType: AlertType
 }
 
 # Scalars
@@ -72,6 +110,7 @@ type DrupalAccessDeniedRoute {
 #
 
 type DrupalGlobals {
+  sitewideAlerts: Alert
   footerLinks: [LinkFieldWithTitle!]!
 }
 
@@ -117,6 +156,11 @@ type LinkFieldWithTitle {
 }
 
 type Breadcrumb {
+  url: String!
+  title: String!
+}
+
+type PromotedLink {
   url: String!
   title: String!
 }
@@ -197,6 +241,9 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   serviceLinks: [ServiceLinksParagraph!]!
+  promotedLinks: [PromotedLink!]!
+  heroImages: [HeroImage!]!
+  promoBanner: PromoBannerParagraph
 }
 
 type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
@@ -243,6 +290,7 @@ type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed
   summary: String!
+  icon: String
   breadcrumbs: [Breadcrumb!]!
   inSections: [SectionParagraph!]! # All the sections this service landing page is in.
   hasSections: [SectionParagraph!]! # All the sections ON this service landing page.
@@ -308,6 +356,15 @@ type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle
 type FileDownloadParagraph implements Paragraph @entity(type: paragraph, bundle: "file_download") {
   id: String!
   files: [Document!]!
+}
+
+type PromoBannerParagraph implements Paragraph @entity(type: paragraph, bundle: "promotional_banner") {
+  id: String!
+  title: String!
+  body: FormattedField!
+  link: LinkFieldWithTitle!
+  image1440x810: Image!
+  image144x81: Image!
 }
 
 # Slices

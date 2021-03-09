@@ -15,6 +15,15 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     return $summaryField->getString();
   }
 
+  public function getIcon(): ?string {
+    /* @var $iconField string */
+    $iconField = $this->get('field_icon')->first();
+    if ($iconField) {
+      return $iconField->getString();
+    }
+    return null;
+  }
+
   /**
    * @return \Drupal\nc_system\Entity\Node\ServiceLandingPage|null
    */
@@ -87,6 +96,10 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
 
     if ($fieldName === "breadcrumbs") {
       return $this->getBreadcrumbs();
+    }
+
+    if ($fieldName === "icon") {
+      return $this->getIcon();
     }
 
     //Metadata

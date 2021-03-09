@@ -4,9 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.homepage.field_homepage_hero_images
+    - field.field.node.homepage.field_homepage_hero_links
     - field.field.node.homepage.field_keywords
     - field.field.node.homepage.field_meta_description
     - field.field.node.homepage.field_meta_title
+    - field.field.node.homepage.field_promotional_banner
     - field.field.node.homepage.field_service_links_list
     - field.field.node.homepage.field_summary
     - field.field.node.homepage.field_wysiwyg_slices
@@ -29,9 +32,12 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_homepage_hero_images: true
+  field_homepage_hero_links: true
   field_keywords: true
   field_meta_description: true
   field_meta_title: true
+  field_promotional_banner: true
   field_service_links_list: true
   field_summary: true
   field_wysiwyg_slices: true

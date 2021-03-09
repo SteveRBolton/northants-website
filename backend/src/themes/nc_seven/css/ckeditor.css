@@ -41,9 +41,7 @@
 
 .cke_editable {
   font-size: 1.25rem;
-  max-width: 1000px;
   line-height: 1.5;
-  margin: auto;
   /*font-family:  'Open Sans';*/
   color: #120C0D;
 }

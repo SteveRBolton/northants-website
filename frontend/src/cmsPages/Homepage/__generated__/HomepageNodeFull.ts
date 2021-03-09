@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_CallToActionParagraph_link {
@@ -30,7 +30,7 @@ export interface HomepageNodeFull_homepageBody_embeds_paragraph_BlockQuoteParagr
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
@@ -122,6 +122,7 @@ export interface HomepageNodeFull_serviceLinks_serviceLandingPage {
   __typename: "ServiceLandingPageNode";
   title: string;
   url: string;
+  icon: string | null;
 }
 
 export interface HomepageNodeFull_serviceLinks_servicePages {
@@ -136,6 +137,51 @@ export interface HomepageNodeFull_serviceLinks {
   servicePages: HomepageNodeFull_serviceLinks_servicePages[];
 }
 
+export interface HomepageNodeFull_promotedLinks {
+  __typename: "PromotedLink";
+  url: string;
+  title: string;
+}
+
+export interface HomepageNodeFull_heroImages {
+  __typename: "HeroImage";
+  image1440x810: string;
+  image144x81: string;
+}
+
+export interface HomepageNodeFull_promoBanner_body {
+  __typename: "FormattedField";
+  value: string;
+}
+
+export interface HomepageNodeFull_promoBanner_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
+export interface HomepageNodeFull_promoBanner_image1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface HomepageNodeFull_promoBanner_image144x81 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface HomepageNodeFull_promoBanner {
+  __typename: "PromoBannerParagraph";
+  title: string;
+  body: HomepageNodeFull_promoBanner_body;
+  link: HomepageNodeFull_promoBanner_link;
+  image1440x810: HomepageNodeFull_promoBanner_image1440x810;
+  image144x81: HomepageNodeFull_promoBanner_image144x81;
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
@@ -145,4 +191,7 @@ export interface HomepageNodeFull {
   metaKeywords: string | null;
   homepageBody: HomepageNodeFull_homepageBody | null;
   serviceLinks: HomepageNodeFull_serviceLinks[];
+  promotedLinks: HomepageNodeFull_promotedLinks[];
+  heroImages: HomepageNodeFull_heroImages[];
+  promoBanner: HomepageNodeFull_promoBanner | null;
 }

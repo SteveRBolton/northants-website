@@ -1,0 +1,10 @@
+uuid: d8426ace-3afa-4945-a980-05e5aa3baecb
+langcode: en
+status: true
+dependencies: {  }
+id: promotional_banner
+label: 'Promotional banner'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

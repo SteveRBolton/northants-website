@@ -1,0 +1,28 @@
+uuid: 88ac34ae-a7d6-456a-97a3-eb7400ab2bf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_homepage_hero_images
+    - media.type.image
+    - node.type.homepage
+id: node.homepage.field_homepage_hero_images
+field_name: field_homepage_hero_images
+entity_type: node
+bundle: homepage
+label: 'Homepage Hero Images'
+description: 'Images for the hero, minimum of one'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
