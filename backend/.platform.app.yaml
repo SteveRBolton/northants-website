@@ -136,6 +136,9 @@ web:
         # Provide a longer TTL (2 weeks) for aggregated CSS and JS files.
         '^/sites/default/files/(css|js)':
           expires: 2w
+        # Provide a longer TTL (2 weeks) for image files.
+        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+          expires: 2w
 
 crons:
   # Run Drupal's cron tasks every 20 minutes.
