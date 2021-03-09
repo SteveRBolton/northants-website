@@ -51,6 +51,9 @@ settings:
       value: finance
       label: Finance
     -
+      value: sports
+      label: 'Health, wellbeing & leisure'
+    -
       value: housing
       label: Housing
     -
