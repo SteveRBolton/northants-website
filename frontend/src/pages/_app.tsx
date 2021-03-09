@@ -135,6 +135,13 @@ NorthantsApp.getInitialProps = async (
       return res.data.globals;
     });
 
+  // set cache for use with Cloudflare
+  if (process.env.NODE_ENV !== 'development') {
+    if (appContext.ctx && appContext.ctx.res) {
+      appContext.ctx.res.setHeader('Cache-Control', 'public, max-age=3600');
+    }
+  }
+
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
   return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme, gtm: process.env.NEXT_PUBLIC_GTM_CODE };
