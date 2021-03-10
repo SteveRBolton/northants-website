@@ -51,6 +51,33 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return null;
   }
 
+  public function getFeaturedNews($number): ?array {
+    $featuredNews = [];
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type','news_article')
+      ->condition('promote', 1)
+      ->condition('status', 1)
+      ->sort('published', 'DESC')
+      ->range(0, $number)
+      ->execute();
+
+    $nodes =  \Drupal\node\Entity\Node::loadMultiple($nids);
+
+    foreach ($nodes as $node) {
+      $image = $node->get('featured_image')->getValue()[0];
+      $featuredImage = GraphQLFieldResolver::resolveMediaImage($image, 1440, 810);
+      $date = $node->get('created')->getValue()[0];
+      $newsArticle = [
+        'id' => $node->id(),
+        'title' => $node->get('title')->value,
+        'url' => $node->toUrl()->toString(),
+        'image' => $featuredImage,
+      ];
+      $featuredNews[] = $newsArticle;
+      return $featuredNews;
+    }
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -104,6 +131,10 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
       }
 
       return $images;
+    }
+    if ($fieldName === 'featuredNews') {
+      $featuredNews = $this->getFeaturedNews(3);
+      return $featuredNews;
     }
     throw new Exception("Unable to resolve value via Homepage resolve.");
   }
