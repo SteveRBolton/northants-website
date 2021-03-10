@@ -15,6 +15,7 @@ import transformSection from '../../components/Section/transform';
 import transformServiceLinks from '../../components/ServiceLinks/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 import ArticlePage from '../../cmsPages/ArticlePage';
+import ErrorPage from '../../cmsPages/ErrorPage';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
@@ -30,6 +31,9 @@ export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res 
         const { status, destination } = queryRes.data.route;
         res.writeHead(status, { location: destination });
         res.end();
+      }
+      if (isGraphQLType(queryRes.data.route, 'DrupalNotFoundRoute')) {
+        res.statusCode = 404;
       }
       return {
         props: queryRes,
@@ -181,17 +185,17 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
 
   // Nothing found. 404
   if (isGraphQLType(route, 'DrupalNotFoundRoute')) {
-    return <p>TODO: Implement 404s</p>;
+    return <ErrorPage pageTitle="Page not found" errorCode="404" />;
   }
 
   // Access denied.
   if (isGraphQLType(route, 'DrupalAccessDeniedRoute')) {
-    return <p>TODO: Implement Access denied page</p>;
+    return <ErrorPage pageTitle="This page is forbidden" errorCode="403" />;
   }
 
   // Site is offline
   if (isGraphQLType(route, 'DrupalOfflineRoute')) {
-    return <p>TODO: Implement site offline page.</p>;
+    return <ErrorPage pageTitle="Page not found" errorCode="401" />;
   }
 
   throw new Error('Invalid GraphQL response from CMS');
