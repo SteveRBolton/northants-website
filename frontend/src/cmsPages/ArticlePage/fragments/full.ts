@@ -1,9 +1,9 @@
 import { gql } from '@apollo/react-hooks';
-import embeddedParagraphFragment from '../../components/TextWithSlices/fragment';
+import embeddedParagraphFragment from '../../../components/TextWithSlices/fragment';
 
-const articleNodeFull = gql`
+const articleNode_Full = gql`
   ${embeddedParagraphFragment}
-  fragment ArticleNodeFull on ArticlePageNode {
+  fragment ArticleNode_Full on ArticlePageNode {
     __typename
     title
     id
@@ -32,4 +32,4 @@ const articleNodeFull = gql`
   }
 `;
 
-export { articleNodeFull };
+export { articleNode_Full };
