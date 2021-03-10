@@ -6,7 +6,7 @@ export default function transform(news: HomepageNodeFull_featuredNews): NewsArti
     id: news.id,
     url: news.url,
     title: news.title,
-    date: parseInt(news.date as string, 10),
+    date: Date.parse(news.date) / 1000,
     thumbnail: news.featuredImage1440x810 ? news.featuredImage1440x810?.url : '',
   };
 }
