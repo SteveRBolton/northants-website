@@ -7,8 +7,6 @@ use Drupal\node\Entity\Node;
 
 /**
  * A drush command file.
- *
- * @package Drupal\drush9_custom_commands\Commands
  */
 class DrushCustomCommands extends DrushCommands
 {
