@@ -68,6 +68,7 @@ export default function Search(page: SearchPageProps): ReactElement {
                     summary: result.teaser,
                     url: result.url,
                     service: result.parent ? result.parent : '',
+                    TopLineText: result.topLineText ? result.topLineText : undefined,
                     signpostLinksArray: result.signposts?.length
                       ? result.signposts.map((signpost) => ({
                           sovereignCode: parseInt(signpost.code, 10),

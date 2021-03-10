@@ -12,6 +12,7 @@ const fragment = gql`
       name
       homepage
     }
+    topLineText
   }
 `;
 

@@ -490,6 +490,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   __typename: "CouncilSignpostParagraph";
   council: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council;
   link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_link | null;
+  ctaText: string | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting {
@@ -547,6 +548,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   metaDescription: string | null;
   metaKeywords: string | null;
   warningTextDisclaimer: boolean;
+  topLineText: string | null;
   serviceBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody;
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;

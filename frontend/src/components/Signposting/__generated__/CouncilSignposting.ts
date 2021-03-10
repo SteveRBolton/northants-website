@@ -33,6 +33,7 @@ export interface CouncilSignposting_signposts {
   __typename: "CouncilSignpostParagraph";
   council: CouncilSignposting_signposts_council;
   link: CouncilSignposting_signposts_link | null;
+  ctaText: string | null;
 }
 
 export interface CouncilSignposting {

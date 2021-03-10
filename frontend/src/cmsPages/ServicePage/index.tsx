@@ -28,6 +28,7 @@ type ServicePageProps = {
   inThisSection?: SectionLinksSidebarProps;
   alsoIn?: SectionLinksSidebarProps;
   warningTextDisclaimer: boolean;
+  topLineText?: string;
 };
 export default function ServicePage({
   title,
@@ -40,6 +41,7 @@ export default function ServicePage({
   inThisSection,
   alsoIn,
   warningTextDisclaimer,
+  topLineText,
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
   const showSidebar = [inThisSection, alsoIn].filter((s) => s !== undefined).length > 0;
@@ -47,7 +49,7 @@ export default function ServicePage({
     <PageMain>
       <Heading level={1} text={title} />
       <TextWithSlices {...body} />
-      {signposting && <SignpostLinks {...signposting} />}
+      {signposting && <SignpostLinks {...signposting} TopLineText={topLineText} />}
     </PageMain>
   );
 

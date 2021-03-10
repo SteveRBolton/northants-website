@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
+    - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
@@ -46,6 +47,7 @@ third_party_settings:
       label: Main
     group_signposting:
       children:
+        - field_signposting_title
         - field_signposting
       parent_name: group_tabs
       weight: 13
@@ -157,6 +159,14 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
+    region: content
+  field_signposting_title:
+    weight: 104
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_summary:
     weight: 15

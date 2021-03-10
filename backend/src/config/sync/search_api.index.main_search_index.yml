@@ -13,6 +13,7 @@ dependencies:
     - field.storage.node.field_meta_description
     - field.storage.node.field_meta_title
     - field.storage.node.field_parent
+    - field.storage.node.field_signposting_title
     - field.storage.node.field_signposting
     - field.storage.paragraph.field_signposts
     - field.storage.node.field_summary
@@ -148,6 +149,14 @@ field_settings:
     dependencies:
       module:
         - node
+  top_line_text:
+    label: 'Top line text'
+    datasource_id: 'entity:node'
+    property_path: field_signposting_title
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_signposting_title
   uid:
     label: uid
     datasource_id: 'entity:node'

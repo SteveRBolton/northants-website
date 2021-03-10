@@ -22,4 +22,5 @@ export interface SearchResult {
   teaser: string;
   parent: string | null;
   signposts: SearchResult_signposts[] | null;
+  topLineText: string | null;
 }

@@ -22,6 +22,7 @@ export interface GetSearchResults_search_result_list {
   teaser: string;
   parent: string | null;
   signposts: GetSearchResults_search_result_list_signposts[] | null;
+  topLineText: string | null;
 }
 
 export interface GetSearchResults_search {

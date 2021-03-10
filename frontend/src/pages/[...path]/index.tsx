@@ -18,7 +18,6 @@ import ArticlePage from '../../cmsPages/ArticlePage';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
-
   return client
     .query<GetCMSContentOrRedirect, GetCMSContentOrRedirectVariables>({
       query: getCMSContentOrRedirect,
@@ -44,7 +43,6 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
-
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
@@ -95,10 +93,10 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         breadcrumbs,
         canonicalSection,
         inSections,
+        topLineText,
         warningTextDisclaimer,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
-
       return (
         <ServicePage
           metaTitle={metaTitle}
@@ -114,6 +112,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
+          topLineText={topLineText || undefined}
           warningTextDisclaimer={warningTextDisclaimer}
         />
       );
