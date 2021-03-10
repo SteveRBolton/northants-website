@@ -50,6 +50,7 @@ export default function ServicePage({
       <Heading level={1} text={title} />
       <TextWithSlices {...body} />
       {signposting && <SignpostLinks {...signposting} TopLineText={topLineText} />}
+      {warningTextDisclaimer && <WarningTextDisclaimer />}
     </PageMain>
   );
 
@@ -77,7 +78,6 @@ export default function ServicePage({
           </PageWithSidebarContainer>
         )}
         {!showSidebar && main}
-        {warningTextDisclaimer && <WarningTextDisclaimer />}
       </MaxWidthContainer>
     </>
   );
