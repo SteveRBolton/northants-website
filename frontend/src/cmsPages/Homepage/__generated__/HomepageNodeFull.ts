@@ -182,6 +182,21 @@ export interface HomepageNodeFull_promoBanner {
   image144x81: HomepageNodeFull_promoBanner_image144x81;
 }
 
+export interface HomepageNodeFull_featuredNews_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface HomepageNodeFull_featuredNews {
+  __typename: "ArticlePageNode";
+  id: string;
+  title: string;
+  url: string;
+  featuredImage1440x810: HomepageNodeFull_featuredNews_featuredImage1440x810 | null;
+  date: string;
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
@@ -194,4 +209,5 @@ export interface HomepageNodeFull {
   promotedLinks: HomepageNodeFull_promotedLinks[];
   heroImages: HomepageNodeFull_heroImages[];
   promoBanner: HomepageNodeFull_promoBanner | null;
+  featuredNews: HomepageNodeFull_featuredNews[];
 }
