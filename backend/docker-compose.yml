@@ -14,7 +14,6 @@ services:
 #      - "3307:3306"
     volumes:
       - mariadb:/var/lib/mysql
-      - ./.mariadb-init:/docker-entrypoint-initdb.d # A starter database is inside here.
     networks:
       - default
 

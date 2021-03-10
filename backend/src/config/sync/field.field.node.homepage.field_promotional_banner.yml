@@ -1,0 +1,58 @@
+uuid: e2217add-8883-4323-8bc9-d1549e0e1cee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_promotional_banner
+    - node.type.homepage
+    - paragraphs.paragraphs_type.promotional_banner
+  module:
+    - entity_reference_revisions
+id: node.homepage.field_promotional_banner
+field_name: field_promotional_banner
+entity_type: node
+bundle: homepage
+label: 'Promotional banner'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      promotional_banner: promotional_banner
+    target_bundles_drag_drop:
+      accordion:
+        weight: 11
+        enabled: false
+      accordion_item:
+        weight: 12
+        enabled: false
+      call_to_action:
+        weight: 13
+        enabled: false
+      council_signpost:
+        weight: 14
+        enabled: false
+      council_signposting:
+        weight: 15
+        enabled: false
+      file_download:
+        weight: 16
+        enabled: false
+      promotional_banner:
+        enabled: true
+        weight: 17
+      pull_quote:
+        weight: 18
+        enabled: false
+      section:
+        weight: 19
+        enabled: false
+      service_links:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

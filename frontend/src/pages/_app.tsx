@@ -1,19 +1,19 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
-import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner } from 'northants-design-system';
+import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner, AlertBanner } from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import React, { ReactElement, useEffect } from 'react';
 import { GetCMSGlobals } from '../api/graphql/__generated__/GetCMSGlobals';
-import { getCMSGlobals, getSearchResults } from '../api/graphql/queries';
+import { getCMSGlobals } from '../api/graphql/queries';
 import '../css/reset.css';
 import { initializeApollo } from '../lib/apolloClient';
-import { GetSearchResults, GetSearchResultsVariables } from '../api/graphql/__generated__/GetSearchResults';
+import TextWithSlices from '../components/TextWithSlices';
 
 declare global {
   interface Window {
     dataLayer: [
       {
-        'event': string;
+        event: string;
       }
     ];
   }
@@ -38,7 +38,7 @@ function NorthantsApp({
     if (document.cookie.includes('"cookiesAccepted":true')) {
       if (gtm) {
         window.dataLayer.push({
-          'event': 'consent_given',
+          event: 'consent_given',
         });
       }
     }
@@ -57,21 +57,22 @@ function NorthantsApp({
   }
 
   const hideSearchBar = router.pathname === '/search';
+  const isHomepage = router.pathname === '/';
   return (
     <>
       <Head>
         {/* Google Tag Manager */}
         {gtm && (
-            <script
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                       })(window,document,'script','dataLayer','${gtm}');`,
-                }}
-            />
+            }}
+          />
         )}
         {/* End Google Tag Manager */}
         <title>Northants</title>
@@ -100,7 +101,18 @@ function NorthantsApp({
           rejectButtonText="Reject all cookies"
           acceptCallback={() => {}}
         />
-        <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />
+        {globals.sitewideAlerts ? (
+          <AlertBanner
+            title={globals.sitewideAlerts.title}
+            uid={globals.sitewideAlerts.id}
+            alertType={globals.sitewideAlerts.alertType ? globals.sitewideAlerts.alertType : undefined}
+          >
+            <TextWithSlices html={globals.sitewideAlerts.body.value} embeds={[]} />
+          </AlertBanner>
+        ) : (
+          ''
+        )}
+        {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />
       </ThemeProvider>
@@ -122,6 +134,13 @@ NorthantsApp.getInitialProps = async (
     .then((res) => {
       return res.data.globals;
     });
+
+  // set cache for use with Cloudflare
+  if (process.env.NODE_ENV !== 'development') {
+    if (appContext.ctx && appContext.ctx.res) {
+      appContext.ctx.res.setHeader('Cache-Control', 'public, max-age=3600');
+    }
+  }
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);

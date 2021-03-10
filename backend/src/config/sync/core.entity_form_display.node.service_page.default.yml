@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.service_page.field_content_warning
     - field.field.node.service_page.field_keywords
     - field.field.node.service_page.field_meta_description
     - field.field.node.service_page.field_meta_title
@@ -32,6 +33,7 @@ third_party_settings:
         - field_summary
         - field_wysiwyg_slices
         - field_revision_date
+        - field_content_warning
       parent_name: group_tabs
       weight: 12
       format_type: tab
@@ -99,6 +101,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_content_warning:
+    weight: 18
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_keywords:
     weight: 103
     settings:

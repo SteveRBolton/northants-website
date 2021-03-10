@@ -8,6 +8,7 @@ import {
   PageWithSidebarContainer,
   PageSidebar,
   Heading,
+  WarningTextDisclaimer,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -26,6 +27,7 @@ type ServicePageProps = {
   breadcrumbs: BreadcrumbsProps;
   inThisSection?: SectionLinksSidebarProps;
   alsoIn?: SectionLinksSidebarProps;
+  warningTextDisclaimer: boolean;
   topLineText?: string;
 };
 export default function ServicePage({
@@ -38,6 +40,7 @@ export default function ServicePage({
   breadcrumbs,
   inThisSection,
   alsoIn,
+  warningTextDisclaimer,
   topLineText,
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
@@ -74,6 +77,7 @@ export default function ServicePage({
           </PageWithSidebarContainer>
         )}
         {!showSidebar && main}
+        {warningTextDisclaimer && <WarningTextDisclaimer />}
       </MaxWidthContainer>
     </>
   );

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.service_page.field_content_warning
     - field.field.node.service_page.field_keywords
     - field.field.node.service_page.field_meta_description
     - field.field.node.service_page.field_meta_title
@@ -27,6 +28,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_content_warning:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_signposting:
     type: entity_reference_revisions_entity_view
     weight: 3

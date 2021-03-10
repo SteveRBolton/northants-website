@@ -4,7 +4,7 @@ use Drupal\node\Entity\Node;
 
 /**
  * Backfilling revision_date fields with correct date
- * Inactive for now due to bug with pathauto patterns resetting to /node/xxx when run
+ * Commented out due to causing the pathauto checkbox to unset
  */
 //function nc_nodes_update_8001(&$sandbox) {
 //  $query = \Drupal::entityQuery('node')
@@ -17,6 +17,9 @@ use Drupal\node\Entity\Node;
 //      $node = Node::load($node_id);
 //      $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
 //      $node->save();
+//
+//      // Update the pathauto entry, doing this prevents it resetting
+//      \Drupal::service('pathauto.generator')->updateEntityAlias($node, 'update');
 //    }
 //  }
 //}

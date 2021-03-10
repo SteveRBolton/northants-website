@@ -1,0 +1,23 @@
+uuid: 2e252f52-04f1-42f3-8832-f42d111c510a
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.sitewide_alerts
+    - field.storage.config_pages.field_active
+id: config_pages.sitewide_alerts.field_active
+field_name: field_active
+entity_type: config_pages
+bundle: sitewide_alerts
+label: 'Show Alert?'
+description: '<strong>Setting this alert to show will make it appear across all pages of the website</strong>'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

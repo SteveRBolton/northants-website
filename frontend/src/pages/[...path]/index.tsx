@@ -47,7 +47,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
     if (isGraphQLType(node, 'HomepageNode')) {
-      const { metaTitle, metaDescription, metaKeywords, homepageBody, serviceLinks } = node;
+      const {
+        metaTitle,
+        metaDescription,
+        metaKeywords,
+        homepageBody,
+        serviceLinks,
+        promotedLinks,
+        heroImages,
+        promoBanner,
+      } = node;
       return (
         <Homepage
           metaTitle={metaTitle}
@@ -55,6 +64,21 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaKeywords={metaKeywords || undefined}
           body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
+          promotedLinks={promotedLinks}
+          heroImages={heroImages}
+          promoBanner={
+            promoBanner
+              ? {
+                  title: promoBanner.title,
+                  ctaText: promoBanner.link.title,
+                  ctaUrl: promoBanner.link.url,
+                  image1440x810: promoBanner.image1440x810.url,
+                  image144x81: promoBanner.image144x81.url,
+                  children: '',
+                }
+              : undefined
+          }
+          promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
         />
       );
     }
@@ -70,6 +94,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         canonicalSection,
         inSections,
         topLineText,
+        warningTextDisclaimer,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
       return (
@@ -88,6 +113,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           }
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
           topLineText={topLineText || undefined}
+          warningTextDisclaimer={warningTextDisclaimer}
         />
       );
     }
