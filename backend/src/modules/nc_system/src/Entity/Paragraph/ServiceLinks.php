@@ -23,7 +23,15 @@ class ServiceLinks extends Paragraph implements GraphQLEntityFieldResolver {
   public function getServicePages(): array {
     /* @var $pagesField  \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList */
     $pagesField = $this->get('field_service_pages');
-    return $pagesField->referencedEntities();
+    $servicePages = $pagesField->referencedEntities();
+
+    $publishedPages = [];
+    foreach($servicePages as $page){
+      if($page->isPublished()) {
+        $publishedPages[] = $page;
+      }
+    }
+    return $publishedPages;
   }
 
   /**
@@ -36,6 +44,7 @@ class ServiceLinks extends Paragraph implements GraphQLEntityFieldResolver {
     }
 
     if($fieldName === "servicePages") {
+      $test =  $this->getServicePages();
       return $this->getServicePages();
     }
 
