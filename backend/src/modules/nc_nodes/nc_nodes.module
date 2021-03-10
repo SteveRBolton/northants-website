@@ -46,6 +46,11 @@ function nc_nodes_form_node_form_alter(&$form, &$form_state, $form_id) {
     $form['unpublish_on']['widget'][0]['value']['#default_value'] = $unpublishDate;
   }
 
+  // If 'Promoted to front page' option is selected, make featured image required.
+  if ($form_id === 'node_news_article_form' || $form_id === 'node_news_article_edit_form') {
+    $form['#validate'][] = 'nc_nodes_form_node_validate_promoted';
+  }
+
   $forms_list = [
     'node_service_landing_page_form',
     'node_service_landing_page_edit_form',
@@ -104,6 +109,21 @@ function nc_nodes_form_node_validate_date_time($form, &$form_state) {
     $date = $form_state->getValue('field_revision_date')[0]['value']->format('Y-m-d');
     if ($date > $max_date) {
       $form_state->setErrorByName('field_revision_date', 'The review date cannot be greater than 2 years from now.');
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_validate().
+ * This function validates field_featured_image and returns an error if the
+ * field is unset and the promoted to frontpage option has been checked.
+ */
+function nc_nodes_form_node_validate_promoted($form, &$form_state) {
+  $promoted = $form_state->getValue('promote')['value'];
+  if ($promoted) {
+    $featured_image = array_key_exists('selection', $form_state->getValue('field_featured_image'));
+    if (($featured_image === FALSE)) {
+      $form_state->setErrorByName('field_featured_image', 'A featured image must be selected if "Promoted to front page" is checked.');
     }
   }
 }
