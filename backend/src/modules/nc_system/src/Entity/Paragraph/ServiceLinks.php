@@ -44,7 +44,6 @@ class ServiceLinks extends Paragraph implements GraphQLEntityFieldResolver {
     }
 
     if($fieldName === "servicePages") {
-      $test =  $this->getServicePages();
       return $this->getServicePages();
     }
 
