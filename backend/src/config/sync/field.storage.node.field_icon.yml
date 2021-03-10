@@ -57,6 +57,9 @@ settings:
       value: housing
       label: Housing
     -
+      value: careers
+      label: 'Jobs and careers'
+    -
       value: libraries
       label: Libraries
     -

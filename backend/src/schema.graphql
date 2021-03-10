@@ -245,6 +245,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promotedLinks: [PromotedLink!]!
   heroImages: [HeroImage!]!
   promoBanner: PromoBannerParagraph
+  featuredNews: [ArticlePageNode!]!
 }
 
 type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {

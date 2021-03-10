@@ -13,6 +13,7 @@ import { initializeApollo } from '../../lib/apolloClient';
 import transformSignposting from '../../components/Signposting/transform';
 import transformSection from '../../components/Section/transform';
 import transformServiceLinks from '../../components/ServiceLinks/transform';
+import transformFeaturedNews from '../../components/News/FeaturedNews/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 import ArticlePage from '../../cmsPages/ArticlePage';
 
@@ -56,6 +57,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         promotedLinks,
         heroImages,
         promoBanner,
+        featuredNews,
       } = node;
       return (
         <Homepage
@@ -79,6 +81,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
+          featuredNews={{ articles: featuredNews.map(transformFeaturedNews), viewAllLink: '/news' }}
         />
       );
     }
