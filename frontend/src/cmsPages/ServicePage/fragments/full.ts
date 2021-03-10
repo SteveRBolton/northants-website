@@ -17,6 +17,7 @@ export default gql`
     metaTitle
     metaDescription
     metaKeywords
+    warningTextDisclaimer
     serviceBody: body {
       value
       embeds {

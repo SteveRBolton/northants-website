@@ -1,3 +1,7 @@
 services:
   nc_nodes.embedded_paragraphs:
     class: \Drupal\nc_nodes\EmbeddedParagraphsService
+  nc_nodes.commands:
+    class: \Drupal\nc_nodes\Commands\DrushCustomCommands
+    tags:
+      - { name: drush.command }
