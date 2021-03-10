@@ -102,7 +102,6 @@ function nc_nodes_node_presave(Drupal\node\Entity\Node $node) {
  */
 function nc_nodes_form_node_validate_date_time($form, &$form_state) {
   if ($form_state->getValue('field_revision_date')[0]['value']) {
-    
     $now = new DrupalDateTime('now');
     $max_date =  $now->modify('+2 year');
     $max_date = $max_date->format('Y-m-d');
