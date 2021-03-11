@@ -4631,10 +4631,19 @@ domutils@^1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
-domutils@^2.0.0, domutils@^2.4.4:
+domutils@^2.0.0:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.4.4.tgz#282739c4b150d022d34699797369aad8d19bbbd3"
   integrity sha512-jBC0vOsECI4OMdD0GC9mGn7NXPLb+Qt6KW1YDQzeQYRUFKmNG8lh7mO5HiELfr+lLQE7loDVI4QcAxV80HS+RA==
+  dependencies:
+    dom-serializer "^1.0.1"
+    domelementtype "^2.0.1"
+    domhandler "^4.0.0"
+
+domutils@^2.4.4:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.5.0.tgz#42f49cffdabb92ad243278b331fd761c1c2d3039"
+  integrity sha512-Ho16rzNMOFk2fPwChGh3D2D9OEHAfG19HgmRR2l+WLSsIstNsAYBzePH412bL0y5T44ejABIVfTHQ8nqi/tBCg==
   dependencies:
     dom-serializer "^1.0.1"
     domelementtype "^2.0.1"
@@ -7689,9 +7698,9 @@ normalize-url@^4.1.0:
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
 northants-design-system@^0.1.57:
-  version "0.1.70"
-  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.70.tgz#a07f677a39c34236b1c85b98b55f2d3813cb9930"
-  integrity sha512-Qivgh6XG/th0BQWpel/eBj5QzAF6nr47xMQCK9JoHv3d7LUETuFm1VFlgQmP5ykv6fEhbwDT9A0+hUuTUOtzTg==
+  version "0.1.71"
+  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.71.tgz#a9f12ef9459a19ffeddd5d113e11508678cd8631"
+  integrity sha512-oaZvsxYdL+nrY+NDDGx2oHaa4Nrd3JVu6BDL3Pc8BaVQcMMD8c3RJ50iY06CXhpKo4lnW18FnXr6eDrKcPXJqA==
   dependencies:
     axios "^0.21.1"
     html-react-parser "^1.2.1"
