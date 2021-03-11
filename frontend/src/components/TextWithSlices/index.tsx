@@ -27,7 +27,7 @@ const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement =
     case 'CallToActionParagraph':
       return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
     case 'BlockQuoteParagraph':
-      return <BlockQuote quote={paragraph.quote} citation={paragraph.citation ?? undefined} />;
+      return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
     case 'FileDownloadParagraph':
       return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
     default:
@@ -40,7 +40,7 @@ const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragrap
     case 'CallToActionParagraph':
       return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
     case 'BlockQuoteParagraph':
-      return <BlockQuote quote={paragraph.quote} citation={paragraph.citation ?? undefined} />;
+      return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
     case 'FileDownloadParagraph':
       return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
     default:
