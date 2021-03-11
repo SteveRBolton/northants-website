@@ -101,14 +101,17 @@ function nc_nodes_node_presave(Drupal\node\Entity\Node $node) {
  * This function validates field_revision_date and returns an error if the date is greater than two years from today's date
  */
 function nc_nodes_form_node_validate_date_time($form, &$form_state) {
-  $now = new DrupalDateTime('now');
-  $max_date =  $now->modify('+2 year');
-  $max_date = $max_date->format('Y-m-d');
-
   if ($form_state->getValue('field_revision_date')[0]['value']) {
+    $now = new DrupalDateTime('now');
+    $max_date =  $now->modify('+2 year');
+    $max_date = $max_date->format('Y-m-d');
+
+    $today = new DrupalDateTime('now');
+    $today = $today->format('Y-m-d');
+
     $date = $form_state->getValue('field_revision_date')[0]['value']->format('Y-m-d');
-    if ($date > $max_date) {
-      $form_state->setErrorByName('field_revision_date', 'The review date cannot be greater than 2 years from now.');
+    if ($date > $max_date || $date < $today) {
+      $form_state->setErrorByName('field_revision_date', 'The review date must be within 2 years from now.');
     }
   }
 }

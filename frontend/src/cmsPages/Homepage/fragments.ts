@@ -3,12 +3,14 @@ import callToActionFragment from '../../components/CallToAction/fragment';
 import serviceLinksFragment from '../../components/ServiceLinks/fragment';
 import embeddedParagraphFragment from '../../components/TextWithSlices/fragment';
 import promoBannerFragment from '../../components/PromoBanner/fragment';
+import articlePageFragment from '../ArticlePage/fragments/featured';
 
 const homepageNodeFull = gql`
   ${callToActionFragment}
   ${embeddedParagraphFragment}
   ${serviceLinksFragment}
   ${promoBannerFragment}
+  ${articlePageFragment}
   fragment HomepageNodeFull on HomepageNode {
     __typename
     title
@@ -35,6 +37,9 @@ const homepageNodeFull = gql`
     }
     promoBanner {
       ...PromoBanner
+    }
+    featuredNews {
+      ...ArticlePageNode_Featured
     }
   }
 `;

@@ -84,6 +84,9 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "summary") {
       return $this->getSummary();
     }
+    if ($fieldName === "url") {
+      return $this->getUrl();
+    }
     if ($fieldName === "featuredImage1440x810") {
       $image = $this->getImage();
       $width = '1440';
