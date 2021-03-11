@@ -35,6 +35,12 @@ export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res 
       if (isGraphQLType(queryRes.data.route, 'DrupalNotFoundRoute')) {
         res.statusCode = 404;
       }
+			if (isGraphQLType(queryRes.data.route, 'DrupalAccessDeniedRoute')) {
+				res.statusCode = 401;
+			}
+			if (isGraphQLType(queryRes.data.route, 'DrupalOfflineRoute')) {
+				res.statusCode = 503;
+			}
       return {
         props: queryRes,
       };
@@ -190,12 +196,12 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
 
   // Access denied.
   if (isGraphQLType(route, 'DrupalAccessDeniedRoute')) {
-    return <ErrorPage pageTitle="This page is forbidden" errorCode="403" />;
+    return <ErrorPage pageTitle="This page is unauthorized" errorCode="401" />;
   }
 
   // Site is offline
   if (isGraphQLType(route, 'DrupalOfflineRoute')) {
-    return <ErrorPage pageTitle="Page not found" errorCode="401" />;
+    return <ErrorPage pageTitle="This site is offline at the moment" errorCode="503" />;
   }
 
   throw new Error('Invalid GraphQL response from CMS');
