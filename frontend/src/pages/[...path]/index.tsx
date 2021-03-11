@@ -13,12 +13,12 @@ import { initializeApollo } from '../../lib/apolloClient';
 import transformSignposting from '../../components/Signposting/transform';
 import transformSection from '../../components/Section/transform';
 import transformServiceLinks from '../../components/ServiceLinks/transform';
+import transformFeaturedNews from '../../components/News/FeaturedNews/transform';
 import { transformInThisSection, transformAlsoFoundIn } from '../../components/SectionSidebar/transform';
 import ArticlePage from '../../cmsPages/ArticlePage';
 
 export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res }) => {
   const client = initializeApollo();
-
   return client
     .query<GetCMSContentOrRedirect, GetCMSContentOrRedirectVariables>({
       query: getCMSContentOrRedirect,
@@ -44,7 +44,6 @@ type DrupalPageProps = {
 
 const DrupalPage = (page: DrupalPageProps): ReactElement => {
   const { route } = page.data;
-
   // We found a node to render.
   if (isGraphQLType(route, 'DrupalNodeRoute')) {
     const { node } = route;
@@ -58,6 +57,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         promotedLinks,
         heroImages,
         promoBanner,
+        featuredNews,
       } = node;
       return (
         <Homepage
@@ -81,6 +81,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
+          featuredNews={{ articles: featuredNews.map(transformFeaturedNews), viewAllLink: '/news' }}
         />
       );
     }
@@ -95,9 +96,10 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         breadcrumbs,
         canonicalSection,
         inSections,
+        topLineText,
+        warningTextDisclaimer,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
-
       return (
         <ServicePage
           metaTitle={metaTitle}
@@ -113,6 +115,8 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
+          topLineText={topLineText || undefined}
+          warningTextDisclaimer={warningTextDisclaimer}
         />
       );
     }

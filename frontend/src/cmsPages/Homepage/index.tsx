@@ -5,6 +5,7 @@ import {
   HomeHero,
   HomeUnitarySection,
   PromoBanner,
+  NewsArticleFeaturedBlock,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -13,6 +14,7 @@ import {
   PromotedLinkProp,
 } from 'northants-design-system/build/library/structure/HomeHero/HomeHero.types';
 import { PageLinkProp } from 'northants-design-system/build/library/structure/ServicesLinksList/ServicesLinksList.types';
+import { NewsArticleFeaturedBlockProps } from 'northants-design-system/build/library/structure/NewsArticleFeaturedBlock/NewsArticleFeaturedBlock.types';
 
 import { PromoBannerProps } from 'northants-design-system/build/library/structure/PromoBanner/PromoBanner.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
@@ -27,6 +29,7 @@ type HomepageProps = {
   promotedLinks: PromotedLinkProp[];
   promoBanner?: PromoBannerProps;
   promoBody?: TextWithSlicesProps;
+  featuredNews: NewsArticleFeaturedBlockProps;
 };
 
 export default function Homepage({
@@ -39,6 +42,7 @@ export default function Homepage({
   promotedLinks,
   promoBanner,
   promoBody,
+  featuredNews,
 }: HomepageProps): ReactElement {
   return (
     <>
@@ -66,6 +70,7 @@ export default function Homepage({
             ''
           )}
           <HomeUnitarySection />
+          <NewsArticleFeaturedBlock {...featuredNews} />
         </PageMain>
       </MaxWidthContainer>
     </>

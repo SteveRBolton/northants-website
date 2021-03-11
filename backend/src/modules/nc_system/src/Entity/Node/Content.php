@@ -28,6 +28,11 @@ class Content extends Node implements GraphQLEntityFieldResolver {
     return $councilName;
   }
 
+  public function getUrl(): string {
+    $url = $this->toUrl()->toString();
+    return $url;
+  }
+
   public function getBody(): ?TextItemBase {
     /* @var $bodyField \Drupal\Core\Field\FieldItemList */
     $bodyField = $this->get('field_wysiwyg_slices');

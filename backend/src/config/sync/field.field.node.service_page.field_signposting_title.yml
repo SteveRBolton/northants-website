@@ -1,0 +1,21 @@
+uuid: 55392dc5-ba78-481c-bb38-e877a4546179
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_signposting_title
+    - node.type.service_page
+id: node.service_page.field_signposting_title
+field_name: field_signposting_title
+entity_type: node
+bundle: service_page
+label: 'Signposting title'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Select your local area for more information:'
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -28,6 +28,14 @@ class CouncilSignpost extends Paragraph implements GraphQLEntityFieldResolver {
     return $entities[0];
   }
 
+  public function getCTAText(): ?string {
+    /* @var $stringItem \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
+    if ($this->get('field_cta_text')->first()) {
+      return $this->get('field_cta_text')->first()->getString();
+    }
+    return null;
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -43,6 +51,10 @@ class CouncilSignpost extends Paragraph implements GraphQLEntityFieldResolver {
 
     if($fieldName === "council") {
       return $this->getCouncil();
+    }
+
+    if($fieldName === "ctaText") {
+      return $this->getCTAText();
     }
 
     throw new \Exception("Unable to resolve value for field via CouncilSignpost resolver");

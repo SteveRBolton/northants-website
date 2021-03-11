@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.service_page.field_content_warning
     - field.field.node.service_page.field_keywords
     - field.field.node.service_page.field_meta_description
     - field.field.node.service_page.field_meta_title
     - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_revision_date
     - field.field.node.service_page.field_signposting
+    - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
@@ -31,6 +33,7 @@ third_party_settings:
         - field_summary
         - field_wysiwyg_slices
         - field_revision_date
+        - field_content_warning
       parent_name: group_tabs
       weight: 12
       format_type: tab
@@ -44,6 +47,7 @@ third_party_settings:
       label: Main
     group_signposting:
       children:
+        - field_signposting_title
         - field_signposting
       parent_name: group_tabs
       weight: 13
@@ -97,6 +101,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_content_warning:
+    weight: 18
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_keywords:
     weight: 103
     settings:
@@ -139,7 +150,7 @@ content:
     region: content
   field_signposting:
     type: entity_reference_paragraphs
-    weight: 13
+    weight: 105
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -148,6 +159,14 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
+    region: content
+  field_signposting_title:
+    weight: 104
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_summary:
     weight: 15
@@ -200,6 +219,11 @@ content:
   publish_state:
     type: scheduler_moderation
     weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }

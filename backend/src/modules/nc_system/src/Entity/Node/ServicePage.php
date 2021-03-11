@@ -6,6 +6,7 @@ use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
 use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
+use phpDocumentor\Reflection\Types\Boolean;
 
 
 /**
@@ -32,6 +33,12 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     return $summaryField->getString();
   }
 
+  public function getSignpostingTitle(): string {
+    /* @var $titleField \Drupal\Core\Field\Plugin\Field\FieldType\StringItem */
+    $titleField = $this->get('field_signposting_title');
+    return $titleField->getString();
+  }
+
   public function getSignposting(): ?CouncilSignposting {
     /* @var $entityReference \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList*/
     $signpostingField = $this->get('field_signposting');
@@ -41,6 +48,18 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
       return $entities[0];
     }
     return null;
+  }
+
+  /**
+   * This function returns true or false depending field_content_warning being checked or not
+   */
+  public function getWarningDisclaimer(): bool {
+    /* @var $disclaimerValue \Drupal\Core\Field\Plugin\Field\FieldType\BooleanItem */
+    $disclaimerValue = $this->get('field_content_warning');
+    if ($disclaimerValue->getString() === "1") {
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -140,9 +159,16 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
       return $this->toUrl('canonical')->toString();
     }
 
-
     if ($fieldName === "breadcrumbs") {
       return $this->getBreadcrumbs();
+    }
+
+    if ($fieldName === "topLineText") {
+      return $this->getSignpostingTitle() ? $this->getSignpostingTitle() : 'Select your local area for more information:';
+    }
+
+    if ($fieldName === "warningTextDisclaimer") {
+      return $this->getWarningDisclaimer();
     }
 
     //Metadata

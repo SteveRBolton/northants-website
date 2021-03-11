@@ -17,9 +17,6 @@ use Drupal\node\Entity\Node;
 //      $node = Node::load($node_id);
 //      $node->set('field_revision_date', date('Y-m-d', strtotime('+1 year')));
 //      $node->save();
-//
-//      // Update the pathauto entry, doing this prevents it resetting
-//      \Drupal::service('pathauto.generator')->updateEntityAlias($node, 'update');
 //    }
 //  }
 //}

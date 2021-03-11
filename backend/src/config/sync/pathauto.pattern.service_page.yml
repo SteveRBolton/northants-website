@@ -7,16 +7,16 @@ dependencies:
 id: service_page
 label: 'Service page'
 type: 'canonical_entities:node'
-pattern: '[node:field_parent:entity:url:relative]/[node:title]'
+pattern: '[node:field_parent:entity:url:path]/[node:title]'
 selection_criteria:
-  6175d3de-062c-4599-ac76-b67c4858b95a:
+  c7395667-7b14-4e52-8267-ebd8aad6e1dd:
     id: node_type
     bundles:
       service_page: service_page
     negate: false
     context_mapping:
       node: node
-    uuid: 6175d3de-062c-4599-ac76-b67c4858b95a
+    uuid: c7395667-7b14-4e52-8267-ebd8aad6e1dd
 selection_logic: and
 weight: -5
 relationships: {  }

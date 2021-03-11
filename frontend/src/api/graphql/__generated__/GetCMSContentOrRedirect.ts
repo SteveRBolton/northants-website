@@ -186,6 +186,21 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   image144x81: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promoBanner_image144x81;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews {
+  __typename: "ArticlePageNode";
+  id: string;
+  title: string;
+  url: string;
+  featuredImage1440x810: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews_featuredImage1440x810 | null;
+  date: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
   __typename: "HomepageNode";
   title: string;
@@ -198,6 +213,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   promotedLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promotedLinks[];
   heroImages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_heroImages[];
   promoBanner: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promoBanner | null;
+  featuredNews: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
@@ -490,6 +506,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   __typename: "CouncilSignpostParagraph";
   council: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_council;
   link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting_signposts_link | null;
+  ctaText: string | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting {
@@ -546,6 +563,8 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;
+  warningTextDisclaimer: boolean;
+  topLineText: string | null;
   serviceBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody;
   signposting: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_signposting | null;
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;

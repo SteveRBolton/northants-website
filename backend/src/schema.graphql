@@ -22,6 +22,7 @@ type SearchResult {
   title: String!
   teaser: String!
   parent: String
+  topLineText: String
   signposts: [CouncilData!]
 }
 
@@ -244,6 +245,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promotedLinks: [PromotedLink!]!
   heroImages: [HeroImage!]!
   promoBanner: PromoBannerParagraph
+  featuredNews: [ArticlePageNode!]!
 }
 
 type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
@@ -274,10 +276,12 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
+  topLineText: String
   signposting: CouncilSignpostingParagraph
   breadcrumbs: [Breadcrumb!]!
   canonicalSection: SectionParagraph
   inSections: [SectionParagraph!]! # All the sections this service page is in.
+  warningTextDisclaimer: Boolean!
 }
 
 type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
@@ -313,6 +317,7 @@ type CouncilSignpostParagraph implements Paragraph @entity(type: paragraph, bund
   id: String!
   council: SovereignCouncil!
   link: LinkField
+  ctaText: String
 }
 
 type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signposting") {

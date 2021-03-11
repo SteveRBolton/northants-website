@@ -15,8 +15,8 @@ class BlockQuote extends Paragraph implements GraphQLEntityFieldResolver {
 
     /* @var $quoteItem \Drupal\Core\Field\Plugin\Field\FieldType\StringLongItem */
     $quoteItem = $quoteField->first();
-
-    return $quoteItem->getString();
+    $processed = nl2br($quoteItem->getString());
+    return $processed;
   }
 
   public function getCitation(): ?string {
