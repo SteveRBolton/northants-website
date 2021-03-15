@@ -8,6 +8,13 @@ type ErrorPageProps = {
 };
 
 export default function ErrorPage({ pageTitle, errorCode }: ErrorPageProps): ReactElement {
+  const theme = process.env.NEXT_PUBLIC_THEME;
+  let learnMoreUrl = '/news/west-northamptonshire-council-launches-public-beta-website';
+
+  if (theme === 'north') {
+    learnMoreUrl = '/news/north-northamptonshire-council-launches-public-beta-website';
+  }
+
   return (
     <>
       <Head>
@@ -22,12 +29,12 @@ export default function ErrorPage({ pageTitle, errorCode }: ErrorPageProps): Rea
           <p>If you entered a web address, check it is correct.</p>
 
           <p>
-            You can <a href="/"> see a list of council services on the homepage </a> or use the search box above to find
+            You can <a href="/"> see a list of council services on the homepage</a> or use the search box above to find
             the information you need.
           </p>
 
           <p>
-            You can also <a href="/">learn more about this new unitary council website.</a>
+            You can also <a href={learnMoreUrl}>learn more about this new unitary council website</a>.
           </p>
           <br />
           <pre>Error code: {errorCode}</pre>
