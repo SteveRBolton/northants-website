@@ -201,8 +201,8 @@ export interface ServicePageNode_Full {
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;
-  topLineText: string | null;
   warningTextDisclaimer: boolean;
+  topLineText: string | null;
   serviceBody: ServicePageNode_Full_serviceBody;
   signposting: ServicePageNode_Full_signposting | null;
   canonicalSection: ServicePageNode_Full_canonicalSection | null;

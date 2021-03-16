@@ -326,9 +326,11 @@ class Root {
     $result_list = [];
 
     foreach ($newsArticles as $result) {
-      $thumbnail = $result->get('field_featured_image')->getValue() ?
-        GraphQLFieldResolver::resolveMediaImage($result->get('field_featured_image')->getValue()[0] , 420, 420)
-        : NULL;
+      $image = $result->get('field_featured_image')->getValue();
+      $image720x405 = $image ? GraphQLFieldResolver::resolveMediaImage($image[0], 720, 405)['url'] : '';
+      $image72x41 = $image ? GraphQLFieldResolver::resolveMediaImage($image[0], 72, 41)['url'] : '';
+      $imageAltText = $image ? GraphQLFieldResolver::resolveMediaImage($image[0])['alt'] : '';
+
       $result_list[] = [
         'id' => $result->id(),
         'title' => $result->getTitle(),
@@ -336,7 +338,9 @@ class Root {
           ->getAliasByPath('/node/' . $result->id()),
         'excerpt' => $result->get('field_summary')->getValue()[0]['value'],
         'date' => $result->get('publish_on')->value ? $result->get('publish_on')->value : $result->get('created')->value,
-        'thumbnail' => $thumbnail['url'],
+        'image720x405'=> $image720x405,
+        'image72x41' => $image72x41,
+        'imageAltText' => $imageAltText,
       ];
     }
     return [

@@ -19,5 +19,8 @@ export interface ArticlePageNode_Featured {
   title: string;
   url: string;
   featuredImage1440x810: ArticlePageNode_Featured_featuredImage1440x810 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
   date: string;
 }

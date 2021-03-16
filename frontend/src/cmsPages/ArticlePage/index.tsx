@@ -32,6 +32,9 @@ type ArticlePageProps = {
   featuredImage1440x810?: FeaturedImageProps;
   featuredImage144x81?: FeaturedImageProps;
   featuredImageCaption?: string;
+  image720x405: string;
+  image72x41: string;
+  imageAltText: string | null;
 };
 
 export default function ArticlePage({
@@ -45,6 +48,9 @@ export default function ArticlePage({
   featuredImage1440x810,
   featuredImage144x81,
   featuredImageCaption,
+  image720x405,
+  image72x41,
+  imageAltText,
 }: ArticlePageProps): ReactElement {
   const currentDate = new Date();
   const dateObject = new Date(date);

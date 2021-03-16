@@ -46,6 +46,11 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     return $image;
   }
 
+  public function getImageAlt() {
+    $image = $this->get('field_featured_image')->getValue();
+    return $image;
+  }
+
   public function getImageCaption(): ?string {
     $featuredImageCaption = $this->get('field_featured_image_caption');
     return $featuredImageCaption ? $featuredImageCaption->getString() : NULL;
@@ -93,6 +98,31 @@ class Article extends Content implements GraphQLEntityFieldResolver {
       $height = '810';
       if ($image) {
         return GraphQLFieldResolver::resolveMediaImage($image[0], $width, $height);
+      }
+      return NULL;
+    }
+    if ($fieldName === "image720x405") {
+      $image = $this->getImage();
+      $width = '720';
+      $height = '405';
+      if ($image) {
+        return GraphQLFieldResolver::resolveMediaImage($image[0], $width, $height)['url'];
+      }
+      return NULL;
+    }
+    if ($fieldName === "image72x41") {
+      $image = $this->getImage();
+      $width = '72';
+      $height = '41';
+      if ($image) {
+        return GraphQLFieldResolver::resolveMediaImage($image[0], $width, $height)['url'];
+      }
+      return NULL;
+    }
+    if ($fieldName === "imageAltText"){
+      $image = $this->getImage();
+      if ($image) {
+        return GraphQLFieldResolver::resolveMediaImage($image[0])['altText'];
       }
       return NULL;
     }

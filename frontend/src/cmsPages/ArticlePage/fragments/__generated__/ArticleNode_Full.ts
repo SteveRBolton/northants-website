@@ -141,6 +141,9 @@ export interface ArticleNode_Full {
   summary: string;
   featuredImage1440x810: ArticleNode_Full_featuredImage1440x810 | null;
   featuredImage144x81: ArticleNode_Full_featuredImage144x81 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
   featuredImageCaption: string | null;
   parentTitle: string | null;
   parentUrl: string | null;
