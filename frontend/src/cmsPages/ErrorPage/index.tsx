@@ -9,10 +9,10 @@ type ErrorPageProps = {
 
 export default function ErrorPage({ pageTitle, errorCode }: ErrorPageProps): ReactElement {
   const theme = process.env.NEXT_PUBLIC_THEME;
-  let learnMoreUrl = '/news/west-northamptonshire-council-launches-public-beta-website';
+  let learnMoreUrl = '/your-council/about-website';
 
   if (theme === 'north') {
-    learnMoreUrl = '/news/north-northamptonshire-council-launches-public-beta-website';
+    learnMoreUrl = '/your-council/about-website';
   }
 
   return (
