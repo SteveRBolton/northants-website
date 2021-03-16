@@ -194,6 +194,9 @@ export interface HomepageNodeFull_featuredNews {
   title: string;
   url: string;
   featuredImage1440x810: HomepageNodeFull_featuredNews_featuredImage1440x810 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
   date: string;
 }
 

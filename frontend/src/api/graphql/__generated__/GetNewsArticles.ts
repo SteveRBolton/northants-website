@@ -14,7 +14,9 @@ export interface GetNewsArticles_news_result_list {
   link: string;
   excerpt: string;
   date: number;
-  thumbnail: string | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
 }
 
 export interface GetNewsArticles_news {

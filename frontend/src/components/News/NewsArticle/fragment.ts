@@ -7,7 +7,9 @@ const fragment = gql`
     link
     excerpt
     date
-    thumbnail
+    image720x405
+    image72x41
+    imageAltText
   }
 `;
 

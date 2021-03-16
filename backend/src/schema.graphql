@@ -41,7 +41,9 @@ type NewsArticle {
   link: String!
   excerpt: String!
   date: Int!
-  thumbnail: String
+  image720x405: String,
+  image72x41: String,
+  imageAltText: String,
 }
 
 type CouncilData {
@@ -258,6 +260,9 @@ type ArticlePageNode implements Node @entity(type: node, bundle: "news_article")
   metaKeywords: String
   body: FormattedFieldWithParagraphsEmbed!
   summary: String!
+  image720x405: String
+  image72x41: String
+  imageAltText: String
   featuredImage1440x810: Image
   featuredImage144x81: Image
   featuredImageCaption: String
