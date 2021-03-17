@@ -198,6 +198,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   title: string;
   url: string;
   featuredImage1440x810: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews_featuredImage1440x810 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
   date: string;
 }
 
@@ -706,6 +709,9 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
   summary: string;
   featuredImage1440x810: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_featuredImage1440x810 | null;
   featuredImage144x81: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_featuredImage144x81 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
   featuredImageCaption: string | null;
   parentTitle: string | null;
   parentUrl: string | null;

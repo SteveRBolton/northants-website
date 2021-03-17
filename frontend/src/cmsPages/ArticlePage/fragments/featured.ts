@@ -9,6 +9,9 @@ export default gql`
       url
       altText
     }
+    image720x405
+    image72x41
+    imageAltText
     date
   }
 `;

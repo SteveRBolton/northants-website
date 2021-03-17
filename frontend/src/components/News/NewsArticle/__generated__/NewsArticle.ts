@@ -14,5 +14,7 @@ export interface NewsArticle {
   link: string;
   excerpt: string;
   date: number;
-  thumbnail: string | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
 }

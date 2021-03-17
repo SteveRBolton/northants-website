@@ -61,7 +61,9 @@ export default function News(page: NewsListingProps): ReactElement {
                     url: result.link,
                     excerpt: result.excerpt,
                     date: result.date,
-                    thumbnail: result.thumbnail ? result.thumbnail : '',
+                    image720x405: result.image720x405 ? result.image720x405 : '',
+                    image72x41: result.image72x41 ? result.image72x41 : '',
+                    imageAltText: result.imageAltText ? result.imageAltText : '',
                   }))
                 : []
             }
