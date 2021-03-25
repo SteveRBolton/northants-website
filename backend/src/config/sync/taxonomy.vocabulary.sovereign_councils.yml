@@ -1,8 +1,0 @@
-uuid: f6ed5cd0-7744-4fda-bef4-eedafb793f54
-langcode: en
-status: true
-dependencies: {  }
-name: 'Sovereign councils'
-vid: sovereign_councils
-description: 'Sovereign councils are the councils Northamptonshire consisted of before unitary authority merging.'
-weight: 0

@@ -1,5 +1,0 @@
-name: 'Northants System module.'
-description: 'Contains core classes and hooks for northants. Place entity bundle classes and update hooks in here.'
-package: 'Northants'
-type: 'module'
-core_version_requirement: ^9

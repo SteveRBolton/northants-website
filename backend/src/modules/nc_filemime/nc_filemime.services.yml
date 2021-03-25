@@ -1,4 +1,0 @@
-services:
-  nc_filemime.filemime:
-    class: Drupal\nc_filemime\Service\FileMime
-    arguments: ["@config.factory"]

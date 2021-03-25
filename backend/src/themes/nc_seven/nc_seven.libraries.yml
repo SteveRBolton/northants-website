@@ -1,9 +1,0 @@
-fonts:
-  css:
-    theme:
-      '//fonts.googleapis.com/css?family=Archivo+Black|Open+Sans:400,600,700': { type: external, minified: true }
-nc-seven-css:
-  version: 1.x
-  css:
-    theme:
-      css/site-styles.css: {}
