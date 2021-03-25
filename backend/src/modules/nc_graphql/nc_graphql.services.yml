@@ -1,4 +1,0 @@
-services:
-  nc_graphql.root:
-    class: Drupal\nc_graphql\Root
-    arguments: ['@router', '@entity_type.manager', '@entity.repository']

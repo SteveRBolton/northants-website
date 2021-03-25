@@ -8,9 +8,6 @@ dependencies:
   nodejs:
     yarn: '^1.22.0'
 
-relationships:
-  backend: 'backend:http'
-
 # The hooks that will be triggered when the package is deployed.
 hooks:
   build: |

@@ -1,7 +1,0 @@
-{
-  "whitelist": [
-    "master",
-    "develop",
-    "UAT"
-  ]
-}

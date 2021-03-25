@@ -1,8 +1,0 @@
-name: GraphQL federation integration
-description: GraphQL federation support for Northants
-package: Northants
-type: module
-core_version_requirement: ^9
-
-dependencies:
-  - nc_solr
