@@ -28,7 +28,7 @@ default: install start build
 # Bring in the external project dependencies.
 #
 
-install: .env
+install:
 ifeq ("${USE_DOCKER}","1")
 	docker run --rm --interactive --tty  --volume $(PWD):/var/www/html:delegated wodby/drupal-php:7.4-4.18.2 /bin/bash -c "composer global require hirak/prestissimo; composer install"
 else
