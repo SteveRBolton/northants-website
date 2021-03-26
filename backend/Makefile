@@ -8,7 +8,7 @@
 # your project .env file.  The default is to use Docker for local development.
 #
 
-USE_DOCKER ?= 1
+USE_DOCKER ?= 0
 
 #
 # Ensure the local environment has the right binaries installed.
@@ -113,9 +113,6 @@ clean: stop
 #
 # Generate project symlinks and other disposable assets and wiring.
 #
-
-.env:
-	cp .env.example .env
 
 public-file-store:
 ifeq ("${USE_DOCKER}","1")
