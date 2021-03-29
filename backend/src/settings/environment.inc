@@ -24,7 +24,6 @@ $base_domains = [
   'dev.example.com' => 'dev',
   'test.example.com' => 'test',
   'www.example.com' => 'prod',
-  'cms.master-7rqtwti-buviaip2abrdc.uk-1.platformsh.site' => 'master',
 ];
 
 $platform = '';
@@ -77,11 +76,8 @@ elseif (isset($_ENV['PLATFORM_APPLICATION'])) {
 
   switch (strtolower($_ENV['PLATFORM_BRANCH'])) {
     case 'master':
+    case 'prod_backend':
       $env = D_ENVIRONMENT_PROD;
-      break;
-
-    case 'develop':
-      $env = D_ENVIRONMENT_TEST;
       break;
 
     default:
@@ -104,7 +100,7 @@ else {
 
 if (!empty($env) && !empty($platform)) {
   if (empty($instance) && php_sapi_name() != 'cli') {
-      \Drupal::messenger()->addWarning('SETTINGS_INSTANCE is not set and we were not invoked from the CLI.');
+    \Drupal::messenger()->addWarning('SETTINGS_INSTANCE is not set and we were not invoked from the CLI.');
   }
   define('SETTINGS_PLATFORM', $platform);
   define('SETTINGS_ENVIRONMENT', $env);
