@@ -47,7 +47,7 @@ export default function Homepage({
   return (
     <>
       <Head>
-        <title>{metaTitle}</title>
+        <title>[PROD] {metaTitle}</title>
         {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
       </Head>
