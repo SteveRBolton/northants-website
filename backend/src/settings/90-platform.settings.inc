@@ -181,7 +181,7 @@ $platformsh->registerFormatter('drupal-solr', function($solr) {
 
 // Update these values to the relationship name (from .platform.app.yaml)
 // and the machine name of the server from your Drupal configuration.
-$relationship_name = 'search';
+$relationship_name = 'solr';
 // This is machine name of search api server.
 $solr_server_name = 'solr_server_main';
 if ($platformsh->hasRelationship($relationship_name)) {
