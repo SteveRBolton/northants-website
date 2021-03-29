@@ -85,7 +85,7 @@ function nc_system_page_attachments_alter(array &$page) {
       }
 
       if (!empty($background_color)) {
-        $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; }";
+        $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; }/* PREPROD */";
         $page['#attached']['html_head'][] = [
           [
             '#tag' => 'style',
