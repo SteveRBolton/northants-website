@@ -367,6 +367,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   metaDescription: string | null;
   metaKeywords: string | null;
   id: string;
+  url: string;
   serviceLandingBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody | null;
   hasSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
@@ -566,6 +567,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;
+  url: string;
   warningTextDisclaimer: boolean;
   topLineText: string | null;
   serviceBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody;
@@ -702,6 +704,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
   __typename: "ArticlePageNode";
   title: string;
   id: string;
+  url: string;
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;

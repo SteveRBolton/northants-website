@@ -18,6 +18,7 @@ import { NewsArticleFeaturedBlockProps } from 'northants-design-system/build/lib
 
 import { PromoBannerProps } from 'northants-design-system/build/library/structure/PromoBanner/PromoBanner.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
+import AlertBannerServiceIE from '../../components/AlertBannerService';
 
 type HomepageProps = {
   body?: TextWithSlicesProps;
@@ -47,13 +48,22 @@ export default function Homepage({
   return (
     <>
       <Head>
-        <title>[PREPROD] {metaTitle}</title>
+        <title>{metaTitle}</title>
         {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
+
+        {/* Facebook tags */}
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription || ''} />
+
+        {/* Twitter tags */}
+        <meta property="twitter:title" content={metaTitle} />
+        <meta property="twitter:description" content={metaDescription || ''} />
       </Head>
       <HomeHero imagesArray={heroImages} promotedLinksArray={promotedLinks} />
       <MaxWidthContainer>
         <PageMain>
+          <AlertBannerServiceIE />
           {body && <TextWithSlices {...body} />}
           <ServicesLinksList serviceLinksArray={serviceLinks} />
           {promoBanner ? (

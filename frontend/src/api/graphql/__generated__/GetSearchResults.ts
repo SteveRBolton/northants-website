@@ -32,6 +32,7 @@ export interface GetSearchResults_search {
   pageSize: number;
   page: number;
   text: string;
+  didYouMean: string | null;
   result_list: GetSearchResults_search_result_list[] | null;
 }
 

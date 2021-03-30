@@ -13,8 +13,8 @@ import {
   PhaseBanner,
 } from 'northants-design-system';
 import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
-import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
+import AlertBannerServiceIE from '../../components/AlertBannerService';
 
 type FeaturedImageProps = {
   url: string;
@@ -23,6 +23,7 @@ type FeaturedImageProps = {
 
 type ArticlePageProps = {
   body: TextWithSlicesProps;
+  url: string;
   title: string;
   parent: ButtonProps | null;
   metaTitle: string;
@@ -55,6 +56,15 @@ export default function ArticlePage({
         <title>{metaTitle}</title>
         {metaDescription ? <meta name="description" content={metaDescription} /> : ''}
         {metaKeywords ? <meta name="keywords" content={metaKeywords} /> : ''}
+
+        {/* Facebook tags */}
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription || ''} />
+        {featuredImage1440x810 ? <meta property="og:image" content={featuredImage1440x810?.url} /> : ''}
+        {/* Twitter tags */}
+        <meta property="twitter:title" content={metaTitle} />
+        <meta property="twitter:description" content={metaDescription || ''} />
+        {featuredImage1440x810 ? <meta property="twitter:image" content={featuredImage1440x810?.url} /> : ''}
       </Head>
       <MaxWidthContainer>
         <PhaseBanner />
@@ -65,6 +75,7 @@ export default function ArticlePage({
           ]}
         />
         <PageMain>
+          <AlertBannerServiceIE />
           {oldPost ? null : <NewsArticleOldBanner />}
           <PageTitle>
             <Heading level={1} text={title} />

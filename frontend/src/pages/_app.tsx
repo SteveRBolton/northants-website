@@ -31,7 +31,8 @@ function NorthantsApp({
   globals,
   theme,
   gtm,
-}: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }): ReactElement {
+  baseUrl,
+}: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined; baseUrl: string | undefined }): ReactElement {
   let actualThemeObject;
   let faviconPath = '/favicon/';
   useEffect(() => {
@@ -43,6 +44,12 @@ function NorthantsApp({
       }
     }
   }, []);
+  let route = '';
+  let shareImageSet = false;
+  if (typeof window !== 'undefined') {
+    route = window.location.pathname;
+    shareImageSet = !!document.querySelector('meta[property="og:image"]');
+  }
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
@@ -58,6 +65,12 @@ function NorthantsApp({
 
   const hideSearchBar = router.pathname === '/search';
   const isHomepage = router.pathname === '/';
+
+  const formattedBaseUrl = baseUrl?.replace(/\/$/, '');
+  const pageUrl = formattedBaseUrl ? formattedBaseUrl + route : '';
+  const genericMetaImage = theme === 'north' ? formattedBaseUrl + '/north-share.png' : formattedBaseUrl + '/west-share.png';
+  const defaultShareImage = <meta property="og:image" content={genericMetaImage} />;
+
   return (
     <>
       <Head>
@@ -87,6 +100,16 @@ function NorthantsApp({
         />
         <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
         <meta name="theme-color" content="#ffffff" />
+        {/* Facebook tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        {/* Check whether the page has set the image, if not use the default */}
+        {shareImageSet ? '' : defaultShareImage}
+        {/* Twitter tags */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={pageUrl} />
+        {/* Check whether the page has set the image, if not use the default */}
+        {shareImageSet ? '' : defaultShareImage}
       </Head>
       <ThemeProvider theme={actualThemeObject}>
         <CookieBanner
@@ -122,7 +145,9 @@ function NorthantsApp({
 
 NorthantsApp.getInitialProps = async (
   appContext: AppContext
-): Promise<AppInitialProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined }> => {
+): Promise<
+  AppInitialProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined; baseUrl: string | undefined }
+> => {
   const client = initializeApollo();
 
   // Get globals
@@ -144,7 +169,13 @@ NorthantsApp.getInitialProps = async (
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps, globals, theme: process.env.NEXT_PUBLIC_THEME as Theme, gtm: process.env.NEXT_PUBLIC_GTM_CODE };
+  return {
+    ...appProps,
+    globals,
+    theme: process.env.NEXT_PUBLIC_THEME as Theme,
+    gtm: process.env.NEXT_PUBLIC_GTM_CODE,
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+  };
 };
 
 export default NorthantsApp;
