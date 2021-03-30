@@ -91,7 +91,7 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     }
 
     if($fieldName === "url") {
-      return $this->toUrl('canonical')->toString();
+      return $this->getUrl();
     }
 
     if ($fieldName === "breadcrumbs") {

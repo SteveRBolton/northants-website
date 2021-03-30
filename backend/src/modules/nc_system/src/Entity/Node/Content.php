@@ -8,22 +8,7 @@ use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 class Content extends Node implements GraphQLEntityFieldResolver {
 
   public function getCouncilName(): string {
-    $councilName = '';
-
-    if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
-      switch ($_ENV['NEXT_PUBLIC_THEME']) {
-        case 'west':
-          $councilName = 'West Northamptonshire Council';
-          break;
-
-        case 'north':
-          $councilName = 'North Northamptonshire Council';
-          break;
-
-        default:
-          break;
-      }
-    }
+    $councilName = \Drupal::service('nc_system.website_manager')->getCouncilName();
 
     return $councilName;
   }

@@ -67,9 +67,21 @@ class GraphQLFieldResolver {
   public static function resolveFile($item) {
     $mid = $item['target_id'];
     $media = Media::load($mid);
-    $fid = $media->get('field_media_document')->target_id;
+    switch($media->bundle()) {
+      case 'image':
+        $fid = $media->get('field_media_image')->target_id;
+        break;
+      case 'document':
+        $fid = $media->get('field_media_document')->target_id;
+        break;
+      //case 'audio':
+      //break;
+      //case 'video':
+      //break;
+      default:
+        $fid = $media->get('field_media_document')->target_id;
+    }
     $file = File::load($fid);
-
     $moduleHandler = \Drupal::service('module_handler');
     if ($moduleHandler->moduleExists('nc_filemime')) {
       $fileMime = \Drupal::service('nc_filemime.filemime')->getNiceFileMime($file->getMimeType());

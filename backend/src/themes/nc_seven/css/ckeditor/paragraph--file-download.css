@@ -9,6 +9,15 @@
   margin-bottom: 15px;
   border-top: 1px solid var(--ckeditor-theme--grey);
   padding-top: 30px;
+  display: flex;
+}
+.paragraph--type--file-download .field__item::before {
+  display: inline-block;
+  content: ' ';
+  background-image: url('../../icons/file-download-single.svg');
+  height: 40px;
+  width: 30px;
+  margin-right: 10px;
 }
 
 .paragraph--type--file-download .field__item:first-child {

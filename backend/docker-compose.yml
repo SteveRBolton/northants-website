@@ -40,6 +40,9 @@ services:
       DRUPAL_HASH_SALT: ${DRUPAL_HASH_SALT}
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       NEXT_PUBLIC_THEME: west
+      CLOUDFLARE_EMAIL: test@test.com
+      CLOUDFLARE_API_KEY: test
+      CLOUDFLARE_ZONE_ID: test
       DB_HOST: mariadb
       DB_USER: drupal
       DB_PASSWORD: drupal
