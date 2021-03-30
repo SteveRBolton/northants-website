@@ -66,7 +66,7 @@ class PurgeService {
    */
   private function validateConfig() {
     if (!$this->enabled) {
-      return;
+      $this->errors[] = 'Cloudflare purging is not enabled';
     }
 
     if (empty($this->email)) {
