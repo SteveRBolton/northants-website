@@ -1,0 +1,14 @@
+uuid: f6002140-dc8f-45b6-aab3-584b7c78aadb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.comms
+  module:
+    - user
+id: user_add_role_action.comms
+label: 'Add the Comms role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: comms

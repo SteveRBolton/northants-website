@@ -1,0 +1,3 @@
+services:
+  nc_system.website_manager:
+    class: Drupal\nc_system\Service\WebsiteManagerService

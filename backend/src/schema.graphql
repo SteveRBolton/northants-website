@@ -4,7 +4,7 @@ type Query {
   route(path: String!): DrupalRoute!
   globals: DrupalGlobals!
   search(text: String!, page: Int!): SearchResults!
-  news(text: String!, page: Int!): NewsArticles!
+  news(text: String!, page: Int!, articleType: String, services: String, sortBy: String!): NewsArticles!
 }
 
 type SearchResults {
@@ -13,6 +13,7 @@ type SearchResults {
   pageSize: Int!
   page: Int!
   text: String!
+  didYouMean: String
   result_list: [SearchResult!]
 }
 
@@ -32,6 +33,11 @@ type NewsArticles {
   pageSize: Int!
   page: Int!
   text: String!
+  service: String!
+  articleType: [String!]!
+  allServices: [NewsParams!]!
+  allArticleTypes: [NewsParams!]!
+  sortBy: String!
   result_list: [NewsArticle!]
 }
 
@@ -50,6 +56,11 @@ type CouncilData {
   code: String!
   name: String!
   homepage: String!
+}
+
+type NewsParams {
+  id: String!
+  title: String!
 }
 
 type HeroImage {

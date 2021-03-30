@@ -1,0 +1,14 @@
+uuid: 56e2dff9-9f2b-4eb5-a9d4-0b8330452c3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.comms
+  module:
+    - user
+id: user_remove_role_action.comms
+label: 'Remove the Comms role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: comms

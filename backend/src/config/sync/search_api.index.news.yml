@@ -1,22 +1,21 @@
-uuid: a1995161-5be0-48e4-98ea-a148963f4802
+uuid: c43c1cd2-d578-4bf8-aad6-d106cce91626
 langcode: en
 status: true
 dependencies:
   module:
     - search_api_solr
     - node
-    - paragraphs
+    - scheduler
     - search_api
   config:
     - field.storage.node.field_wysiwyg_slices
+    - field.storage.node.field_featured_image
     - field.storage.node.field_keywords
     - field.storage.node.field_meta_description
     - field.storage.node.field_meta_title
-    - field.storage.node.field_parent
-    - field.storage.node.field_signposting
-    - field.storage.paragraph.field_signposts
+    - field.storage.node.field_press_release
+    - field.storage.node.field_service_landing_page
     - field.storage.node.field_summary
-    - field.storage.node.field_signposting_title
     - search_api.server.solr_server_main
 third_party_settings:
   search_api_solr:
@@ -59,9 +58,9 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-id: main_search_index
-name: Services
-description: 'All service content for indexing into solr.'
+id: news
+name: News
+description: 'All news content for indexing into solr.'
 read_only: false
 field_settings:
   body:
@@ -72,7 +71,23 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_wysiwyg_slices
-  meta_keywords:
+  created:
+    label: 'Authored on'
+    datasource_id: 'entity:node'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - node
+  featured_image:
+    label: 'Featured image'
+    datasource_id: 'entity:node'
+    property_path: field_featured_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_featured_image
+  keywords:
     label: Keywords
     datasource_id: 'entity:node'
     property_path: field_keywords
@@ -81,7 +96,7 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_keywords
-  meta_summary:
+  meta_description:
     label: 'Meta description'
     datasource_id: 'entity:node'
     property_path: field_meta_description
@@ -98,15 +113,31 @@ field_settings:
       config:
         - field.storage.node.field_meta_title
   parent:
-    label: 'Parent » Content » Title'
+    label: 'Service landing page'
     datasource_id: 'entity:node'
-    property_path: 'field_parent:entity:title'
-    type: string
+    property_path: field_service_landing_page
+    type: integer
     dependencies:
       config:
-        - field.storage.node.field_parent
+        - field.storage.node.field_service_landing_page
+  parent_title:
+    label: 'Service landing page » Content » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_service_landing_page:entity:title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_service_landing_page
       module:
         - node
+  press_release:
+    label: 'Press release'
+    datasource_id: 'entity:node'
+    property_path: field_press_release
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_press_release
   processed:
     label: 'Body » Processed text'
     datasource_id: 'entity:node'
@@ -115,31 +146,16 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_wysiwyg_slices
-  signposts:
-    label: 'Signposting » Paragraph » Signposts'
+  publish_on:
+    label: 'Publish on'
     datasource_id: 'entity:node'
-    property_path: 'field_signposting:entity:field_signposts'
-    type: integer
+    property_path: publish_on
+    type: date
     dependencies:
-      config:
-        - field.storage.node.field_signposting
-        - field.storage.paragraph.field_signposts
       module:
-        - paragraphs
-  spellchecker:
-    label: Spellchecker
-    property_path: aggregated_field
-    type: solr_text_spellcheck
-    configuration:
-      type: union
-      fields:
-        - 'entity:node/field_keywords'
-        - 'entity:node/field_signposting_title'
-        - 'entity:node/field_summary'
-        - 'entity:node/field_wysiwyg_slices'
-        - 'entity:node/title'
+        - scheduler
   status:
-    label: status
+    label: Published
     datasource_id: 'entity:node'
     property_path: status
     type: boolean
@@ -164,22 +180,6 @@ field_settings:
     dependencies:
       module:
         - node
-  top_line_text:
-    label: 'Top line text'
-    datasource_id: 'entity:node'
-    property_path: field_signposting_title
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_signposting_title
-  uid:
-    label: uid
-    datasource_id: 'entity:node'
-    property_path: uid
-    type: integer
-    dependencies:
-      module:
-        - node
   url:
     label: URI
     property_path: search_api_url
@@ -191,8 +191,7 @@ datasource_settings:
     bundles:
       default: false
       selected:
-        - service_landing_page
-        - service_page
+        - news_article
     languages:
       default: true
       selected: {  }
@@ -211,12 +210,10 @@ processor_settings:
     alt: true
     tags:
       b: 2
-      em: 1
       h1: 5
       h2: 3
       h3: 2
       strong: 2
-      u: 1
     weights:
       preprocess_index: -15
       preprocess_query: -15

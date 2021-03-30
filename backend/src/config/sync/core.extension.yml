@@ -18,6 +18,7 @@ module:
   ctools: 0
   datetime: 0
   dblog: 0
+  diff: 0
   dynamic_page_cache: 0
   editor: 0
   embed: 0
@@ -41,6 +42,7 @@ module:
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
+  nc_cloudflare_purge: 0
   nc_filemime: 0
   nc_graphql: 0
   nc_nodes: 0
@@ -75,6 +77,7 @@ module:
   views_ui: 0
   workflows: 0
   pathauto: 1
+  xmlsitemap: 1
   views: 10
   paragraphs: 11
   standard: 1000

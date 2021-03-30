@@ -100,7 +100,7 @@ class Root {
         throw new \Exception('Cannot return a route for path ' . $args['path']);
       },
       'news' => function ($root, $args, $context) {
-        return Root::getNewsArticles($args['text'], $args['page']);
+        return Root::getNewsArticles($args['text'], $args['page'], $args['articleType'], $args['services'], $args['sortBy']);
       },
       'search' => function ($root, $args, $context, $info) {
         return Root::searchSolr($args['text'], $args['page']);
@@ -200,10 +200,12 @@ class Root {
    */
   public static function getSitewideAlerts(): ?array {
     $config = config_pages_config('sitewide_alerts');
-    $active = $config ? $config->get('field_active')->getValue()[0]['value'] : NULL;
+    $active = $config ? $config->get('field_active')
+      ->getValue()[0]['value'] : NULL;
     if ($active) {
       $title = $config->get('field_title')->getValue()[0]['value'];
-      $body = GraphQLFieldResolver::resolveTextItem($config->get('field_body')->first());
+      $body = GraphQLFieldResolver::resolveTextItem($config->get('field_body')
+        ->first());
       $alertType = $config->get('field_alert_type')->getValue()[0]['value'];
       $id = hash('MD5', $title . $body['value']);
 
@@ -216,11 +218,12 @@ class Root {
         'id' => $id,
       ];
     }
-    return $alert ? $alert : null;
+    return $alert ? $alert : NULL;
   }
 
   /**
    * Get the global Drupal data
+   *
    * @return array
    */
   public static function getGlobals(): array {
@@ -237,22 +240,7 @@ class Root {
    * @return string
    */
   public static function getCouncilName(): string {
-    $councilName = '';
-
-    if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
-      switch ($_ENV['NEXT_PUBLIC_THEME']) {
-        case 'west':
-          $councilName = 'West Northamptonshire Council';
-          break;
-
-        case 'north':
-          $councilName = 'North Northamptonshire Council';
-          break;
-
-        default:
-          break;
-      }
-    }
+    $councilName = \Drupal::service('nc_system.website_manager')->getCouncilName();
 
     return $councilName;
   }
@@ -270,10 +258,9 @@ class Root {
     /* @var $solr \Drupal\nc_solr\SolrServiceProvider */
     $solr = \Drupal::service('nc-solr.solr.search');
     $resultSet = $solr->search($text, $page, $pageSize);
-
     $result_list = [];
-    /* @var $result \Drupal\search_api\Item\Item */
 
+    /* @var $result \Drupal\search_api\Item\Item */
     foreach ($resultSet->getIterator() as $result) {
       $signpostsArr = [];
       $signposts = $result->getField('signposts')->getValues();
@@ -300,12 +287,16 @@ class Root {
       ];
     }
 
+    $suggestedSearch = $resultSet->getExtraData('search_api_spellcheck')['collation'];
+    $didYouMean = $solr->search($suggestedSearch, 0, 1)->getResultCount() > 0 ? $suggestedSearch : NULL;
+
     return [
       "council_name" => $councilName,
       "total" => $resultSet->getResultCount(),
       "pageSize" => $pageSize,
       "page" => $page,
       "text" => $text,
+      "didYouMean" => $didYouMean,
       "result_list" => $result_list,
     ];
   }
@@ -313,44 +304,91 @@ class Root {
   /**
    * Function to return a list of the 30 most recent news articles.
    * TODO: Integrate with solr
+   *
+   * @param $text
+   * @param int $page
+   * @param $articleType
+   * @param $services
+   *
+   * @return array
+   * @throws \Drupal\search_api\SearchApiException
    */
-  public static function getNewsArticles($text, $page = 0) {
-    $councilName = self::getCouncilName();
+  public static function getNewsArticles($text, $page, $articleType, $services, $sortBy) {
+    // Get an array of all services for the Services dropdown
+    $allServices[] = [
+      'title' => 'All services',
+      'id' => '0',
+    ];
+    // Get all article types
+    $allArticleTypes = [
+      [
+        'title' => 'Article',
+        'id' => 'article',
+      ],
+      [
+        'title' => 'Press release',
+        'id' => 'press-release',
+      ],
+    ];
     $nids = \Drupal::entityQuery('node')
-      ->condition('type', 'news_article')
-      ->condition('status', '1')
-      ->sort('created' , 'DESC')
+      ->condition('type', 'service_landing_page')
+      ->condition('status', 1)
       ->execute();
-    $newsArticles = Node::loadMultiple($nids);
+    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+    foreach ($nodes as $node) {
+      $allServices[] = [
+        'title' => $node->get('title')->value,
+        'id' => $node->get('nid')->value,
+      ];
+    }
+    // Search
+    $pageSize = 5;
+    $councilName = self::getCouncilName();
+    /* @var $solr \Drupal\nc_solr\SolrServiceProvider */
+    $solr = \Drupal::service('nc-solr.solr.search');
+    $resultSet = $solr->news($text, $page, $pageSize, $articleType, $services, $sortBy);
 
     $result_list = [];
 
-    foreach ($newsArticles as $result) {
-      $image = $result->get('field_featured_image')->getValue();
-      $image720x405 = $image ? GraphQLFieldResolver::resolveMediaImage($image[0], 720, 405)['url'] : '';
-      $image72x41 = $image ? GraphQLFieldResolver::resolveMediaImage($image[0], 72, 41)['url'] : '';
-      $imageAltText = $image ? GraphQLFieldResolver::resolveMediaImage($image[0])['alt'] : '';
+    foreach ($resultSet->getIterator() as $result) {
+      //Get image and format for resolveMediaImage function
+      $image = $result->getField('featured_image')
+        ->getValues() ? [
+        'target_id' => $result->getField('featured_image')
+          ->getValues()[0],
+      ] : NULL;
+      $image720x405 = $image ? GraphQLFieldResolver::resolveMediaImage($image, 720, 405)['url'] : '';
+      $image72x41 = $image ? GraphQLFieldResolver::resolveMediaImage($image, 72, 41)['url'] : '';
+      $imageAltText = $image ? GraphQLFieldResolver::resolveMediaImage($image)['altText'] : '';
 
       $result_list[] = [
-        'id' => $result->id(),
-        'title' => $result->getTitle(),
-        'link' => \Drupal::service('path_alias.manager')
-          ->getAliasByPath('/node/' . $result->id()),
-        'excerpt' => $result->get('field_summary')->getValue()[0]['value'],
-        'date' => $result->get('publish_on')->value ? $result->get('publish_on')->value : $result->get('created')->value,
-        'image720x405'=> $image720x405,
+        'id' => $result->getId(),
+        'title' => $result->getField('title')->getValues()[0],
+        'link' => $result->getField('url')->getValues()[0],
+        'excerpt' => $result->getField('summary')->getValues()[0],
+        'date' => $result->getField('publish_on')
+          ->getValues() ? $result->getField('publish_on')
+          ->getValues()[0] : $result->getField('created')->getValues()[0],
+        'image720x405' => $image720x405,
         'image72x41' => $image72x41,
         'imageAltText' => $imageAltText,
       ];
     }
+    $articleType = explode(',', $articleType);
     return [
       "council_name" => $councilName,
-      "total" => 30,
-      "pageSize" => 30,
-      "page" => 0,
+      "total" => $resultSet->getResultCount(),
+      "pageSize" => $pageSize,
+      "page" => $page,
       "text" => $text,
+      "service" => $services,
+      "articleType" => $articleType,
+      "sortBy" => $sortBy,
       "result_list" => $result_list,
+      "allServices" => $allServices,
+      "allArticleTypes" => $allArticleTypes,
     ];
   }
+
 }
 
