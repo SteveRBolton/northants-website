@@ -246,7 +246,8 @@ class Root {
   }
 
   /**
-   * Function to return a paginated list of search results.
+   * Function to return a paginated list of search results for the Services
+   * and Service Landing Page content types.
    * Actual search
    *
    * @param $text
@@ -302,54 +303,36 @@ class Root {
   }
 
   /**
-   * Function to return a list of the 30 most recent news articles.
-   * TODO: Integrate with solr
+   * Function to return a paginated list of search results for the News
+   * content type.
    *
    * @param $text
    * @param int $page
    * @param $articleType
    * @param $services
    *
+   * @param $sortBy
+   *
    * @return array
    * @throws \Drupal\search_api\SearchApiException
    */
   public static function getNewsArticles($text, $page, $articleType, $services, $sortBy) {
-    // Get an array of all services for the Services dropdown
-    $allServices[] = [
-      'title' => 'All services',
-      'id' => '0',
-    ];
-    // Get all article types
-    $allArticleTypes = [
-      [
-        'title' => 'Article',
-        'id' => 'article',
-      ],
-      [
-        'title' => 'Press release',
-        'id' => 'press-release',
-      ],
-    ];
-    $nids = \Drupal::entityQuery('node')
-      ->condition('type', 'service_landing_page')
-      ->condition('status', 1)
-      ->execute();
-    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
-    foreach ($nodes as $node) {
-      $allServices[] = [
-        'title' => $node->get('title')->value,
-        'id' => $node->get('nid')->value,
-      ];
-    }
-    // Search
     $pageSize = 5;
     $councilName = self::getCouncilName();
     /* @var $solr \Drupal\nc_solr\SolrServiceProvider */
     $solr = \Drupal::service('nc-solr.solr.search');
-    $resultSet = $solr->news($text, $page, $pageSize, $articleType, $services, $sortBy);
-
+    // Get service ID from path alias for Solr search
+    $serviceId = 0;
+    if ($services && ($services != 'all')) {
+      $path = \Drupal::service('path_alias.manager')->getPathByAlias('/' . $services);
+      if(preg_match('/node\/(\d+)/', $path, $matches)) {
+        $node = \Drupal\node\Entity\Node::load($matches[1]);
+        $serviceId = $node->id();
+      }
+    }
+    // Get results
+    $resultSet = $solr->news($text, $page, $pageSize, $articleType, $serviceId, $sortBy);
     $result_list = [];
-
     foreach ($resultSet->getIterator() as $result) {
       //Get image and format for resolveMediaImage function
       $image = $result->getField('featured_image')
@@ -360,7 +343,6 @@ class Root {
       $image720x405 = $image ? GraphQLFieldResolver::resolveMediaImage($image, 720, 405)['url'] : '';
       $image72x41 = $image ? GraphQLFieldResolver::resolveMediaImage($image, 72, 41)['url'] : '';
       $imageAltText = $image ? GraphQLFieldResolver::resolveMediaImage($image)['altText'] : '';
-
       $result_list[] = [
         'id' => $result->getId(),
         'title' => $result->getField('title')->getValues()[0],
@@ -385,10 +367,64 @@ class Root {
       "articleType" => $articleType,
       "sortBy" => $sortBy,
       "result_list" => $result_list,
-      "allServices" => $allServices,
-      "allArticleTypes" => $allArticleTypes,
+      "allServices" => self::getAllServices(),
+      "allArticleTypes" => self::getAllArticleTypes(),
     ];
   }
 
+  /**
+   * Returns an array of all services that have search results,
+   * based on the site's published Service Landing Pages
+   *
+   * @return array
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
+  public static function getAllServices() {
+    $solr = \Drupal::service('nc-solr.solr.search');
+    // Get an array of all services for the Services dropdown
+    $allServices = [];
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'service_landing_page')
+      ->condition('status', 1)
+      ->execute();
+    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+    foreach ($nodes as $node) {
+      $slug = ltrim($node->toUrl()->toString() ,'/');
+      $title = $node->get('title')->value;
+      $serviceId = $node->get('nid')->value;
+      // Check that service search would return results, otherwise ignore
+      $results = $solr->news('', 0, 5, '', $serviceId, 'DESC');
+      if($results->getResultCount() > 0) {
+        $allServices[] = [
+          'title' => $title,
+          'id' => $slug,
+        ];
+      }
+    }
+    $orderedServices = array_column($allServices, 'title');
+    array_multisort($orderedServices, SORT_ASC, $allServices);
+    array_unshift($allServices, [
+      'title' => 'All services',
+      'id' => 'all',
+    ]);
+    return $allServices;
+  }
+  /**
+   * Returns an array of all article types.
+   *
+   * @return array
+   */
+  public static function getAllArticleTypes() {
+    return [
+      [
+        'title' => 'Article',
+        'id' => 'article',
+      ],
+      [
+        'title' => 'Press release',
+        'id' => 'press-release',
+      ],
+    ];
+  }
 }
 
