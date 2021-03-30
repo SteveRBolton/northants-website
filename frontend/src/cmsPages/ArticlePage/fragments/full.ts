@@ -7,6 +7,7 @@ const articleNode_Full = gql`
     __typename
     title
     id
+    url
     metaTitle
     metaDescription
     metaKeywords

@@ -64,6 +64,7 @@ export const getSearchResults = gql`
       pageSize
       page
       text
+      didYouMean
       result_list {
         ...SearchResult
       }
@@ -73,13 +74,24 @@ export const getSearchResults = gql`
 
 export const getNewsArticles = gql`
   ${newsArticle}
-  query GetNewsArticles($text: String!, $page: Int!) {
-    news(text: $text, page: $page) {
+  query GetNewsArticles($text: String!, $page: Int!, $articleType: String, $services: String, $sortBy: String!) {
+    news(text: $text, page: $page, articleType: $articleType, services: $services, sortBy: $sortBy) {
       council_name
       total
       pageSize
       page
       text
+      service
+      articleType
+      sortBy
+      allServices {
+        id
+        title
+      }
+      allArticleTypes {
+        id
+        title
+      }
       result_list {
         ...NewsArticle
       }

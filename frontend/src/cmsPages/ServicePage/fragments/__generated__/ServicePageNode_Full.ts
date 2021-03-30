@@ -201,6 +201,7 @@ export interface ServicePageNode_Full {
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;
+  url: string;
   warningTextDisclaimer: boolean;
   topLineText: string | null;
   serviceBody: ServicePageNode_Full_serviceBody;

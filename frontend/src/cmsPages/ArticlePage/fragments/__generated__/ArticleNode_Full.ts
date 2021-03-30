@@ -134,6 +134,7 @@ export interface ArticleNode_Full {
   __typename: "ArticlePageNode";
   title: string;
   id: string;
+  url: string;
   metaTitle: string;
   metaDescription: string | null;
   metaKeywords: string | null;

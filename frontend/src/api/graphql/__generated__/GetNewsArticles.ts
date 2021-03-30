@@ -7,6 +7,18 @@
 // GraphQL query operation: GetNewsArticles
 // ====================================================
 
+export interface GetNewsArticles_news_allServices {
+  __typename: "NewsParams";
+  id: string;
+  title: string;
+}
+
+export interface GetNewsArticles_news_allArticleTypes {
+  __typename: "NewsParams";
+  id: string;
+  title: string;
+}
+
 export interface GetNewsArticles_news_result_list {
   __typename: "NewsArticle";
   id: string;
@@ -26,6 +38,11 @@ export interface GetNewsArticles_news {
   pageSize: number;
   page: number;
   text: string;
+  service: string;
+  articleType: string[];
+  sortBy: string;
+  allServices: GetNewsArticles_news_allServices[];
+  allArticleTypes: GetNewsArticles_news_allArticleTypes[];
   result_list: GetNewsArticles_news_result_list[] | null;
 }
 
@@ -36,4 +53,7 @@ export interface GetNewsArticles {
 export interface GetNewsArticlesVariables {
   text: string;
   page: number;
+  articleType?: string | null;
+  services?: string | null;
+  sortBy: string;
 }

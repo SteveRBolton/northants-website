@@ -1,5 +1,6 @@
 import { NextPageContext } from 'next';
 import React, { ReactElement } from 'react';
+import ErrorPage from '../cmsPages/ErrorPage';
 
 type ErrorProps = {
   statusCode: number | undefined;
@@ -7,10 +8,10 @@ type ErrorProps = {
 
 export default function Error({ statusCode }: ErrorProps): ReactElement {
   return (
-    <p>
-      TODO: Implement custom Error page:{' '}
-      {statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
-    </p>
+    <ErrorPage
+      pageTitle={statusCode ? `An error occurred on the server` : 'An error occurred on the client'}
+      errorCode={statusCode ? statusCode.toString() : '500'}
+    />
   );
 }
 

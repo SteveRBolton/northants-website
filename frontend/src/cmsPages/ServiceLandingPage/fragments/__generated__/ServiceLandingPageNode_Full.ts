@@ -155,6 +155,7 @@ export interface ServiceLandingPageNode_Full {
   metaDescription: string | null;
   metaKeywords: string | null;
   id: string;
+  url: string;
   serviceLandingBody: ServiceLandingPageNode_Full_serviceLandingBody | null;
   hasSections: ServiceLandingPageNode_Full_hasSections[];
   breadcrumbs: ServiceLandingPageNode_Full_breadcrumbs[];

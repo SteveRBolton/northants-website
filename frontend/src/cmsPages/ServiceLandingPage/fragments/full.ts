@@ -18,6 +18,7 @@ export default gql`
     metaDescription
     metaKeywords
     id
+    url
     serviceLandingBody: body {
       value
       embeds {

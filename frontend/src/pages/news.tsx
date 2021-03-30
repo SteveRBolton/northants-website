@@ -1,11 +1,19 @@
 import {
   MaxWidthContainer,
   PageMain,
-  NewsArticleList,
+  Searchbar,
   Heading,
+  Pagination,
   Breadcrumbs,
   PageTitle,
+  PageWithSidebarContainer,
+  PageSidebar,
+  NewsArticleFilterAccordion,
+  CheckboxListFilter,
+  DropDownFilter,
+  NewsArticleList,
   PhaseBanner,
+  NewsArticleListHeader,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -16,14 +24,20 @@ import { getNewsArticles } from '../api/graphql/queries';
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const client = initializeApollo();
-  // const { searchTerm } = query;
-  // const { page } = query;
+  const { searchTerm } = query;
+  const { page } = query;
+  const { articleType } = query;
+  const { services } = query;
+  const { sortBy } = query;
   return client
     .query<GetNewsArticles, GetNewsArticlesVariables>({
       query: getNewsArticles,
       variables: {
-        text: '',
-        page: 0,
+        text: searchTerm ? (searchTerm as string) : ' ',
+        articleType: articleType ? (articleType as string) : ' ',
+        services: services ? (services as string) : '0',
+        page: page ? parseInt(page as string, 10) - 1 : 0,
+        sortBy: sortBy ? (sortBy as string) : 'desc',
       },
     })
     .then((queryRes) => {
@@ -47,28 +61,91 @@ export default function News(page: NewsListingProps): ReactElement {
       <MaxWidthContainer>
         <PhaseBanner />
         <Breadcrumbs breadcrumbsArray={[{ title: 'Home', url: '/' }]} />
-        <PageMain>
-          <PageTitle>
-            <Heading text="News" level={1} />
-          </PageTitle>
-          <NewsArticleList
-            totalResults={news.total}
-            results={
-              news.result_list
-                ? news.result_list.map((result) => ({
-                    id: result.id,
-                    title: result.title,
-                    url: result.link,
-                    excerpt: result.excerpt,
-                    date: result.date,
-                    image720x405: result.image720x405 ? result.image720x405 : '',
-                    image72x41: result.image72x41 ? result.image72x41 : '',
-                    imageAltText: result.imageAltText ? result.imageAltText : '',
-                  }))
-                : []
-            }
-          />
-        </PageMain>
+        <PageTitle>
+          <Heading text="News" level={1} />
+        </PageTitle>
+        <PageWithSidebarContainer sidebarLeft>
+          <PageSidebar>
+            <NewsArticleFilterAccordion
+              sections={[
+                {
+                  title: 'Search articles',
+                  content: (
+                    <>
+                      <Searchbar
+                        isLight
+                        submitInfo={[{ postTo: '/news', params: { type: 'search' } }]}
+                        searchTerm={news.text}
+                      />
+                    </>
+                  ),
+                  isExpanded: true,
+                },
+                {
+                  title: 'Services',
+                  content: (
+                    <>
+                      <DropDownFilter
+                        label=""
+                        selected={news.service}
+                        options={news.allServices.map((service) => ({
+                          title: service ? service.title : '',
+                          value: service ? service.id : '',
+                        }))}
+                      />
+                    </>
+                  ),
+                  isExpanded: true,
+                },
+                {
+                  title: 'Type of article',
+                  content: (
+                    <>
+                      <CheckboxListFilter
+                        options={news.allArticleTypes.map((type) => ({
+                          title: type ? type.title : '',
+                          value: type ? type.id : '',
+                        }))}
+                        checked={news.articleType}
+                        label=""
+                        hint=""
+                      />
+                    </>
+                  ),
+                  isExpanded: true,
+                },
+              ]}
+            />
+          </PageSidebar>
+          <PageMain>
+            <NewsArticleListHeader
+              totalResults={news.total}
+              sortBy={news.sortBy}
+              sortByOptions={[
+                { title: 'Most recent first', value: 'desc' },
+                { title: 'Oldest first', value: 'asc' },
+              ]}
+            />
+            <NewsArticleList
+              totalResults={news.total}
+              results={
+                news.result_list
+                  ? news.result_list.map((result) => ({
+                      id: result.id,
+                      title: result.title,
+                      url: result.link,
+                      excerpt: result.excerpt,
+                      date: result.date,
+                      image720x405: result.image720x405 ? result.image720x405 : '',
+                      image72x41: result.image72x41 ? result.image72x41 : '',
+                      imageAltText: result.imageAltText ? result.imageAltText : '',
+                    }))
+                  : []
+              }
+            />
+            <Pagination currentPage={news.page + 1} totalResults={news.total} resultsPerPage={5} postTo="/news" />
+          </PageMain>
+        </PageWithSidebarContainer>
       </MaxWidthContainer>
     </>
   );

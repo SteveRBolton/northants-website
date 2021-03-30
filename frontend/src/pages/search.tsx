@@ -80,6 +80,13 @@ export default function Search(page: SearchPageProps): ReactElement {
                 : []
             }
           />
+          {search.total < 1 && search.didYouMean ? (
+            <p>
+              Did you mean <a href={`/search?type=search&searchTerm=${search.didYouMean}`}>{search.didYouMean}</a>?
+            </p>
+          ) : (
+            ''
+          )}
           <Pagination currentPage={search.page + 1} totalResults={search.total} />
         </PageMain>
       </MaxWidthContainer>

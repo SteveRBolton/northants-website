@@ -17,6 +17,7 @@ export default gql`
     metaTitle
     metaDescription
     metaKeywords
+    url
     warningTextDisclaimer
     topLineText
     serviceBody: body {

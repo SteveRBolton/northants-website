@@ -108,6 +108,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         inSections,
         topLineText,
         warningTextDisclaimer,
+        url,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
       return (
@@ -117,6 +118,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaKeywords={metaKeywords || undefined}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           title={title}
+          url={url}
           body={{ html: serviceBody.value, embeds: serviceBody.embeds }}
           signposting={signposting ? transformSignposting(signposting) : undefined}
           inThisSection={
@@ -131,7 +133,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       );
     }
     if (isGraphQLType(node, 'ServiceLandingPageNode')) {
-      const { metaTitle, metaDescription, metaKeywords, title, serviceLandingBody, breadcrumbs, hasSections } = node;
+      const {
+        metaTitle,
+        metaDescription,
+        metaKeywords,
+        title,
+        serviceLandingBody,
+        breadcrumbs,
+        hasSections,
+        url,
+      } = node;
 
       return (
         <ServiceLandingPage
@@ -139,6 +150,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaDescription={metaDescription || undefined}
           metaKeywords={metaKeywords || undefined}
           title={title}
+          url={url}
           body={serviceLandingBody ? { html: serviceLandingBody.value, embeds: serviceLandingBody.embeds } : undefined}
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
@@ -150,6 +162,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
       const {
         body,
         metaTitle,
+        url,
         metaDescription,
         metaKeywords,
         title,
@@ -166,6 +179,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           body={{ html: body.value, embeds: body.embeds }}
           parent={parent}
           metaTitle={metaTitle}
+          url={url}
           title={title}
           date={date}
           metaDescription={metaDescription || undefined}
