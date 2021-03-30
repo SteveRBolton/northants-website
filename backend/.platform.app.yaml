@@ -80,6 +80,7 @@ hooks:
   deploy: |
     set -e
     php ./drush/platformsh_generate_drush_yml.php
+    drush nc-cloudflare-purge-all
 
 # The configuration of app when it is exposed to the web.
 web:
