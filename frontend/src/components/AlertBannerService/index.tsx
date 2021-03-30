@@ -3,13 +3,13 @@ import { AlertBannerService } from 'northants-design-system';
 
 const AlertBannerServiceIE = (): ReactElement | null => {
   let usingInternetExplorer = null;
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     if (navigator) {
       const { userAgent } = navigator;
       const regEx = new RegExp('(?:\\b(MS)?IE\\s+|\\bTrident\\/7\\.0;.*\\s+rv:)(\\d+)');
       usingInternetExplorer = regEx.exec(userAgent);
     }
-  }, []);
+  }
   if (usingInternetExplorer != null) {
     return (
       <>

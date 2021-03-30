@@ -68,7 +68,8 @@ function NorthantsApp({
 
   const formattedBaseUrl = baseUrl?.replace(/\/$/, '');
   const pageUrl = formattedBaseUrl ? formattedBaseUrl + route : '';
-  const genericMetaImage = theme === 'north' ? formattedBaseUrl + '/north-share.png' : formattedBaseUrl + '/west-share.png';
+  const genericMetaImage =
+    theme === 'north' ? `${formattedBaseUrl}/north-share.png` : `${formattedBaseUrl}/west-share.png`;
   const defaultShareImage = <meta property="og:image" content={genericMetaImage} />;
 
   return (
