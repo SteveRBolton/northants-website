@@ -1,6 +1,8 @@
 <?php
 
+use Drupal\config_pages\Entity\ConfigPages;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\nc_system\Entity\Paragraph\BlockQuote;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
 use Drupal\nc_system\Entity\Node\Homepage;
@@ -16,6 +18,8 @@ use Drupal\nc_system\Entity\Paragraph\AccordionItem;
 use Drupal\nc_system\Entity\Paragraph\FileDownload;
 use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
+use Drupal\node\Entity\Node;
+use Drupal\system\Entity\Menu;
 
 /**
  * Implements hook_entity_bundle_info_alter().
@@ -65,35 +69,125 @@ function nc_system_entity_type_alter(&$entity_types) {
  * @param array $variables
  */
 function nc_system_page_attachments_alter(array &$page) {
-  if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
-    $admin_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+  $admin_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
 
-    if ($admin_theme === 'nc_seven') {
-      $background_color = '';
+  if ($admin_theme === 'nc_seven') {
+    $background_color = \Drupal::service('nc_system.website_manager')->getBackgroundColor();
 
-      switch ($_ENV['NEXT_PUBLIC_THEME']) {
-        case 'west':
-          $background_color = '#386193';
-          break;
-
-        case 'north':
-          $background_color = '#05873a';
-          break;
-
-        default:
-          break;
-      }
-
-      if (!empty($background_color)) {
-        $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; } /* PROD */";
-        $page['#attached']['html_head'][] = [
-          [
-            '#tag' => 'style',
-            '#value' => $css,
-          ],
-          'admin-toolbar-custom-css'
-        ];
-      }
+    if (!empty($background_color)) {
+      $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; }";
+      $page['#attached']['html_head'][] = [
+        [
+          '#tag' => 'style',
+          '#value' => $css,
+        ],
+        'admin-toolbar-custom-css'
+      ];
     }
   }
+}
+
+/**
+ * This function purges the Cloudflare cache on menu updates.
+ * @param Menu $menu
+ */
+function nc_system_menu_update(Menu $menu) {
+  if ($menu->id() === 'footer') {
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $purge_service->purgeAll();
+  }
+}
+
+/**
+ * This function purges the Cloudflare cache on creating new menu links.
+ * @param MenuLinkContent $entity
+ */
+function nc_system_menu_link_content_insert(MenuLinkContent $entity) {
+  _purge_menu($entity);
+}
+
+/**
+ * This function purges the Cloudflare cache on updating menu links.
+ * @param MenuLinkContent $entity
+ */
+function nc_system_menu_link_content_update(MenuLinkContent $entity) {
+  _purge_menu($entity);
+}
+
+/**
+ * This function purges the Cloudflare cache on deleting menu links.
+ * @param MenuLinkContent $entity
+ */
+function nc_system_menu_link_content_delete(MenuLinkContent $entity) {
+  _purge_menu($entity);
+}
+
+/**
+ * This function purges the Cloudflare cache on menu links.
+ * @param MenuLinkContent $entity
+ */
+function _purge_menu(MenuLinkContent $entity) {
+  if ($entity->getMenuName() === 'footer') {
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $purge_service->purgeAll();
+  }
+}
+
+/**
+ * This function purges the Cloudflare cache when updating the sitewide alerts.
+ * @param ConfigPages $entity
+ */
+function nc_system_config_pages_update(ConfigPages $entity) {
+  $type = $entity->get('type')->target_id;
+
+  if ($type === 'sitewide_alerts') {
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $purge_service->purgeAll();
+  }
+}
+
+/**
+ * This function purges the Cloudflare cache when updating the nodes.
+ * @param Node $node
+ */
+function nc_system_node_update(Node $node) {
+  $urls = [];
+  $host = \Drupal::service('nc_system.website_manager')->getHost();
+  $page_url = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
+
+  switch ($node->getType()) {
+    case 'homepage':
+      $urls[] = $host;
+      break;
+
+    case 'service_landing_page':
+    case 'service_page':
+      $urls[] = $host . $page_url;
+      break;
+
+    case 'news_article':
+      $urls[] = $host . '/news';
+      $urls[] = $host . $page_url;
+
+      // if the news article is promoted we clear the homepage as well
+      if ($node->isPromoted()) {
+        $urls[] = $host;
+      }
+
+      break;
+  }
+
+  if (!empty($urls)) {
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $purge_service->purgeByUrl($urls);
+  }
+}
+
+/**
+ * Implements hook_xmlsitemap_element_alter().
+ */
+function nc_system_xmlsitemap_element_alter(&$element, array $link, $sitemap) {
+  $replacement_url = parse_url(\Drupal::service('nc_system.website_manager')->getHost())['host'];
+  $base_url = \Drupal::request()->getHost();
+  $element['loc'] = str_replace($base_url, $replacement_url, $element['loc']);
 }
