@@ -12,7 +12,7 @@ $config['cloudflare_purge.settings']['cloudflare_purge_email'] = isset($_ENV['CL
 $config['cloudflare_purge.settings']['cloudflare_purge_api_key'] = isset($_ENV['CLOUDFLARE_API_KEY']) ? $_ENV['CLOUDFLARE_API_KEY'] : '';
 $config['cloudflare_purge.settings']['cloudflare_purge_zone_id'] = isset($_ENV['CLOUDFLARE_ZONE_ID']) ? $_ENV['CLOUDFLARE_ZONE_ID'] : '';
 
-// We disable the Cloudflare purging on local and development environments
-if (SETTINGS_ENVIRONMENT !== D_ENVIRONMENT_PROD) {
+// We disable the Cloudflare purging on local environments
+if (SETTINGS_ENVIRONMENT === D_ENVIRONMENT_LOCAL) {
   $config['cloudflare_purge.settings']['cloudflare_enable'] = FALSE;
 }
