@@ -1,6 +1,6 @@
 # The name of this application, which must be unique within a project.
 name: 'frontend'
-rebuild_id: 1 
+rebuild_id: 1
 # The type key specifies the language and version for your application.
 type: 'nodejs:14'
 
