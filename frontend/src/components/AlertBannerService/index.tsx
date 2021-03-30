@@ -5,7 +5,8 @@ const AlertBannerServiceIE = (): ReactElement | null => {
   let usingInternetExplorer = null;
   if (typeof window !== 'undefined') {
     if (navigator) {
-      const { userAgent } = navigator;
+      // Can't use destructing assignment here as it needs to work on IE.
+      const userAgent = navigator.userAgent;
       const regEx = new RegExp('(?:\\b(MS)?IE\\s+|\\bTrident\\/7\\.0;.*\\s+rv:)(\\d+)');
       usingInternetExplorer = regEx.exec(userAgent);
     }
