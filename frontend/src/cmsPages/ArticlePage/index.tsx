@@ -77,9 +77,7 @@ export default function ArticlePage({
         <PageMain>
           <AlertBannerServiceIE />
           {oldPost ? null : <NewsArticleOldBanner />}
-          <PageTitle>
-            <Heading level={1} text={title} />
-          </PageTitle>
+          <Heading level={1} text={title} />
           {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
           <NewsArticleDate text={date} />
           {featuredImage1440x810 && featuredImage144x81 ? (

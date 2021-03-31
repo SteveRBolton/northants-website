@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { Heading, MaxWidthContainer, PageMain, PageTitle, PhaseBanner } from 'northants-design-system';
+import AlertBannerServiceIE from "../../components/AlertBannerService";
 
 type ErrorPageProps = {
   pageTitle: string;
@@ -23,9 +24,8 @@ export default function ErrorPage({ pageTitle, errorCode }: ErrorPageProps): Rea
       <MaxWidthContainer>
         <PhaseBanner />
         <PageMain>
-          <PageTitle>
-            <Heading level={1} text={pageTitle} />
-          </PageTitle>
+          <AlertBannerServiceIE />
+          <Heading level={1} text={pageTitle} />
           <p>If you entered a web address, check it is correct.</p>
 
           <p>

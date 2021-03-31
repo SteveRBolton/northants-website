@@ -13,6 +13,7 @@ import { GetServerSideProps } from 'next';
 import { GetSearchResults, GetSearchResultsVariables } from '../api/graphql/__generated__/GetSearchResults';
 import { initializeApollo } from '../lib/apolloClient';
 import { getSearchResults } from '../api/graphql/queries';
+import AlertBannerServiceIE from '../components/AlertBannerService';
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const client = initializeApollo();
@@ -49,6 +50,7 @@ export default function Search(page: SearchPageProps): ReactElement {
       <MaxWidthContainer>
         <PhaseBanner />
         <PageMain>
+          <AlertBannerServiceIE />
           <Heading text="Search results" level={1} />
           <Searchbar
             isLarge
