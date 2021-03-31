@@ -25,9 +25,7 @@ export default function ErrorPage({ pageTitle, errorCode }: ErrorPageProps): Rea
         <PhaseBanner />
         <PageMain>
           <AlertBannerServiceIE />
-          <PageTitle>
-            <Heading level={1} text={pageTitle} />
-          </PageTitle>
+          <Heading level={1} text={pageTitle} />
           <p>If you entered a web address, check it is correct.</p>
 
           <p>
