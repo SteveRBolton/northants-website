@@ -60,10 +60,10 @@ export default function News(page: NewsListingProps): ReactElement {
         <title>Latest news | {news.council_name}</title>
       </Head>
       <MaxWidthContainer>
+        <PhaseBanner />
+        <Breadcrumbs breadcrumbsArray={[{ title: 'Home', url: '/' }]} />
         <PageMain>
-          <PhaseBanner />
           <AlertBannerServiceIE />
-          <Breadcrumbs breadcrumbsArray={[{ title: 'Home', url: '/' }]} />
           <PageTitle>
             <Heading text="News" level={1} />
           </PageTitle>
