@@ -62,94 +62,92 @@ export default function News(page: NewsListingProps): ReactElement {
       <MaxWidthContainer>
         <PhaseBanner />
         <Breadcrumbs breadcrumbsArray={[{ title: 'Home', url: '/' }]} />
-        <PageMain>
-          <AlertBannerServiceIE />
-          <PageTitle>
-            <Heading text="News" level={1} />
-          </PageTitle>
-          <PageWithSidebarContainer sidebarLeft>
-            <PageSidebar>
-              <NewsArticleFilterAccordion
-                sections={[
-                  {
-                    title: 'Search articles',
-                    content: (
-                      <>
-                        <Searchbar
-                          isLight
-                          submitInfo={[{ postTo: '/news', params: { type: 'search' } }]}
-                          searchTerm={news.text}
-                        />
-                      </>
-                    ),
-                    isExpanded: true,
-                  },
-                  {
-                    title: 'Services',
-                    content: (
-                      <>
-                        <DropDownFilter
-                          label=""
-                          selected={news.service}
-                          options={news.allServices.map((service) => ({
-                            title: service ? service.title : '',
-                            value: service ? service.id : '',
-                          }))}
-                        />
-                      </>
-                    ),
-                    isExpanded: true,
-                  },
-                  {
-                    title: 'Type of article',
-                    content: (
-                      <>
-                        <CheckboxListFilter
-                          options={news.allArticleTypes.map((type) => ({
-                            title: type ? type.title : '',
-                            value: type ? type.id : '',
-                          }))}
-                          checked={news.articleType}
-                          label=""
-                          hint=""
-                        />
-                      </>
-                    ),
-                    isExpanded: true,
-                  },
-                ]}
-              />
-            </PageSidebar>
-            <PageMain>
-              <NewsArticleListHeader
-                totalResults={news.total}
-                sortBy={news.sortBy}
-                sortByOptions={[
-                  { title: 'Most recent first', value: 'desc' },
-                  { title: 'Oldest first', value: 'asc' },
-                ]}
-              />
-              <NewsArticleList
-                totalResults={news.total}
-                results={
-                  news.result_list
-                    ? news.result_list.map((result) => ({
-                        id: result.id,
-                        title: result.title,
-                        url: result.link,
-                        excerpt: result.excerpt,
-                        date: result.date,
-                        image720x405: result.image720x405 ? result.image720x405 : '',
-                        image72x41: result.image72x41 ? result.image72x41 : '',
-                        imageAltText: result.imageAltText ? result.imageAltText : '',
-                      }))
-                    : []
-                }
-              />
-              <Pagination currentPage={news.page + 1} totalResults={news.total} resultsPerPage={5} postTo="/news" />
-            </PageMain>
-          </PageWithSidebarContainer>
-        </PageMain>
+        <AlertBannerServiceIE />
+        <PageTitle>
+          <Heading text="News" level={1} />
+        </PageTitle>
+        <PageWithSidebarContainer sidebarLeft>
+          <PageSidebar>
+            <NewsArticleFilterAccordion
+              sections={[
+                {
+                  title: 'Search articles',
+                  content: (
+                    <>
+                      <Searchbar
+                        isLight
+                        submitInfo={[{ postTo: '/news', params: { type: 'search' } }]}
+                        searchTerm={news.text}
+                      />
+                    </>
+                  ),
+                  isExpanded: true,
+                },
+                {
+                  title: 'Services',
+                  content: (
+                    <>
+                      <DropDownFilter
+                        label=""
+                        selected={news.service}
+                        options={news.allServices.map((service) => ({
+                          title: service ? service.title : '',
+                          value: service ? service.id : '',
+                        }))}
+                      />
+                    </>
+                  ),
+                  isExpanded: true,
+                },
+                {
+                  title: 'Type of article',
+                  content: (
+                    <>
+                      <CheckboxListFilter
+                        options={news.allArticleTypes.map((type) => ({
+                          title: type ? type.title : '',
+                          value: type ? type.id : '',
+                        }))}
+                        checked={news.articleType}
+                        label=""
+                        hint=""
+                      />
+                    </>
+                  ),
+                  isExpanded: true,
+                },
+              ]}
+            />
+          </PageSidebar>
+          <PageMain>
+            <NewsArticleListHeader
+              totalResults={news.total}
+              sortBy={news.sortBy}
+              sortByOptions={[
+                { title: 'Most recent first', value: 'desc' },
+                { title: 'Oldest first', value: 'asc' },
+              ]}
+            />
+            <NewsArticleList
+              totalResults={news.total}
+              results={
+                news.result_list
+                  ? news.result_list.map((result) => ({
+                      id: result.id,
+                      title: result.title,
+                      url: result.link,
+                      excerpt: result.excerpt,
+                      date: result.date,
+                      image720x405: result.image720x405 ? result.image720x405 : '',
+                      image72x41: result.image72x41 ? result.image72x41 : '',
+                      imageAltText: result.imageAltText ? result.imageAltText : '',
+                    }))
+                  : []
+              }
+            />
+            <Pagination currentPage={news.page + 1} totalResults={news.total} resultsPerPage={5} postTo="/news" />
+          </PageMain>
+        </PageWithSidebarContainer>
       </MaxWidthContainer>
     </>
   );
