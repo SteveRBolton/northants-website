@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async ({ resolvedUrl, res 
     .query<GetCMSContentOrRedirect, GetCMSContentOrRedirectVariables>({
       query: getCMSContentOrRedirect,
       variables: {
-        path: resolvedUrl,
+        path: resolvedUrl.split('?')[0],
       },
     })
     .then((queryRes) => {
