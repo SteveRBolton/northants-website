@@ -1,24 +1,17 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { AlertBannerService } from 'northants-design-system';
 
 const AlertBannerServiceIE = (): ReactElement | null => {
-  let usingInternetExplorer = null;
-  console.log('Alert banner start');
-  if (typeof window !== 'undefined') {
-    console.log('If window is not undefined');
+  const [isIE, setIsIE] = React.useState(false);
+
+  useEffect(() => {
     if (navigator) {
-      console.log('If navigator', navigator);
-      // Can't use destructing assignment here as it needs to work on IE.
       const { userAgent } = navigator;
-      console.log('User agent', userAgent);
       const regEx = new RegExp('(?:\\b(MS)?IE\\s+|\\bTrident\\/7\\.0;.*\\s+rv:)(\\d+)');
-      console.log('RegEx', regEx);
-      usingInternetExplorer = regEx.exec(userAgent);
-      console.log('Using Internet Explorer', usingInternetExplorer);
+      setIsIE(regEx.exec(userAgent) !== null);
     }
-  }
-  if (usingInternetExplorer != null) {
-    console.log('If usingInternetExplorer is true', usingInternetExplorer);
+  }, []);
+  if (isIE) {
     return (
       <AlertBannerService title="Browser upgrade recommended">
         <p>
