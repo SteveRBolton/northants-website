@@ -139,7 +139,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         metaKeywords,
         title,
         serviceLandingBody,
-      breadcrumbs,
+        breadcrumbs,
         hasSections,
         url,
         icon
