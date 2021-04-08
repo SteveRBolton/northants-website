@@ -6,6 +6,7 @@ import {
   PageMain,
   SectionLinks,
   SectionLinksMobileContents,
+  HeadingWithIcon,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -29,6 +30,7 @@ type ServiceLandingPageProps = {
   body?: TextWithSlicesProps;
   breadcrumbs: BreadcrumbsProps;
   sections: SectionLinksProps[];
+  icon?: string;
 };
 
 export default function ServiceLandingPage({
@@ -40,6 +42,7 @@ export default function ServiceLandingPage({
   body,
   breadcrumbs,
   sections,
+  icon,
 }: ServiceLandingPageProps): ReactElement {
   return (
     <>
@@ -61,7 +64,7 @@ export default function ServiceLandingPage({
         <Breadcrumbs {...breadcrumbs} />
         <PageMain>
           <AlertBannerServiceIE />
-          <Heading {...heading} />
+          {icon ? <HeadingWithIcon icon={icon} text={heading.text} /> : <Heading {...heading} />}
           {body && <TextWithSlices {...body} />}
           {sections.length > 1 ? (
             <SectionLinksMobileContents
