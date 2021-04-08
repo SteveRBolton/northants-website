@@ -156,7 +156,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
-          icon={icon || undefined}
+          icon={icon || undefined} 
         />
       );
     }
