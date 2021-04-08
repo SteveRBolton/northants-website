@@ -7697,7 +7697,7 @@ normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.5.0.tgz#453354087e6ca96957bd8f5baf753f5982142129"
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
-northants-design-system@^0.1.76:
+northants-design-system@^0.1.82:
   version "0.1.91"
   resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.91.tgz#4fc42d4291852a832a4be2f7b9be6032322c41c3"
   integrity sha512-YBA93bC2/rWJlCtC0Zh8GPyhROHfd1gwiXGMAkvr63VCihAQ4E7ho7kVBXb4lxFOjc9P+U50xFWT2G4GV0U69Q==
