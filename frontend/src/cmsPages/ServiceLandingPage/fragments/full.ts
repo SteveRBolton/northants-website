@@ -19,7 +19,6 @@ export default gql`
     metaKeywords
     id
     url
-    icon
     serviceLandingBody: body {
       value
       embeds {

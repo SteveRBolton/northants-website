@@ -368,7 +368,6 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   metaKeywords: string | null;
   id: string;
   url: string;
-  icon: string | null;
   serviceLandingBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody | null;
   hasSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
