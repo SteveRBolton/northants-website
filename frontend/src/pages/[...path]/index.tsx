@@ -142,7 +142,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         breadcrumbs,
         hasSections,
         url,
-        icon,
       } = node;
 
       return (
@@ -156,7 +155,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           heading={{ level: 1, text: title }}
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
-          icon={icon || undefined}
         />
       );
     }
