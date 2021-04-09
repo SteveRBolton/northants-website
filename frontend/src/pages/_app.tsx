@@ -1,5 +1,5 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
-import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner, AlertBanner } from 'northants-design-system';
+import { Header, north_theme, GDS_theme, west_theme, lb_theme_north, lb_theme_west, Footer, CookieBanner, AlertBanner } from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import React, { ReactElement, useEffect } from 'react';
@@ -52,11 +52,13 @@ function NorthantsApp({
   }
   switch (theme) {
     case Theme.North:
-      actualThemeObject = north_theme;
+      actualThemeObject = lb_theme_north;
+      // actualThemeObject = north_theme;
       faviconPath += Theme.North;
       break;
     case Theme.West:
-      actualThemeObject = west_theme;
+      actualThemeObject = lb_theme_west;
+      // actualThemeObject = west_theme;
       faviconPath += Theme.West;
       break;
     default:
