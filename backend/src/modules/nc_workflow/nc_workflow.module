@@ -38,9 +38,10 @@ function nc_workflow_cron() {
  */
 function nc_workflow_editor_js_settings_alter(&$settings, $conf) {
   $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
   $editorHidden = $user->hasPermission('hide ckeditor source');
 
-  if ( $editorHidden ) {
+  if ( $editorHidden && !in_array('administrator', $roles) ) {
     // Get the toolbar
     $toolbar = $settings["editor"]["formats"]["embed_basic_html"]["editorSettings"]["toolbar"];
     // Loop through the items in the toolbar until we get to 'Other' where Source is stored
