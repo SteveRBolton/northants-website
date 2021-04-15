@@ -106,14 +106,14 @@ function NorthantsApp({
         <link rel="apple-touch-icon" sizes="180x180" href={`${faviconPath}/apple-touch-icon.png`} />
         <link rel="icon" type="image/png" sizes="32x32" href={`${faviconPath}/favicon-32x32.png`} />
         <link rel="icon" type="image/png" sizes="16x16" href={`${faviconPath}/favicon-16x16.png`} />
-        <link rel="manifest" href={`/favicon/${theme}/site.webmanifest`} />
+        <link rel="manifest" href={`${faviconPath}/site.webmanifest`} />
         <link
           rel="mask-icon"
           href={`${faviconPath}/favicon-16x16.png`}
           color={theme === 'north' ? '#05873a' : '#386193'}
         />
         <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
-        <meta name="msapplication-config" content={`/favicon/${theme}/browserconfig.xml`} />
+        <meta name="msapplication-config" content={`${faviconPath}/browserconfig.xml`} />
         <meta name="theme-color" content="#ffffff" />
 
         {/* Facebook tags */}
