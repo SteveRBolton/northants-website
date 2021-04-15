@@ -147,10 +147,26 @@ function nc_system_config_pages_update(ConfigPages $entity) {
 }
 
 /**
+ * This function purges the Cloudflare cache when creating the nodes.
+ * @param Node $node
+ */
+function nc_system_node_insert(Node $node) {
+  _purge_node($node);
+}
+
+/**
  * This function purges the Cloudflare cache when updating the nodes.
  * @param Node $node
  */
 function nc_system_node_update(Node $node) {
+  _purge_node($node);
+}
+
+/**
+ * This function purges the Cloudflare cache on nodes.
+ * @param Node $node
+ */
+function _purge_node(Node $node) {
   $urls = [];
   $host = \Drupal::service('nc_system.website_manager')->getHost();
   $page_url = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
