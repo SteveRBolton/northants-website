@@ -5,7 +5,6 @@ This is the Northant's Core Drupal 9 CMS application.
 ## Dependencies
 
 * [Docker](https://docs.docker.com/engine/installation/)
-* [Docker compose](https://docs.docker.com/compose/install/)
 * [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 * [Deeson Docker proxy](https://github.com/teamdeeson/docker-proxy)
 
@@ -30,6 +29,19 @@ This will create the `docroot/` folder and build your website.
 
 It should finish with a one time login URL which you can copy into the Chrome web browser to access your new Drupal site.
 
+## Solr setup
+### Local
+
+You may need to manually configure the local solr server. Make sure solr container is running: `docker-compose up solr`
+
+Then run: `make solr-create-core` to create a new solr core named main
+
+### Platform.sh
+
+Follow the guide here: https://docs.platform.sh/guides/drupal9/solr.html Pay particular attention to this section https://docs.platform.sh/guides/drupal9/solr.html#5-export-and-modify-configuration as you will need to modify the config. It's likely you'll need to perform this step whenever search_api_solr is updated.
+
+Any changes to the Solr config will require submitting a ticket with Platform.sh with the Solr config files for them to install on the dedicated environments.
+
 ## Starting and stopping the project.
 
 Once you have run the build for the first time, you can stop the project any time with:
@@ -43,14 +55,6 @@ The project starts again using:
 ```
 make start
 ```
-
-## Deployment
-
-Commits to the following branches will end up in the following environments.
-
-- UAT --> test site
-- develop --> stage site
-- master --> production site
 
 ## Browser access
 
@@ -123,7 +127,6 @@ Anything within `src/themes/` will be made available in `docroot/themes/custom/`
 ### vendor/
 This is the composer vendor directory, which contains project dependencies, tools and libraries. This should be excluded from your repository.
 
-
 # Docker commands
 
 You should now have several running docker containers, including nginx, php, mariadb. Run the following command to check this.
@@ -174,14 +177,41 @@ pv database_export_filename.sql | docker-compose exec -T mariadb mysql -udrupal 
 
 Note that this method is up to 33% faster than the drush method `pv database_export_filename.sql | drush @docker sql-cli`
 
+# Drush commands
+The Drush command line tool is available for querying all the Drupal environments. This is done using Drush aliases (the @ bit in any Drush command). The aliases available are:
+
+...
+
+To see the status of an environment you can use, for example, `./vendor/bin/drush @docker status`.
+
+As this is a lot of typing, it's recommended you create an alias for drush in your `.bashrc` file, e.g. `alias drush=./vendor/bin/drush`
+
+To see a list of all Drush commands you can use `drush @docker list` and to see more details about a specific command you can use `drush @docker help` command
+
+Note, to access environments other than your own will require you have user access to the servers they are hosted on.
+
+## Logging in.
+
+To login to Drupal as the administrator you can use `drush @docker uli`
 
 # Site config
 
-This site uses the (config pages)[https://www.drupal.org/project/config_pages] module to set some global configuration including the homepage.
+This site uses the (config pages)[https://www.drupal.org/project/config_pages] module to set some global configuration including the homepage and alerts.
 To set this, navigate to `/admin/structure/config_pages` and choose a page to modify.
 
 
 # Things to know
+
+## Required environment variables
+| Name        | Type        | Value |
+| ----------- | ----------- | ----------- |
+| CLOUDFLARE_PURGE_ENABLED      | Boolean       | TRUE/FALSE |
+| CLOUDFLARE_API_KEY   | String        | The api key of the cloudflare user|
+| CLOUDFLARE_EMAIL  | String        | The email of the cloudflare user|
+| CLOUDFLARE_ZONE_ID  | String        | The zone id within Cloudflare where the website resides |
+| DRUPAL_HASH_STATUS  | String        | The unique hash used for salts |
+| NEXT_PUBLIC_BASE_URL  | URI        | The frontend website URL (https://www.westnorthants.co.uk/) **must contain trailing slash** |
+| NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west |
 
 ## User roles and embed editor permissions
 When creating new roles make sure the role has permission to use both the "Basic HTML (with Embed)" and "Basic HTML (with Embed)
