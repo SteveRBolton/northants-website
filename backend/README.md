@@ -19,6 +19,8 @@ You should configure the project for your needs now. The following amendments ne
 
 ## Build and install
 
+First, copy the `.env.example` file to `.env` and update values as necessary.
+
 The project can now be built for the first time using the included Makefile
 
 ```bash

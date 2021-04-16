@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    image: wodby/mariadb:10.3-3.8.5
+    image: wodby/mariadb:10.3-3.12.4
     container_name: "${PROJECT_NAME}_mariadb"
     stop_grace_period: 30s
     environment:
@@ -32,7 +32,7 @@ services:
       - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
 
   php:
-    image: wodby/drupal-php:7.4-4.18.2
+    image: wodby/drupal-php:7.4-4.24.4
     container_name: "${PROJECT_NAME}_php"
     environment:
       DOCKER_LOCAL: 1
@@ -69,7 +69,7 @@ services:
       - default
 
   nginx:
-    image: wodby/nginx:1.19-5.10.2
+    image: wodby/nginx:1.19-5.13.7
     container_name: "${PROJECT_NAME}_nginx"
     depends_on:
       - php
@@ -104,7 +104,7 @@ services:
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
   redis:
-    image: wodby/redis:4-3.0.8
+    image: wodby/redis:5-3.7.4
     container_name: "${PROJECT_NAME}_redis"
     networks:
       - default
