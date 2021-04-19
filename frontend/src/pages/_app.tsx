@@ -52,13 +52,11 @@ function NorthantsApp({
   }
   switch (theme) {
     case Theme.North:
-      actualThemeObject = lb_theme_north;
-      // actualThemeObject = north_theme;
+      actualThemeObject = north_theme;
       faviconPath += Theme.North;
       break;
     case Theme.West:
-      actualThemeObject = lb_theme_west;
-      // actualThemeObject = west_theme;
+      actualThemeObject = west_theme;
       faviconPath += Theme.West;
       break;
     default:
