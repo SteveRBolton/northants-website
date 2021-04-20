@@ -1,0 +1,30 @@
+uuid: ae6f046e-8d3e-41d4-ab52-fda77dd9234a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.highlight
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    embed_basic_html: '0'
+    basic_html_with_embed_for_accordion: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: paragraph.highlight.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: highlight
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
