@@ -7,7 +7,6 @@ namespace Drupal\nc_system\Entity\Paragraph;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\search_api\Plugin\DataType\Text;
-use Drupal\text\Plugin\Field\FieldType\TextItemBase;
 use Drupal\views\Plugin\views\field\Boolean;
 
 class Highlight extends Paragraph implements GraphQLEntityFieldResolver {
@@ -20,17 +19,19 @@ class Highlight extends Paragraph implements GraphQLEntityFieldResolver {
 
   }
 
-  public function getContent(): ?Text{
+  public function getContent(): ?string{
     $content = $this->get('field_content');
 
-    $item = $content->first();
+    $item = $content->first()->getString();
 
     return $item;
 
   }
   public function getWarning(): bool {
     $isWarning = $this->get('field_is_warning');
-    return $isWarning->getBoolean;
+    $item = $isWarning->getBoolean;
+
+    return $item;
 
   }
   /**
