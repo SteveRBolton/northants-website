@@ -1,4 +1,4 @@
-uuid: 302e4513-ea3c-4534-a42d-595174a3fd0e
+uuid: 4443d328-8ae5-43f1-bc57-e66523e79f5c
 langcode: en
 status: true
 dependencies:
@@ -23,7 +23,7 @@ content:
     type: text_textarea
     region: content
   field_highlight_title:
-    weight: 2
+    weight: 0
     settings:
       size: 60
       placeholder: ''
@@ -31,7 +31,7 @@ content:
     type: string_textfield
     region: content
   field_is_warning:
-    weight: 0
+    weight: 2
     settings:
       display_label: true
     third_party_settings: {  }

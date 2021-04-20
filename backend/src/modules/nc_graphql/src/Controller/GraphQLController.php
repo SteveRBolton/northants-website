@@ -56,7 +56,7 @@ class GraphQLController extends ControllerBase {
           'council_signpost' => 'CouncilSignpostParagraph',
           'council_signposting' => 'CouncilSignpostingParagraph',
           'pull_quote' => 'BlockQuoteParagraph',
-          'highlight' => 'HightlightParagraph',
+          'highlight' => 'HighlightParagraph',
           'section' => 'SectionParagraph',
           'service_links' => 'ServiceLinksParagraph',
           'accordion' => 'AccordionParagraph',

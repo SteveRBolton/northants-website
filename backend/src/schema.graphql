@@ -376,7 +376,7 @@ type BlockQuoteParagraph implements Paragraph
 }
 
 type HighlightParagraph implements Paragraph
-  @entity(type: paragraph, bundle: "hightlight") {
+  @entity(type: paragraph, bundle: "highlight") {
   title: String!
   content: FormattedField
   isWarning: Boolean!

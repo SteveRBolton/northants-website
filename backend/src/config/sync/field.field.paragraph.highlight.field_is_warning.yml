@@ -1,4 +1,4 @@
-uuid: ff47c55f-9e46-4851-90c8-73dae726e53c
+uuid: 00765970-d1fb-468e-b05d-b7b5d88c7380
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: highlight
 label: 'Is Warning'
 description: ''
-required: false
+required: true
 translatable: false
 default_value:
   -

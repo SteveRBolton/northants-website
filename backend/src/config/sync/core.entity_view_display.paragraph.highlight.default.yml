@@ -1,4 +1,4 @@
-uuid: a4649365-1316-4c18-a828-dc7fdb68a0e9
+uuid: 00440edc-40dd-499c-a958-682c623f8c01
 langcode: en
 status: true
 dependencies:
@@ -34,8 +34,8 @@ content:
     label: above
     settings:
       format: default
-      format_custom_true: ''
       format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
     type: boolean
     region: content
