@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
-import { Accordion, BlockQuote, CallToAction, Heading, Divider, DownloadableFiles } from 'northants-design-system';
+import { Accordion, BlockQuote, CallToAction, Heading, Divider, DownloadableFiles, WarningText
+} from 'northants-design-system';
 import { AccordionSectionProps } from 'northants-design-system/build/library/slices/Accordion/Accordion.types';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 import {
@@ -30,6 +31,8 @@ const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement =
       return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
     case 'FileDownloadParagraph':
       return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
+    case 'HighlightParagraph':
+      return <WarningText title={paragraph.title} content={paragraph.content ?? undefined} isWarning={paragraph.isWarning ?? false}/>;
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
   }
