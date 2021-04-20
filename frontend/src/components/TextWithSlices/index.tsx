@@ -40,11 +40,10 @@ const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement =
       return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
     case 'HighlightParagraph':
       return (
-        <WarningText
-          title={paragraph.title}
-          content={paragraph.content ?? undefined}
-          isWarning={paragraph.isWarning ?? false}
-        />
+        <WarningText title={paragraph.title} isWarning={paragraph.isWarning ?? false}>
+          {' '}
+          {paragraph.content ?? undefined}{' '}
+        </WarningText>
       );
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
