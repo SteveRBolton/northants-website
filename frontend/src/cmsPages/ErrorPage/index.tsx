@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
-import { Heading, MaxWidthContainer, PageMain, PageTitle, PhaseBanner } from 'northants-design-system';
+import { Heading, MaxWidthContainer, PageMain, PhaseBanner } from 'northants-design-system';
 import AlertBannerServiceIE from '../../components/AlertBannerService';
 
 type ErrorPageProps = {

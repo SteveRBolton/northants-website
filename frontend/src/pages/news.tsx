@@ -21,7 +21,7 @@ import { GetServerSideProps } from 'next';
 import { GetNewsArticles, GetNewsArticlesVariables } from '../api/graphql/__generated__/GetNewsArticles';
 import { initializeApollo } from '../lib/apolloClient';
 import { getNewsArticles } from '../api/graphql/queries';
-import AlertBannerServiceIE from "../components/AlertBannerService";
+import AlertBannerServiceIE from '../components/AlertBannerService';
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const client = initializeApollo();
