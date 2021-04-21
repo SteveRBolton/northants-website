@@ -41,8 +41,7 @@ const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement =
     case 'HighlightParagraph':
       return (
         <WarningText title={paragraph.title} isWarning={paragraph.isWarning ?? false}>
-          {' '}
-          {paragraph.content ?? undefined}{' '}
+          {TextWithSlices({ html: paragraph.content?.value ?? '', embeds: [] })}
         </WarningText>
       );
     default:
@@ -58,6 +57,12 @@ const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragrap
       return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
     case 'FileDownloadParagraph':
       return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
+    case 'HighlightParagraph':
+      return (
+        <WarningText title={paragraph.title} isWarning={paragraph.isWarning ?? false}>
+          {TextWithSlices({ html: paragraph.content?.value ?? '', embeds: [] })}
+        </WarningText>
+      );
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
   }
