@@ -107,7 +107,7 @@ function NorthantsApp({
         <link rel="manifest" href={`${faviconPath}/site.webmanifest`} />
         <link
           rel="mask-icon"
-          href={`${faviconPath}/favicon-16x16.png`}
+          href={`${faviconPath}/safari-pinned-tab.svg`}
           color={theme === 'north' ? '#05873a' : '#386193'}
         />
         <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
