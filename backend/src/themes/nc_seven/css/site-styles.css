@@ -1,7 +1,7 @@
 .view-filters .form--inline .form-type-entity-autocomplete,
 .view-filters .views-exposed-form .form--inline .form-type-entity-autocomplete,
 .js-form-item.form-item.js-form-type-textfield.form-type-textfield.js-form-item-name.form-item-name,
-.js-form-item.form-item.js-form-type-textfield.form-type-textfield.js-form-item-image-caption-value.form-item-image-caption-value{
+.js-form-item.form-item.js-form-type-textfield.form-type-textfield.js-form-item-image-caption-value.form-item-image-caption-value {
   width: 215px !important;
 }
 
@@ -15,7 +15,7 @@ body.path-paragraph-embed .field-multiple-table.responsive-enabled thead,
 body.path-paragraph-embed .paragraph-0-item-wrapper .paragraph-top,
 body.path-paragraph-embed #toolbar-administration,
 body.path-paragraph-embed .block-masquerade {
- display: none;
+  display: none;
 }
 
 body.path-paragraph-embed .paragraph-bullet:after {
@@ -28,12 +28,18 @@ body.path-paragraph-embed form .field-multiple-table .field-multiple-drag {
 }
 
 body.path-paragraph-embed {
-  padding-top: 0px!important;
+  padding-top: 0px !important;
 }
 
 /* Slice icon styles */
-body.path-paragraph-embed .field--widget-entity-reference-embed-paragraphs .paragraphs-add-wrapper input,
-body.path-paragraph-embed .field--widget-entity-reference-embed-paragraphs .paragraphs-add-wrapper:active input{
+body.path-paragraph-embed
+  .field--widget-entity-reference-embed-paragraphs
+  .paragraphs-add-wrapper
+  input,
+body.path-paragraph-embed
+  .field--widget-entity-reference-embed-paragraphs
+  .paragraphs-add-wrapper:active
+  input {
   background-image: url(/themes/custom/nc_seven/icons/single-image.svg);
   width: 140px;
   height: 140px;
@@ -79,6 +85,10 @@ body.path-paragraph-embed input[name="paragraph-pull-quote-add-more"] {
 
 body.path-paragraph-embed input[name="paragraph_pull_quote_add_more"] {
   background-image: url(/themes/custom/nc_seven/icons/pull-quote.svg) !important;
+}
+
+body.path-paragraph-embed input[name="paragraph_highlight_add_more"] {
+  background-image: url(/themes/custom/nc_seven/icons/warning-text-north-west.svg) !important;
 }
 
 body.path-paragraph-embed input[name="paragraph_lead_paragraph_add_more"] {
