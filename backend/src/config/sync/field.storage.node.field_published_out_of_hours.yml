@@ -1,0 +1,18 @@
+uuid: 8d4785c4-d158-400f-9363-6129af85f079
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_published_out_of_hours
+field_name: field_published_out_of_hours
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
