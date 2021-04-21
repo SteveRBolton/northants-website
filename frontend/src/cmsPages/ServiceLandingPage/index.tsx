@@ -64,7 +64,7 @@ export default function ServiceLandingPage({
         <Breadcrumbs {...breadcrumbs} />
         <PageMain>
           <AlertBannerServiceIE />
-          {icon ? <HeadingWithIcon icon={icon} text={heading.text} /> : <Heading {...heading} />}
+          {icon ? <HeadingWithIcon icon={icon} level={1} text={heading.text} /> : <Heading {...heading} />}
           {body && <TextWithSlices {...body} />}
           {sections.length > 1 ? (
             <SectionLinksMobileContents
