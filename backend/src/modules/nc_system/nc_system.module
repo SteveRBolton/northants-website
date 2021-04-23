@@ -4,6 +4,7 @@ use Drupal\config_pages\Entity\ConfigPages;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\nc_system\Entity\Paragraph\BlockQuote;
+use Drupal\nc_system\Entity\Paragraph\Highlight;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
 use Drupal\nc_system\Entity\Node\Homepage;
 use Drupal\nc_system\Entity\Node\Article;
@@ -41,6 +42,7 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   $bundles['paragraph']['council_signpost']['class'] = CouncilSignpost::class;
   $bundles['paragraph']['council_signposting']['class'] = CouncilSignposting::class;
   $bundles['paragraph']['pull_quote']['class'] = BlockQuote::class;
+  $bundles['paragraph']['highlight']['class'] = Highlight::class;
   $bundles['paragraph']['section']['class'] = Section::class;
   $bundles['paragraph']['service_links']['class'] = ServiceLinks::class;
   $bundles['paragraph']['accordion']['class'] = Accordion::class;
