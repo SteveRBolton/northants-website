@@ -20,6 +20,7 @@ use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 use Drupal\node\Entity\Node;
 use Drupal\system\Entity\Menu;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_entity_bundle_info_alter().
@@ -155,11 +156,50 @@ function nc_system_node_insert(Node $node) {
 }
 
 /**
- * This function purges the Cloudflare cache when updating the nodes.
+ * This function takes a date and then checks to see if it is a
+ * Saturday, Sunday or if not the time is before 9am or after 5pm
+ * @param \Drupal\Core\Datetime\Element\Datetime $date
+ * @return bool
+ */
+function isOutOfHours($date) {
+
+  $start = 90000;
+  $end = 170000;
+
+  $time = date("His");
+
+  if(date('N', strtotime($date)) >= 6) {
+    return true;
+  } elseif ($time >= $end || $time <= $start) {
+    return true;
+  }
+  return false;
+
+}
+
+/**
+ * This function purges the Cloudflare cache when updating the nodes
  * @param Node $node
  */
 function nc_system_node_update(Node $node) {
   _purge_node($node);
+}
+
+/**
+ * Before save this checks to see if it was a page being published outside of working hours
+ * Saturday, Sunday or before 9am or after 5pm Monday-Friday
+ * @param Node $node
+ */
+function nc_system_node_presave(Node $node) {
+  $node_type = $node->getType();
+  $today = new DrupalDateTime('now');
+  if($node_type === 'service_page' || $node_type === 'service_landing_page') {
+    if (isOutOfHours($today) && $node->isPublished())  {
+      $node->set('field_published_out_of_hours', '1');
+    } else if (!isOutOfHours($today)) {
+      $node->set('field_published_out_of_hours', '0');
+    }
+  }
 }
 
 /**
