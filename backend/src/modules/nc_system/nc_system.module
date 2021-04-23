@@ -158,23 +158,25 @@ function nc_system_node_insert(Node $node) {
 /**
  * This function takes a date and then checks to see if it is a
  * Saturday, Sunday or if not the time is before 9am or after 5pm
- * @param \Drupal\Core\Datetime\Element\Datetime $date
+ * @param DrupalDateTime $date
  * @return bool
  */
-function isOutOfHours($date) {
+function isOutOfHours(DrupalDateTime $date) {
+  $start = 9; // 9am.
+  $end = 17; // 5pm.
 
-  $start = 90000;
-  $end = 170000;
+  $day = $date->format('D');
+  $hour = intval($date->format('H'));
 
-  $time = date("His");
-
-  if(date('N', strtotime($date)) >= 6) {
-    return true;
-  } elseif ($time >= $end || $time <= $start) {
-    return true;
+  if($day == 'Sat' || $day == 'Sun') {
+    return TRUE;
   }
-  return false;
 
+  if ($hour >= $end || $hour <= $start) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /**
@@ -196,7 +198,8 @@ function nc_system_node_presave(Node $node) {
   if($node_type === 'service_page' || $node_type === 'service_landing_page') {
     if (isOutOfHours($today) && $node->isPublished())  {
       $node->set('field_published_out_of_hours', '1');
-    } else if (!isOutOfHours($today)) {
+    }
+    else {
       $node->set('field_published_out_of_hours', '0');
     }
   }
