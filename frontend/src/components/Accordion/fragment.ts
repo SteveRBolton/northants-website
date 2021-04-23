@@ -2,11 +2,13 @@ import { gql } from '@apollo/react-hooks';
 import callToActionFragment from '../CallToAction/fragment';
 import blockQuoteFragment from '../BlockQuote/fragment';
 import fileDownloadFragment from '../FileDownload/fragment';
+import highlightFragement from '../Highlight/fragment';
 
 const fragment = gql`
   ${callToActionFragment}
   ${blockQuoteFragment}
   ${fileDownloadFragment}
+  ${highlightFragement}
   fragment Accordion on AccordionParagraph {
     sections {
       id
@@ -26,6 +28,7 @@ const fragment = gql`
       ...CallToAction
       ...BlockQuote
       ...FileDownload
+      ...Highlight
     }
   }
 `;

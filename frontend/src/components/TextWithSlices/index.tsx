@@ -1,6 +1,14 @@
 import React, { ReactElement } from 'react';
 import parse, { DomElement, domToReact } from 'html-react-parser';
-import { Accordion, BlockQuote, CallToAction, Heading, Divider, DownloadableFiles } from 'northants-design-system';
+import {
+  Accordion,
+  BlockQuote,
+  CallToAction,
+  Heading,
+  Divider,
+  DownloadableFiles,
+  WarningText,
+} from 'northants-design-system';
 import { AccordionSectionProps } from 'northants-design-system/build/library/slices/Accordion/Accordion.types';
 import { EmbeddedParagraph, EmbeddedParagraph_paragraph } from './__generated__/EmbeddedParagraph';
 import {
@@ -20,14 +28,45 @@ export type AccordionEmbedProps = {
   embeds: EmbeddedParagraphAccordion[];
 };
 
-const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragraph): ReactElement => {
+const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement => {
   switch (paragraph.__typename) {
+    case 'AccordionParagraph':
+      return <Accordion sections={paragraph.sections.map((section) => transformAccordion(section))} />;
     case 'CallToActionParagraph':
       return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
     case 'BlockQuoteParagraph':
       return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
     case 'FileDownloadParagraph':
       return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
+    case 'HighlightParagraph':
+      return (
+        <WarningText title={paragraph.title} isWarning={paragraph.isWarning ?? false}>
+          {TextWithSlices({ html: paragraph.content?.value ?? '', embeds: [] })}
+        </WarningText>
+      );
+    default:
+      return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
+  }
+};
+
+const renderAccordionParagraph = (paragraph: EmbeddedParagraphAccordion_paragraph): ReactElement => {
+  switch (paragraph.__typename) {
+    case 'CallToActionParagraph':
+      return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
+
+    case 'BlockQuoteParagraph':
+      return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
+
+    case 'FileDownloadParagraph':
+      return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
+
+    case 'HighlightParagraph':
+      return (
+        <WarningText title={paragraph.title} isWarning={paragraph.isWarning ?? false}>
+          {TextWithSlices({ html: paragraph.content?.value ?? '', embeds: [] })}
+        </WarningText>
+      );
+
     default:
       return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
   }
@@ -100,30 +139,6 @@ const AccordionEmbed = ({ html, embeds }: AccordionEmbedProps): ReactElement => 
   return <>{processed}</>;
 };
 
-const transformAccordion = (accordion: Accordion_sections): AccordionSectionProps => {
-  return {
-    accordionSectionId: parseInt(accordion.id, 10),
-    title: accordion.title,
-    summary: accordion.summary ?? undefined,
-    content: <AccordionEmbed {...{ html: accordion.body.value, embeds: accordion.body.embeds }} />,
-    isExpanded: false,
-  };
-};
-const renderParagraph = (paragraph: EmbeddedParagraph_paragraph): ReactElement => {
-  switch (paragraph.__typename) {
-    case 'AccordionParagraph':
-      return <Accordion sections={paragraph.sections.map((section) => transformAccordion(section))} />;
-    case 'CallToActionParagraph':
-      return <CallToAction text={paragraph.link.title} url={paragraph.link.url} isExternal={paragraph.link.external} />;
-    case 'BlockQuoteParagraph':
-      return <BlockQuote quote={parse(paragraph.quote)} citation={paragraph.citation ?? undefined} />;
-    case 'FileDownloadParagraph':
-      return <DownloadableFiles files={paragraph.files.map((file) => transformFileDownload(file))} />;
-    default:
-      return <p>TODO: Implement Paragraph rendering for paragraph type {paragraph.__typename}</p>;
-  }
-};
-
 // TODO: Refactor so code isn't repeated.
 const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => {
   const processed = parse(html, {
@@ -190,6 +205,15 @@ const TextWithSlices = ({ html, embeds }: TextWithSlicesProps): ReactElement => 
   });
 
   return <>{processed}</>;
+};
+const transformAccordion = (accordion: Accordion_sections): AccordionSectionProps => {
+  return {
+    accordionSectionId: parseInt(accordion.id, 10),
+    title: accordion.title,
+    summary: accordion.summary ?? undefined,
+    content: <AccordionEmbed {...{ html: accordion.body.value, embeds: accordion.body.embeds }} />,
+    isExpanded: false,
+  };
 };
 
 export default TextWithSlices;

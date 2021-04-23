@@ -42,7 +42,19 @@ export interface Accordion_sections_body_embeds_paragraph_FileDownloadParagraph 
   files: Accordion_sections_body_embeds_paragraph_FileDownloadParagraph_files[];
 }
 
-export type Accordion_sections_body_embeds_paragraph = Accordion_sections_body_embeds_paragraph_AccordionItemParagraph | Accordion_sections_body_embeds_paragraph_CallToActionParagraph | Accordion_sections_body_embeds_paragraph_BlockQuoteParagraph | Accordion_sections_body_embeds_paragraph_FileDownloadParagraph;
+export interface Accordion_sections_body_embeds_paragraph_HighlightParagraph_content {
+  __typename: "FormattedField";
+  value: string;
+}
+
+export interface Accordion_sections_body_embeds_paragraph_HighlightParagraph {
+  __typename: "HighlightParagraph";
+  title: string;
+  content: Accordion_sections_body_embeds_paragraph_HighlightParagraph_content | null;
+  isWarning: boolean | null;
+}
+
+export type Accordion_sections_body_embeds_paragraph = Accordion_sections_body_embeds_paragraph_AccordionItemParagraph | Accordion_sections_body_embeds_paragraph_CallToActionParagraph | Accordion_sections_body_embeds_paragraph_BlockQuoteParagraph | Accordion_sections_body_embeds_paragraph_FileDownloadParagraph | Accordion_sections_body_embeds_paragraph_HighlightParagraph;
 
 export interface Accordion_sections_body_embeds {
   __typename: "EmbeddedParagraph";
