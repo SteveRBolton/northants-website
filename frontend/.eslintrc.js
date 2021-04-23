@@ -3,6 +3,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'eslint-comments', 'jsx-a11y'],
   parserOptions: {
     project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
   },
   extends: [
     'airbnb-typescript',
@@ -33,16 +34,13 @@ module.exports = {
     'eslint-comments/disable-enable-pair': 0,
     'react/require-default-props': 0,
     '@typescript-eslint/naming-convention': [
-      'error', {
+      'error',
+      {
         selector: 'variable',
         format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-        leadingUnderscore: 'allow'
-      }
-    ]
+        leadingUnderscore: 'allow',
+      },
+    ],
   },
-  ignorePatterns: [
-    '.eslintrc.js',
-    'next.config.js',
-    'next-env.d.ts'
-  ],
+  ignorePatterns: ['.eslintrc.js', 'next.config.js', 'next-env.d.ts'],
 };
