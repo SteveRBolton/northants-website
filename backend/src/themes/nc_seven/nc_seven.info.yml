@@ -1,22 +1,22 @@
 name: Northants Seven
 type: theme
 base theme: seven
-description: 'Northants extension of the the default administration theme for Drupal 8 was designed with clean lines, simple blocks, and sans-serif font to emphasize the tools and tasks at hand.'
-alt text: 'Northants Default administration theme for Drupal 8 with simple blocks and clean lines.'
+description: "Northants extension of the the default administration theme for Drupal 8 was designed with clean lines, simple blocks, and sans-serif font to emphasize the tools and tasks at hand."
+alt text: "Northants Default administration theme for Drupal 8 with simple blocks and clean lines."
 package: Northants
 version: 1.0.0
 core_version_requirement: ^9
 
 regions:
-  header: 'Header'
-  pre_content: 'Pre-content'
+  header: "Header"
+  pre_content: "Pre-content"
   breadcrumb: Breadcrumb
   highlighted: Highlighted
   help: Help
   content: Content
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  sidebar_first: 'First sidebar'
+  page_top: "Page top"
+  page_bottom: "Page bottom"
+  sidebar_first: "First sidebar"
 regions_hidden:
   - sidebar_first
 
@@ -28,7 +28,8 @@ ckeditor_stylesheets:
   - css/ckeditor/paragraph--block-quote.css
   - css/ckeditor/paragraph--call-to-action.css
   - css/ckeditor/paragraph--file-download.css
+  - css/ckeditor/paragraph--highlight.css
   - css/ckeditor/tables.css
 
 libraries:
-  - 'nc_seven/nc-seven-css'
+  - "nc_seven/nc-seven-css"
