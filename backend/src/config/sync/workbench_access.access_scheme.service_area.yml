@@ -1,0 +1,24 @@
+uuid: 93809e34-7a9f-49e7-a859-336f3fd1dca9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.service_landing_page.field_service_area
+    - field.field.node.service_page.field_service_area
+    - taxonomy.vocabulary.service_area
+id: service_area
+label: 'Service area'
+plural_label: 'Service areas'
+scheme: taxonomy
+scheme_settings:
+  vocabularies:
+    - service_area
+  fields:
+    -
+      entity_type: node
+      bundle: service_landing_page
+      field: field_service_area
+    -
+      entity_type: node
+      bundle: service_page
+      field: field_service_area

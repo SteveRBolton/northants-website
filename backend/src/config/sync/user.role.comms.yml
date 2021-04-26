@@ -53,6 +53,7 @@ permissions:
   - 'use editorial transition submit_for_review'
   - 'use text format basic_html_with_embed_for_accordion'
   - 'use text format embed_basic_html'
+  - 'use workbench access'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any unpublished content'

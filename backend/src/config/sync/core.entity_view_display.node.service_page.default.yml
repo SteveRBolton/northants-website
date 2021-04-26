@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.service_page.field_parent
     - field.field.node.service_page.field_published_out_of_hours
     - field.field.node.service_page.field_revision_date
+    - field.field.node.service_page.field_service_area
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
@@ -91,5 +92,6 @@ hidden:
   field_meta_title: true
   field_parent: true
   field_revision_date: true
+  field_service_area: true
   langcode: true
   search_api_excerpt: true
