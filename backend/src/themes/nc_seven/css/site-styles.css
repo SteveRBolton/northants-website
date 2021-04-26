@@ -59,62 +59,6 @@ body.path-paragraph-embed
   background-color: white;
 }
 
-body.path-paragraph-embed input[name="paragraph_file_download_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/file-download.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_image_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/single-image.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_image_gallery_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/image-gallery.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_page_links_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/page-links.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_article_links_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/page-links.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph-pull-quote-add-more"] {
-  background-image: url(/themes/custom/nc_seven/icons/pull-quote.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_pull_quote_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/pull-quote.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_highlight_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/warning-text-north-west.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_lead_paragraph_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/lead-paragraph.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_video_embed_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/video-embed.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_social_embed_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/social-embed.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_newsletter_signup_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/newsletter-signup.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_call_to_action_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/call-to-action.svg) !important;
-}
-
-body.path-paragraph-embed input[name="paragraph_film_card_single_add_more"] {
-  background-image: url(/themes/custom/nc_seven/icons/single-film-card.svg) !important;
-}
-
 /**
  * Hide the Relations controls when editing author taxonomy since they have no hierarchy.
  */
