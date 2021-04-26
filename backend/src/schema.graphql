@@ -1,10 +1,15 @@
-
 # Query
 type Query {
   route(path: String!): DrupalRoute!
   globals: DrupalGlobals!
   search(text: String!, page: Int!): SearchResults!
-  news(text: String!, page: Int!, articleType: String, services: String, sortBy: String!): NewsArticles!
+  news(
+    text: String!
+    page: Int!
+    articleType: String
+    services: String
+    sortBy: String!
+  ): NewsArticles!
 }
 
 type SearchResults {
@@ -47,9 +52,9 @@ type NewsArticle {
   link: String!
   excerpt: String!
   date: Int!
-  image720x405: String,
-  image72x41: String,
-  imageAltText: String,
+  image720x405: String
+  image72x41: String
+  imageAltText: String
 }
 
 type CouncilData {
@@ -69,10 +74,10 @@ type HeroImage {
 }
 
 enum AlertType {
- alert
- warning
- positive
- london_bridge
+  alert
+  warning
+  positive
+  london_bridge
 }
 
 type Alert {
@@ -95,10 +100,14 @@ directive @media(type: MediaType!, bundle: String!) on OBJECT
 
 # Drupal routes
 
-union DrupalRoute = DrupalNodeRoute | DrupalNotFoundRoute | DrupalOfflineRoute | DrupalRedirectRoute | DrupalAccessDeniedRoute
+union DrupalRoute =
+    DrupalNodeRoute
+  | DrupalNotFoundRoute
+  | DrupalOfflineRoute
+  | DrupalRedirectRoute
+  | DrupalAccessDeniedRoute
 
-
-type DrupalNodeRoute  {
+type DrupalNodeRoute {
   node: Node!
 }
 
@@ -151,7 +160,9 @@ type FormattedFieldWithParagraphsEmbed implements FormattedFieldBase {
   embeds: [EmbeddedParagraph!]!
 }
 
-type EmbeddedParagraph @entityType @entity(type: embedded_paragraph, bundle: "EmbeddedParagraph") {
+type EmbeddedParagraph
+  @entityType
+  @entity(type: embedded_paragraph, bundle: "EmbeddedParagraph") {
   # Used by FormattedFieldWithParagraphsEmbed
   id: ID!
   paragraph: Paragraph!
@@ -261,7 +272,8 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   featuredNews: [ArticlePageNode!]!
 }
 
-type ArticlePageNode implements Node @entity(type: node, bundle: "news_article") {
+type ArticlePageNode implements Node
+  @entity(type: node, bundle: "news_article") {
   id: String!
   url: String!
   title: String!
@@ -282,7 +294,8 @@ type ArticlePageNode implements Node @entity(type: node, bundle: "news_article")
   date: String!
 }
 
-type ServicePageNode implements Node @entity(type: node, bundle: "service_page") {
+type ServicePageNode implements Node
+  @entity(type: node, bundle: "service_page") {
   id: String!
   title: String!
   url: String!
@@ -300,7 +313,8 @@ type ServicePageNode implements Node @entity(type: node, bundle: "service_page")
   warningTextDisclaimer: Boolean!
 }
 
-type ServiceLandingPageNode implements Node @entity(type: node, bundle: "service_landing_page") {
+type ServiceLandingPageNode implements Node
+  @entity(type: node, bundle: "service_landing_page") {
   id: String!
   title: String!
   url: String!
@@ -324,62 +338,80 @@ interface Paragraph @entityType {
   id: String!
 }
 
-type CallToActionParagraph implements Paragraph @entity(type: paragraph, bundle: "call_to_action") {
+type CallToActionParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "call_to_action") {
   id: String!
   link: LinkFieldWithTitle!
 }
 
-type CouncilSignpostParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signpost") {
+type CouncilSignpostParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "council_signpost") {
   id: String!
   council: SovereignCouncil!
   link: LinkField
   ctaText: String
 }
 
-type CouncilSignpostingParagraph implements Paragraph @entity(type: paragraph, bundle: "council_signposting") {
+type CouncilSignpostingParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "council_signposting") {
   id: String!
   otherCouncil: LinkField
   signposts: [CouncilSignpostParagraph!]!
 }
 
 union SectionPage @entityType = ServicePageNode | ServiceLandingPageNode
-type SectionParagraph implements Paragraph @entity(type: paragraph, bundle: "section") {
+type SectionParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "section") {
   id: String!
   name: String!
   pages: [SectionPage!]!
   parent: ServiceLandingPageNode!
 }
 
-type BlockQuoteParagraph implements Paragraph @entity(type: paragraph, bundle: "pull_quote") {
+type BlockQuoteParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "pull_quote") {
   id: String!
   quote: String!
   citation: String
 }
 
-type ServiceLinksParagraph implements Paragraph @entity(type: paragraph, bundle: "service_links") {
+type HighlightParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "highlight") {
+  id: String!
+  title: String!
+  content: FormattedField
+  isWarning: Boolean
+}
+
+type ServiceLinksParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "service_links") {
   id: String!
   serviceLandingPage: ServiceLandingPageNode!
   servicePages: [ServicePageNode!]!
 }
 
-type AccordionParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion") {
+type AccordionParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "accordion") {
   id: String!
   sections: [AccordionItemParagraph!]!
 }
 
-type AccordionItemParagraph implements Paragraph @entity(type: paragraph, bundle: "accordion_item") {
+type AccordionItemParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "accordion_item") {
   id: String!
   title: String!
   summary: String
   body: FormattedFieldWithParagraphsEmbed!
 }
 
-type FileDownloadParagraph implements Paragraph @entity(type: paragraph, bundle: "file_download") {
+type FileDownloadParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "file_download") {
   id: String!
   files: [Document!]!
 }
 
-type PromoBannerParagraph implements Paragraph @entity(type: paragraph, bundle: "promotional_banner") {
+type PromoBannerParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "promotional_banner") {
   id: String!
   title: String!
   body: FormattedField!
@@ -401,10 +433,10 @@ interface TaxonomyTerm @entityType {
   name: String!
 }
 
-type SovereignCouncil implements TaxonomyTerm @entity(type: taxonomy_term, bundle: "sovereign_councils") {
+type SovereignCouncil implements TaxonomyTerm
+  @entity(type: taxonomy_term, bundle: "sovereign_councils") {
   id: String!
   code: String!
   name: String!
   homepage: LinkField!
 }
-

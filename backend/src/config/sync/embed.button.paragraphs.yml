@@ -15,8 +15,9 @@ type_settings:
     accordion: accordion
     call_to_action: call_to_action
     file_download: file_download
+    highlight: highlight
     pull_quote: pull_quote
   enable_single_use_paragraph: 1
   paragraphs_add_mode: button
-icon: {  }
+icon: {}
 icon_uuid: null

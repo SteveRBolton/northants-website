@@ -4,7 +4,7 @@ status: true
 dependencies:
   module:
     - paragraphs_entity_embed
-label: 'Paragraphs (for Accordion)'
+label: "Paragraphs (for Accordion)"
 id: paragraphs_for_accordion_
 type_id: paragraphs_entity_embed
 type_settings:
@@ -12,8 +12,9 @@ type_settings:
   paragraphs_type_filter:
     call_to_action: call_to_action
     file_download: file_download
+    highlight: highlight
     pull_quote: pull_quote
   enable_single_use_paragraph: 1
   paragraphs_add_mode: button
-icon: {  }
+icon: {}
 icon_uuid: null

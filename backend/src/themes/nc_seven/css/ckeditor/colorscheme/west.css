@@ -13,3 +13,23 @@
 
   --ckeditor-theme--focus: #E2CA76;
 }
+
+body.path-paragraph-embed input[name="paragraph_file_download_add_more"] {
+  background-image: url(/themes/custom/nc_seven/icons/west/file-download-west.svg) !important;
+}
+
+body.path-paragraph-embed input[name="paragraph_call_to_action_add_more"] {
+  background-image: url(/themes/custom/nc_seven/icons/west/call-to-action-west.svg) !important;
+}
+
+body.path-paragraph-embed input[name="paragraph_pull_quote_add_more"] {
+  background-image: url(/themes/custom/nc_seven/icons/west/pull-quote-west.svg) !important;
+}
+
+body.path-paragraph-embed input[name="paragraph_highlight_add_more"] {
+  background-image: url(/themes/custom/nc_seven/icons/warning-text-north-west.svg) !important;
+}
+
+body.path-paragraph-embed input[name="paragraph_accordion_add_more"] {
+  background-image: url(/themes/custom/nc_seven/icons/west/accordion-west.svg) !important;
+}
