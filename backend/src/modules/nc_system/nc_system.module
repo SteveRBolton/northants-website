@@ -177,7 +177,7 @@ function isOutOfHours(DrupalDateTime $date) {
     return TRUE;
   }
 
-  if ($hour >= $end || $hour <= $start) {
+  if ($hour >= $end || $hour < $start) {
     return TRUE;
   }
 
