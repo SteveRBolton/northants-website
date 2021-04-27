@@ -48,3 +48,13 @@ These URL locations must always exist as these are used by Capita
 https://www.westnorthants.gov.uk/WNU-logo.png
 https://www.northnorthants.gov.uk/NNC-logo.png
 ```
+
+## Required environment variables
+| Name        | Type        | Value |
+| ----------- | ----------- | ----------- |
+| CMS_GRAPHQL_ENDPOINT      | URI       | The url to the Drupal GraphQL endpoint |
+| NEXT_PUBLIC_BASE_URL  | URI        | The frontend website URL (https://www.westnorthants.co.uk/) **must contain trailing slash** |
+| NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT  | URI        | The url to the federated GraphQL endpoint |
+| NEXT_PUBLIC_GTM_CODE  | String        | The Google Tag Manager code for the websiteAdded |
+| NEXT_PUBLIC_SITEMAP_ENDPOINT  | URI        | The url to the sitemap.xml file in Drupal |
+| NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west |
