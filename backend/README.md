@@ -211,7 +211,7 @@ To set this, navigate to `/admin/structure/config_pages` and choose a page to mo
 | CLOUDFLARE_API_KEY   | String        | The api key of the cloudflare user|
 | CLOUDFLARE_EMAIL  | String        | The email of the cloudflare user|
 | CLOUDFLARE_ZONE_ID  | String        | The zone id within Cloudflare where the website resides |
-| DRUPAL_HASH_STATUS  | String        | The unique hash used for salts |
+| DRUPAL_HASH_SALT  | String        | The unique hash used for salts |
 | NEXT_PUBLIC_BASE_URL  | URI        | The frontend website URL (https://www.westnorthants.co.uk/) **must contain trailing slash** |
 | NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west |
 
