@@ -1,9 +1,13 @@
 # Northants Web Frontend
 
 This is the Northants web frontend.
-It is built in [Next.js](https://nextjs.org) and [Apollo graphql](https://www.apollographql.com/)
+It is built in [Next.js](https://nextjs.org) and uses [Apollo GraphQL](https://www.apollographql.com/)
 
-This application combines data from the northants cms [TODO add link]() and theming from [northants design system](https://github.com/FutureNorthants/northants-design-system) in a web application.
+## Dependencies.
+
+You will need [Node](https://nodejs.org/) and [yarn](https://yarnpkg.com/lang/en/) installed globally on your development machine. Assuming you are using a Mac then these can be installed using [Homebrew](https://brew.sh/) with `brew install node yarn`
+
+If correctly setup then `which yarn` should return a file path to an executable.
 
 ## Getting Started
 
@@ -23,7 +27,7 @@ Next, install the required packages:
 yarn
 ```
 
-Now, generate up-to-date graphQL types for communication with the CMS (the CMS must be running for this to work):
+Now, generate up-to-date GraphQL types for communication with the CMS (the CMS must be running for this to work):
 
 Start the project:
 
@@ -62,6 +66,6 @@ https://www.northnorthants.gov.uk/north_frame/index.html
 | CMS_GRAPHQL_ENDPOINT      | URI       | The url to the Drupal GraphQL endpoint |
 | NEXT_PUBLIC_BASE_URL  | URI        | The frontend website URL (https://www.westnorthants.co.uk/) **must contain trailing slash** |
 | NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT  | URI        | The url to the federated GraphQL endpoint |
-| NEXT_PUBLIC_GTM_CODE  | String        | The Google Tag Manager code for the websiteAdded |
+| NEXT_PUBLIC_GTM_CODE  | String        | The Google Tag Manager code for the website |
 | NEXT_PUBLIC_SITEMAP_ENDPOINT  | URI        | The url to the sitemap.xml file in Drupal |
 | NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west |
