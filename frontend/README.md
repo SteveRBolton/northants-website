@@ -49,6 +49,13 @@ https://www.westnorthants.gov.uk/WNU-logo.png
 https://www.northnorthants.gov.uk/NNC-logo.png
 ```
 
+These URL locations must always exist as these are used by ModernGov
+
+```
+https://www.westnorthants.gov.uk/west_frame/index.html
+https://www.northnorthants.gov.uk/north_frame/index.html
+```
+
 ## Required environment variables
 | Name        | Type        | Value |
 | ----------- | ----------- | ----------- |
