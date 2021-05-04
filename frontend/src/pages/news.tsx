@@ -76,6 +76,7 @@ export default function News(page: NewsListingProps): ReactElement {
                     <>
                       <Searchbar
                         isLight
+                        id="searchBar"
                         submitInfo={[{ postTo: '/news', params: { type: 'search' } }]}
                         searchTerm={news.text}
                       />
