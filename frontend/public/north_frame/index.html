@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en"> 
 <head>
 <title>{pagetitle} - North Northamptonshire Council</title>
 <meta name="viewport" content="width=device-width">
@@ -56,7 +56,7 @@ option {
     min-height: 1.2em;
     padding: 0px 2px 1px;
 }
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"], select, #modgov .mgInput, #modgov .mgFormRow input {
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
@@ -81,8 +81,8 @@ input[type="text"], input[type="password"], select {
     border-style: solid;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
-	font-size: 1.1875rem;
-    line-height: 1.45;
+	font-size: 1.1875rem !important;
+    line-height: 1.45 !important;
 }
 input[type='checkbox'] {
     -webkit-appearance:none;
@@ -118,7 +118,7 @@ button, input[type="submit"], .button--medium {
 }
 
 button, input[type="submit"]:hover, .button--primary:hover {
-    background-color: rgb(6, 83, 37);
+    background-color: rgb(6, 83, 37) !important;
 }
 button, input[type="submit"]:focus, .button--primary:focus {
     outline: none;
@@ -219,7 +219,7 @@ a.mgTabSelectTitleLnk, #modgov a.mgTabSelectTitleLnk:hover {
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
-    background-color: rgb(1, 127, 52);
+    background-color: rgb(1, 127, 52) !important;
     border-top-left-radius: 3px;
     -moz-border-radius-topleft: 3px;
     -webkit-border-top-left-radius: 3px;
@@ -251,7 +251,7 @@ caption.mgSectionTitle, p.mgSectionTitle {
     margin-bottom: 5px;
     font-weight: bold;
     color: white;
-    background-color: #C90E2B;
+    background-color: rgb(1, 127, 52) !important;
     font-size: 14px;
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -276,7 +276,7 @@ div#mgLibraryBreadcrumbHolder {
     border: 1px solid #aaaaaa;
     padding: 0px !important;
     box-sizing: border-box;
-    border-radius: 3px;
+    border-radius: 3px !important;
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -288,6 +288,20 @@ div#mgLibraryBreadcrumbHolder {
     border: 2px solid rgb(1, 127, 52);
     color: #ffffff;
     padding-left: 5px;
+}
+#modgov .mgButtonHolder button {
+    cursor: pointer;
+    background-color: grey !important;
+}
+#modgov .mgButtonHolder a, #modgov .mgButtonHolder a:hover, #modgov .mgButtonHolder a:visited {
+    text-decoration: none;
+    color: #fff !important;
+	background-color: grey !important;
+}
+#modgov .mgFileSize {
+    color: #777777;
+    font-size: 1em;
+    text-decoration: none;
 }
 
 /************************************/
@@ -366,24 +380,18 @@ div#mgLibraryBreadcrumbHolder {
 #main p {
     color: rgb(60, 60, 59);
     margin-left: 0px;
-    font-weight: 700;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+     font-family: Roboto, Helvetica, Arial, sans-serif;
     margin-bottom: 20px;
-    font-size: 2rem;
     line-height: 1.1;
 }
 
 #main p > a{
     color: rgb(60, 60, 59);
     margin-left: 0px;
-    font-weight: 700;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     margin-bottom: 20px;
-    font-size: 2rem;
     line-height: 1.1;
 }
-
-
 
 .fIUiIW {
     display: inline-block;
@@ -495,7 +503,7 @@ p.iFMyOV{
 }
 .ikekNU:focus {
     outline: none;
-    background: rgb(1, 127, 52);
+    background-color: rgb(226, 202, 118);
 }
 .ikekNU {
     position: absolute;
@@ -656,15 +664,15 @@ p.iFMyOV{
 
 .sidebar ul li > a:focus, .sidebar ol li > a:focus  {
     color: rgb(0, 0, 0);
-    background-color: rgb(1, 127, 52);
-    outline: none;
+	background-color: rgb(226, 202, 118);
+     outline: none;
     box-shadow: rgb(60 60 59) 0px -2px 0px 0px inset;
 }
 
 .sidebar ul li > a:hover,.sidebar ol li > a:hover  {
     cursor: pointer;
     transition: background-color 0.3s ease 0s;
-    background-color: rgba(233, 238, 243, 0.5);
+    background-color: rgb(226, 202, 118);
 }
 
 .sidebar ul li > a{
@@ -722,15 +730,15 @@ p.iFMyOV{
 
 .lmqpay a:active {
     color: rgb(60, 60, 59);
-    background: rgb(1, 127, 52);
-    outline: none;
+    background-color: rgb(226, 202, 118);
+	outline: none;
     transform: translateY(2px);
     box-shadow: rgb(226 202 118) 0px -6px, rgb(60 60 59) 0px 1px;
     text-decoration: none !important;
 }
 .lmqpay a:focus {
     color: rgb(60, 60, 59);
-    background: rgb(1, 127, 52);
+    background: rgb(226, 202, 118);
     outline: none;
     box-shadow: rgb(226 202 118) 0px -6px, rgb(60 60 59) 0px 3px;
     text-decoration: none !important;
@@ -1000,7 +1008,7 @@ p.iFMyOV{
 		</div>
 	</div>
 </header>
-{settings (breadcrumb-divider: ) }
+
 <nav class="sc-lcujXC gsyzSn kxLWOc">
 		{breadcrumb}
 </nav>

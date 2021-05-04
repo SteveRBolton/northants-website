@@ -27,8 +27,6 @@
 <meta property="og:url" content="https://www.westnorthants.gov.uk/">
 <meta property="twitter:url" content="https://www.westnorthants.gov.uk/">
 <style> 
- /*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');*/
-
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     margin: 0;
     padding: 0;
@@ -58,7 +56,7 @@ option {
     min-height: 1.2em;
     padding: 0px 2px 1px;
 }
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"], select, #modgov .mgInput, #modgov .mgFormRow input {
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
@@ -83,6 +81,8 @@ input[type="text"], input[type="password"], select {
     border-style: solid;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
+	font-size: 1.1875rem !important;
+    line-height: 1.45 !important;
 }
 button, input[type="submit"] {
     appearance: auto;
@@ -130,6 +130,8 @@ input {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
+		font-size: 1.1875rem !important;
+    line-height: 1.45 !important;
 }
 input[type="checkbox"] {
     background-color: initial;
@@ -192,17 +194,17 @@ div.mgTableTitleTxt {
     -moz-border-radius-topright: 5px;
     -webkit-border-top-right-radius: 5px;
 }
-a.mgTabSelectTitleLnk, #modgov a.mgTabSelectTitleLnk:hover {
+#modgov a.mgTabSelectTitleLnk, #modgov a.mgTabSelectTitleLnk:hover {
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
-    background-color: rgb(56, 97, 147);
-    border-top-left-radius: 3px;
-    -moz-border-radius-topleft: 3px;
-    -webkit-border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    -moz-border-radius-topright: 3px;
-    -webkit-border-top-right-radius: 3px;
+    background-color: rgb(56, 97, 147) !important;
+    border-top-left-radius: 3px  !important;
+    -moz-border-radius-topleft: 3px  !important;
+    -webkit-border-top-left-radius: 3px  !important;
+    border-top-right-radius: 3px  !important;
+    -moz-border-radius-topright: 3px  !important;
+    -webkit-border-top-right-radius: 3px  !important;
     color: white;
 }
 
@@ -265,6 +267,44 @@ div#mgLibraryBreadcrumbHolder {
     border: 2px solid rgb(56, 97, 147);
     color: #ffffff;
     padding-left: 5px;
+}
+#modgov caption.mgSectionTitle {
+	background-color: rgb(56, 97, 147) !important;
+    padding: 6px 5px 6px 5px;
+    position: relative;
+    border-radius: 3px 3px 0px 0px;
+    -moz-border-radius-topleft: 3px !important;
+    -moz-border-radius-topright: 3px !important;
+    -webkit-border-top-right-radius: 3px !important;
+    -webkit-border-top-left-radius: 3px !important;
+    color: White;
+}
+#modgov input.mgGoButton, #modgov input.mgSubmitButton, #modgov input#butGo {
+    border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    -webkit-border-radius: 3px !important;
+    margin-left: 10px;
+    background-color: rgb(56, 97, 147) !important;
+	border: 1px solid  rgb(56, 97, 147) !important; 
+	color: #fff; 
+    cursor: pointer;
+    padding: 4px 15px !important;
+    margin-bottom: 8px;
+    zoom: 1;
+}
+#modgov .mgButtonHolder button {
+    cursor: pointer;
+    background-color: grey !important;
+}
+#modgov .mgButtonHolder a, #modgov .mgButtonHolder a:hover, #modgov .mgButtonHolder a:visited {
+    text-decoration: none;
+    color: #fff !important;
+	background-color: grey !important;
+}
+#modgov .mgFileSize {
+    color: #777777;
+    font-size: 1em;
+    text-decoration: none;
 }
 
 /************************************/
