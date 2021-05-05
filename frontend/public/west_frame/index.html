@@ -178,8 +178,8 @@ label {
 }
 /***** modern gov updated ********/
 
-div.mgTableTitleTxt {
-    background-color: rgb(56, 97, 147);
+#modgov div.mgTableTitleTxt {
+    background-color: rgb(56, 97, 147) !important;
     padding-left: 10px;
     font-weight: bold;
     padding-bottom: 5px;
@@ -187,12 +187,12 @@ div.mgTableTitleTxt {
     color: white;
     padding-top: 5px;
     margin-right: -1px;
-    border-top-left-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -webkit-border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 3px !important;;
+    -moz-border-radius-topleft: 3px !important;;
+    -webkit-border-top-left-radius: 3px !important;;
+    border-top-right-radius: 3px !important;;
+    -moz-border-radius-topright: 3px !important;;
+    -webkit-border-top-right-radius: 3px !important;;
 }
 #modgov a.mgTabSelectTitleLnk, #modgov a.mgTabSelectTitleLnk:hover {
     font-weight: bold;
@@ -209,7 +209,7 @@ div.mgTableTitleTxt {
 }
 
 caption.mgSectionTitle {
-    background-color: rgb(56, 97, 147);
+    background-color: rgb(56, 97, 147) !important;
     padding: 6px 5px 6px 5px;
     position: relative;
     border-radius: 3px 3px 0px 0px;
@@ -230,7 +230,7 @@ caption.mgSectionTitle {
     margin-bottom: 5px;
     font-weight: bold;
     color: white;
-    background-color: #C90E2B;
+    background-color: rgb(56, 97, 147) !important;
     font-size: 14px;
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -268,7 +268,7 @@ div#mgLibraryBreadcrumbHolder {
     color: #ffffff;
     padding-left: 5px;
 }
-#modgov caption.mgSectionTitle {
+#modgov caption.mgSectionTitle, #modgov .mgSectionTitle {
 	background-color: rgb(56, 97, 147) !important;
     padding: 6px 5px 6px 5px;
     position: relative;
@@ -291,7 +291,15 @@ div#mgLibraryBreadcrumbHolder {
     padding: 4px 15px !important;
     margin-bottom: 8px;
     zoom: 1;
+	width: inherit;
+    height: 32px;
 }
+
+#modgov input.mgGoButton:hover, #modgov input.mgSubmitButton:hover, #modgov input#butGo:hover {
+    background-color: rgba(56, 97, 147,.7) !important;
+}
+
+
 #modgov .mgButtonHolder button {
     cursor: pointer;
     background-color: grey !important;
@@ -478,8 +486,8 @@ p.iFMyOV{
 
 .ikekNU {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: -1px;
+    right: -5px;
     cursor: pointer;
     margin: 0px;
     padding: 10px 12px;
@@ -659,6 +667,7 @@ p.iFMyOV{
     color: rgb(56, 97, 147);
     padding: 5px 10px;
     text-decoration: none;
+	font-weight:600;
 }
 
 .epvuRM {
@@ -728,7 +737,6 @@ p.iFMyOV{
 }
 .lmqpay a {
     color: rgb(56, 97, 147);
-    font-weight: 700;
     text-decoration: underline;
 }
 

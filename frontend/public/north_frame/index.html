@@ -199,8 +199,23 @@ label {
 }
 /***** modern gov updated ********/
 
+#modgov input.mgGoButton, #modgov input.mgSubmitButton, #modgov input#butGo {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-left: 10px;
+    background: rgb(1, 127, 52) !important;
+    border: 1px solid rgb(1, 127, 52) !important;
+    color: #fff;
+    cursor: pointer;
+    padding: 1px 5px !important;
+    margin-bottom: 8px;
+    zoom: 1;
+    width: inherit;
+    height: 32px;
+}
 div.mgTableTitleTxt {
-    background-color: rgb(1, 127, 52);
+    background-color: rgb(1, 127, 52) !important;
     padding-left: 10px;
     font-weight: bold;
     padding-bottom: 5px;
@@ -283,7 +298,7 @@ div#mgLibraryBreadcrumbHolder {
 #modgov .mgCalendarCellToday {
     font-weight: bold;
     vertical-align: top;
-    background-color: rgb(1, 127, 52);
+    background-color: rgb(1 127 52 / 50%);
     text-align: left;
     border: 2px solid rgb(1, 127, 52);
     color: #ffffff;
@@ -302,6 +317,12 @@ div#mgLibraryBreadcrumbHolder {
     color: #777777;
     font-size: 1em;
     text-decoration: none;
+}
+#modgov.mgCalendarDayTxt {
+    font-weight: bold;
+    margin-left: 0px;
+    margin-bottom: 12px;
+    color: white;
 }
 
 /************************************/
@@ -338,7 +359,7 @@ div#mgLibraryBreadcrumbHolder {
 
 .kxLWOc a:active {
     color: rgb(60, 60, 59);
-    background: rgb(1, 127, 52);
+    background-color: rgb(226, 202, 118);
     outline: none;
     transform: translateY(2px);
     box-shadow: rgb(226 202 118) 0px -6px, rgb(60 60 59) 0px 1px;
@@ -346,7 +367,7 @@ div#mgLibraryBreadcrumbHolder {
 }
 .kxLWOc a:focus {
     color: rgb(60, 60, 59);
-    background: rgb(1, 127, 52);
+    background-color: rgb(226, 202, 118);
     outline: none;
     box-shadow: rgb(226 202 118) 0px -6px, rgb(60 60 59) 0px 3px;
     text-decoration: none !important;
@@ -382,7 +403,7 @@ div#mgLibraryBreadcrumbHolder {
     margin-left: 0px;
      font-family: Roboto, Helvetica, Arial, sans-serif;
     margin-bottom: 20px;
-    line-height: 1.1;
+    line-height: 1.4;
 }
 
 #main p > a{
@@ -390,7 +411,8 @@ div#mgLibraryBreadcrumbHolder {
     margin-left: 0px;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     margin-bottom: 20px;
-    line-height: 1.1;
+    line-height: 1.4;
+	font-weight:600;
 }
 
 .fIUiIW {
@@ -672,7 +694,6 @@ p.iFMyOV{
 .sidebar ul li > a:hover,.sidebar ol li > a:hover  {
     cursor: pointer;
     transition: background-color 0.3s ease 0s;
-    background-color: rgb(226, 202, 118);
 }
 
 .sidebar ul li > a{
@@ -749,7 +770,7 @@ p.iFMyOV{
 }
 .lmqpay a {
     color: rgb(1, 127, 52);
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: underline;
 }
 
@@ -906,6 +927,7 @@ p.iFMyOV{
     line-height: 1.45;
 }
 
+
 .sidebar ul > li a{
     margin: 5px 0px;
 }
@@ -921,7 +943,8 @@ p.iFMyOV{
     display: block;
     border-bottom: 1px solid rgb(1, 127, 52);
     padding: 10px;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: 100;
 }
 
 .kJWPWa {
@@ -937,6 +960,7 @@ p.iFMyOV{
 .gsyzSn {
     font-size: 1.1875rem;
     line-height: 1.45;
+	font-weight:400;
 }
 .epigSb {
     display: flex;
