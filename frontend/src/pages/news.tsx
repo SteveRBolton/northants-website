@@ -21,7 +21,7 @@ import { GetServerSideProps } from 'next';
 import { GetNewsArticles, GetNewsArticlesVariables } from '../api/graphql/__generated__/GetNewsArticles';
 import { initializeApollo } from '../lib/apolloClient';
 import { getNewsArticles } from '../api/graphql/queries';
-import AlertBannerServiceIE from "../components/AlertBannerService";
+import AlertBannerServiceIE from '../components/AlertBannerService';
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const client = initializeApollo();
@@ -76,6 +76,7 @@ export default function News(page: NewsListingProps): ReactElement {
                     <>
                       <Searchbar
                         isLight
+                        id="searchBar"
                         submitInfo={[{ postTo: '/news', params: { type: 'search' } }]}
                         searchTerm={news.text}
                       />

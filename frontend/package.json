@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "lint": "tsc && eslint --ext .js,.jsx,.ts,.tsx ./src/",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
@@ -46,7 +47,7 @@
     "next": "^9.5.5",
     "next-boost": "^0.9.0",
     "nodemon": "^2.0.6",
-    "northants-design-system": "^0.1.76",
+    "northants-design-system": "^0.1.82",
     "prettier": "^2.2.1",
     "reach-router": "^0.0.0",
     "react": "^17.0.1",
