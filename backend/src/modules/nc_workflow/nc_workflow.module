@@ -58,3 +58,25 @@ function nc_workflow_editor_js_settings_alter(&$settings, $conf) {
     $settings["editor"]["formats"]["embed_basic_html"]["editorSettings"]["toolbar"] = $toolbar;
   }
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_form().
+ */
+function nc_workflow_form_node_form_alter(&$form) {
+  $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
+
+  if (in_array('subject_matter_expert_plus', $roles)) {
+    $today = new DrupalDateTime('now');
+    $publishing_service = \Drupal::service('nc_workflow.publishing_service');
+    $out_of_hours = $publishing_service->isOutOfHours($today);
+    $options = isset($form['moderation_state']['widget']) ? $form['moderation_state']['widget'][0]['state']['#options'] : [];
+    if(!$out_of_hours) {
+      $options = array_diff_key($options, [
+        'published' => 'Published'
+      ]);
+    }
+    $form['moderation_state']['widget'][0]['state']['#options'] = $options;
+
+  }
+}

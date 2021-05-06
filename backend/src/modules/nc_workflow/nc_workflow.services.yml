@@ -1,0 +1,3 @@
+services:
+  nc_workflow.publishing_service:
+    class: Drupal\nc_workflow\Service\PublishingService
