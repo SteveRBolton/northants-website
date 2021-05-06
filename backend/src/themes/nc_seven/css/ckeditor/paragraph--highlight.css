@@ -1,0 +1,24 @@
+.paragraph--type--highlight {
+  margin: 2rem 0;
+  background-color: #b7e4ef;
+  padding: 1rem;
+}
+
+.paragraph--type--highlight .field--name-field-highlight-title .field__label {
+  display: none;
+}
+.paragraph--type--highlight .field--name-field-highlight-title {
+  font-weight: 800;
+}
+.paragraph--type--highlight .field--name-field-content .field__label {
+  display: none;
+}
+.paragraph--type--highlight .field--name-field-content div p {
+  font-size: 1rem;
+}
+
+.paragraph--type--highlight .field--name-field-is-warning div {
+  display: inline-block;
+  font-size: 1rem;
+  padding-top: 0;
+}

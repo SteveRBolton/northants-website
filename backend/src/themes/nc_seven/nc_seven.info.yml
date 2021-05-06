@@ -27,6 +27,7 @@ ckeditor_stylesheets:
   - css/ckeditor/paragraph--block-quote.css
   - css/ckeditor/paragraph--call-to-action.css
   - css/ckeditor/paragraph--file-download.css
+  - css/ckeditor/paragraph--highlight.css
   - css/ckeditor/tables.css
 
 libraries:

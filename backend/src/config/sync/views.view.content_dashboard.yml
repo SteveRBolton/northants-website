@@ -198,20 +198,7 @@ display:
             operator_limit_selection: false
             operator_list: {  }
           group: 1
-      sorts:
-        field_revision_date_value:
-          id: field_revision_date_value
-          table: node__field_revision_date
-          field: field_revision_date_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          granularity: day
-          plugin_id: datetime
+      sorts: {  }
       title: 'Content Dashboard'
       header: {  }
       footer: {  }
@@ -850,10 +837,59 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: boolean
+        changed:
+          id: changed
+          table: node_field_data
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>'
+          value:
+            min: ''
+            max: ''
+            value: 'today -7 days'
+            type: offset
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: changed
+          plugin_id: date
       defaults:
         filters: false
         filter_groups: false
         fields: false
+        empty: false
+        sorts: false
       filter_groups:
         operator: AND
         groups:
@@ -1163,6 +1199,35 @@ display:
           destination: false
           entity_type: node
           plugin_id: entity_operations
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There is currently no content published out of hours in the last 7 days.'
+            format: basic_html
+          plugin_id: text
+      sorts:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: standard
     cache_metadata:
       max-age: -1
       contexts:
