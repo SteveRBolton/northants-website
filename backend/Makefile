@@ -10,19 +10,23 @@
 
 USE_DOCKER ?= 0
 
-#
-# Ensure the local environment has the right binaries installed.
-#
-
 REQUIRED_BINS := php composer
-$(foreach bin,$(REQUIRED_BINS),\
-    $(if $(shell command -v $(bin) 2> /dev/null),,$(error Please install `$(bin)`)))
 
 #
 # Default is what happens if you only type make.
 #
 
-default: install start build
+default: requirements install start build
+
+#
+# Ensure the local environment has the right binaries installed.
+#
+
+requirements:
+ifeq ("${USE_DOCKER}","0")
+	$(foreach bin,$(REQUIRED_BINS),\
+			$(if $(shell command -v $(bin) 2> /dev/null),,$(error Please install `$(bin)`)))
+endif
 
 #
 # Bring in the external project dependencies.
@@ -30,7 +34,7 @@ default: install start build
 
 install:
 ifeq ("${USE_DOCKER}","1")
-	docker run --rm --interactive --tty  --volume $(PWD):/var/www/html:delegated wodby/drupal-php:7.4-4.18.2 /bin/bash -c "composer global require hirak/prestissimo; composer install"
+	docker run --rm --interactive --tty  --volume $(PWD):/var/www/html:delegated wodby/drupal-php:7.4-4.24.4 /bin/bash -c "composer global require hirak/prestissimo; composer install"
 else
 	composer install
 endif
@@ -41,7 +45,7 @@ endif
 
 update:
 ifeq ("${USE_DOCKER}","1")
-	docker run --rm --interactive --tty --volume $(PWD):/app  --volume $(PWD)/.persist/composer:/tmp wodby/drupal-php:7.4-4.18.2 /bin/bash -c "composer global require hirak/prestissimo; composer update"
+	docker run --rm --interactive --tty --volume $(PWD):/app  --volume $(PWD)/.persist/composer:/tmp wodby/drupal-php:7.4-4.24.4 /bin/bash -c "composer global require hirak/prestissimo; composer update"
 else
 	composer update
 endif

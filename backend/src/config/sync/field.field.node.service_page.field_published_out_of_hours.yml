@@ -1,0 +1,23 @@
+uuid: e3ee9417-4ce3-4f3c-aca3-83f1ffcaf512
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_published_out_of_hours
+    - node.type.service_page
+id: node.service_page.field_published_out_of_hours
+field_name: field_published_out_of_hours
+entity_type: node
+bundle: service_page
+label: 'Published out of hours'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

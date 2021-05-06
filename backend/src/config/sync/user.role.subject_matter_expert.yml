@@ -7,6 +7,7 @@ label: 'Subject Matter Expert'
 weight: -8
 is_admin: null
 permissions:
+  - 'hide ckeditor source'
   - 'access content'
   - 'access content overview'
   - 'access toolbar'

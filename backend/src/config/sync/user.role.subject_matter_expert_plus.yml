@@ -7,6 +7,7 @@ label: 'Subject Matter Expert+'
 weight: -7
 is_admin: null
 permissions:
+  - 'hide ckeditor source'
   - 'access content overview'
   - 'access toolbar'
   - 'add paragraphs entity embed'

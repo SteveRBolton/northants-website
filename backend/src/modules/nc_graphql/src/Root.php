@@ -282,14 +282,15 @@ class Root {
         'url' => $result->getField('url')->getValues()[0],
         'title' => $result->getField('title')->getValues()[0],
         'teaser' => $result->getField('summary')->getValues()[0],
-        'parent' => $result->getField('parent')->getValues()[0],
-        'topLineText' => $result->getField('top_line_text')->getValues()[0],
+        'parent' => isset($result->getField('parent')->getValues()[0]) ? $result->getField('parent')->getValues()[0] : NULL,
+        'topLineText' => isset($result->getField('top_line_text')->getValues()[0]) ? $result->getField('top_line_text')->getValues()[0] : NULL,
         'signposts' => $signpostsArr,
       ];
     }
 
-    $suggestedSearch = $resultSet->getExtraData('search_api_spellcheck')['collation'];
-    $didYouMean = $solr->search($suggestedSearch, 0, 1)->getResultCount() > 0 ? $suggestedSearch : NULL;
+    $extraData = $resultSet->getExtraData('search_api_spellcheck');
+    $suggestedSearch = isset($extraData['collation']) ? $extraData['collation'] : NULL;
+    $didYouMean = $suggestedSearch != NULL && $solr->search($suggestedSearch, 0, 1)->getResultCount() > 0 ? $suggestedSearch : NULL;
 
     return [
       "council_name" => $councilName,

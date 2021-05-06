@@ -7,3 +7,11 @@ nc-seven-css:
   css:
     theme:
       css/site-styles.css: {}
+nc-seven-west-admin-css:
+  css:
+    theme:
+      css/ckeditor/colorscheme/west.css: {}
+nc-seven-north-admin-css:
+  css:
+    theme:
+      css/ckeditor/colorscheme/north.css: {}

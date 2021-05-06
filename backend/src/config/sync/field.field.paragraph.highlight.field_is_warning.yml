@@ -1,0 +1,23 @@
+uuid: 00765970-d1fb-468e-b05d-b7b5d88c7380
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_is_warning
+    - paragraphs.paragraphs_type.highlight
+id: paragraph.highlight.field_is_warning
+field_name: field_is_warning
+entity_type: paragraph
+bundle: highlight
+label: 'Is Warning'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

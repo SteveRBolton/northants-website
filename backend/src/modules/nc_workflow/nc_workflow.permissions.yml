@@ -1,0 +1,6 @@
+'hide ckeditor source':
+  title: Hide ckeditor source
+  description: Hide the source button on ckeditor.
+
+permission_callbacks:
+  - \Drupal\node\NodePermissions::nodeTypePermissions

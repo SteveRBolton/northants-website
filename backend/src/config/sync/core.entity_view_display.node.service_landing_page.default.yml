@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.service_landing_page.field_meta_description
     - field.field.node.service_landing_page.field_meta_title
     - field.field.node.service_landing_page.field_parent
+    - field.field.node.service_landing_page.field_published_out_of_hours
     - field.field.node.service_landing_page.field_revision_date
     - field.field.node.service_landing_page.field_sections
     - field.field.node.service_landing_page.field_summary
@@ -42,6 +43,16 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_published_out_of_hours:
+    weight: 7
+    label: hidden
+    settings:
+      format: yes-no
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_sections:
     weight: 3

@@ -12,7 +12,7 @@ function nc_workflow_cron() {
   $now = new DrupalDateTime('now', $user_tz);
   $now = $now->format('Y-m-d');
 
-  if( date('G') == 4){
+  if ( date('G') == 4) {
     \Drupal::logger('nc_workflow_cron')->notice('nc_workflow cron ran');
 
     $query = \Drupal::entityQuery('node')
@@ -30,5 +30,31 @@ function nc_workflow_cron() {
         $node->save();
       }
     }
+  }
+}
+
+/**
+ * Implements hook_settings_alter().
+ */
+function nc_workflow_editor_js_settings_alter(&$settings, $conf) {
+  $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
+  $editorHidden = $user->hasPermission('hide ckeditor source');
+
+  if ( $editorHidden && !in_array('administrator', $roles) ) {
+    // Get the toolbar
+    $toolbar = $settings["editor"]["formats"]["embed_basic_html"]["editorSettings"]["toolbar"];
+    // Loop through the items in the toolbar until we get to 'Other' where Source is stored
+    foreach($toolbar as $key => $item) {
+      if(is_array($item) && $item['name'] === "Other") {
+        // Find the index of Source so we can remove it
+        $sourceIndex = array_search( "Source", $item["items"],null);
+        unset($item["items"][$sourceIndex]);
+        // This removes it from the original array but it still shows on the page
+        $toolbar[$key]["items"] = $item["items"];
+      }
+    }
+
+    $settings["editor"]["formats"]["embed_basic_html"]["editorSettings"]["toolbar"] = $toolbar;
   }
 }

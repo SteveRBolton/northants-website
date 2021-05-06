@@ -4,6 +4,7 @@ use Drupal\config_pages\Entity\ConfigPages;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\nc_system\Entity\Paragraph\BlockQuote;
+use Drupal\nc_system\Entity\Paragraph\Highlight;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
 use Drupal\nc_system\Entity\Node\Homepage;
 use Drupal\nc_system\Entity\Node\Article;
@@ -20,6 +21,7 @@ use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 use Drupal\node\Entity\Node;
 use Drupal\system\Entity\Menu;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_entity_bundle_info_alter().
@@ -40,6 +42,7 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   $bundles['paragraph']['council_signpost']['class'] = CouncilSignpost::class;
   $bundles['paragraph']['council_signposting']['class'] = CouncilSignposting::class;
   $bundles['paragraph']['pull_quote']['class'] = BlockQuote::class;
+  $bundles['paragraph']['highlight']['class'] = Highlight::class;
   $bundles['paragraph']['section']['class'] = Section::class;
   $bundles['paragraph']['service_links']['class'] = ServiceLinks::class;
   $bundles['paragraph']['accordion']['class'] = Accordion::class;
@@ -72,7 +75,8 @@ function nc_system_page_attachments_alter(array &$page) {
   $admin_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
 
   if ($admin_theme === 'nc_seven') {
-    $background_color = \Drupal::service('nc_system.website_manager')->getBackgroundColor();
+    $themeManager = \Drupal::service('nc_system.website_manager');
+    $background_color = $themeManager->getBackgroundColor();
 
     if (!empty($background_color)) {
       $css = "#toolbar-administration .toolbar-bar { background-color: $background_color; }";
@@ -84,6 +88,8 @@ function nc_system_page_attachments_alter(array &$page) {
         'admin-toolbar-custom-css'
       ];
     }
+
+    $page['#attached']['library'][] = $themeManager->getCssLibrary();
   }
 }
 
@@ -147,10 +153,72 @@ function nc_system_config_pages_update(ConfigPages $entity) {
 }
 
 /**
- * This function purges the Cloudflare cache when updating the nodes.
+ * This function purges the Cloudflare cache when creating the nodes.
+ * @param Node $node
+ */
+function nc_system_node_insert(Node $node) {
+  _purge_node($node);
+}
+
+/**
+ * This function takes a date and then checks to see if it is a
+ * Saturday, Sunday or if not the time is before 9am or after 5pm
+ * @param DrupalDateTime $date
+ * @return bool
+ */
+function isOutOfHours(DrupalDateTime $date) {
+  $start = 9; // 9am.
+  $end = 17; // 5pm.
+
+  // As date is passed as UTC we need to change the timezone.
+  $datetime = $date;
+  $datetime->setTimezone(new DateTimeZone('Europe/London'));
+
+  $day = $datetime->format('D');
+  $hour = intval($datetime->format('H'));
+
+  if($day == 'Sat' || $day == 'Sun') {
+    return TRUE;
+  }
+
+  if ($hour >= $end || $hour < $start) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * This function purges the Cloudflare cache when updating the nodes
  * @param Node $node
  */
 function nc_system_node_update(Node $node) {
+  _purge_node($node);
+}
+
+/**
+ * Before save this checks to see if it was a page being published outside of working hours
+ * Saturday, Sunday or before 9am or after 5pm Monday-Friday
+ * @param Node $node
+ */
+function nc_system_node_presave(Node $node) {
+  $node_type = $node->getType();
+  $today = new DrupalDateTime('now');
+  if($node_type === 'service_page' || $node_type === 'service_landing_page') {
+    if (isOutOfHours($today) && $node->isPublished())  {
+      $node->set('field_published_out_of_hours', '1');
+    }
+    else {
+      $node->set('field_published_out_of_hours', '0');
+    }
+  }
+}
+
+/**
+ * This function purges the Cloudflare cache on nodes.
+ * @param Node $node
+ */
+function _purge_node(Node $node) {
   $urls = [];
   $host = \Drupal::service('nc_system.website_manager')->getHost();
   $page_url = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
@@ -190,4 +258,12 @@ function nc_system_xmlsitemap_element_alter(&$element, array $link, $sitemap) {
   $replacement_url = parse_url(\Drupal::service('nc_system.website_manager')->getHost())['host'];
   $base_url = \Drupal::request()->getHost();
   $element['loc'] = str_replace($base_url, $replacement_url, $element['loc']);
+}
+
+/**
+ * Implements hook_ckeditor_css_alter().
+ */
+function nc_system_ckeditor_css_alter(&$css, $editor) {
+  $ckeditor_stylesheet = \Drupal::service('nc_system.website_manager')->getCkEditorStyleSheet();
+  $css[] = drupal_get_path('theme', 'nc_seven') . $ckeditor_stylesheet;
 }

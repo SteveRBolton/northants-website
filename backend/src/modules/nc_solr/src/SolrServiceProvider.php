@@ -26,7 +26,7 @@ class SolrServiceProvider {
    *
    * @param $pageSize int
    * @param $page int
-   * @return \Drupal\search_api\Query\ResultSet|\Drupal\search_api\Query\ResultSetInterface
+   * @return \Drupal\search_api\Query\ResultSet|\Drupal\search_api\Query\ResultSetInterface | void
    * @throws \Drupal\search_api\SearchApiException
    */
   public function search($text, $page, $pageSize) {
@@ -34,6 +34,8 @@ class SolrServiceProvider {
     $index = \Drupal\search_api\Entity\Index::load('main_search_index');
     /* @var $query \Drupal\search_api\Query\Query */
     $query = $index->query();
+    // Set parse mode
+    $query->getParseMode()->setConjunction('OR');
     //Search for the provided text
     $query->keys($text);
     //Perform search on these fields
