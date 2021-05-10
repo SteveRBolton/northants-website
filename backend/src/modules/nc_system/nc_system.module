@@ -106,9 +106,8 @@ function nc_system_menu_update(Menu $menu) {
 
 /**
  * This function purges the Cloudflare cache on redirect updates.
- * @param Node $entity
  */
-function nc_system_redirect_presave(Node $entity) {
+function nc_system_redirect_presave() {
   $purge_service = \Drupal::service('nc_cloudflare_purge.service');
   $purge_service->$purge_service->purgeAll();
 }
