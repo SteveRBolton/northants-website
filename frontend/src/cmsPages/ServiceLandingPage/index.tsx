@@ -47,8 +47,6 @@ export default function ServiceLandingPage({
   icon,
   dateUpdated,
 }: ServiceLandingPageProps): ReactElement {
-  console.log(' date: ', dateUpdated);
-
   return (
     <>
       <Head>
@@ -81,8 +79,8 @@ export default function ServiceLandingPage({
           {sections.map((section) => (
             <SectionLinks {...section} />
           ))}
-          <DisplayDate preText="Last Updated " text={dateUpdated} format="X" />
         </PageMain>
+        <DisplayDate preText="Last updated " text={dateUpdated} format="X" />
       </MaxWidthContainer>
     </>
   );

@@ -49,7 +49,6 @@ export default function ServicePage({
   dateUpdated,
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
-  console.log(dateUpdated);
 
   const showSidebar = [inThisSection, alsoIn].filter((s) => s !== undefined).length > 0;
   const main = (
@@ -59,7 +58,6 @@ export default function ServicePage({
       <TextWithSlices {...body} />
       {signposting && <SignpostLinks {...signposting} TopLineText={topLineText} />}
       {warningTextDisclaimer && <WarningTextDisclaimer />}
-      <DisplayDate preText="Last Updated " text={dateUpdated} format="X" />
     </PageMain>
   );
 
@@ -95,6 +93,7 @@ export default function ServicePage({
           </PageWithSidebarContainer>
         )}
         {!showSidebar && main}
+        <DisplayDate preText="Last updated " text={dateUpdated} format="X" />
       </MaxWidthContainer>
     </>
   );

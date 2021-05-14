@@ -178,6 +178,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         featuredImage1440x810,
         featuredImage144x81,
         featuredImageCaption,
+        dateUpdated,
       } = node;
       const parent = parentTitle || parentUrl ? { text: parentTitle || '', url: parentUrl || '' } : null;
       return (
@@ -207,6 +208,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           featuredImageCaption={featuredImageCaption || undefined}
+          dateUpdated={dateUpdated}
         />
       );
     }
