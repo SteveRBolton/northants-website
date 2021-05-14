@@ -67,6 +67,7 @@ third_party_settings:
         - group_main
         - group_signposting
         - group_seo
+        - group_access
       parent_name: ''
       weight: 12
       format_type: tabs
@@ -92,6 +93,20 @@ third_party_settings:
         id: ''
         classes: ''
       label: SEO
+    group_access:
+      children:
+        - field_service_area
+      parent_name: group_tabs
+      weight: 15
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Access
 id: node.service_page.default
 targetEntityType: node
 bundle: service_page
