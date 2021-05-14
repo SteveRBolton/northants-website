@@ -7,6 +7,7 @@ import {
   SectionLinks,
   SectionLinksMobileContents,
   HeadingWithIcon,
+  DisplayDate,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -31,6 +32,7 @@ type ServiceLandingPageProps = {
   breadcrumbs: BreadcrumbsProps;
   sections: SectionLinksProps[];
   icon?: string;
+  dateUpdated: string;
 };
 
 export default function ServiceLandingPage({
@@ -43,7 +45,10 @@ export default function ServiceLandingPage({
   breadcrumbs,
   sections,
   icon,
+  dateUpdated,
 }: ServiceLandingPageProps): ReactElement {
+  console.log(' date: ', dateUpdated);
+
   return (
     <>
       <Head>
@@ -76,6 +81,7 @@ export default function ServiceLandingPage({
           {sections.map((section) => (
             <SectionLinks {...section} />
           ))}
+          <DisplayDate preText="Last Updated " text={dateUpdated} format="X" />
         </PageMain>
       </MaxWidthContainer>
     </>

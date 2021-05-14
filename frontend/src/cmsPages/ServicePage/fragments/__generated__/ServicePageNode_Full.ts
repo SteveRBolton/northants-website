@@ -233,4 +233,5 @@ export interface ServicePageNode_Full {
   canonicalSection: ServicePageNode_Full_canonicalSection | null;
   inSections: ServicePageNode_Full_inSections[];
   breadcrumbs: ServicePageNode_Full_breadcrumbs[];
+  dateUpdated: string;
 }
