@@ -292,6 +292,7 @@ type ArticlePageNode implements Node
   parentTitle: String
   parentUrl: String
   date: String!
+  dateUpdated: String!
 }
 
 type ServicePageNode implements Node
