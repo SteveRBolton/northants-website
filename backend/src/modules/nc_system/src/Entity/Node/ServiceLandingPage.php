@@ -49,6 +49,10 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     return $sections;
   }
 
+  public function getDateUpdated(): string {
+    $date =  $this->getChangedTime();
+    return strval($date);
+  }
   /**
    * Loads all sections that reference this page.
    *
@@ -101,7 +105,9 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "icon") {
       return $this->getIcon();
     }
-
+    if($fieldName === "dateUpdated"){
+      return $this->getDateUpdated();
+    }
     //Metadata
     if ($fieldName === "metaTitle") {
       return $this->getMetaTitle();
@@ -112,6 +118,7 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "metaKeywords") {
       return $this->getMetaKeywords();
     }
+
 
     throw new \Exception("Unable to resolve value via ServiceLandingPage resolve.");
   }
