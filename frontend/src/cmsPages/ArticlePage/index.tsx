@@ -10,7 +10,6 @@ import {
   PageMain,
   Breadcrumbs,
   PhaseBanner,
-  DisplayDate,
 } from 'northants-design-system';
 import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
@@ -47,7 +46,6 @@ export default function ArticlePage({
   featuredImage1440x810,
   featuredImage144x81,
   featuredImageCaption,
-  dateUpdated,
 }: ArticlePageProps): ReactElement {
   const currentDate = new Date();
   const dateObject = new Date(date);
