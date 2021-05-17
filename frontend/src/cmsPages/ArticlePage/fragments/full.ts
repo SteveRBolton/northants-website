@@ -33,7 +33,6 @@ const articleNode_Full = gql`
     parentTitle
     parentUrl
     date
-    dateUpdated
   }
 `;
 
