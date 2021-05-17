@@ -173,5 +173,4 @@ export interface ArticleNode_Full {
   parentTitle: string | null;
   parentUrl: string | null;
   date: string;
-  dateUpdated: string;
 }

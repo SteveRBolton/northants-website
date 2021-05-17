@@ -818,7 +818,6 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
   parentTitle: string | null;
   parentUrl: string | null;
   date: string;
-  dateUpdated: string;
 }
 
 export type GetCMSContentOrRedirect_route_DrupalNodeRoute_node = GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode | GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode;
