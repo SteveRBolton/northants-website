@@ -98,7 +98,10 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     }
     return null;
   }
-
+  public function getDateUpdated(): string {
+    $date = $this->getChangedTime();
+    return strval($date);
+  }
   /**
    * Loads all sections that reference this page.
    *
@@ -169,6 +172,9 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
 
     if ($fieldName === "warningTextDisclaimer") {
       return $this->getWarningDisclaimer();
+    }
+    if($fieldName === "dateUpdated"){
+      return $this->getDateUpdated();
     }
 
     //Metadata

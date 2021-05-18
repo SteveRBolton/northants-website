@@ -36,6 +36,11 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     return NULL;
   }
 
+  public function getDateUpdated(): string {
+    $date =  $this->getChangedTime();
+    return strval($date);
+  }
+
   public function getDate() {
     $date = date('j F Y', $this->getCreatedTime());
     return $date;
@@ -85,6 +90,9 @@ class Article extends Content implements GraphQLEntityFieldResolver {
     }
     if ($fieldName === "date") {
       return $this->getDate();
+    }
+    if($fieldName === "dateUpdated"){
+      return $this->getDateUpdated();
     }
     if ($fieldName === "summary") {
       return $this->getSummary();
