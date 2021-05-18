@@ -193,5 +193,9 @@ export interface ServiceLandingPageNode_Full {
   serviceLandingBody: ServiceLandingPageNode_Full_serviceLandingBody | null;
   hasSections: ServiceLandingPageNode_Full_hasSections[];
   breadcrumbs: ServiceLandingPageNode_Full_breadcrumbs[];
+<<<<<<< HEAD
   serviceAlert: ServiceLandingPageNode_Full_serviceAlert | null;
+=======
+  dateUpdated: string;
+>>>>>>> preprod_frontend
 }

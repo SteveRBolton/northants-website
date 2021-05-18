@@ -37,5 +37,6 @@ export default gql`
       content
       alertType
     }
+    dateUpdated
   }
 `;
