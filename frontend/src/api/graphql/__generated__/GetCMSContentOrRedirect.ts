@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { AlertType } from "./../../../types/graphql/__generated__/global.d";
+
 // ====================================================
 // GraphQL query operation: GetCMSContentOrRedirect
 // ====================================================
@@ -408,6 +410,13 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   url: string;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceAlert {
+  __typename: "ServicePageAlert";
+  title: string;
+  content: string | null;
+  alertType: AlertType | null;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode {
   __typename: "ServiceLandingPageNode";
   title: string;
@@ -420,6 +429,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   serviceLandingBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody | null;
   hasSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
+  serviceAlert: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceAlert | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody_embeds_paragraph_AccordionItemParagraph {

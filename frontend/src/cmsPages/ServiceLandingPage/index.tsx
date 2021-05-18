@@ -7,11 +7,14 @@ import {
   SectionLinks,
   SectionLinksMobileContents,
   HeadingWithIcon,
+  AlertBannerService,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { SectionLinksProps } from 'northants-design-system/build/library/structure/SectionLinks/SectionLinks.types';
+import { AlertBannerServiceProps } from 'northants-design-system/build/library/structure/AlertBannerService/AlertBannerService.types';
+
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 import AlertBannerServiceIE from '../../components/AlertBannerService';
 
@@ -31,6 +34,7 @@ type ServiceLandingPageProps = {
   breadcrumbs: BreadcrumbsProps;
   sections: SectionLinksProps[];
   icon?: string;
+  serviceAlert?: AlertBannerServiceProps;
 };
 
 export default function ServiceLandingPage({
@@ -43,6 +47,7 @@ export default function ServiceLandingPage({
   breadcrumbs,
   sections,
   icon,
+  serviceAlert,
 }: ServiceLandingPageProps): ReactElement {
   return (
     <>
@@ -60,10 +65,15 @@ export default function ServiceLandingPage({
         <meta property="twitter:description" content={metaDescription || ''} />
       </Head>
       <MaxWidthContainer>
+        {console.log({ serviceAlert })}
+        {console.log({ breadcrumbs })}
         <PhaseBanner />
         <Breadcrumbs {...breadcrumbs} />
         <PageMain>
           <AlertBannerServiceIE />
+
+          {serviceAlert?.title && <AlertBannerService {...serviceAlert} />}
+
           {icon ? <HeadingWithIcon icon={icon} level={1} text={heading.text} /> : <Heading {...heading} />}
           {body && <TextWithSlices {...body} />}
           {sections.length > 1 ? (

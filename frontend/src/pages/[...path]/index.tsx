@@ -143,6 +143,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         hasSections,
         url,
         icon,
+        serviceAlert,
       } = node;
 
       return (
@@ -157,6 +158,15 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
           icon={icon || undefined}
+          serviceAlert={
+            serviceAlert
+              ? {
+                  title: serviceAlert.title,
+                  alertType: serviceAlert.alertType,
+                  children: serviceAlert.content,
+                }
+              : undefined
+          }
         />
       );
     }
