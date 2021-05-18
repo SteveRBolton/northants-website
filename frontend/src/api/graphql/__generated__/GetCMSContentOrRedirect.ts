@@ -420,6 +420,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
   serviceLandingBody: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody | null;
   hasSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_hasSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_breadcrumbs[];
+  dateUpdated: string;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody_embeds_paragraph_AccordionItemParagraph {
@@ -648,6 +649,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   canonicalSection: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_canonicalSection | null;
   inSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_inSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs[];
+  dateUpdated: string;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionItemParagraph {

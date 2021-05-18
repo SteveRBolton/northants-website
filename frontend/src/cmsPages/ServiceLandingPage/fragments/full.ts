@@ -32,5 +32,6 @@ export default gql`
     breadcrumbs {
       ...Breadcrumbs
     }
+    dateUpdated
   }
 `;

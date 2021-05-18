@@ -32,6 +32,7 @@ type ArticlePageProps = {
   featuredImage1440x810?: FeaturedImageProps;
   featuredImage144x81?: FeaturedImageProps;
   featuredImageCaption?: string;
+  dateUpdated: string;
 };
 
 export default function ArticlePage({
@@ -78,7 +79,7 @@ export default function ArticlePage({
           {oldPost ? null : <NewsArticleOldBanner />}
           <Heading level={1} text={title} />
           {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
-          <NewsArticleDate text={date} />
+          <NewsArticleDate text={date} format="DD MMMM YYYY" />
           {featuredImage1440x810 && featuredImage144x81 ? (
             <NewsArticleImage
               image1440x810={featuredImage1440x810?.url}

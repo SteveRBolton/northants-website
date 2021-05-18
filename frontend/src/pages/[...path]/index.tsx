@@ -109,6 +109,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         topLineText,
         warningTextDisclaimer,
         url,
+        dateUpdated,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
       return (
@@ -129,6 +130,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
           topLineText={topLineText || undefined}
           warningTextDisclaimer={warningTextDisclaimer}
+          dateUpdated={dateUpdated}
         />
       );
     }
@@ -143,6 +145,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         hasSections,
         url,
         icon,
+        dateUpdated,
       } = node;
 
       return (
@@ -157,6 +160,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
           icon={icon || undefined}
+          dateUpdated={dateUpdated}
         />
       );
     }

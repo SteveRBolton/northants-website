@@ -184,4 +184,5 @@ export interface ServiceLandingPageNode_Full {
   serviceLandingBody: ServiceLandingPageNode_Full_serviceLandingBody | null;
   hasSections: ServiceLandingPageNode_Full_hasSections[];
   breadcrumbs: ServiceLandingPageNode_Full_breadcrumbs[];
+  dateUpdated: string;
 }

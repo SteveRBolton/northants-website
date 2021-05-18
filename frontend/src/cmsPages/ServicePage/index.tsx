@@ -9,6 +9,7 @@ import {
   PageSidebar,
   Heading,
   WarningTextDisclaimer,
+  DisplayDate,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
@@ -31,6 +32,7 @@ type ServicePageProps = {
   alsoIn?: SectionLinksSidebarProps;
   warningTextDisclaimer: boolean;
   topLineText?: string;
+  dateUpdated: string;
 };
 export default function ServicePage({
   title,
@@ -44,8 +46,10 @@ export default function ServicePage({
   alsoIn,
   warningTextDisclaimer,
   topLineText,
+  dateUpdated,
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
+
   const showSidebar = [inThisSection, alsoIn].filter((s) => s !== undefined).length > 0;
   const main = (
     <PageMain>
@@ -89,6 +93,7 @@ export default function ServicePage({
           </PageWithSidebarContainer>
         )}
         {!showSidebar && main}
+        <DisplayDate preText="Last updated " text={dateUpdated} format="X" />
       </MaxWidthContainer>
     </>
   );
