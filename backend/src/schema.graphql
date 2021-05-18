@@ -185,6 +185,14 @@ type Breadcrumb {
   title: String!
 }
 
+type ServicePageAlert {
+  title: String!
+  content: String
+  expiration: String
+  alertType: AlertType
+  enabled: Boolean
+}
+
 type PromotedLink {
   url: String!
   title: String!
@@ -328,6 +336,7 @@ type ServiceLandingPageNode implements Node
   breadcrumbs: [Breadcrumb!]!
   inSections: [SectionParagraph!]! # All the sections this service landing page is in.
   hasSections: [SectionParagraph!]! # All the sections ON this service landing page.
+  serviceAlert: ServicePageAlert
 }
 
 #
