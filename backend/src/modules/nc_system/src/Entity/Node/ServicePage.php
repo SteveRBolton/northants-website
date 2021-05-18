@@ -77,6 +77,43 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
   }
 
   /**
+   * This function returns an array containing information about Service Alerts
+   */
+  public function getServicePageAlerts() {
+
+    $parent = $this->getParent();
+    $alertItem = ['title' => ''];
+
+    if($parent && $parent->isPublished()) {
+      $active = $parent->get('field_enable_alert')->getValue()[0]['value'];
+      $expired = false;
+
+      $expiration = $parent->get('field_alert_expiration_date')->getValue()[0]['value'];
+
+      if($expiration) {
+        $currentTime = new DrupalDateTime('now');
+        $currentTime = $currentTime->format('Y-m-d H:i:s');
+        $expiration = str_replace('T', ' ', $expiration);
+        $expired = $currentTime > $expiration;
+      }
+      if ($active && !$expired) {
+        $title = $parent->get('field_alert_title')->getValue()[0]['value'];
+        $body = GraphQLFieldResolver::resolveTextItem($parent->get('field_alert_content')
+          ->first());
+        $alertType = strtolower($parent->get('field_alert_type')->getValue()[0]['value']);
+
+        $alertItem = [
+          'title' => $title,
+          'content' =>  $body['value'],
+          'alertType' => $alertType
+        ];
+      }
+    }
+
+    return $alertItem;
+  }
+
+  /**
    * Determines the 'canonical' Section this ServicePage belongs to (if any).
    *
    * The 'canonical' Section is the first section (if any) in the ServicePages's parent that references the ServicePage.
@@ -186,6 +223,10 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     }
     if ($fieldName === "metaKeywords") {
       return $this->getMetaKeywords();
+    }
+
+    if ($fieldName === "serviceAlert") {
+      return $this->getServicePageAlerts();
     }
 
     throw new \Exception("Unable to resolve value via ServicePage resolve.");

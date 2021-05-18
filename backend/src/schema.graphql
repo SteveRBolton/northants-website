@@ -320,6 +320,8 @@ type ServicePageNode implements Node
   inSections: [SectionParagraph!]! # All the sections this service page is in.
   warningTextDisclaimer: Boolean!
   dateUpdated: String!
+  serviceAlert: ServicePageAlert
+
 }
 
 type ServiceLandingPageNode implements Node

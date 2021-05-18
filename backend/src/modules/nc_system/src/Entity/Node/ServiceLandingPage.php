@@ -72,9 +72,7 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
   }
 
   /**
-   * Get specific menu, links (title, url) upto max-depth 2.
-   *
-   * @return array | null
+   * This function returns an array containing information about Service Alerts
    */
   public function getServicePageAlerts() {
     $active = $this->get('field_enable_alert')->getValue()[0]['value'];
