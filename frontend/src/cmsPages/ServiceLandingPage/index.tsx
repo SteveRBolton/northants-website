@@ -68,9 +68,6 @@ export default function ServiceLandingPage({
         <meta property="twitter:description" content={metaDescription || ''} />
       </Head>
       <MaxWidthContainer>
-        {console.log({ serviceAlert })}
-        {console.log({ breadcrumbs })}
-
         <PhaseBanner />
         <Breadcrumbs {...breadcrumbs} />
 
