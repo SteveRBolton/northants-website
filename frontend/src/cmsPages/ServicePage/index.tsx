@@ -10,12 +10,15 @@ import {
   Heading,
   WarningTextDisclaimer,
   DisplayDate,
+  AlertBannerService,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { SignpostLinksProps } from 'northants-design-system/build/library/structure/SignpostLinks/SignpostLinks.types';
 import { SectionLinksSidebarProps } from 'northants-design-system/build/library/structure/SectionLinksSidebar/SectionLinksSidebar.types';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
+import { AlertBannerServiceProps } from 'northants-design-system/build/library/structure/AlertBannerService/AlertBannerService.types';
+
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 import AlertBannerServiceIE from '../../components/AlertBannerService';
 
@@ -33,6 +36,7 @@ type ServicePageProps = {
   warningTextDisclaimer: boolean;
   topLineText?: string;
   dateUpdated: string;
+  serviceAlert: AlertBannerServiceProps;
 };
 export default function ServicePage({
   title,
@@ -47,6 +51,7 @@ export default function ServicePage({
   warningTextDisclaimer,
   topLineText,
   dateUpdated,
+  serviceAlert,
 }: ServicePageProps): ReactElement {
   /* At least one defined sidebar element */
 
@@ -54,6 +59,11 @@ export default function ServicePage({
   const main = (
     <PageMain>
       <AlertBannerServiceIE />
+      {serviceAlert?.title && (
+        <AlertBannerService {...serviceAlert}>
+          {serviceAlert.children && <TextWithSlices html={serviceAlert.children} embeds={[]} />}
+        </AlertBannerService>
+      )}
       <Heading level={1} text={title} />
       <TextWithSlices {...body} />
       {signposting && <SignpostLinks {...signposting} TopLineText={topLineText} />}

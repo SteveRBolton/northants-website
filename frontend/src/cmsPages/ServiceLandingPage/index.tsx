@@ -70,12 +70,18 @@ export default function ServiceLandingPage({
       <MaxWidthContainer>
         {console.log({ serviceAlert })}
         {console.log({ breadcrumbs })}
+
         <PhaseBanner />
         <Breadcrumbs {...breadcrumbs} />
+
         <PageMain>
           <AlertBannerServiceIE />
 
-          {serviceAlert?.title && <AlertBannerService {...serviceAlert} />}
+          {serviceAlert?.title && (
+            <AlertBannerService {...serviceAlert}>
+              {serviceAlert.children && <TextWithSlices html={serviceAlert.children} embeds={[]} />}
+            </AlertBannerService>
+          )}
 
           {icon ? <HeadingWithIcon icon={icon} level={1} text={heading.text} /> : <Heading {...heading} />}
           {body && <TextWithSlices {...body} />}

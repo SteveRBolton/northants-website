@@ -644,6 +644,13 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   url: string;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceAlert {
+  __typename: "ServicePageAlert";
+  title: string;
+  content: string | null;
+  alertType: AlertType | null;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode {
   __typename: "ServicePageNode";
   title: string;
@@ -660,6 +667,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
   inSections: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_inSections[];
   breadcrumbs: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_breadcrumbs[];
   dateUpdated: string;
+  serviceAlert: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceAlert | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionItemParagraph {

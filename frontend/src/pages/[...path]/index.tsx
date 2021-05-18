@@ -110,6 +110,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         warningTextDisclaimer,
         url,
         dateUpdated,
+        serviceAlert,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
       return (
@@ -131,6 +132,15 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           topLineText={topLineText || undefined}
           warningTextDisclaimer={warningTextDisclaimer}
           dateUpdated={dateUpdated}
+          serviceAlert={
+            serviceAlert
+              ? {
+                  title: serviceAlert.title,
+                  alertType: serviceAlert.alertType,
+                  children: serviceAlert.content,
+                }
+              : undefined
+          }
         />
       );
     }

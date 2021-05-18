@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { AlertType } from "./../../../../types/graphql/__generated__/global.d";
+
 // ====================================================
 // GraphQL fragment: ServicePageNode_Full
 // ====================================================
@@ -218,6 +220,13 @@ export interface ServicePageNode_Full_breadcrumbs {
   url: string;
 }
 
+export interface ServicePageNode_Full_serviceAlert {
+  __typename: "ServicePageAlert";
+  title: string;
+  content: string | null;
+  alertType: AlertType | null;
+}
+
 export interface ServicePageNode_Full {
   __typename: "ServicePageNode";
   title: string;
@@ -234,4 +243,5 @@ export interface ServicePageNode_Full {
   inSections: ServicePageNode_Full_inSections[];
   breadcrumbs: ServicePageNode_Full_breadcrumbs[];
   dateUpdated: string;
+  serviceAlert: ServicePageNode_Full_serviceAlert | null;
 }
