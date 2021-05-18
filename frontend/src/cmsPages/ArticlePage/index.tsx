@@ -32,7 +32,6 @@ type ArticlePageProps = {
   featuredImage1440x810?: FeaturedImageProps;
   featuredImage144x81?: FeaturedImageProps;
   featuredImageCaption?: string;
-  dateUpdated: string;
 };
 
 export default function ArticlePage({
