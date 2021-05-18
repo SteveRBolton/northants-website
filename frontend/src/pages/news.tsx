@@ -58,6 +58,7 @@ export default function News(page: NewsListingProps): ReactElement {
     <>
       <Head>
         <title>Latest news | {news.council_name}</title>
+        <meta name="description" content={`Latest news from ${news.council_name}`} />
       </Head>
       <MaxWidthContainer>
         <PhaseBanner />
