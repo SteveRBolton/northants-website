@@ -319,6 +319,7 @@ type ServicePageNode implements Node
   canonicalSection: SectionParagraph
   inSections: [SectionParagraph!]! # All the sections this service page is in.
   warningTextDisclaimer: Boolean!
+  dateUpdated: String!
 }
 
 type ServiceLandingPageNode implements Node
@@ -336,6 +337,7 @@ type ServiceLandingPageNode implements Node
   breadcrumbs: [Breadcrumb!]!
   inSections: [SectionParagraph!]! # All the sections this service landing page is in.
   hasSections: [SectionParagraph!]! # All the sections ON this service landing page.
+  dateUpdated: String!
   serviceAlert: ServicePageAlert
 }
 

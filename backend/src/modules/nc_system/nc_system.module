@@ -21,6 +21,7 @@ use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 use Drupal\node\Entity\Node;
 use Drupal\system\Entity\Menu;
+use Drupal\redirect\Entity\Redirect;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
@@ -105,6 +106,14 @@ function nc_system_menu_update(Menu $menu) {
 }
 
 /**
+ * This function purges the Cloudflare cache on redirect updates.
+ *  * @param Redirect $entity
+ */
+function nc_system_redirect_insert(Redirect $entity) {
+  _purge_redirect($entity);
+}
+
+/**
  * This function purges the Cloudflare cache on creating new menu links.
  * @param MenuLinkContent $entity
  */
@@ -137,6 +146,16 @@ function _purge_menu(MenuLinkContent $entity) {
     $purge_service = \Drupal::service('nc_cloudflare_purge.service');
     $purge_service->purgeAll();
   }
+}
+/**
+ * This function purges the redirect added Cloudflare cache on redirect insert.
+ * @param Redirect $entity
+ */
+function _purge_redirect(Redirect $entity) {
+  $urls = [];
+  $urls[] = \Drupal::service('nc_system.website_manager')->getHost() . $entity->getSourcePathWithQuery();
+  $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+  $purge_service->purgeByUrl($urls);
 }
 
 /**

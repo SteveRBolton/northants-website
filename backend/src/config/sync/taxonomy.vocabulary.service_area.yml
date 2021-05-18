@@ -1,0 +1,8 @@
+uuid: b9a0d40b-af15-4551-bde6-b56b09034e5d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Service areas'
+vid: service_area
+description: ''
+weight: 0
