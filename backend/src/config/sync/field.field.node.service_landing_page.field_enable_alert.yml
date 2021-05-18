@@ -1,0 +1,23 @@
+uuid: adfd67f2-e6ff-45e8-9f3c-315a64202d11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_enable_alert
+    - node.type.service_landing_page
+id: node.service_landing_page.field_enable_alert
+field_name: field_enable_alert
+entity_type: node
+bundle: service_landing_page
+label: 'Enable alert'
+description: 'The alert will not show unless ''Enable'' is selected'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Enable
+  off_label: Disable
+field_type: boolean

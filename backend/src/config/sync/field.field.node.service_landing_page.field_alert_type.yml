@@ -1,0 +1,23 @@
+uuid: a3c26357-ac9b-4da6-9333-fff47c286c9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alert_type
+    - node.type.service_landing_page
+  module:
+    - options
+id: node.service_landing_page.field_alert_type
+field_name: field_alert_type
+entity_type: node
+bundle: service_landing_page
+label: 'Alert type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: Alert
+default_value_callback: ''
+settings: {  }
+field_type: list_string
