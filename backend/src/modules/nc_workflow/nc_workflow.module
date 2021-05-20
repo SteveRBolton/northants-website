@@ -71,7 +71,7 @@ function nc_workflow_form_node_form_alter(&$form) {
     $publishing_service = \Drupal::service('nc_workflow.publishing_service');
     $out_of_hours = $publishing_service->isOutOfHours($today);
     $options = isset($form['moderation_state']['widget']) ? $form['moderation_state']['widget'][0]['state']['#options'] : [];
-    if ($out_of_hours) {
+    if (!$out_of_hours) {
       $options = array_diff_key($options, [
         'published' => 'Published'
       ]);
