@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
+    - field.field.node.service_page.field_terms
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
   module:
@@ -69,6 +70,13 @@ content:
     region: content
   field_summary:
     weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_terms:
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }

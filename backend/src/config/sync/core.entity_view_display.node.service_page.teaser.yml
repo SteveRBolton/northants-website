@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.service_page.field_signposting
     - field.field.node.service_page.field_signposting_title
     - field.field.node.service_page.field_summary
+    - field.field.node.service_page.field_terms
     - field.field.node.service_page.field_wysiwyg_slices
     - node.type.service_page
   module:
@@ -46,6 +47,7 @@ hidden:
   field_signposting: true
   field_signposting_title: true
   field_summary: true
+  field_terms: true
   field_wysiwyg_slices: true
   langcode: true
   search_api_excerpt: true
