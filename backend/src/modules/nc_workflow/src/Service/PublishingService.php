@@ -22,14 +22,18 @@ class PublishingService {
     $start = 9; // 9am.
     $end = 17; // 5pm.
 
-    $day = $date->format('D');
-    $hour = intval($date->format('H'));
+    // As date is passed as UTC we need to change the timezone.
+    $datetime = $date;
+    $datetime->setTimezone(new \DateTimeZone('Europe/London'));
+
+    $day = $datetime->format('D');
+    $hour = intval($datetime->format('H'));
 
     if($day == 'Sat' || $day == 'Sun') {
       return TRUE;
     }
 
-    if ($hour >= $end || $hour <= $start) {
+    if ($hour >= $end || $hour < $start) {
       return TRUE;
     }
 
