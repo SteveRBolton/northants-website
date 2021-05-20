@@ -32,6 +32,11 @@ export default gql`
     breadcrumbs {
       ...Breadcrumbs
     }
+    serviceAlert: serviceAlert {
+      title
+      content
+      alertType
+    }
     dateUpdated
   }
 `;
