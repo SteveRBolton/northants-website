@@ -136,7 +136,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
             serviceAlert
               ? {
                   title: serviceAlert.title,
-                  alertType: serviceAlert.alertType,
+                  alertType: serviceAlert.alertType ?? undefined,
                   children: serviceAlert.content,
                 }
               : undefined
@@ -175,7 +175,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
             serviceAlert
               ? {
                   title: serviceAlert.title,
-                  alertType: serviceAlert.alertType,
+                  alertType: serviceAlert.alertType ?? undefined,
                   children: serviceAlert.content,
                 }
               : undefined

@@ -76,7 +76,7 @@ export default function ServiceLandingPage({
 
           {serviceAlert?.title && (
             <AlertBannerService {...serviceAlert}>
-              {serviceAlert.children && <TextWithSlices html={serviceAlert.children} embeds={[]} />}
+              {serviceAlert.children && <TextWithSlices html={serviceAlert.children.toString()} embeds={[]} />}
             </AlertBannerService>
           )}
 
