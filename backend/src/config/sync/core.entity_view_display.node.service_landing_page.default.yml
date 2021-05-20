@@ -135,5 +135,6 @@ hidden:
   field_meta_description: true
   field_meta_title: true
   field_revision_date: true
+  field_service_area: true
   langcode: true
   search_api_excerpt: true

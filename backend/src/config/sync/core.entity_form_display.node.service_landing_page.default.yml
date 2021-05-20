@@ -327,3 +327,4 @@ content:
     third_party_settings: {  }
 hidden:
   field_published_out_of_hours: true
+  field_service_area: true
