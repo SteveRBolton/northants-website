@@ -36,7 +36,7 @@ type ServicePageProps = {
   warningTextDisclaimer: boolean;
   topLineText?: string;
   dateUpdated: string;
-  serviceAlert: AlertBannerServiceProps;
+  serviceAlert?: AlertBannerServiceProps;
 };
 export default function ServicePage({
   title,
@@ -61,7 +61,7 @@ export default function ServicePage({
       <AlertBannerServiceIE />
       {serviceAlert?.title && (
         <AlertBannerService {...serviceAlert}>
-          {serviceAlert.children && <TextWithSlices html={serviceAlert.children} embeds={[]} />}
+          {serviceAlert.children && <TextWithSlices html={serviceAlert.children.toString()} embeds={[]} />}
         </AlertBannerService>
       )}
       <Heading level={1} text={title} />
