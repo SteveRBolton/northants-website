@@ -1,0 +1,22 @@
+<?php
+
+use Solarium\QueryType\Select\Query\Query;
+use Drupal\search_api\Query\QueryInterface;
+
+/**
+ * Implements hook_search_api_solr_query_alter().
+// */
+function nc_solr_search_api_solr_query_alter(Query $solarium_query, QueryInterface $query) {
+  $index = $query->getIndex();
+  $fields = $index->getServerInstance()
+    ->getBackend()
+    ->getSolrFieldNames($index);
+  //negative_search_boost bs_negative_search_boost  $solarium_query
+  $solarium_query->addParam('bq', array('negative_search_boost' =>
+    '(negative_search_boost:true^0 OR negative_search_boost:false^100)'
+  ));
+}
+
+//function nc_solr_search_api_solr_query_alter(&$call_args, QueryInterface $query) {
+//  $call_args['params']['bq'][] = '(negative_search_boost:true^0 OR negative_search_boost:false^100)';
+//}

@@ -12,6 +12,7 @@ dependencies:
     - field.storage.node.field_keywords
     - field.storage.node.field_meta_description
     - field.storage.node.field_meta_title
+    - field.storage.node.field_negative_search_boost
     - field.storage.node.field_parent
     - field.storage.node.field_signposting
     - field.storage.paragraph.field_signposts
@@ -98,6 +99,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_meta_title
+  negative_search_boost:
+    label: 'Negative search boost'
+    datasource_id: 'entity:node'
+    property_path: field_negative_search_boost
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_negative_search_boost
   parent:
     label: 'Parent » Content » Title'
     datasource_id: 'entity:node'
