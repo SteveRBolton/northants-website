@@ -93,7 +93,6 @@ export default function ServiceLandingPage({
             <SectionLinks {...section} />
           ))}
         </PageMain>
-        <DisplayDate preText="Last updated " text={dateUpdated} format="X" />
       </MaxWidthContainer>
     </>
   );
