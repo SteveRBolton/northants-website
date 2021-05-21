@@ -79,3 +79,28 @@ function nc_workflow_form_node_form_alter(&$form) {
     $form['moderation_state']['widget'][0]['state']['#options'] = $options;
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function nc_workflow_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id === 'content_moderation_entity_moderation_form') {
+    $user = \Drupal::currentUser();
+    $roles = $user->getRoles();
+
+    if (in_array('subject_matter_expert_plus', $roles)) {
+      $today = new DrupalDateTime('now');
+      $publishing_service = \Drupal::service('nc_workflow.publishing_service');
+      $out_of_hours = $publishing_service->isOutOfHours($today);
+      $options = isset($form['new_state']['#options']) ? $form['new_state']['#options'] : [];
+
+      if (!$out_of_hours) {
+        $options = array_diff_key($options, [
+          'published' => 'Published'
+        ]);
+      }
+
+      $form['new_state']['#options'] = $options;
+    }
+  }
+}
