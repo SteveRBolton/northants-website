@@ -22,14 +22,14 @@ The environments for each website are made up of the following 4 branches;
 
 All future work should be branched from the `preprod_*` branches for either the frontend or backend.
 
-When working on new development work using feature branch should be named as follows:
+Working on new development work must use a feature branch and should be named as follows:
 
 `feature/TICKET-ID-my-ticket-title-FRONTENDorBACKEND`
 
 For example;
 
-- `feature/123-my-ticket-title-frontend` for work on the frontend branched from the `preprod_frontend` branch
-- `feature/123-my-ticket-title-backend` for work on the backend branched from the `preprod_backend` branch
+- `feature/123-my-ticket-title-frontend` for work on the frontend which is branched from the `preprod_frontend` branch
+- `feature/123-my-ticket-title-backend` for work on the backend which is branched from the `preprod_backend` branch
 
 Once work is completed a pull request must be created going back in to `preprod_frontend` or `preprod_backend` for peer 
 review.
