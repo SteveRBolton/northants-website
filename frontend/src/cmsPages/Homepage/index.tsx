@@ -31,6 +31,7 @@ type HomepageProps = {
   promoBanner?: PromoBannerProps;
   promoBody?: TextWithSlicesProps;
   featuredNews: NewsArticleFeaturedBlockProps;
+  memorialTakeover: boolean;
 };
 
 export default function Homepage({
@@ -44,6 +45,7 @@ export default function Homepage({
   promoBanner,
   promoBody,
   featuredNews,
+  memorialTakeover,
 }: HomepageProps): ReactElement {
   return (
     <>

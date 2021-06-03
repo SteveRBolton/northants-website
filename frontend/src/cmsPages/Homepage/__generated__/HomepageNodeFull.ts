@@ -237,4 +237,5 @@ export interface HomepageNodeFull {
   heroImages: HomepageNodeFull_heroImages[];
   promoBanner: HomepageNodeFull_promoBanner | null;
   featuredNews: HomepageNodeFull_featuredNews[];
+  memorialTakeover: boolean;
 }
