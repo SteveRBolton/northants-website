@@ -243,7 +243,6 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   heroImages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_heroImages[];
   promoBanner: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promoBanner | null;
   featuredNews: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews[];
-  memorialTakeover: boolean;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {

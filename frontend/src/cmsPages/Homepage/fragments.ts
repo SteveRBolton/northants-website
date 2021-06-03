@@ -41,7 +41,6 @@ const homepageNodeFull = gql`
     featuredNews {
       ...ArticlePageNode_Featured
     }
-    memorialTakeover
   }
 `;
 export { homepageNodeFull };
