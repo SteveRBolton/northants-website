@@ -9,7 +9,6 @@ import {
   Button,
   PageMain,
   Breadcrumbs,
-  PageTitle,
   PhaseBanner,
 } from 'northants-design-system';
 import { ButtonProps } from 'northants-design-system/build/library/components/Button/Button.types';

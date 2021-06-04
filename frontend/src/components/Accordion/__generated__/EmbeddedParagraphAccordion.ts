@@ -42,7 +42,19 @@ export interface EmbeddedParagraphAccordion_paragraph_FileDownloadParagraph {
   files: EmbeddedParagraphAccordion_paragraph_FileDownloadParagraph_files[];
 }
 
-export type EmbeddedParagraphAccordion_paragraph = EmbeddedParagraphAccordion_paragraph_AccordionItemParagraph | EmbeddedParagraphAccordion_paragraph_CallToActionParagraph | EmbeddedParagraphAccordion_paragraph_BlockQuoteParagraph | EmbeddedParagraphAccordion_paragraph_FileDownloadParagraph;
+export interface EmbeddedParagraphAccordion_paragraph_HighlightParagraph_content {
+  __typename: "FormattedField";
+  value: string;
+}
+
+export interface EmbeddedParagraphAccordion_paragraph_HighlightParagraph {
+  __typename: "HighlightParagraph";
+  title: string;
+  content: EmbeddedParagraphAccordion_paragraph_HighlightParagraph_content | null;
+  isWarning: boolean | null;
+}
+
+export type EmbeddedParagraphAccordion_paragraph = EmbeddedParagraphAccordion_paragraph_AccordionItemParagraph | EmbeddedParagraphAccordion_paragraph_CallToActionParagraph | EmbeddedParagraphAccordion_paragraph_BlockQuoteParagraph | EmbeddedParagraphAccordion_paragraph_FileDownloadParagraph | EmbeddedParagraphAccordion_paragraph_HighlightParagraph;
 
 export interface EmbeddedParagraphAccordion {
   __typename: "EmbeddedParagraph";

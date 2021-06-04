@@ -123,17 +123,20 @@ function NorthantsApp({
         )}
         {/* End Google Tag Manager */}
         <title>Northants</title>
+
         <link rel="apple-touch-icon" sizes="180x180" href={`${faviconPath}/apple-touch-icon.png`} />
         <link rel="icon" type="image/png" sizes="32x32" href={`${faviconPath}/favicon-32x32.png`} />
         <link rel="icon" type="image/png" sizes="16x16" href={`${faviconPath}/favicon-16x16.png`} />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="manifest" href={`${faviconPath}/site.webmanifest`} />
         <link
           rel="mask-icon"
-          href={`${faviconPath}/favicon-16x16.png`}
+          href={`${faviconPath}/safari-pinned-tab.svg`}
           color={theme === 'north' ? '#05873a' : '#386193'}
         />
         <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
+        <meta name="msapplication-config" content={`${faviconPath}/browserconfig.xml`} />
         <meta name="theme-color" content="#ffffff" />
+
         {/* Facebook tags */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={pageUrl} />

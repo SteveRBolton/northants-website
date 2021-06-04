@@ -64,7 +64,19 @@ export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_em
   files: EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph_files[];
 }
 
-export type EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph = EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph;
+export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_HighlightParagraph_content {
+  __typename: "FormattedField";
+  value: string;
+}
+
+export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_HighlightParagraph {
+  __typename: "HighlightParagraph";
+  title: string;
+  content: EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_HighlightParagraph_content | null;
+  isWarning: boolean | null;
+}
+
+export type EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph = EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_FileDownloadParagraph | EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_HighlightParagraph;
 
 export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds {
   __typename: "EmbeddedParagraph";
@@ -104,7 +116,19 @@ export interface EmbeddedParagraph_paragraph_FileDownloadParagraph {
   files: EmbeddedParagraph_paragraph_FileDownloadParagraph_files[];
 }
 
-export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph | EmbeddedParagraph_paragraph_FileDownloadParagraph;
+export interface EmbeddedParagraph_paragraph_HighlightParagraph_content {
+  __typename: "FormattedField";
+  value: string;
+}
+
+export interface EmbeddedParagraph_paragraph_HighlightParagraph {
+  __typename: "HighlightParagraph";
+  title: string;
+  content: EmbeddedParagraph_paragraph_HighlightParagraph_content | null;
+  isWarning: boolean | null;
+}
+
+export type EmbeddedParagraph_paragraph = EmbeddedParagraph_paragraph_AccordionItemParagraph | EmbeddedParagraph_paragraph_CallToActionParagraph | EmbeddedParagraph_paragraph_BlockQuoteParagraph | EmbeddedParagraph_paragraph_AccordionParagraph | EmbeddedParagraph_paragraph_FileDownloadParagraph | EmbeddedParagraph_paragraph_HighlightParagraph;
 
 export interface EmbeddedParagraph {
   __typename: "EmbeddedParagraph";
