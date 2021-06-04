@@ -9,7 +9,7 @@ type ErrorPageProps = {
 };
 
 export default function ErrorPage({ pageTitle, errorCode }: ErrorPageProps): ReactElement {
-  const theme = process.env.NEXT_PUBLIC_THEME;
+  const theme = process.env.NEXT_PUBLIC_WEBSITE;
   let learnMoreUrl = '/your-council/about-website';
 
   if (theme === 'north') {

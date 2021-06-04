@@ -142,7 +142,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         breadcrumbs,
         hasSections,
         url,
-        icon
+        icon,
       } = node;
 
       return (
