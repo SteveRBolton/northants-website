@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import Homepage from '../../cmsPages/Homepage';
+import MemorialHomepage from '../../cmsPages/MemorialHomepage';
 import ServicePage from '../../cmsPages/ServicePage';
 import ServiceLandingPage from '../../cmsPages/ServiceLandingPage';
 import {
@@ -70,7 +71,30 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         featuredNews,
         memorialTakeover,
       } = node;
-      return (
+      return memorialTakeover ? (
+        <MemorialHomepage
+          metaTitle={metaTitle}
+          metaDescription={metaDescription || undefined}
+          metaKeywords={metaKeywords || undefined}
+          body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
+          serviceLinks={serviceLinks.map(transformServiceLinks)}
+          promotedLinks={promotedLinks}
+          heroImages={heroImages}
+          promoBanner={
+            promoBanner
+              ? {
+                  title: promoBanner.title,
+                  ctaText: promoBanner.link.title,
+                  ctaUrl: promoBanner.link.url,
+                  image1440x810: promoBanner.image1440x810.url,
+                  image144x81: promoBanner.image144x81.url,
+                  children: '',
+                }
+              : undefined
+          }
+          promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
+        />
+      ) : (
         <Homepage
           metaTitle={metaTitle}
           metaDescription={metaDescription || undefined}
@@ -93,7 +117,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           }
           promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
           featuredNews={{ articles: featuredNews.map(transformFeaturedNews), viewAllLink: '/news' }}
-          memorialTakeover={memorialTakeover}
         />
       );
     }
