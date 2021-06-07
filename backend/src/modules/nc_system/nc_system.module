@@ -169,6 +169,12 @@ function nc_system_config_pages_update(ConfigPages $entity) {
     $purge_service = \Drupal::service('nc_cloudflare_purge.service');
     $purge_service->purgeAll();
   }
+  
+  if ($type === 'memorial_takeover') {
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $host = \Drupal::service('nc_system.website_manager')->getHost();
+    $purge_service->purgeByUrl([$host]);
+  }
 }
 
 /**
