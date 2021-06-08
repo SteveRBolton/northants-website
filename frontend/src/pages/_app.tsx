@@ -48,6 +48,7 @@ function NorthantsApp({
   router,
   globals,
   theme,
+  website,
   gtm,
   baseUrl,
 }: AppProps &
@@ -74,35 +75,37 @@ function NorthantsApp({
     route = window.location.pathname;
     shareImageSet = !!document.querySelector('meta[property="og:image"]');
   }
-  console.log(theme);
+
+  console.log(website);
+
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
-      faviconPath += Theme.North;
+      faviconPath += website;
       break;
     case Theme.West:
       actualThemeObject = west_theme;
-      faviconPath += Theme.West;
+      faviconPath += website;
       break;
     case Theme.North_LB:
       actualThemeObject = lb_theme_north;
-      faviconPath += Theme.North_LB;
+      faviconPath += website;
       break;
     case Theme.West_LB:
       actualThemeObject = lb_theme_west;
-      faviconPath += Theme.West_LB;
+      faviconPath += website;
       break;
     default:
       actualThemeObject = GDS_theme;
   }
-  console.log(actualThemeObject);
+
   const hideSearchBar = router.pathname === '/search';
   const isHomepage = router.pathname === '/';
 
   const formattedBaseUrl = baseUrl?.replace(/\/$/, '');
   const pageUrl = formattedBaseUrl ? formattedBaseUrl + route : '';
   const genericMetaImage =
-    theme === 'north' ? `${formattedBaseUrl}/north-share.png` : `${formattedBaseUrl}/west-share.png`;
+    website === 'north' ? `${formattedBaseUrl}/north-share.png` : `${formattedBaseUrl}/west-share.png`;
   const defaultShareImage = <meta property="og:image" content={genericMetaImage} />;
 
   return (
@@ -131,9 +134,9 @@ function NorthantsApp({
         <link
           rel="mask-icon"
           href={`${faviconPath}/safari-pinned-tab.svg`}
-          color={theme === 'north' ? '#05873a' : '#386193'}
+          color={website === 'north' ? '#05873a' : '#386193'}
         />
-        <meta name="msapplication-TileColor" content={theme === 'north' ? '#05873a' : '#386193'} />
+        <meta name="msapplication-TileColor" content={website === 'north' ? '#05873a' : '#386193'} />
         <meta name="msapplication-config" content={`${faviconPath}/browserconfig.xml`} />
         <meta name="theme-color" content="#ffffff" />
 
