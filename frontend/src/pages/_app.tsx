@@ -76,8 +76,6 @@ function NorthantsApp({
     shareImageSet = !!document.querySelector('meta[property="og:image"]');
   }
 
-  console.log(website);
-
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
