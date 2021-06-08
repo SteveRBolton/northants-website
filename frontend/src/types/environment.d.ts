@@ -6,6 +6,7 @@ declare global {
       /* Public vars. Available in browser */
       NEXT_PUBLIC_FEDERATED_GRAPHQL_ENDPOINT: string;
       NEXT_PUBLIC_THEME: 'north' | 'west' | 'gds' | undefined;
+      NEXT_PUBLIC_WEBSITE: 'north' | 'lb_theme_north' | 'west' | 'lb_theme_west' | 'gds' | undefined;
       NEXT_PUBLIC_BASE_URL: string;
       NEXT_PUBLIC_GTM_CODE: string | undefined;
     }

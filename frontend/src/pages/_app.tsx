@@ -1,5 +1,15 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
-import { Header, north_theme, GDS_theme, west_theme, Footer, CookieBanner, AlertBanner } from 'northants-design-system';
+import {
+  Header,
+  north_theme,
+  GDS_theme,
+  west_theme,
+  lb_theme_north,
+  lb_theme_west,
+  Footer,
+  CookieBanner,
+  AlertBanner,
+} from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import React, { ReactElement, useEffect } from 'react';
@@ -20,6 +30,14 @@ declare global {
 }
 enum Theme {
   North = 'north',
+  North_LB = 'lb_theme_north',
+  West = 'west',
+  West_LB = 'lb_theme_west',
+  GDS = 'gds',
+}
+
+enum Website {
+  North = 'north',
   West = 'west',
   GDS = 'gds',
 }
@@ -32,7 +50,13 @@ function NorthantsApp({
   theme,
   gtm,
   baseUrl,
-}: AppProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined; baseUrl: string | undefined }): ReactElement {
+}: AppProps &
+  GetCMSGlobals & {
+    theme: Theme;
+    website: Website;
+    gtm: string | undefined;
+    baseUrl: string | undefined;
+  }): ReactElement {
   let actualThemeObject;
   let faviconPath = '/favicon/';
   useEffect(() => {
@@ -50,6 +74,7 @@ function NorthantsApp({
     route = window.location.pathname;
     shareImageSet = !!document.querySelector('meta[property="og:image"]');
   }
+  console.log(theme);
   switch (theme) {
     case Theme.North:
       actualThemeObject = north_theme;
@@ -59,10 +84,18 @@ function NorthantsApp({
       actualThemeObject = west_theme;
       faviconPath += Theme.West;
       break;
+    case Theme.North_LB:
+      actualThemeObject = lb_theme_north;
+      faviconPath += Theme.North_LB;
+      break;
+    case Theme.West_LB:
+      actualThemeObject = lb_theme_west;
+      faviconPath += Theme.West_LB;
+      break;
     default:
       actualThemeObject = GDS_theme;
   }
-
+  console.log(actualThemeObject);
   const hideSearchBar = router.pathname === '/search';
   const isHomepage = router.pathname === '/';
 
@@ -150,7 +183,8 @@ function NorthantsApp({
 NorthantsApp.getInitialProps = async (
   appContext: AppContext
 ): Promise<
-  AppInitialProps & GetCMSGlobals & { theme: Theme; gtm: string | undefined; baseUrl: string | undefined }
+  AppInitialProps &
+    GetCMSGlobals & { theme: Theme; website: Website; gtm: string | undefined; baseUrl: string | undefined }
 > => {
   const client = initializeApollo();
 
@@ -177,6 +211,7 @@ NorthantsApp.getInitialProps = async (
     ...appProps,
     globals,
     theme: process.env.NEXT_PUBLIC_THEME as Theme,
+    website: process.env.NEXT_PUBLIC_WEBSITE as Website,
     gtm: process.env.NEXT_PUBLIC_GTM_CODE,
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
   };
