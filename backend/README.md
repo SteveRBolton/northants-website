@@ -213,7 +213,8 @@ To set this, navigate to `/admin/structure/config_pages` and choose a page to mo
 | CLOUDFLARE_ZONE_ID  | String        | The zone id within Cloudflare where the website resides |
 | DRUPAL_HASH_SALT  | String        | The unique hash used for salts |
 | NEXT_PUBLIC_BASE_URL  | URI        | The frontend website URL (https://www.westnorthants.co.uk/) **must contain trailing slash** |
-| NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west |
+| NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west, lb_theme_west, etc |
+| NEXT_PUBLIC_WEBSITE  | String        | The website it is on i.e. west, north |
 
 ## User roles and embed editor permissions
 When creating new roles make sure the role has permission to use both the "Basic HTML (with Embed)" and "Basic HTML (with Embed)

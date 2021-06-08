@@ -38,8 +38,8 @@ class WebsiteManagerService {
 
 
   public function __construct() {
-    if (isset($_ENV['NEXT_PUBLIC_THEME'])) {
-      switch ($_ENV['NEXT_PUBLIC_THEME']) {
+    if (isset($_ENV['NEXT_PUBLIC_WEBSITE'])) {
+      switch ($_ENV['NEXT_PUBLIC_WEBSITE']) {
         case 'west':
           $this->backgroundColor = '#386193';
           $this->cssLibrary = 'nc_seven/nc-seven-west-admin-css';
