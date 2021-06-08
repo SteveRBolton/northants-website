@@ -1,7 +1,6 @@
 import {
   MaxWidthContainer,
   PageMain,
-  HomeHero,
   ServicesLinksList,
   PromoBanner,
   Breadcrumbs,
@@ -9,10 +8,6 @@ import {
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
-import {
-  HeroImageProp,
-  PromotedLinkProp,
-} from 'northants-design-system/build/library/structure/HomeHero/HomeHero.types';
 import { PageLinkProp } from 'northants-design-system/build/library/structure/ServicesLinksList/ServicesLinksList.types';
 
 import { PromoBannerProps } from 'northants-design-system/build/library/structure/PromoBanner/PromoBanner.types';
@@ -25,8 +20,6 @@ type MemorialHomepageProps = {
   metaTitle: string;
   metaDescription?: string;
   metaKeywords?: string;
-  heroImages: HeroImageProp[];
-  promotedLinks: PromotedLinkProp[];
   promoBanner?: PromoBannerProps;
   promoBody?: TextWithSlicesProps;
 };
@@ -39,8 +32,6 @@ export default function MemorialHomepage({
   metaKeywords,
   promoBanner,
   promoBody,
-  promotedLinks,
-  heroImages,
 }: MemorialHomepageProps): ReactElement {
   return (
     <>
@@ -57,8 +48,7 @@ export default function MemorialHomepage({
         <meta property="twitter:title" content={metaTitle} />
         <meta property="twitter:description" content={metaDescription || ''} />
       </Head>
-      {/* <HomeHero imagesArray={heroImages} promotedLinksArray={promotedLinks} /> */}
-      <div>OK</div>
+      <div>&nbsp;</div>
       <MaxWidthContainer>
         <PhaseBanner />
         <Breadcrumbs
