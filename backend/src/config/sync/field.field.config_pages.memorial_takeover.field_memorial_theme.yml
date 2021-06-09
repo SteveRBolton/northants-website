@@ -1,0 +1,23 @@
+uuid: 3b461de1-ac4e-4dd8-bce1-b7e8db83075f
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.memorial_takeover
+    - field.storage.config_pages.field_memorial_theme
+id: config_pages.memorial_takeover.field_memorial_theme
+field_name: field_memorial_theme
+entity_type: config_pages
+bundle: memorial_takeover
+label: 'Enable Memorial Theme'
+description: 'Enable Memorial Theme take over of the homepage.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

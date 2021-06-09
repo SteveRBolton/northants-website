@@ -64,6 +64,19 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return $nodes;
   }
 
+  public function getMemorialTheme(): bool {
+    $config = config_pages_config('memorial_takeover');
+    $active = $config ? $config->get('field_memorial_theme') : NULL;
+
+    if (!is_null($active)) {
+      if ($active->getString() === "1") {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -122,6 +135,11 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
       $featuredNews = $this->getFeaturedNews(3);
       return $featuredNews;
     }
+
+    if ($fieldName === 'memorialTakeover') {
+      return $this->getMemorialTheme();
+    }
+    
     throw new Exception("Unable to resolve value via Homepage resolve.");
   }
 

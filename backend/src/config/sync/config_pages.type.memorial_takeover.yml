@@ -1,0 +1,17 @@
+uuid: e1400a38-cafa-4a87-bc2f-d32acd6f35b3
+langcode: en
+status: true
+dependencies: {  }
+id: memorial_takeover
+label: 'Memorial Takeover'
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: ''
+  weight: 0
+  description: ''
+token: false
