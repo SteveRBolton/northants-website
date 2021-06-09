@@ -78,8 +78,6 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaKeywords={metaKeywords || undefined}
           body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
-          promotedLinks={promotedLinks}
-          heroImages={heroImages}
           promoBanner={
             promoBanner
               ? {
