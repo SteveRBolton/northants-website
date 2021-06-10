@@ -7,7 +7,6 @@ label: 'Subject Matter Expert+'
 weight: -7
 is_admin: null
 permissions:
-  - 'hide ckeditor source'
   - 'access content overview'
   - 'access toolbar'
   - 'add paragraphs entity embed'
@@ -20,6 +19,7 @@ permissions:
   - 'edit own service_landing_page content'
   - 'edit own service_page content'
   - 'edit paragraphs entity embed'
+  - 'hide ckeditor source'
   - 'revert homepage revisions'
   - 'revert service_landing_page revisions'
   - 'revert service_page revisions'
@@ -30,6 +30,7 @@ permissions:
   - 'use editorial transition submit_for_review'
   - 'use text format basic_html_with_embed_for_accordion'
   - 'use text format embed_basic_html'
+  - 'use workbench access'
   - 'view all revisions'
   - 'view any unpublished content'
   - 'view homepage revisions'
