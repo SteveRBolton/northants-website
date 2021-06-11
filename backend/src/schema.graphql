@@ -249,6 +249,13 @@ type Document implements Media @media(type: document, bundle: "document") {
   type: String!
   size: String!
 }
+type QuickLinkParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "memorial_quick_link") {
+  id: String!
+  link: LinkFieldWithTitle!
+  summary: String
+  icon: String
+}
 
 #
 # Content types (Nodes)
@@ -279,6 +286,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
+  memorialQuickLinks: [QuickLinkParagraph]
 }
 
 type ArticlePageNode implements Node
@@ -322,7 +330,6 @@ type ServicePageNode implements Node
   warningTextDisclaimer: Boolean!
   dateUpdated: String!
   serviceAlert: ServicePageAlert
-
 }
 
 type ServiceLandingPageNode implements Node
