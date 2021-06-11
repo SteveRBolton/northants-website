@@ -102,5 +102,30 @@ function nc_workflow_form_alter(&$form, &$form_state, $form_id) {
 
       $form['new_state']['#options'] = $options;
     }
+
+
+    // Sync Workflow available transitions with Workbench access permissions:
+
+    // Page access permissions can vary for every user so limit caching of the form to per-session.
+    $form['#cache']['contexts'][] = 'session';
+    // Fetch the relevant Node from the form.
+    $build_info = $form_state->getBuildInfo();
+    if (!empty($build_info['args'])) {
+      $entity = $build_info['args'][0];
+      // Confirm this is a Node.
+      if ($entity && $entity instanceof \Drupal\node\Entity\Node) {
+        // Load the full account User object.
+        $account = \Drupal\user\Entity\User::load($user->id());
+        // Check if this user can edit this node.
+        $edit_access = $entity->access('update', $account);
+        if (!$edit_access) {
+          // Block access to submit the moderation form. Note: leave part of the form (current moderation state), so
+          // that our cache context is registered as part of the page.
+          $form['new_state']['#access'] = FALSE;
+          $form['revision_log']['#access'] = FALSE;
+          $form['submit']['#access'] = FALSE;
+        }
+      }
+    }
   }
 }
