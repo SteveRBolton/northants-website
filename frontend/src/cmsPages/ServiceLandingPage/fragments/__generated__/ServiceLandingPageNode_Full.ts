@@ -10,7 +10,7 @@ import { AlertType } from "./../../../../types/graphql/__generated__/global.d";
 // ====================================================
 
 export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_CallToActionParagraph_link {
@@ -32,7 +32,7 @@ export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph
 }
 
 export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface ServiceLandingPageNode_Full_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {

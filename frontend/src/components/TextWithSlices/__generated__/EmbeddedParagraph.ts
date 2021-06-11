@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface EmbeddedParagraph_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface EmbeddedParagraph_paragraph_CallToActionParagraph_link {
@@ -30,7 +30,7 @@ export interface EmbeddedParagraph_paragraph_BlockQuoteParagraph {
 }
 
 export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface EmbeddedParagraph_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {

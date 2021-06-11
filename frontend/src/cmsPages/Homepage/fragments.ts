@@ -4,6 +4,7 @@ import serviceLinksFragment from '../../components/ServiceLinks/fragment';
 import embeddedParagraphFragment from '../../components/TextWithSlices/fragment';
 import promoBannerFragment from '../../components/PromoBanner/fragment';
 import articlePageFragment from '../ArticlePage/fragments/featured';
+import quickLinksFragment from '../../components/MemorialQuickLinks/fragment';
 
 const homepageNodeFull = gql`
   ${callToActionFragment}
@@ -11,6 +12,7 @@ const homepageNodeFull = gql`
   ${serviceLinksFragment}
   ${promoBannerFragment}
   ${articlePageFragment}
+  ${quickLinksFragment}
   fragment HomepageNodeFull on HomepageNode {
     __typename
     title
@@ -42,6 +44,9 @@ const homepageNodeFull = gql`
       ...ArticlePageNode_Featured
     }
     memorialTakeover
+    memorialQuickLinks {
+      ...MemorialQuickLink
+    }
   }
 `;
 export { homepageNodeFull };

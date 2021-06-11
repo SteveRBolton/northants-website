@@ -14,7 +14,7 @@ export interface GetCMSContentOrRedirect_route_DrupalAccessDeniedRoute {
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody_embeds_paragraph_CallToActionParagraph_link {
@@ -36,7 +36,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
@@ -230,6 +230,20 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   date: string;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks {
+  __typename: "QuickLinkParagraph";
+  id: string;
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks_link;
+  summary: string | null;
+  icon: string | null;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
   __typename: "HomepageNode";
   title: string;
@@ -244,10 +258,11 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   promoBanner: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promoBanner | null;
   featuredNews: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews[];
   memorialTakeover: boolean;
+  memorialQuickLinks: (GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks | null)[] | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_CallToActionParagraph_link {
@@ -269,7 +284,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
@@ -435,7 +450,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandi
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody_embeds_paragraph_CallToActionParagraph_link {
@@ -457,7 +472,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageNode_serviceBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
@@ -672,7 +687,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServicePageN
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_CallToActionParagraph_link {
@@ -694,7 +709,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageN
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ArticlePageNode_body_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {

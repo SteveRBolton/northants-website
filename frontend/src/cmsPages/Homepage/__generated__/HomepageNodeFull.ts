@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_CallToActionParagraph_link {
@@ -30,7 +30,7 @@ export interface HomepageNodeFull_homepageBody_embeds_paragraph_BlockQuoteParagr
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "QuickLinkParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface HomepageNodeFull_homepageBody_embeds_paragraph_AccordionParagraph_sections_body_embeds_paragraph_CallToActionParagraph_link {
@@ -224,6 +224,20 @@ export interface HomepageNodeFull_featuredNews {
   date: string;
 }
 
+export interface HomepageNodeFull_memorialQuickLinks_link {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+}
+
+export interface HomepageNodeFull_memorialQuickLinks {
+  __typename: "QuickLinkParagraph";
+  id: string;
+  link: HomepageNodeFull_memorialQuickLinks_link;
+  summary: string | null;
+  icon: string | null;
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
@@ -238,4 +252,5 @@ export interface HomepageNodeFull {
   promoBanner: HomepageNodeFull_promoBanner | null;
   featuredNews: HomepageNodeFull_featuredNews[];
   memorialTakeover: boolean;
+  memorialQuickLinks: (HomepageNodeFull_memorialQuickLinks | null)[] | null;
 }
