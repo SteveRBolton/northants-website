@@ -6,6 +6,7 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\nc_system\Entity\Paragraph\BlockQuote;
 use Drupal\nc_system\Entity\Paragraph\Highlight;
 use Drupal\nc_system\Entity\Paragraph\CallToAction;
+use Drupal\nc_system\Entity\Paragraph\MemorialQuickLink;
 use Drupal\nc_system\Entity\Node\Homepage;
 use Drupal\nc_system\Entity\Node\Article;
 use Drupal\nc_system\Entity\Node\ServicePage;
@@ -50,6 +51,8 @@ function nc_system_entity_bundle_info_alter(array &$bundles) {
   $bundles['paragraph']['accordion_item']['class'] = AccordionItem::class;
   $bundles['paragraph']['file_download']['class'] = FileDownload::class;
   $bundles['paragraph']['promotional_banner']['class'] = PromoBanner::class;
+  $bundles['paragraph']['memorial_quick_link']['class'] = MemorialQuickLink::class;
+
 
   // Taxonomy terms
   $bundles['taxonomy_term']['sovereign_councils']['class'] = SovereignCouncil::class;

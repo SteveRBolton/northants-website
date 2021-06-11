@@ -3,6 +3,8 @@
 namespace Drupal\nc_system\Entity\Node;
 use Drupal\link\LinkItemInterface;
 use Drupal\nc_system\Entity\Paragraph\PromoBanner;
+use Drupal\nc_system\Entity\Paragraph\MemorialQuickLink;
+
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Exception;
@@ -64,19 +66,33 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return $nodes;
   }
 
-  public function getMemorialTheme(): bool {
+
+  public function getQuickLinks() : array {
     $config = config_pages_config('memorial_takeover');
     $active = $config ? $config->get('field_memorial_theme') : NULL;
 
     if (!is_null($active)) {
       if ($active->getString() === "1") {
-        return true;
+         /* @var $quicklinks array<\Drupal\nc_system\Entity\Paragraph\MemorialQuickLink> */
+
+        $quicklinks = $config->get('field_quick_links')->referencedEntities();
+        return $quicklinks;
+
       }
     }
 
+    return [];
+  }
+  public function getMemorialTheme(): bool {
+    $config = config_pages_config('memorial_takeover');
+    $active = $config ? $config->get('field_memorial_theme') : NULL;
+    if (!is_null($active)) {
+      if ($active->getString() === "1") {
+        return true;
+      }
+    }
     return false;
   }
-
   /**
    * {@inheritdoc}
    */
@@ -105,6 +121,9 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
     if ($fieldName === "promoBanner") {
       return $this->getPromoBanner();
+    }
+    if ($fieldName === "memorialQuickLinks") {
+      return $this->getQuickLinks();
     }
     if ($fieldName === "promotedLinks") {
       $promotedLinks = [];
@@ -139,7 +158,7 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === 'memorialTakeover') {
       return $this->getMemorialTheme();
     }
-    
+
     throw new Exception("Unable to resolve value via Homepage resolve.");
   }
 

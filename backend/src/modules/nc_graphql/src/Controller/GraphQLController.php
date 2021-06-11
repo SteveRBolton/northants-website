@@ -60,6 +60,7 @@ class GraphQLController extends ControllerBase {
           'section' => 'SectionParagraph',
           'service_links' => 'ServiceLinksParagraph',
           'accordion' => 'AccordionParagraph',
+          'memorial_quick_link'=> 'MemorialQuickLink',
           'accordion_item' => 'AccordionItemParagraph',
           'file_download' => 'FileDownloadParagraph',
           'promotional_banner' => 'PromoBannerParagraph',
