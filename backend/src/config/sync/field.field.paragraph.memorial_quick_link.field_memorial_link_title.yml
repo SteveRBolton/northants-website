@@ -1,0 +1,23 @@
+uuid: 2a653e83-4bca-4475-bea9-549c481239b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_memorial_link_title
+    - paragraphs.paragraphs_type.memorial_quick_link
+  module:
+    - link
+id: paragraph.memorial_quick_link.field_memorial_link_title
+field_name: field_memorial_link_title
+entity_type: paragraph
+bundle: memorial_quick_link
+label: 'Memorial Link Title'
+description: 'The url and title to be used by this quick link. '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

@@ -1,0 +1,19 @@
+uuid: 93be2c65-673f-4571-a8cb-5cea8a805e05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_memorial_link_summ
+    - paragraphs.paragraphs_type.memorial_quick_link
+id: paragraph.memorial_quick_link.field_memorial_link_summ
+field_name: field_memorial_link_summ
+entity_type: paragraph
+bundle: memorial_quick_link
+label: 'Memorial Link Summary'
+description: 'Add a summary for this memorial quick link. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

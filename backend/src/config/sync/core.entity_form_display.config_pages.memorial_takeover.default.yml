@@ -5,6 +5,9 @@ dependencies:
   config:
     - config_pages.type.memorial_takeover
     - field.field.config_pages.memorial_takeover.field_memorial_theme
+    - field.field.config_pages.memorial_takeover.field_quick_links
+  module:
+    - paragraphs
 id: config_pages.memorial_takeover.default
 targetEntityType: config_pages
 bundle: memorial_takeover
@@ -16,6 +19,18 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_quick_links:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
     region: content
 hidden:
   label: true

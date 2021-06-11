@@ -1,0 +1,21 @@
+uuid: 534193a6-1a83-48e9-af76-285467b25d32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_memorial_link_icon
+    - paragraphs.paragraphs_type.memorial_quick_link
+  module:
+    - options
+id: paragraph.memorial_quick_link.field_memorial_link_icon
+field_name: field_memorial_link_icon
+entity_type: paragraph
+bundle: memorial_quick_link
+label: 'Memorial Link Icon'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

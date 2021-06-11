@@ -1,0 +1,24 @@
+uuid: fec5b3f9-c8fb-43df-bc36-dbc0ff07d174
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_memorial_link_icon
+field_name: field_memorial_link_icon
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Example icon'
+      label: 'Crown icon'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

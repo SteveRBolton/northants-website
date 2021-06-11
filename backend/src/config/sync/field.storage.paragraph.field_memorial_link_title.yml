@@ -1,0 +1,19 @@
+uuid: 1f511928-6055-4667-8139-b267a0176a5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_memorial_link_title
+field_name: field_memorial_link_title
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

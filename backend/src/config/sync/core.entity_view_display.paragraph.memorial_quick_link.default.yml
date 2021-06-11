@@ -1,0 +1,45 @@
+uuid: 5bbd3637-7613-4400-8fa0-088366f02fc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.memorial_quick_link.field_memorial_link_icon
+    - field.field.paragraph.memorial_quick_link.field_memorial_link_summ
+    - field.field.paragraph.memorial_quick_link.field_memorial_link_title
+    - paragraphs.paragraphs_type.memorial_quick_link
+  module:
+    - link
+    - options
+id: paragraph.memorial_quick_link.default
+targetEntityType: paragraph
+bundle: memorial_quick_link
+mode: default
+content:
+  field_memorial_link_icon:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_memorial_link_summ:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_memorial_link_title:
+    weight: 0
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  search_api_excerpt: true
