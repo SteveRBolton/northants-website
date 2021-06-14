@@ -7,11 +7,15 @@ import {
   SectionLinks,
   SectionLinksMobileContents,
   HeadingWithIcon,
+  AlertBannerService,
+  DisplayDate,
 } from 'northants-design-system';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { BreadcrumbsProps } from 'northants-design-system/build/library/structure/Breadcrumbs/Breadcrumbs.types';
 import { SectionLinksProps } from 'northants-design-system/build/library/structure/SectionLinks/SectionLinks.types';
+import { AlertBannerServiceProps } from 'northants-design-system/build/library/structure/AlertBannerService/AlertBannerService.types';
+
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 import AlertBannerServiceIE from '../../components/AlertBannerService';
 
@@ -31,6 +35,8 @@ type ServiceLandingPageProps = {
   breadcrumbs: BreadcrumbsProps;
   sections: SectionLinksProps[];
   icon?: string;
+  serviceAlert?: AlertBannerServiceProps;
+  dateUpdated: string;
 };
 
 export default function ServiceLandingPage({
@@ -43,6 +49,8 @@ export default function ServiceLandingPage({
   breadcrumbs,
   sections,
   icon,
+  serviceAlert,
+  dateUpdated,
 }: ServiceLandingPageProps): ReactElement {
   return (
     <>
@@ -62,8 +70,16 @@ export default function ServiceLandingPage({
       <MaxWidthContainer>
         <PhaseBanner />
         <Breadcrumbs {...breadcrumbs} />
+
         <PageMain>
           <AlertBannerServiceIE />
+
+          {serviceAlert?.title && (
+            <AlertBannerService {...serviceAlert}>
+              {serviceAlert.children && <TextWithSlices html={serviceAlert.children.toString()} embeds={[]} />}
+            </AlertBannerService>
+          )}
+
           {icon ? <HeadingWithIcon icon={icon} level={1} text={heading.text} /> : <Heading {...heading} />}
           {body && <TextWithSlices {...body} />}
           {sections.length > 1 ? (

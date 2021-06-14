@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { isGraphQLType } from '../../types/utils';
 import { getCMSContentOrRedirect } from '../../api/graphql/queries';
 import Homepage from '../../cmsPages/Homepage';
+import MemorialHomepage from '../../cmsPages/MemorialHomepage';
 import ServicePage from '../../cmsPages/ServicePage';
 import ServiceLandingPage from '../../cmsPages/ServiceLandingPage';
 import {
@@ -68,8 +69,30 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         heroImages,
         promoBanner,
         featuredNews,
+        memorialTakeover,
       } = node;
-      return (
+      return memorialTakeover ? (
+        <MemorialHomepage
+          metaTitle={metaTitle}
+          metaDescription={metaDescription || undefined}
+          metaKeywords={metaKeywords || undefined}
+          body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
+          serviceLinks={serviceLinks.map(transformServiceLinks)}
+          promoBanner={
+            promoBanner
+              ? {
+                  title: promoBanner.title,
+                  ctaText: promoBanner.link.title,
+                  ctaUrl: promoBanner.link.url,
+                  image1440x810: promoBanner.image1440x810.url,
+                  image144x81: promoBanner.image144x81.url,
+                  children: '',
+                }
+              : undefined
+          }
+          promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
+        />
+      ) : (
         <Homepage
           metaTitle={metaTitle}
           metaDescription={metaDescription || undefined}
@@ -109,6 +132,8 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         topLineText,
         warningTextDisclaimer,
         url,
+        dateUpdated,
+        serviceAlert,
       } = node;
       const otherSections = inSections.filter((section) => section.id !== canonicalSection?.id);
       return (
@@ -129,6 +154,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           alsoIn={otherSections.length > 0 ? transformAlsoFoundIn(otherSections) : undefined}
           topLineText={topLineText || undefined}
           warningTextDisclaimer={warningTextDisclaimer}
+          dateUpdated={dateUpdated}
+          serviceAlert={
+            serviceAlert
+              ? {
+                  title: serviceAlert.title,
+                  alertType: serviceAlert.alertType ?? undefined,
+                  children: serviceAlert.content,
+                }
+              : undefined
+          }
         />
       );
     }
@@ -143,6 +178,8 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         hasSections,
         url,
         icon,
+        serviceAlert,
+        dateUpdated,
       } = node;
 
       return (
@@ -157,6 +194,16 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           breadcrumbs={{ breadcrumbsArray: breadcrumbs }}
           sections={hasSections.map((section) => transformSection(section, hasSections.length > 1))}
           icon={icon || undefined}
+          serviceAlert={
+            serviceAlert
+              ? {
+                  title: serviceAlert.title,
+                  alertType: serviceAlert.alertType ?? undefined,
+                  children: serviceAlert.content,
+                }
+              : undefined
+          }
+          dateUpdated={dateUpdated}
         />
       );
     }
