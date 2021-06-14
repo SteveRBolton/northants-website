@@ -224,6 +224,18 @@ export interface HomepageNodeFull_featuredNews {
   date: string;
 }
 
+export interface HomepageNodeFull_memorialNewsLinks_featuredImage144x81 {
+  __typename: "Image";
+  url: string;
+}
+
+export interface HomepageNodeFull_memorialNewsLinks {
+  __typename: "ArticlePageNode";
+  title: string;
+  summary: string;
+  featuredImage144x81: HomepageNodeFull_memorialNewsLinks_featuredImage144x81 | null;
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
@@ -238,4 +250,5 @@ export interface HomepageNodeFull {
   promoBanner: HomepageNodeFull_promoBanner | null;
   featuredNews: HomepageNodeFull_featuredNews[];
   memorialTakeover: boolean;
+  memorialNewsLinks: HomepageNodeFull_memorialNewsLinks[];
 }
