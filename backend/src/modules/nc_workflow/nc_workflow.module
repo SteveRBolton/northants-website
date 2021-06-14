@@ -58,3 +58,74 @@ function nc_workflow_editor_js_settings_alter(&$settings, $conf) {
     $settings["editor"]["formats"]["embed_basic_html"]["editorSettings"]["toolbar"] = $toolbar;
   }
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_form().
+ */
+function nc_workflow_form_node_form_alter(&$form) {
+  $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
+
+  if (in_array('subject_matter_expert_plus', $roles)) {
+    $today = new DrupalDateTime('now');
+    $publishing_service = \Drupal::service('nc_workflow.publishing_service');
+    $out_of_hours = $publishing_service->isOutOfHours($today);
+    $options = isset($form['moderation_state']['widget']) ? $form['moderation_state']['widget'][0]['state']['#options'] : [];
+    if (!$out_of_hours) {
+      $options = array_diff_key($options, [
+        'published' => 'Published'
+      ]);
+    }
+    $form['moderation_state']['widget'][0]['state']['#options'] = $options;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nc_workflow_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id === 'content_moderation_entity_moderation_form') {
+    $user = \Drupal::currentUser();
+    $roles = $user->getRoles();
+
+    if (in_array('subject_matter_expert_plus', $roles)) {
+      $today = new DrupalDateTime('now');
+      $publishing_service = \Drupal::service('nc_workflow.publishing_service');
+      $out_of_hours = $publishing_service->isOutOfHours($today);
+      $options = isset($form['new_state']['#options']) ? $form['new_state']['#options'] : [];
+
+      if (!$out_of_hours) {
+        $options = array_diff_key($options, [
+          'published' => 'Published'
+        ]);
+      }
+
+      $form['new_state']['#options'] = $options;
+    }
+
+
+    // Sync Workflow available transitions with Workbench access permissions:
+
+    // Page access permissions can vary for every user so limit caching of the form to per-session.
+    $form['#cache']['contexts'][] = 'session';
+    // Fetch the relevant Node from the form.
+    $build_info = $form_state->getBuildInfo();
+    if (!empty($build_info['args'])) {
+      $entity = $build_info['args'][0];
+      // Confirm this is a Node.
+      if ($entity && $entity instanceof \Drupal\node\Entity\Node) {
+        // Load the full account User object.
+        $account = \Drupal\user\Entity\User::load($user->id());
+        // Check if this user can edit this node.
+        $edit_access = $entity->access('update', $account);
+        if (!$edit_access) {
+          // Block access to submit the moderation form. Note: leave part of the form (current moderation state), so
+          // that our cache context is registered as part of the page.
+          $form['new_state']['#access'] = FALSE;
+          $form['revision_log']['#access'] = FALSE;
+          $form['submit']['#access'] = FALSE;
+        }
+      }
+    }
+  }
+}

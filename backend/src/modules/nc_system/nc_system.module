@@ -21,6 +21,7 @@ use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 use Drupal\node\Entity\Node;
 use Drupal\system\Entity\Menu;
+use Drupal\redirect\Entity\Redirect;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
@@ -105,6 +106,14 @@ function nc_system_menu_update(Menu $menu) {
 }
 
 /**
+ * This function purges the Cloudflare cache on redirect updates.
+ *  * @param Redirect $entity
+ */
+function nc_system_redirect_insert(Redirect $entity) {
+  _purge_redirect($entity);
+}
+
+/**
  * This function purges the Cloudflare cache on creating new menu links.
  * @param MenuLinkContent $entity
  */
@@ -138,6 +147,16 @@ function _purge_menu(MenuLinkContent $entity) {
     $purge_service->purgeAll();
   }
 }
+/**
+ * This function purges the redirect added Cloudflare cache on redirect insert.
+ * @param Redirect $entity
+ */
+function _purge_redirect(Redirect $entity) {
+  $urls = [];
+  $urls[] = \Drupal::service('nc_system.website_manager')->getHost() . $entity->getSourcePathWithQuery();
+  $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+  $purge_service->purgeByUrl($urls);
+}
 
 /**
  * This function purges the Cloudflare cache when updating the sitewide alerts.
@@ -150,6 +169,12 @@ function nc_system_config_pages_update(ConfigPages $entity) {
     $purge_service = \Drupal::service('nc_cloudflare_purge.service');
     $purge_service->purgeAll();
   }
+  
+  if ($type === 'memorial_takeover') {
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $host = \Drupal::service('nc_system.website_manager')->getHost();
+    $purge_service->purgeByUrl([$host]);
+  }
 }
 
 /**
@@ -158,34 +183,6 @@ function nc_system_config_pages_update(ConfigPages $entity) {
  */
 function nc_system_node_insert(Node $node) {
   _purge_node($node);
-}
-
-/**
- * This function takes a date and then checks to see if it is a
- * Saturday, Sunday or if not the time is before 9am or after 5pm
- * @param DrupalDateTime $date
- * @return bool
- */
-function isOutOfHours(DrupalDateTime $date) {
-  $start = 9; // 9am.
-  $end = 17; // 5pm.
-
-  // As date is passed as UTC we need to change the timezone.
-  $datetime = $date;
-  $datetime->setTimezone(new DateTimeZone('Europe/London'));
-
-  $day = $datetime->format('D');
-  $hour = intval($datetime->format('H'));
-
-  if($day == 'Sat' || $day == 'Sun') {
-    return TRUE;
-  }
-
-  if ($hour >= $end || $hour < $start) {
-    return TRUE;
-  }
-
-  return FALSE;
 }
 
 /**
@@ -205,7 +202,10 @@ function nc_system_node_presave(Node $node) {
   $node_type = $node->getType();
   $today = new DrupalDateTime('now');
   if($node_type === 'service_page' || $node_type === 'service_landing_page') {
-    if (isOutOfHours($today) && $node->isPublished())  {
+    $publishing_service = \Drupal::service('nc_workflow.publishing_service');
+    $out_of_hours = $publishing_service->isOutOfHours($today);
+
+    if ($out_of_hours && $node->isPublished())  {
       $node->set('field_published_out_of_hours', '1');
     }
     else {

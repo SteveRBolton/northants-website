@@ -1,0 +1,29 @@
+uuid: 8c066d40-c785-4691-b8bb-a9bd47384c40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_service_area
+    - node.type.service_page
+    - taxonomy.vocabulary.service_area
+id: node.service_page.field_service_area
+field_name: field_service_area
+entity_type: node
+bundle: service_page
+label: 'Service area'
+description: '<p>Select one or more relevant service areas.</p>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      service_area: service_area
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

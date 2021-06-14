@@ -22,7 +22,8 @@ display:
         options:
           perm: 'access content overview'
       cache:
-        type: tag
+        type: none
+        options: {  }
       query:
         type: views_query
       exposed_form:

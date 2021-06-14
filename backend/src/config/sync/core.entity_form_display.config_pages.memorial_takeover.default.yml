@@ -1,0 +1,21 @@
+uuid: d79661f5-620c-49d0-91ea-29f5c6959a9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.memorial_takeover
+    - field.field.config_pages.memorial_takeover.field_memorial_theme
+id: config_pages.memorial_takeover.default
+targetEntityType: config_pages
+bundle: memorial_takeover
+mode: default
+content:
+  field_memorial_theme:
+    weight: 0
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+hidden:
+  label: true

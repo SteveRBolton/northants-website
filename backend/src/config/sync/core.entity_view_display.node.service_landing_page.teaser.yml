@@ -4,6 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.service_landing_page.field_alert_content
+    - field.field.node.service_landing_page.field_alert_expiration_date
+    - field.field.node.service_landing_page.field_alert_title
+    - field.field.node.service_landing_page.field_alert_type
+    - field.field.node.service_landing_page.field_enable_alert
     - field.field.node.service_landing_page.field_icon
     - field.field.node.service_landing_page.field_keywords
     - field.field.node.service_landing_page.field_meta_description
@@ -33,6 +38,11 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_alert_content: true
+  field_alert_expiration_date: true
+  field_alert_title: true
+  field_alert_type: true
+  field_enable_alert: true
   field_icon: true
   field_keywords: true
   field_meta_description: true
@@ -41,6 +51,7 @@ hidden:
   field_published_out_of_hours: true
   field_revision_date: true
   field_sections: true
+  field_service_area: true
   field_summary: true
   field_wysiwyg_slices: true
   langcode: true

@@ -6,6 +6,7 @@ use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Drupal\node\Entity\Node;
 use Drupal\text\Plugin\Field\FieldType\TextItemBase;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
 
@@ -49,6 +50,10 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     return $sections;
   }
 
+  public function getDateUpdated(): string {
+    $date =  $this->getChangedTime();
+    return strval($date);
+  }
   /**
    * Loads all sections that reference this page.
    *
@@ -64,6 +69,38 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     // We don't want those sections, so they are filtered out here:
     // See https://www.drupal.org/project/entity_reference_revisions/issues/2771531
     return array_filter($sections, fn($section) => $section->getParentEntity() !== null);
+  }
+
+  /**
+   * This function returns an array containing information about Service Alerts
+   */
+  public function getServicePageAlerts() {
+    $active = $this->get('field_enable_alert')->getValue()[0]['value'];
+    $expired = false;
+
+    $expiration = $this->get('field_alert_expiration_date')->getValue()[0]['value'];
+    $alertItem = ['title' => ''];
+
+    if($expiration) {
+      $currentTime = new DrupalDateTime('now');
+      $currentTime = $currentTime->format('Y-m-d H:i:s');
+      //2021-05-21T17:57:07
+      $expiration = str_replace('T', ' ', $expiration);
+      $expired = $currentTime > $expiration;
+    }
+    if ($active && !$expired) {
+      $title = $this->get('field_alert_title')->getValue()[0]['value'];
+      $body = GraphQLFieldResolver::resolveTextItem($this->get('field_alert_content')
+        ->first());
+      $alertType = strtolower($this->get('field_alert_type')->getValue()[0]['value']);
+
+      $alertItem = [
+        'title' => $title,
+        'content' =>  $body['value'],
+        'alertType' => $alertType
+      ];
+    }
+    return $alertItem;
   }
 
   /**
@@ -101,7 +138,9 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "icon") {
       return $this->getIcon();
     }
-
+    if($fieldName === "dateUpdated"){
+      return $this->getDateUpdated();
+    }
     //Metadata
     if ($fieldName === "metaTitle") {
       return $this->getMetaTitle();
@@ -112,6 +151,10 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
     if ($fieldName === "metaKeywords") {
       return $this->getMetaKeywords();
     }
+    if ($fieldName === "serviceAlert") {
+      return $this->getServicePageAlerts();
+    }
+
 
     throw new \Exception("Unable to resolve value via ServiceLandingPage resolve.");
   }

@@ -1,0 +1,33 @@
+uuid: 214348f1-7a2c-40e0-8a98-a4eccee2a3b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_alert_type
+field_name: field_alert_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: alert
+      label: Alert
+    -
+      value: warning
+      label: Warning
+    -
+      value: positive
+      label: Positive
+    -
+      value: london_bridge
+      label: Memorial
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -10,8 +10,8 @@ services:
       MYSQL_DATABASE: drupal
       MYSQL_USER: drupal
       MYSQL_PASSWORD: drupal
-#    ports:
-#      - "3307:3306"
+    #    ports:
+    #      - "3307:3306"
     volumes:
       - mariadb:/var/lib/mysql
     networks:
@@ -39,7 +39,8 @@ services:
       D4D_HOSTNAME: ${PROJECT_BASE_URL}
       DRUPAL_HASH_SALT: ${DRUPAL_HASH_SALT}
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
-      NEXT_PUBLIC_THEME: west
+      NEXT_PUBLIC_THEME: lb_theme_west
+      NEXT_PUBLIC_WEBSITE: west
       CLOUDFLARE_EMAIL: test@test.com
       CLOUDFLARE_API_KEY: test
       CLOUDFLARE_ZONE_ID: test

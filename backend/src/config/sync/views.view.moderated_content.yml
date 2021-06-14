@@ -38,7 +38,7 @@ display:
             content_designer: content_designer
             administrator: administrator
       cache:
-        type: tag
+        type: none
         options: {  }
       query:
         type: views_query

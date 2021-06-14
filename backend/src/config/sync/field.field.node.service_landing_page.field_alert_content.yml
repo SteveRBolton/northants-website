@@ -1,0 +1,30 @@
+uuid: 90f96254-f427-4be1-9002-af26f2b0d6ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alert_content
+    - node.type.service_landing_page
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    embed_basic_html: '0'
+    basic_html_with_embed_for_accordion: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: node.service_landing_page.field_alert_content
+field_name: field_alert_content
+entity_type: node
+bundle: service_landing_page
+label: 'Alert content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

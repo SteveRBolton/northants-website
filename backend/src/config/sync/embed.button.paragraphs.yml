@@ -6,7 +6,7 @@ dependencies:
     - paragraphs_entity_embed
 _core:
   default_config_hash: 3jVoYpSR2ShbuMqe5rN-xMHdwMItu9lWs0t-PPK2bcc
-label: Paragraphs
+label: Slices
 id: paragraphs
 type_id: paragraphs_entity_embed
 type_settings:
@@ -19,5 +19,5 @@ type_settings:
     pull_quote: pull_quote
   enable_single_use_paragraph: 1
   paragraphs_add_mode: button
-icon: {}
+icon: {  }
 icon_uuid: null
