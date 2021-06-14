@@ -42,6 +42,13 @@ const homepageNodeFull = gql`
       ...ArticlePageNode_Featured
     }
     memorialTakeover
+    memorialNewsLinks {
+      title
+      summary
+      featuredImage144x81 {
+        url
+      }
+    }
   }
 `;
 export { homepageNodeFull };
