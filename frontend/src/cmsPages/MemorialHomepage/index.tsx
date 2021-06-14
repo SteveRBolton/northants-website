@@ -22,6 +22,7 @@ type MemorialHomepageProps = {
   metaKeywords?: string;
   promoBanner?: PromoBannerProps;
   promoBody?: TextWithSlicesProps;
+  memorialNewsLinks: any;
 };
 
 export default function MemorialHomepage({
@@ -32,6 +33,7 @@ export default function MemorialHomepage({
   metaKeywords,
   promoBanner,
   promoBody,
+  memorialNewsLinks,
 }: MemorialHomepageProps): ReactElement {
   return (
     <>
