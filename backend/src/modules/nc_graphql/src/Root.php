@@ -218,7 +218,7 @@ class Root {
         'id' => $id,
       ];
     }
-    return $alert ? $alert : NULL;
+    return $active ? $alert : NULL;
   }
 
   /**
