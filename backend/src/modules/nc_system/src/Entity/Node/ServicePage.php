@@ -84,6 +84,19 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     $parent = $this->getParent();
     $alertItem = ['title' => ''];
 
+    // Check for landing content type in page hierarchy
+    do {
+      if ($parent && $parent->isPublished()) {
+        if ($parent->getType() === 'service_landing_page') {
+          break;
+        }
+      } else {
+        break;
+      }
+
+      $parent = $parent->getParent();
+    } while (!is_null($parent));
+
     if($parent && $parent->isPublished()) {
       $active = $parent->get('field_enable_alert')->getValue()[0]['value'];
       $expired = false;
