@@ -99,7 +99,7 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     } while (!is_null($parent));
 
     if($parent && $parent->isPublished()) {
-      $active = empty($parent->get('field_enable_alert')->getValue()) ? FALSE: $parent->get('field_enable_alert')->getValue()[0]['value'];
+      $active = empty($parent->get('field_enable_alert')->getValue()) ? FALSE : $parent->get('field_enable_alert')->getValue()[0]['value'];
       $expired = false;
 
       $expiration = empty($parent->get('field_alert_expiration_date')->getValue()) ? FALSE : $parent->get('field_alert_expiration_date')->getValue()[0]['value'];

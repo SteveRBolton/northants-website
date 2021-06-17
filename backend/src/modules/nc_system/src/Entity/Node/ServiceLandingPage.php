@@ -75,7 +75,7 @@ class ServiceLandingPage extends Content implements GraphQLEntityFieldResolver {
    * This function returns an array containing information about Service Alerts
    */
   public function getServicePageAlerts() {
-    $active = empty($this->get('field_enable_alert')->getValue()) ? FALSE: $this->get('field_enable_alert')->getValue()[0]['value'];
+    $active = empty($this->get('field_enable_alert')->getValue()) ? FALSE : $this->get('field_enable_alert')->getValue()[0]['value'];
     $expired = false;
 
     $expiration = empty($this->get('field_alert_expiration_date')->getValue()) ? FALSE : $this->get('field_alert_expiration_date')->getValue()[0]['value'];
