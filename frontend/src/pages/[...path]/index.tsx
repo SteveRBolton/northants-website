@@ -232,7 +232,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaTitle={metaTitle}
           url={url}
           title={title}
-          date={date.toString()}
+          date={date}
           metaDescription={metaDescription || undefined}
           metaKeywords={metaKeywords || undefined}
           featuredImage1440x810={
