@@ -73,6 +73,11 @@ type HeroImage {
   image144x81: String!
 }
 
+type MemorialImage {
+  image1440x810: String!
+  image144x81: String!
+}
+
 enum AlertType {
   alert
   warning
@@ -279,6 +284,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
+  memorialImages: [MemorialImage!]!
 }
 
 type ArticlePageNode implements Node

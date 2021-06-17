@@ -4,12 +4,22 @@ status: true
 dependencies:
   config:
     - config_pages.type.memorial_takeover
+    - field.field.config_pages.memorial_takeover.field_memorial_images
     - field.field.config_pages.memorial_takeover.field_memorial_theme
 id: config_pages.memorial_takeover.default
 targetEntityType: config_pages
 bundle: memorial_takeover
 mode: default
 content:
+  field_memorial_images:
+    type: entity_reference_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
   field_memorial_theme:
     weight: 0
     label: above

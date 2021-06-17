@@ -40,6 +40,12 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return $heroImagesField;
   }
 
+  public function getMemorialImages(): array {
+    $config = config_pages_config('memorial_takeover');
+    $memorialImagesField = $config ? $config->get('field_memorial_images')->getValue() : [];
+    return $memorialImagesField;
+  }
+
   public function getPromoBanner(): ?PromoBanner{
     /* @var $entityReference \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList*/
     $promoBannerField = $this->get('field_promotional_banner');
@@ -138,6 +144,21 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
     if ($fieldName === 'memorialTakeover') {
       return $this->getMemorialTheme();
+    }
+
+    if ($fieldName === "memorialImages") {
+      $memorialImages = [];
+      $memorialImagesData = $this->getMemorialImages();
+
+      foreach ($memorialImagesData as $image) {
+        $image1440x810 = GraphQLFieldResolver::resolveMediaImage($image, 1440, 810);
+        $image144x81 = GraphQLFieldResolver::resolveMediaImage($image, 144, 81);
+
+        $imageObj = [ "image1440x810"=> $image1440x810['url'], "image144x81" => $image144x81['url'] ];
+        array_push($memorialImages, $imageObj);
+      }
+
+      return $memorialImages;
     }
     
     throw new Exception("Unable to resolve value via Homepage resolve.");
