@@ -42,6 +42,10 @@ const homepageNodeFull = gql`
       ...ArticlePageNode_Featured
     }
     memorialTakeover
+    memorialImages {
+      image1440x810
+      image144x81
+    }
   }
 `;
 export { homepageNodeFull };
