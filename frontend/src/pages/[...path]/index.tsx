@@ -70,7 +70,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         promoBanner,
         featuredNews,
         memorialTakeover,
-        memorialImages,
+        //memorialImages,
       } = node;
       return memorialTakeover ? (
         <MemorialHomepage
@@ -78,7 +78,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaDescription={metaDescription || undefined}
           metaKeywords={metaKeywords || undefined}
           body={homepageBody ? { html: homepageBody.value, embeds: homepageBody.embeds } : undefined}
-          memorialImages={memorialImages}
+          //memorialImages={memorialImages}
           serviceLinks={serviceLinks.map(transformServiceLinks)}
           promoBanner={
             promoBanner
