@@ -92,7 +92,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
               : undefined
           }
           promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
-          memorialNewsLinks={memorialNewsLinks}
+          memorialNewsLinks={{ articles: memorialNewsLinks.map(transformFeaturedNews), viewAllLink: '' }}
         />
       ) : (
         <Homepage
@@ -232,7 +232,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           metaTitle={metaTitle}
           url={url}
           title={title}
-          date={date}
+          date={date.toString()}
           metaDescription={metaDescription || undefined}
           metaKeywords={metaKeywords || undefined}
           featuredImage1440x810={
