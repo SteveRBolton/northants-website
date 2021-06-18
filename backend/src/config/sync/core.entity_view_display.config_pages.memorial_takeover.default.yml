@@ -4,13 +4,28 @@ status: true
 dependencies:
   config:
     - config_pages.type.memorial_takeover
+    - field.field.config_pages.memorial_takeover.field_condolence_link
     - field.field.config_pages.memorial_takeover.field_memorial_images
     - field.field.config_pages.memorial_takeover.field_memorial_theme
+  module:
+    - link
 id: config_pages.memorial_takeover.default
 targetEntityType: config_pages
 bundle: memorial_takeover
 mode: default
 content:
+  field_condolence_link:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_memorial_images:
     type: entity_reference_entity_view
     weight: 1

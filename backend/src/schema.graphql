@@ -185,6 +185,11 @@ type LinkFieldWithTitle {
   external: Boolean!
 }
 
+type LinkFieldWithTitleCondolence {
+  uri: String!
+  title: String!
+}
+
 type Breadcrumb {
   url: String!
   title: String!
@@ -285,6 +290,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
   memorialImages: [MemorialImage!]!
+  memorialCondolenceLink: [LinkFieldWithTitleCondolence]
 }
 
 type ArticlePageNode implements Node
