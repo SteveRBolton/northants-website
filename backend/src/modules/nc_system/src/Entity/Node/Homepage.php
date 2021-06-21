@@ -43,15 +43,19 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
   public function getMemorialImages(): array {
     $config = config_pages_config('memorial_takeover');
     $memorialImagesField = $config ? $config->get('field_memorial_images')->getValue() : [];
-    $value = "";
     return $memorialImagesField;
   }
 
   public function getMemorialCondolenceLink(): array {
     $config = config_pages_config('memorial_takeover');
     $memorialCondolenceLinkField = $config ? $config->get('field_condolence_link')->getValue():[];
-    $value = "";
     return $memorialCondolenceLinkField;
+  }
+
+  public function getMemorialSummary(): array {
+    $config = config_pages_config('memorial_takeover');
+    $memorialSummaryField = $config ? $config->get('field_memorial_summary')->getValue():[];
+    return $memorialSummaryField;
   }
 
   public function getPromoBanner(): ?PromoBanner{
@@ -172,7 +176,16 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     if($fieldName === "memorialCondolenceLink") {
       return $this->getMemorialCondolenceLink();
     }
-    
+
+    if($fieldName === "memorialSummary") {
+      $summaryList = $this->getMemorialSummary();
+      $returnedList = [];
+      foreach ($summaryList as $summary) {
+        array_push($returnedList, $summary['value']);
+      }
+      return $returnedList;
+    }
+
     throw new Exception("Unable to resolve value via Homepage resolve.");
   }
 

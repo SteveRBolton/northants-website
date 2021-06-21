@@ -6,6 +6,7 @@ dependencies:
     - config_pages.type.memorial_takeover
     - field.field.config_pages.memorial_takeover.field_condolence_link
     - field.field.config_pages.memorial_takeover.field_memorial_images
+    - field.field.config_pages.memorial_takeover.field_memorial_summary
     - field.field.config_pages.memorial_takeover.field_memorial_theme
   module:
     - link
@@ -34,6 +35,14 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
+  field_memorial_summary:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_memorial_theme:
     weight: 0
