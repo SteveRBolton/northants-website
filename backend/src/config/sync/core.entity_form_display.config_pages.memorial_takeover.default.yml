@@ -8,6 +8,7 @@ dependencies:
     - field.field.config_pages.memorial_takeover.field_memorial_icon
     - field.field.config_pages.memorial_takeover.field_memorial_images
     - field.field.config_pages.memorial_takeover.field_memorial_summary
+    - field.field.config_pages.memorial_takeover.field_memorial_news_links
     - field.field.config_pages.memorial_takeover.field_memorial_theme
   module:
     - link
@@ -38,6 +39,16 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+    region: content
+  field_memorial_news_links:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_memorial_summary:
     weight: 3

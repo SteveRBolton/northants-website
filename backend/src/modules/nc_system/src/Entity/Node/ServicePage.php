@@ -6,6 +6,7 @@ use Drupal\nc_system\Entity\Paragraph\CouncilSignposting;
 use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
+use Drupal\Core\Datetime\DrupalDateTime;
 use phpDocumentor\Reflection\Types\Boolean;
 
 
@@ -98,10 +99,10 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
     } while (!is_null($parent));
 
     if($parent && $parent->isPublished()) {
-      $active = $parent->get('field_enable_alert')->getValue()[0]['value'];
+      $active = empty($parent->get('field_enable_alert')->getValue()) ? FALSE : $parent->get('field_enable_alert')->getValue()[0]['value'];
       $expired = false;
 
-      $expiration = $parent->get('field_alert_expiration_date')->getValue()[0]['value'];
+      $expiration = empty($parent->get('field_alert_expiration_date')->getValue()) ? FALSE : $parent->get('field_alert_expiration_date')->getValue()[0]['value'];
 
       if($expiration) {
         $currentTime = new DrupalDateTime('now');
