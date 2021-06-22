@@ -4,12 +4,23 @@ status: true
 dependencies:
   config:
     - config_pages.type.memorial_takeover
+    - field.field.config_pages.memorial_takeover.field_memorial_news_links
     - field.field.config_pages.memorial_takeover.field_memorial_theme
 id: config_pages.memorial_takeover.default
 targetEntityType: config_pages
 bundle: memorial_takeover
 mode: default
 content:
+  field_memorial_news_links:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_memorial_theme:
     weight: 0
     settings:

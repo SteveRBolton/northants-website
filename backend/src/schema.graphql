@@ -279,6 +279,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
+  memorialNewsLinks: [ArticlePageNode!]!
 }
 
 type ArticlePageNode implements Node
@@ -322,7 +323,6 @@ type ServicePageNode implements Node
   warningTextDisclaimer: Boolean!
   dateUpdated: String!
   serviceAlert: ServicePageAlert
-
 }
 
 type ServiceLandingPageNode implements Node

@@ -76,7 +76,20 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
     return false;
   }
-
+  public function getMemorialNewsLinks() : array {
+    $config = config_pages_config('memorial_takeover');
+    if($this->getMemorialTheme()){
+      $articlePages = $config->get('field_memorial_news_links')->referencedEntities();
+      $publishedPages = [];
+      foreach($articlePages as $page){
+        if($page->isPublished()) {
+          $publishedPages[] = $page;
+        }
+      }
+      return $publishedPages;
+    }
+    return [];
+  }
   /**
    * {@inheritdoc}
    */
@@ -138,6 +151,9 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
     if ($fieldName === 'memorialTakeover') {
       return $this->getMemorialTheme();
+    }
+    if ($fieldName === 'memorialNewsLinks') {
+      return $this->getMemorialNewsLinks();
     }
     
     throw new Exception("Unable to resolve value via Homepage resolve.");
