@@ -58,6 +58,12 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return $memorialSummaryField;
   }
 
+  public function getMemorialIcon(): array {
+    $config = config_pages_config('memorial_takeover');
+    $memorialIconField = $config ? $config->get('field_memorial_icon')->getValue() : [];
+    return $memorialIconField;
+  }
+
   public function getPromoBanner(): ?PromoBanner{
     /* @var $entityReference \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList*/
     $promoBannerField = $this->get('field_promotional_banner');
@@ -171,6 +177,13 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
       }
 
       return $memorialImages;
+    }
+
+    if($fieldName === "memorialIcon") {
+      $memorialIconsData = $this->getMemorialIcon();
+      $image = GraphQLFieldResolver::resolveMediaImage($memorialIconsData[0]);
+      $fewfw = "";
+      return $image['url'];
     }
 
     if($fieldName === "memorialCondolenceLink") {

@@ -5,6 +5,7 @@ dependencies:
   config:
     - config_pages.type.memorial_takeover
     - field.field.config_pages.memorial_takeover.field_condolence_link
+    - field.field.config_pages.memorial_takeover.field_memorial_icon
     - field.field.config_pages.memorial_takeover.field_memorial_images
     - field.field.config_pages.memorial_takeover.field_memorial_summary
     - field.field.config_pages.memorial_takeover.field_memorial_theme
@@ -26,6 +27,15 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_memorial_icon:
+    type: entity_reference_entity_view
+    weight: 4
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
     region: content
   field_memorial_images:
     type: entity_reference_entity_view
