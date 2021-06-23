@@ -294,6 +294,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   memorialCondolenceLink: [LinkFieldWithTitle]
   memorialSummary: [String!]
   memorialIcon: String
+  memorialNewsLinks: [ArticlePageNode!]!
 }
 
 type ArticlePageNode implements Node
