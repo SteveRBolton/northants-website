@@ -48,8 +48,14 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
   public function getMemorialCondolenceLink(): array {
     $config = config_pages_config('memorial_takeover');
-    $memorialCondolenceLinkField = $config ? $config->get('field_condolence_link')->getValue():[];
-    return $memorialCondolenceLinkField;
+    $memorialCondolenceLinkField = $config ? $config->get('field_condolence_link'):[];
+    $memorialCondolenceLinks = [];
+
+    foreach ($memorialCondolenceLinkField as $link) {
+      $test = $this->getLink($link);
+      array_push($memorialCondolenceLinks, $test);
+    }
+    return $memorialCondolenceLinks;
   }
 
   public function getMemorialSummary(): array {
@@ -100,6 +106,19 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
     return false;
   }
+
+  public function getMemorialQuickLinks(): array {
+    $config = config_pages_config('memorial_takeover');
+    $quickLinksField = $config ? $config->get('field_quick_links'): [];
+
+    $quickLinks = [];
+    foreach ($quickLinksField as $link) {
+      $test = $this->getLink($link);
+      array_push($quickLinks, $test);
+    }
+    return $quickLinks;
+  }
+
   public function getMemorialNewsLinks() : array {
     $config = config_pages_config('memorial_takeover');
     if($this->getMemorialTheme()){
@@ -177,6 +196,20 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
       return $this->getMemorialTheme();
     }
 
+    if ($fieldName === 'memorialQuickLinks') {
+      
+      $quickLinks = [];
+      $quickLinksField = $this->getMemorialQuickLinks();
+
+      foreach ($quickLinksField as $link) {
+        $linkData = GraphQLFieldResolver::resolveLinkItem($link);
+        $linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'] ];
+        array_push($quickLinks, $linkObj);
+      }
+      return $quickLinks;
+      
+    }
+    
     if ($fieldName === "memorialImages") {
       $memorialImages = [];
       $memorialImagesData = $this->getMemorialImages();
@@ -203,7 +236,15 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
 
     if($fieldName === "memorialCondolenceLink") {
-      return $this->getMemorialCondolenceLink();
+      $condolenceLinks = [];
+      $condolenceLinksField = $this->getMemorialCondolenceLink();
+
+      foreach ($condolenceLinksField as $link) {
+        $linkData = GraphQLFieldResolver::resolveLinkItem($link);
+        $linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'] ];
+        array_push($condolenceLinks, $linkObj);
+      }
+      return $condolenceLinks;
     }
 
     if($fieldName === "memorialSummary") {

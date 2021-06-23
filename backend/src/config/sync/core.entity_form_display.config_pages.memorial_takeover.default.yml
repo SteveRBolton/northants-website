@@ -7,9 +7,10 @@ dependencies:
     - field.field.config_pages.memorial_takeover.field_condolence_link
     - field.field.config_pages.memorial_takeover.field_memorial_icon
     - field.field.config_pages.memorial_takeover.field_memorial_images
-    - field.field.config_pages.memorial_takeover.field_memorial_summary
     - field.field.config_pages.memorial_takeover.field_memorial_news_links
+    - field.field.config_pages.memorial_takeover.field_memorial_summary
     - field.field.config_pages.memorial_takeover.field_memorial_theme
+    - field.field.config_pages.memorial_takeover.field_quick_links
   module:
     - link
     - media_library
@@ -64,6 +65,14 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_quick_links:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
 hidden:
   label: true

@@ -289,8 +289,9 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
+  memorialQuickLinks: [LinkFieldWithTitle]
   memorialImages: [MemorialImage!]!
-  memorialCondolenceLink: [LinkFieldWithTitleCondolence]
+  memorialCondolenceLink: [LinkFieldWithTitle]
   memorialSummary: [String!]
   memorialIcon: String
   memorialNewsLinks: [ArticlePageNode!]!
