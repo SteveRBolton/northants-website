@@ -73,6 +73,11 @@ type HeroImage {
   image144x81: String!
 }
 
+type MemorialImage {
+  image1440x810: String!
+  image144x81: String!
+}
+
 enum AlertType {
   alert
   warning
@@ -180,6 +185,11 @@ type LinkFieldWithTitle {
   external: Boolean!
 }
 
+type LinkFieldWithTitleCondolence {
+  uri: String!
+  title: String!
+}
+
 type Breadcrumb {
   url: String!
   title: String!
@@ -279,7 +289,11 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
-  memorialQuickLinks: [LinkField]
+  memorialQuickLinks: [LinkFieldWithTitle]
+  memorialImages: [MemorialImage!]!
+  memorialCondolenceLink: [LinkFieldWithTitle]
+  memorialSummary: [String!]
+  memorialIcon: String
 }
 
 type ArticlePageNode implements Node
@@ -323,7 +337,6 @@ type ServicePageNode implements Node
   warningTextDisclaimer: Boolean!
   dateUpdated: String!
   serviceAlert: ServicePageAlert
-
 }
 
 type ServiceLandingPageNode implements Node

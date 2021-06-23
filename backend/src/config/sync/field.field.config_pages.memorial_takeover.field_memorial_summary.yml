@@ -1,0 +1,19 @@
+uuid: d28c6c6f-4ac2-4943-95ad-4a7624315f5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.memorial_takeover
+    - field.storage.config_pages.field_memorial_summary
+id: config_pages.memorial_takeover.field_memorial_summary
+field_name: field_memorial_summary
+entity_type: config_pages
+bundle: memorial_takeover
+label: 'Memorial summary'
+description: 'This is a summary of the memorial'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

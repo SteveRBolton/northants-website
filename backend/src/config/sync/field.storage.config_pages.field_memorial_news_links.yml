@@ -1,0 +1,20 @@
+uuid: bcc35018-d3fb-429a-a877-33bb495911a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - config_pages
+    - node
+id: config_pages.field_memorial_news_links
+field_name: field_memorial_news_links
+entity_type: config_pages
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

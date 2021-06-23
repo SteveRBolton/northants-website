@@ -1,0 +1,23 @@
+uuid: e4eabb3a-fbd4-4049-99f7-33c649c45af0
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.memorial_takeover
+    - field.storage.config_pages.field_quick_links
+  module:
+    - link
+id: config_pages.memorial_takeover.field_quick_links
+field_name: field_quick_links
+entity_type: config_pages
+bundle: memorial_takeover
+label: 'Quick links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
