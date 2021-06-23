@@ -77,6 +77,12 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     return false;
   }
 
+  public function getMemorialQuickLinks(): array {
+    $config = config_pages_config('memorial_takeover');
+    $quickLinksField = $config ? $config->get('field_quick_links')->getValue(): [];
+    return $quickLinksField;
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -138,6 +144,11 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
     if ($fieldName === 'memorialTakeover') {
       return $this->getMemorialTheme();
+    }
+
+    if ($fieldName === 'memorialQuickLinks') {
+      return $this->getMemorialQuickLinks();
+      
     }
     
     throw new Exception("Unable to resolve value via Homepage resolve.");
