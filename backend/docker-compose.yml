@@ -20,10 +20,12 @@ services:
   solr:
     image: $SOLR_TAG
     container_name: "${PROJECT_NAME}_solr"
+    command: solr-precreate core1 /solr-8-config
     environment:
       SOLR_HEAP: 1024m
     volumes:
-      - solr:/opt/solr/server/solr/main
+      - solr:/var/solr
+      - ./solr-8-config:/solr-8-config
     networks:
       - default
     labels:
