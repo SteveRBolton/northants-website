@@ -5,9 +5,8 @@ It is built in [Next.js](https://nextjs.org) and uses [Apollo GraphQL](https://w
 
 ## Dependencies.
 
-You will need [Node](https://nodejs.org/) and [yarn](https://yarnpkg.com/lang/en/) installed globally on your development machine. Assuming you are using a Mac then these can be installed using [Homebrew](https://brew.sh/) with `brew install node yarn`
-
-If correctly setup then `which yarn` should return a file path to an executable.
+* [Docker](https://docs.docker.com/engine/installation/)
+* [Deeson Docker proxy](https://github.com/teamdeeson/docker-proxy)
 
 ## Getting Started
 
@@ -15,33 +14,34 @@ This project is intended to be used in conjuction with the Northants CMS (TODO: 
 
 First, copy the `.env.example` file to `.env.local` (not `.env`) and update values as necessary.
 
-Next, update you `/etc/hosts` file for the Drupal backend and add:
+Next, update your `/etc/hosts` file for the docker URLs and add:
 
 ```bash
-127.0.0.1 core-cms.northants.localhost
+127.0.0.1 northants.localhost # Frontend
+127.0.0.1 core-cms.northants.localhost # CMS
 ```
 
-Next, install the required packages:
+Next, start the project and install the required packages:
 
 ```bash
-yarn
+docker-compose up frontend
 ```
 
 Now, generate up-to-date GraphQL types for communication with the CMS (the CMS must be running for this to work):
 
-Start the project:
+Start the project (as above).
 
 ```bash
-yarn dev
+docker-compose up frontend
 ```
 
 Open a new terminal and perform code generation:
 
 ```bash
-yarn codegen
+docker-compose run codegen
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://northants.localhost](https://northants.localhost) with your browser to see the result.
 
 
 ## External Dependencies
