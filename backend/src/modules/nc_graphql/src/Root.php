@@ -230,6 +230,7 @@ class Root {
     return [
       '__typename' => 'DrupalGlobals',
       'footerLinks' => Root::getMenuLinks('footer', NULL, TRUE),
+      'acessibileLinks' => Root::getMenuLinks('accessible-links', NULL, TRUE),
       'sitewideAlerts' => Root::getSitewideAlerts(),
     ];
   }
