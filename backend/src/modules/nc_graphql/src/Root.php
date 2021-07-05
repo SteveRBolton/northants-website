@@ -229,8 +229,8 @@ class Root {
   public static function getGlobals(): array {
     return [
       '__typename' => 'DrupalGlobals',
-      'footerLinks' => Root::getMenuLinks('footer', NULL, TRUE),
-      'acessibileLinks' => Root::getMenuLinks('accessible-links', NULL, TRUE),
+      'footerLinks' => Root::getMenuLinks('footer', NULL, true),
+      'accessibleLinks' => Root::getMenuLinks('accessible-links', NULL, true),
       'sitewideAlerts' => Root::getSitewideAlerts(),
     ];
   }
