@@ -42,6 +42,9 @@ const homepageNodeFull = gql`
       ...ArticlePageNode_Featured
     }
     memorialTakeover
+    memorialNewsLinks {
+      ...ArticlePageNode_Featured
+    }
   }
 `;
 export { homepageNodeFull };

@@ -224,6 +224,24 @@ export interface HomepageNodeFull_featuredNews {
   date: string;
 }
 
+export interface HomepageNodeFull_memorialNewsLinks_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface HomepageNodeFull_memorialNewsLinks {
+  __typename: "ArticlePageNode";
+  id: string;
+  title: string;
+  url: string;
+  featuredImage1440x810: HomepageNodeFull_memorialNewsLinks_featuredImage1440x810 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
+  date: string;
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
@@ -238,4 +256,5 @@ export interface HomepageNodeFull {
   promoBanner: HomepageNodeFull_promoBanner | null;
   featuredNews: HomepageNodeFull_featuredNews[];
   memorialTakeover: boolean;
+  memorialNewsLinks: HomepageNodeFull_memorialNewsLinks[];
 }

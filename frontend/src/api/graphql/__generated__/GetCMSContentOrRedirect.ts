@@ -230,6 +230,24 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   date: string;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialNewsLinks_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialNewsLinks {
+  __typename: "ArticlePageNode";
+  id: string;
+  title: string;
+  url: string;
+  featuredImage1440x810: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialNewsLinks_featuredImage1440x810 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
+  date: string;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
   __typename: "HomepageNode";
   title: string;
@@ -244,6 +262,7 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   promoBanner: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_promoBanner | null;
   featuredNews: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews[];
   memorialTakeover: boolean;
+  memorialNewsLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialNewsLinks[];
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
