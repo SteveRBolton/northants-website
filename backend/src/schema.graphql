@@ -140,6 +140,7 @@ type DrupalAccessDeniedRoute {
 type DrupalGlobals {
   sitewideAlerts: Alert
   footerLinks: [LinkFieldWithTitle!]!
+  accessibleLinks: [LinkFieldWithTitle!]!
 }
 
 #
