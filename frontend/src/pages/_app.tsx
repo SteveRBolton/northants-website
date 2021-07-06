@@ -1,5 +1,6 @@
 import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
 import {
+  SkipToMainContent,
   Header,
   north_theme,
   GDS_theme,
@@ -9,6 +10,7 @@ import {
   Footer,
   CookieBanner,
   AlertBanner,
+  AccessibleLinks,
 } from 'northants-design-system';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
@@ -173,6 +175,8 @@ function NorthantsApp({
         ) : (
           ''
         )}
+        <SkipToMainContent />
+        <AccessibleLinks AccessibleLinksArray={globals.accessibleLinks} />
         {!isHomepage && <Header hideSearchBar={hideSearchBar} allServicesLink="/" homeLink="/" />}
         <Component {...pageProps} />
         <Footer footerLinksArray={globals.footerLinks} year={new Date().getFullYear().toString()} />

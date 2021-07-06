@@ -43,6 +43,11 @@ export const getCMSGlobals = gql`
         url
         external
       }
+      accessibleLinks {
+        title
+        url
+        external
+      }
       sitewideAlerts {
         id
         title
