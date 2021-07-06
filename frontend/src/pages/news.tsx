@@ -90,7 +90,8 @@ export default function News(page: NewsListingProps): ReactElement {
                   content: (
                     <>
                       <DropDownFilter
-                        label=""
+                        label="Filter by service"
+                        hideLabel={false}
                         selected={news.service}
                         options={news.allServices.map((service) => ({
                           title: service ? service.title : '',
