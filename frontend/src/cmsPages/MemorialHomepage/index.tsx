@@ -121,13 +121,12 @@ export default function MemorialHomepage({
       <MaxWidthContainer>
         <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
           <NewsArticleFeaturedBlock {...memorialNewsLinks} />
-        </ThemeProvider>
-        <PageMain>
-          <AlertBannerServiceIE />
-          {body && <TextWithSlices {...body} />}
-          <ServicesLinksList serviceLinksArray={serviceLinks} />
-          {promoBanner ? (
-            <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
+
+          <PageMain>
+            <AlertBannerServiceIE />
+            {body && <TextWithSlices {...body} />}
+            <ServicesLinksList serviceLinksArray={serviceLinks} />
+            {promoBanner ? (
               <PromoBanner
                 title={promoBanner.title}
                 ctaText={promoBanner.ctaText}
@@ -137,11 +136,11 @@ export default function MemorialHomepage({
               >
                 {promoBody && <TextWithSlices {...promoBody} />}
               </PromoBanner>
-            </ThemeProvider>
-          ) : (
-            ''
-          )}
-        </PageMain>
+            ) : (
+              ''
+            )}
+          </PageMain>
+        </ThemeProvider>
       </MaxWidthContainer>
     </>
   );
