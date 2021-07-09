@@ -64,3 +64,6 @@ Thumbs.db
 #vscode
 .vscode
 
+#YALC - for simultaneous front end and design system changes
+.yalc
+yalc.lock
