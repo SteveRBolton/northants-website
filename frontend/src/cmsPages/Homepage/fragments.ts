@@ -45,6 +45,19 @@ const homepageNodeFull = gql`
     memorialNewsLinks {
       ...ArticlePageNode_Featured
     }
+    memorialImages {
+      image1440x810
+      image144x81
+    }
+    memorialQuickLinks {
+      url
+      title
+    }
+    memorialCondolenceLink {
+      url
+      title
+    }
+    memorialSummary
   }
 `;
 export { homepageNodeFull };

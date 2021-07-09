@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { LinksProp } from "northants-design-system/build/library/structure/SectionLinksSidebar/SectionLinksSidebar.types";
+
 // ====================================================
 // GraphQL fragment: HomepageNodeFull
 // ====================================================
@@ -257,4 +259,8 @@ export interface HomepageNodeFull {
   featuredNews: HomepageNodeFull_featuredNews[];
   memorialTakeover: boolean;
   memorialNewsLinks: HomepageNodeFull_memorialNewsLinks[];
+  memorialImages: HomepageNodeFull_heroImages[];
+  memorialQuickLinks: HomepageNodeFull_featuredNews[];
+  memorialCondolenceLink : LinksProp;
+  memorialSummary: string;
 }

@@ -71,6 +71,9 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         featuredNews,
         memorialTakeover,
         memorialNewsLinks,
+        memorialImages,
+        memorialCondolenceLink,
+        memorialSummary,
       } = node;
       return memorialTakeover ? (
         <MemorialHomepage
@@ -93,6 +96,9 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           }
           promoBody={promoBanner ? { html: promoBanner.body.value, embeds: [] } : undefined}
           memorialNewsLinks={{ articles: memorialNewsLinks.map(transformFeaturedNews), viewAllLink: '' }}
+          memorialImages={memorialImages}
+          memorialCondolenceLink={memorialCondolenceLink}
+          memorialSummary={memorialSummary}
         />
       ) : (
         <Homepage
