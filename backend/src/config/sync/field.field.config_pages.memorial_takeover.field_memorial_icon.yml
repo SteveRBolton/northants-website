@@ -1,11 +1,12 @@
-uuid: 0cb298df-8571-4b70-9bd6-17ff2ddb74a8
+uuid: b8fb03c6-25a0-4793-a16d-393b9fce9e15
 langcode: en
 status: true
 dependencies:
   config:
     - config_pages.type.memorial_takeover
     - field.storage.config_pages.field_memorial_icon
-    - media.type.image
+  module:
+    - options
 id: config_pages.memorial_takeover.field_memorial_icon
 field_name: field_memorial_icon
 entity_type: config_pages
@@ -16,13 +17,5 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings:
-  handler: 'default:media'
-  handler_settings:
-    target_bundles:
-      image: image
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
-field_type: entity_reference
+settings: {  }
+field_type: list_string
