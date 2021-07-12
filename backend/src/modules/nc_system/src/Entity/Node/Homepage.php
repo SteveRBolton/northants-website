@@ -67,7 +67,6 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
   public function getMemorialIcon(): array {
     $config = config_pages_config('memorial_takeover');
     $memorialIconField = $config ? $config->get('field_memorial_icon')->getValue() : [];
-    $ds = "";
     return $memorialIconField;
   }
 
