@@ -112,8 +112,9 @@ export default function News(page: NewsListingProps): ReactElement {
                           value: type ? type.id : '',
                         }))}
                         checked={news.articleType}
-                        label=""
+                        label="Type of article"
                         hint=""
+                        displayLegend={false}
                       />
                     </>
                   ),
