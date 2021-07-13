@@ -39,6 +39,7 @@ type MemorialHomepageProps = {
   memorialQuickLinks: ServicesLinksListProps;
   memorialCondolenceLink: LinksProp;
   memorialSummary: string;
+  memorialIcon: string;
 };
 
 export default function MemorialHomepage({
@@ -54,6 +55,7 @@ export default function MemorialHomepage({
   memorialQuickLinks,
   memorialCondolenceLink,
   memorialSummary,
+  memorialIcon,
 }: MemorialHomepageProps): ReactElement {
   console.log(memorialCondolenceLink);
   return (
@@ -103,7 +105,7 @@ export default function MemorialHomepage({
                 {
                   title: memorialCondolenceLink[0].title,
                   url: memorialCondolenceLink[0].url,
-                  iconKey: 'covid', // TODO this needs looking as its currently an image from the back end
+                  iconKey: memorialIcon, // TODO this needs looking as its currently an image from the back end
                   quickLinksArray: [
                     {
                       title: memorialSummary,

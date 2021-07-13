@@ -74,6 +74,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         memorialImages,
         memorialCondolenceLink,
         memorialSummary,
+        memorialIcon,
       } = node;
       return memorialTakeover ? (
         <MemorialHomepage
@@ -99,6 +100,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           memorialImages={memorialImages}
           memorialCondolenceLink={memorialCondolenceLink}
           memorialSummary={memorialSummary}
+          memorialIcon={memorialIcon}
         />
       ) : (
         <Homepage

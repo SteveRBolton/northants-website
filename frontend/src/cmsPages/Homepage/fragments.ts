@@ -58,6 +58,7 @@ const homepageNodeFull = gql`
       title
     }
     memorialSummary
+    memorialIcon
   }
 `;
 export { homepageNodeFull };

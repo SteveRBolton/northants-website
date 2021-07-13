@@ -263,4 +263,5 @@ export interface HomepageNodeFull {
   memorialQuickLinks: HomepageNodeFull_featuredNews[];
   memorialCondolenceLink : LinksProp;
   memorialSummary: string;
+  memorialIcon: string;
 }
