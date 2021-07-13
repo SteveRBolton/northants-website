@@ -13,6 +13,7 @@ dependencies:
     - field.field.config_pages.memorial_takeover.field_quick_links
   module:
     - link
+    - options
 id: config_pages.memorial_takeover.default
 targetEntityType: config_pages
 bundle: memorial_takeover
@@ -31,13 +32,11 @@ content:
     type: link
     region: content
   field_memorial_icon:
-    type: entity_reference_entity_view
-    weight: 4
+    weight: 6
     label: above
-    settings:
-      view_mode: default
-      link: false
+    settings: {  }
     third_party_settings: {  }
+    type: list_default
     region: content
   field_memorial_images:
     type: entity_reference_entity_view

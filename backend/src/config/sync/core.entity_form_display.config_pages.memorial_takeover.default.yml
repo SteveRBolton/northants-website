@@ -28,11 +28,10 @@ content:
     type: link_default
     region: content
   field_memorial_icon:
-    type: media_library_widget
-    weight: 4
-    settings:
-      media_types: {  }
+    weight: 6
+    settings: {  }
     third_party_settings: {  }
+    type: options_select
     region: content
   field_memorial_images:
     type: media_library_widget

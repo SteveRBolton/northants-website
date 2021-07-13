@@ -226,13 +226,9 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
 
     if($fieldName === "memorialIcon") {
-      $memorialIconsData = $this->getMemorialIcon();
-      if ($memorialIconsData === []) {
-        return null;
-      }
-      $image = GraphQLFieldResolver::resolveMediaImage($memorialIconsData[0]);
-      $fewfw = "";
-      return $image['url'];
+      $icon = $this->getMemorialIcon();
+      $sddf = $icon[0];
+      return $icon[0][value];
     }
 
     if($fieldName === "memorialCondolenceLink") {

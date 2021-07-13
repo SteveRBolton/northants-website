@@ -1,17 +1,81 @@
-uuid: 402e32f9-acc7-450b-98b2-7fc78759b0d9
+uuid: fae799dc-a20a-4cc4-938e-77b1f0a4a175
 langcode: en
 status: true
 dependencies:
   module:
     - config_pages
-    - media
+    - options
 id: config_pages.field_memorial_icon
 field_name: field_memorial_icon
 entity_type: config_pages
-type: entity_reference
+type: list_string
 settings:
-  target_type: media
-module: core
+  allowed_values:
+    -
+      value: adults
+      label: 'Adult social services'
+    -
+      value: benefits
+      label: Benefits
+    -
+      value: bins
+      label: 'Bins, recycling and street cleaning'
+    -
+      value: births
+      label: 'Births, deaths, marriages and civil partnerships'
+    -
+      value: business
+      label: 'Business and licensing'
+    -
+      value: children
+      label: 'Children and families'
+    -
+      value: safety
+      label: 'Community and safety'
+    -
+      value: covid
+      label: 'Coronavirus (Covid-19)'
+    -
+      value: counciltax
+      label: 'Council tax'
+    -
+      value: democracy
+      label: 'Councillors and democracy'
+    -
+      value: culture
+      label: 'Culture and tourism'
+    -
+      value: environment
+      label: Environment
+    -
+      value: finance
+      label: Finance
+    -
+      value: sports
+      label: 'Health, wellbeing & leisure'
+    -
+      value: housing
+      label: Housing
+    -
+      value: careers
+      label: 'Jobs and careers'
+    -
+      value: libraries
+      label: Libraries
+    -
+      value: roads
+      label: 'Parking, roads and transport'
+    -
+      value: planning
+      label: 'Planning and building control'
+    -
+      value: schools
+      label: 'Schools and education'
+    -
+      value: council
+      label: 'Your council'
+  allowed_values_function: ''
+module: options
 locked: false
 cardinality: 1
 translatable: true
