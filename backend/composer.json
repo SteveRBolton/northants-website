@@ -26,7 +26,7 @@
     "drupal/config_pages": "2.8",
     "drupal/config_split": "1.7.0",
     "drupal/core-composer-scaffold": "*",
-    "drupal/core-recommended": "9.0.14",
+    "drupal/core-recommended": "^9.2",
     "drupal/diff": "^1.0",
     "drupal/entity": "1.1.0",
     "drupal/entity_embed": "1.1.0",
@@ -49,14 +49,14 @@
     "drupal/warden": "^3.0",
     "drupal/workbench_access": "^1.0@beta",
     "drupal/xmlsitemap": "^1.0",
-    "drush/drush": "10.3.5",
+    "drush/drush": "^10.3.5",
     "platformsh/config-reader": "^2.4",
     "ramsey/uuid": "4.1.1",
     "teamdeeson/responsive_image_effect": "^9.0",
     "webonyx/graphql-php": "14.4.0"
   },
   "require-dev": {
-    "drupal/core-dev": "^9",
+    "drupal/core-dev": "^9.2",
     "drupal/stage_file_proxy": "1.1.0"
   },
   "conflict": {
