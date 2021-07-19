@@ -195,11 +195,25 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
 
     if ($fieldName === 'memorialQuickLinks') {
-      
-      return $this->getMemorialQuickLinks();
-      
+      $memorialLinks = [];
+      $memorialLinksField = $this->getMemorialQuickLinks();
+
+      /** @var \Drupal\paragraphs\Entity\Paragraph $memorialLink */
+      foreach ($memorialLinksField as $memorialLink) {
+        $linkData = $memorialLink->get('field_quick_link')->first();
+        $linkObj = GraphQLFieldResolver::resolveLinkItem($linkData);
+        //$linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'] ];
+        $summary = $memorialLink->get('field_quick_link_summary')->getValue();
+        $icon = $memorialLink->get('field_icon')->getValue();
+        array_push($memorialLinks, [
+          'link' => $linkObj,
+          'summary' => $summary[0]['value'],
+          'icon' => $icon[0]['value'],
+        ]);
+      }
+      return $memorialLinks;
     }
-    
+
     if ($fieldName === "memorialImages") {
       $memorialImages = [];
       $memorialImagesData = $this->getMemorialImages();

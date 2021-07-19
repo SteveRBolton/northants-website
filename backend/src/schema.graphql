@@ -231,6 +231,12 @@ enum EntityType {
   taxonomy_term
 }
 
+type MemorialLink {
+  icon: String
+  link: LinkFieldWithTitle
+  summary: String
+}
+
 enum MediaType {
   document
   image
@@ -290,7 +296,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
-  memorialQuickLinks: [MemorialQuickLinkParagraph]
+  memorialQuickLinks: [MemorialLink!]
   memorialImages: [MemorialImage!]!
   memorialCondolenceLink: [LinkFieldWithTitle]
   memorialSummary: [String!]
@@ -418,14 +424,6 @@ type ServiceLinksParagraph implements Paragraph
   id: String!
   serviceLandingPage: ServiceLandingPageNode!
   servicePages: [ServicePageNode!]!
-}
-
-type MemorialQuickLinkParagraph implements Paragraph
-  @entity(type: paragraph, bundle: "memorial_quick_link") {
-  id: String!
-  icon: String
-  link: LinkFieldWithTitle
-  summary: String
 }
 
 type AccordionParagraph implements Paragraph
