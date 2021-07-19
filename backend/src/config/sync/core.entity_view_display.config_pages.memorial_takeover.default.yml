@@ -12,6 +12,7 @@ dependencies:
     - field.field.config_pages.memorial_takeover.field_memorial_theme
     - field.field.config_pages.memorial_takeover.field_quick_links
   module:
+    - entity_reference_revisions
     - link
     - options
 id: config_pages.memorial_takeover.default
@@ -74,16 +75,13 @@ content:
     type: boolean
     region: content
   field_quick_links:
-    weight: 5
+    type: entity_reference_revisions_entity_view
+    weight: 7
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    type: link
     region: content
 hidden:
   search_api_excerpt: true

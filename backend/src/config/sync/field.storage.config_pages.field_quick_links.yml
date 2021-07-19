@@ -1,16 +1,18 @@
-uuid: e659e8cd-f411-4d4e-b1c1-54606d2acf07
+uuid: b63d2d5b-3b9a-4c38-90fd-7494818e9886
 langcode: en
 status: true
 dependencies:
   module:
     - config_pages
-    - link
+    - entity_reference_revisions
+    - paragraphs
 id: config_pages.field_quick_links
 field_name: field_quick_links
 entity_type: config_pages
-type: link
-settings: {  }
-module: link
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
 locked: false
 cardinality: 3
 translatable: true

@@ -1,0 +1,10 @@
+uuid: 7088318b-4385-4bac-baad-14475be3b85e
+langcode: en
+status: true
+dependencies: {  }
+id: memorial_quick_link
+label: 'Memorial quick link'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

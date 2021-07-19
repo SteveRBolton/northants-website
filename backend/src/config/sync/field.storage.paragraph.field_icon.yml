@@ -1,0 +1,84 @@
+uuid: 07b4a63d-b9b8-4de5-acab-380211cde054
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_icon
+field_name: field_icon
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: adults
+      label: 'Adult social services'
+    -
+      value: benefits
+      label: Benefits
+    -
+      value: bins
+      label: 'Bins, recycling and street cleaning'
+    -
+      value: births
+      label: 'Births, deaths, marriages and civil partnerships'
+    -
+      value: business
+      label: 'Business and licensing'
+    -
+      value: children
+      label: 'Children and families'
+    -
+      value: safety
+      label: 'Community and safety'
+    -
+      value: covid
+      label: 'Coronavirus (Covid-19)'
+    -
+      value: counciltax
+      label: 'Council tax'
+    -
+      value: democracy
+      label: 'Councillors and democracy'
+    -
+      value: culture
+      label: 'Culture and tourism'
+    -
+      value: environment
+      label: Environment
+    -
+      value: finance
+      label: Finance
+    -
+      value: sports
+      label: 'Health, wellbeing & leisure'
+    -
+      value: housing
+      label: Housing
+    -
+      value: careers
+      label: 'Jobs and careers'
+    -
+      value: libraries
+      label: Libraries
+    -
+      value: roads
+      label: 'Parking, roads and transport'
+    -
+      value: planning
+      label: 'Planning and building control'
+    -
+      value: schools
+      label: 'Schools and education'
+    -
+      value: council
+      label: 'Your council'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

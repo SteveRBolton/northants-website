@@ -14,6 +14,7 @@ dependencies:
   module:
     - link
     - media_library
+    - paragraphs
 id: config_pages.memorial_takeover.default
 targetEntityType: config_pages
 bundle: memorial_takeover
@@ -66,12 +67,16 @@ content:
     type: boolean_checkbox
     region: content
   field_quick_links:
-    weight: 5
+    type: entity_reference_paragraphs
+    weight: 7
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
     third_party_settings: {  }
-    type: link_default
     region: content
 hidden:
   label: true

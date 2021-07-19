@@ -1,0 +1,20 @@
+uuid: a118c0db-3045-4c8f-be09-db2d4df9bfff
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_quick_link_summary
+field_name: field_quick_link_summary
+entity_type: paragraph
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
