@@ -1,12 +1,13 @@
-uuid: e4eabb3a-fbd4-4049-99f7-33c649c45af0
+uuid: 188429c0-a3b6-48d2-b6b1-b386d879a215
 langcode: en
 status: true
 dependencies:
   config:
     - config_pages.type.memorial_takeover
     - field.storage.config_pages.field_quick_links
+    - paragraphs.paragraphs_type.memorial_quick_link
   module:
-    - link
+    - entity_reference_revisions
 id: config_pages.memorial_takeover.field_quick_links
 field_name: field_quick_links
 entity_type: config_pages
@@ -18,6 +19,46 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 17
-  title: 2
-field_type: link
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      memorial_quick_link: memorial_quick_link
+    target_bundles_drag_drop:
+      accordion:
+        weight: 12
+        enabled: false
+      accordion_item:
+        weight: 13
+        enabled: false
+      call_to_action:
+        weight: 14
+        enabled: false
+      council_signpost:
+        weight: 15
+        enabled: false
+      council_signposting:
+        weight: 16
+        enabled: false
+      file_download:
+        weight: 17
+        enabled: false
+      highlight:
+        weight: 18
+        enabled: false
+      memorial_quick_link:
+        enabled: true
+        weight: 20
+      promotional_banner:
+        weight: 19
+        enabled: false
+      pull_quote:
+        weight: 20
+        enabled: false
+      section:
+        weight: 21
+        enabled: false
+      service_links:
+        weight: 22
+        enabled: false
+field_type: entity_reference_revisions

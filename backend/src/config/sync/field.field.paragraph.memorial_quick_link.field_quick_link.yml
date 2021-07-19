@@ -1,0 +1,23 @@
+uuid: eb55e28b-2ba9-403e-bbf6-4ba308e46c2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quick_link
+    - paragraphs.paragraphs_type.memorial_quick_link
+  module:
+    - link
+id: paragraph.memorial_quick_link.field_quick_link
+field_name: field_quick_link
+entity_type: paragraph
+bundle: memorial_quick_link
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

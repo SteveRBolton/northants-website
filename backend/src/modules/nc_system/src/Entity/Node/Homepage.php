@@ -3,6 +3,7 @@
 namespace Drupal\nc_system\Entity\Node;
 use Drupal\link\LinkItemInterface;
 use Drupal\nc_system\Entity\Paragraph\PromoBanner;
+use Drupal\nc_system\Entity\Paragraph\MemorialQuickLink;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Exception;
@@ -109,13 +110,10 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
 
   public function getMemorialQuickLinks(): array {
     $config = config_pages_config('memorial_takeover');
-    $quickLinksField = $config ? $config->get('field_quick_links'): [];
-
-    $quickLinks = [];
-    foreach ($quickLinksField as $link) {
-      $test = $this->getLink($link);
-      array_push($quickLinks, $test);
-    }
+    /* @var $quickLinksField \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList  */
+    $quickLinksField = $config->get('field_quick_links');
+    /* @var $quickLinks array<\Drupal\nc_system\Entity\Paragraph\MemorialQuickLink> */
+    $quickLinks = $quickLinksField->referencedEntities();
     return $quickLinks;
   }
 
@@ -197,19 +195,25 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
 
     if ($fieldName === 'memorialQuickLinks') {
-      
-      $quickLinks = [];
-      $quickLinksField = $this->getMemorialQuickLinks();
+      $memorialLinks = [];
+      $memorialLinksField = $this->getMemorialQuickLinks();
 
-      foreach ($quickLinksField as $link) {
-        $linkData = GraphQLFieldResolver::resolveLinkItem($link);
-        $linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'] ];
-        array_push($quickLinks, $linkObj);
+      /** @var \Drupal\paragraphs\Entity\Paragraph $memorialLink */
+      foreach ($memorialLinksField as $memorialLink) {
+        $linkData = $memorialLink->get('field_quick_link')->first();
+        $linkObj = GraphQLFieldResolver::resolveLinkItem($linkData);
+        //$linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'] ];
+        $summary = $memorialLink->get('field_quick_link_summary')->getValue();
+        $icon = $memorialLink->get('field_icon')->getValue();
+        array_push($memorialLinks, [
+          'link' => $linkObj,
+          'summary' => $summary[0]['value'],
+          'icon' => $icon[0]['value'],
+        ]);
       }
-      return $quickLinks;
-      
+      return $memorialLinks;
     }
-    
+
     if ($fieldName === "memorialImages") {
       $memorialImages = [];
       $memorialImagesData = $this->getMemorialImages();

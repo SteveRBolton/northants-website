@@ -231,6 +231,12 @@ enum EntityType {
   taxonomy_term
 }
 
+type MemorialLink {
+  icon: String
+  link: LinkFieldWithTitle
+  summary: String
+}
+
 enum MediaType {
   document
   image
@@ -290,7 +296,7 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   promoBanner: PromoBannerParagraph
   featuredNews: [ArticlePageNode!]!
   memorialTakeover: Boolean!
-  memorialQuickLinks: [LinkFieldWithTitle]
+  memorialQuickLinks: [MemorialLink!]
   memorialImages: [MemorialImage!]!
   memorialCondolenceLink: [LinkFieldWithTitle]
   memorialSummary: [String!]
