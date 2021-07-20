@@ -49,16 +49,20 @@ const homepageNodeFull = gql`
       image1440x810
       image144x81
     }
-    memorialQuickLinks {
-      url
-      title
-    }
     memorialCondolenceLink {
       url
       title
     }
     memorialSummary
     memorialIcon
+    memorialQuickLinks {
+      icon
+      link {
+        url
+        title
+      }
+      summary
+    }
   }
 `;
 export { homepageNodeFull };
