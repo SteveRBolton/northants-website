@@ -1,0 +1,43 @@
+<?php
+
+use Drupal\Core\Utility\UpdateException;
+use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
+
+/**
+ * Provide default value for field_negative_search_boost.
+ */
+function nc_solr_update_9001(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', ['service_page', 'service_landing_page'], 'IN')
+      ->execute();
+    $sandbox['total'] = count($nids);
+    $sandbox['current'] = 0;
+  }
+
+  $nodes_per_batch = 25;
+
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', ['service_page', 'service_landing_page'], 'IN')
+    ->range($sandbox['current'], $sandbox['current'] + $nodes_per_batch)
+    ->execute();
+
+  foreach ($nids as $nid) {
+    $node = \Drupal\node\Entity\Node::load($nid);
+    if ($node->hasField('field_negative_search_boost') && !$node->field_negative_search_boost->value) {
+      $node->set('field_negative_search_boost', 0);
+      $node->save();
+    }
+
+    $sandbox['current']++;
+  }
+
+  \Drupal::logger('nc_solr')->info('Hook update 9001: ' . $sandbox['current'] . ' nodes processed.');
+
+  if ($sandbox['total'] == 0) {
+    $sandbox['#finished'] = 1;
+  }
+  else {
+    $sandbox['#finished'] = ($sandbox['current'] / $sandbox['total']);
+  }
+}

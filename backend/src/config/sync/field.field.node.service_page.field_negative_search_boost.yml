@@ -1,0 +1,23 @@
+uuid: 6a8cedfe-5403-4c4a-8637-5ff13576c81a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_negative_search_boost
+    - node.type.service_page
+id: node.service_page.field_negative_search_boost
+field_name: field_negative_search_boost
+entity_type: node
+bundle: service_page
+label: 'Negative search boost'
+description: 'Check this to apply a negative impact on where this page appears in search'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

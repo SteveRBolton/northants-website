@@ -1,0 +1,14 @@
+<?php
+
+use Solarium\QueryType\Select\Query\Query;
+use Drupal\search_api\Query\QueryInterface;
+
+/**
+ * Implements hook_search_api_solr_converted_query_alter().
+ */
+function nc_solr_search_api_solr_converted_query_alter(Query $solarium_query, QueryInterface $query) {
+  $query = $solarium_query->getQuery();
+  // Provide an implicit penalty for content with field_negative_search_boost by boosting everything else equally.
+  $query .= ' (bs_negative_search_boost:true^0 OR bs_negative_search_boost:false^100000)';
+  $solarium_query->setQuery($query);
+}
