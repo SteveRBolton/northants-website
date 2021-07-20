@@ -73,6 +73,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
         memorialNewsLinks,
         memorialImages,
         memorialCondolenceLink,
+        memorialQuickLinks,
         memorialSummary,
         memorialIcon,
       } = node;
@@ -101,6 +102,7 @@ const DrupalPage = (page: DrupalPageProps): ReactElement => {
           memorialCondolenceLink={memorialCondolenceLink}
           memorialSummary={memorialSummary}
           memorialIcon={memorialIcon}
+          memorialQuickLinks={memorialQuickLinks}
         />
       ) : (
         <Homepage

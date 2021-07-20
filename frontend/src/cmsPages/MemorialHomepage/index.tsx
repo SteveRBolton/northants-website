@@ -36,7 +36,7 @@ type MemorialHomepageProps = {
   promoBody?: TextWithSlicesProps;
   memorialNewsLinks: NewsArticleFeaturedBlockProps;
   memorialImages: HeroImageProp[];
-  memorialQuickLinks: ServicesLinksListProps;
+  memorialQuickLinks: PageLinkProp;
   memorialCondolenceLink: LinksProp;
   memorialSummary: string;
   memorialIcon: string;
@@ -57,6 +57,15 @@ export default function MemorialHomepage({
   memorialSummary,
   memorialIcon,
 }: MemorialHomepageProps): ReactElement {
+  console.log(memorialQuickLinks);
+  const quickLinksArray = [];
+  memorialQuickLinks.forEach((element) => {
+    const item = {
+      title: element.link.title,
+      icon: element.icon,
+    };
+    quickLinksArray.push(item);
+  });
   return (
     <>
       <Head>
@@ -121,8 +130,8 @@ export default function MemorialHomepage({
 
       <MaxWidthContainer>
         <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
+          <ServicesLinksList serviceLinksArray={quickLinksArray} />
           <NewsArticleFeaturedBlock {...memorialNewsLinks} />
-
           <PageMain>
             <AlertBannerServiceIE />
             {body && <TextWithSlices {...body} />}

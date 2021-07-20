@@ -1,0 +1,52 @@
+{
+  "name": "northants-design-system",
+  "version": "0.1.108",
+  "private": false,
+  "description": "A new design system for Future Nothants - North Northamptonshire & West Northamptonshire, two brand new unitary councils encompassing Wellingborough, Corby, Daventry, East Northants, Kettering, Northampton, Northamptonshire County and South Northants.",
+  "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wearefuturegov/northants-design-system.git"
+  },
+  "author": "FutureGov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wearefuturegov/northants-design-system/issues"
+  },
+  "homepage": "https://northants-design-system.netlify.app/",
+  "module": "build/index.esm.js",
+  "files": [
+    "build"
+  ],
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "storybook": "start-storybook -p 6006",
+    "storybook:export": "build-storybook",
+    "generate": "node ./util/create-component",
+    "prepublishOnly": "npm run build",
+    "dev": "npm run storybook"
+  },
+  "keywords": [
+    "React",
+    "Component",
+    "Library",
+    "Rollup",
+    "Typescript",
+    "Styled Components",
+    "Storybook"
+  ],
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "styled-components": "^5.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "html-react-parser": "^1.2.1",
+    "react-lazy-progressive-image": "^1.5.5"
+  },
+  "yalcSig": "0693a0f441d85dc8f5b3ad125ab44908"
+}
