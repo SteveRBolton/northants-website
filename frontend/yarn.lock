@@ -4039,7 +4039,7 @@ core-js-pure@^3.10.2, core-js-pure@^3.15.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.15.2.tgz#c8e0874822705f3385d3197af9348f7c9ae2e3ce"
   integrity sha512-D42L7RYh1J2grW8ttxoY1+17Y4wXZeKe7uyplAI3FkNQyI5OgBIAjUfFiTPfL1rs0qLpxaabITNbjKl1Sp82tA==
 
-core-js@^3.0.1, core-js@^3.15.0, core-js@^3.4.0, core-js@^3.6.5:
+core-js@^3.0.1, core-js@^3.15.0, core-js@^3.15.2, core-js@^3.4.0, core-js@^3.6.5:
   version "3.15.2"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.15.2.tgz#740660d2ff55ef34ce664d7e2455119c5bdd3d61"
   integrity sha512-tKs41J7NJVuaya8DxIOCnl8QuPHx5/ZVbFo1oKgVl1qHFBBrDctzQGtuLjPpRdNTWmKPH6oEvgN/MUID+l485Q==
@@ -7670,12 +7670,13 @@ normalize-url@4.5.1, normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.5.1.tgz#0dd90cf1288ee1d1313b87081c9a5932ee48518a"
   integrity sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==
 
-northants-design-system@0.1.106:
-  version "0.1.106"
-  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.106.tgz#68ba55b01fcee19c497c4ae3f6b1bc3b82211baa"
-  integrity sha512-i8qRqzGMUIhPc7F0pcEBb7P6F5/OVClHP2KMRzFZgc9jXV81KcXDX6icf9pv+j+D6sttHYfJK5c6PFZdQy2dIA==
+northants-design-system@0.1.112:
+  version "0.1.112"
+  resolved "https://registry.yarnpkg.com/northants-design-system/-/northants-design-system-0.1.112.tgz#e2d06592fa6b7ee67d3d7f412b0626367e8392c7"
+  integrity sha512-cMm0nZMUcJ/F2oNLdwKXH40fNBxwX30X9Ho15J8IMmxseWtBipXUSG82q1Z1lT2s2k2FrVn21dxSpqjdRc2jcQ==
   dependencies:
     axios "^0.21.1"
+    core-js "^3.15.2"
     html-react-parser "^1.2.1"
     react-lazy-progressive-image "^1.5.5"
 
