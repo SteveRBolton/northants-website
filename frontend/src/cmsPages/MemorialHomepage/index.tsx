@@ -15,6 +15,7 @@ import {
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import {
+  MemorialQuickLinkProp,
   PageLinkProp,
   ServicesLinksListProps,
 } from 'northants-design-system/build/library/structure/ServicesLinksList/ServicesLinksList.types';
@@ -36,7 +37,7 @@ type MemorialHomepageProps = {
   promoBody?: TextWithSlicesProps;
   memorialNewsLinks: NewsArticleFeaturedBlockProps;
   memorialImages: HeroImageProp[];
-  memorialQuickLinks: PageLinkProp;
+  memorialQuickLinks: MemorialQuickLinkProp[];
   memorialCondolenceLink: LinksProp;
   memorialSummary: string;
   memorialIcon: string;
@@ -57,14 +58,20 @@ export default function MemorialHomepage({
   memorialSummary,
   memorialIcon,
 }: MemorialHomepageProps): ReactElement {
-  console.log(memorialQuickLinks);
-  const quickLinksArray = [];
+  const memorialServiceLinks = [];
   memorialQuickLinks.forEach((element) => {
     const item = {
       title: element.link.title,
-      icon: element.icon,
+      url: element.link.url,
+      iconKey: element.icon,
+      quickLinksArray: [
+        {
+          title: element.summary,
+          url: element.link.url,
+        },
+      ],
     };
-    quickLinksArray.push(item);
+    memorialServiceLinks.push(item);
   });
   return (
     <>
@@ -130,8 +137,9 @@ export default function MemorialHomepage({
 
       <MaxWidthContainer>
         <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
-          <ServicesLinksList serviceLinksArray={quickLinksArray} />
+          <ServicesLinksList hideHeader serviceLinksArray={memorialServiceLinks} />
           <NewsArticleFeaturedBlock {...memorialNewsLinks} />
+
           <PageMain>
             <AlertBannerServiceIE />
             {body && <TextWithSlices {...body} />}
