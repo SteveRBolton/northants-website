@@ -50,13 +50,14 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
   public function getMemorialCondolenceLink(): array {
     $config = config_pages_config('memorial_takeover');
     $memorialCondolenceLinkField = $config ? $config->get('field_condolence_link'):[];
-    $memorialCondolenceLinks = [];
 
     foreach ($memorialCondolenceLinkField as $link) {
-      $test = $this->getLink($link);
-      array_push($memorialCondolenceLinks, $test);
+      $linkData = GraphQLFieldResolver::resolveLinkItem($link);
+      $linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'], "external"=> $linkData['external']];
+      return $linkObj;
     }
-    return $memorialCondolenceLinks;
+    return null;
+    
   }
 
   public function getMemorialSummary(): array {
@@ -236,24 +237,15 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
     }
 
     if($fieldName === "memorialCondolenceLink") {
-      $condolenceLinks = [];
-      $condolenceLinksField = $this->getMemorialCondolenceLink();
-
-      foreach ($condolenceLinksField as $link) {
-        $linkData = GraphQLFieldResolver::resolveLinkItem($link);
-        $linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'] ];
-        array_push($condolenceLinks, $linkObj);
-      }
-      return $condolenceLinks;
+      return $this->getMemorialCondolenceLink();
     }
 
     if($fieldName === "memorialSummary") {
       $summaryList = $this->getMemorialSummary();
-      $returnedList = [];
       foreach ($summaryList as $summary) {
-        array_push($returnedList, $summary['value']);
+        return $summary['value'];
       }
-      return $returnedList;
+      return $null;
     }
 
     if ($fieldName === 'memorialNewsLinks') {

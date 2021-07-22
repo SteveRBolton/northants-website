@@ -298,8 +298,8 @@ type HomepageNode implements Node @entity(type: node, bundle: "homepage") {
   memorialTakeover: Boolean!
   memorialQuickLinks: [MemorialLink!]
   memorialImages: [MemorialImage!]!
-  memorialCondolenceLink: [LinkFieldWithTitle]
-  memorialSummary: [String!]
+  memorialCondolenceLink: LinkFieldWithTitle
+  memorialSummary: String
   memorialIcon: String
   memorialNewsLinks: [ArticlePageNode!]!
 }
