@@ -16,6 +16,13 @@ export interface GetCMSGlobals_globals_footerLinks {
   external: boolean;
 }
 
+export interface GetCMSGlobals_globals_accessibleLinks {
+  __typename: "LinkFieldWithTitle";
+  title: string;
+  url: string;
+  external: boolean;
+}
+
 export interface GetCMSGlobals_globals_sitewideAlerts_body {
   __typename: "FormattedField";
   value: string;
@@ -32,6 +39,7 @@ export interface GetCMSGlobals_globals_sitewideAlerts {
 export interface GetCMSGlobals_globals {
   __typename: "DrupalGlobals";
   footerLinks: GetCMSGlobals_globals_footerLinks[];
+  accessibleLinks: GetCMSGlobals_globals_accessibleLinks[];
   sitewideAlerts: GetCMSGlobals_globals_sitewideAlerts | null;
 }
 

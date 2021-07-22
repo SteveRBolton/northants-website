@@ -224,6 +224,49 @@ export interface HomepageNodeFull_featuredNews {
   date: string;
 }
 
+export interface HomepageNodeFull_memorialNewsLinks_featuredImage1440x810 {
+  __typename: "Image";
+  url: string;
+  altText: string | null;
+}
+
+export interface HomepageNodeFull_memorialNewsLinks {
+  __typename: "ArticlePageNode";
+  id: string;
+  title: string;
+  url: string;
+  featuredImage1440x810: HomepageNodeFull_memorialNewsLinks_featuredImage1440x810 | null;
+  image720x405: string | null;
+  image72x41: string | null;
+  imageAltText: string | null;
+  date: string;
+}
+
+export interface HomepageNodeFull_memorialImages {
+  __typename: "MemorialImage";
+  image1440x810: string;
+  image144x81: string;
+}
+
+export interface HomepageNodeFull_memorialCondolenceLink {
+  __typename: "LinkFieldWithTitle";
+  url: string;
+  title: string;
+}
+
+export interface HomepageNodeFull_memorialQuickLinks_link {
+  __typename: "LinkFieldWithTitle";
+  url: string;
+  title: string;
+}
+
+export interface HomepageNodeFull_memorialQuickLinks {
+  __typename: "MemorialLink";
+  icon: string | null;
+  link: HomepageNodeFull_memorialQuickLinks_link | null;
+  summary: string | null;
+}
+
 export interface HomepageNodeFull {
   __typename: "HomepageNode";
   title: string;
@@ -238,4 +281,10 @@ export interface HomepageNodeFull {
   promoBanner: HomepageNodeFull_promoBanner | null;
   featuredNews: HomepageNodeFull_featuredNews[];
   memorialTakeover: boolean;
+  memorialNewsLinks: HomepageNodeFull_memorialNewsLinks[];
+  memorialImages: HomepageNodeFull_memorialImages[];
+  memorialCondolenceLink: HomepageNodeFull_memorialCondolenceLink | null;
+  memorialSummary: string | null;
+  memorialIcon: string | null;
+  memorialQuickLinks: HomepageNodeFull_memorialQuickLinks[] | null;
 }
