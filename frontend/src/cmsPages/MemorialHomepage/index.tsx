@@ -24,6 +24,10 @@ import { ThemeProvider } from 'styled-components';
 import { LinksProp } from 'northants-design-system/build/library/structure/SectionLinksSidebar/SectionLinksSidebar.types';
 import TextWithSlices, { TextWithSlicesProps } from '../../components/TextWithSlices';
 import AlertBannerServiceIE from '../../components/AlertBannerService';
+import {
+  GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialCondolenceLink,
+  GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks,
+} from '../../api/graphql/__generated__/GetCMSContentOrRedirect';
 
 type MemorialHomepageProps = {
   body?: TextWithSlicesProps;
@@ -35,10 +39,10 @@ type MemorialHomepageProps = {
   promoBody?: TextWithSlicesProps;
   memorialNewsLinks: NewsArticleFeaturedBlockProps;
   memorialImages: HeroImageProp[];
-  memorialQuickLinks: MemorialQuickLinkProp[];
-  memorialCondolenceLink: LinksProp;
-  memorialSummary: string;
-  memorialIcon: string;
+  memorialQuickLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks[] | null;
+  memorialCondolenceLink: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialCondolenceLink | null;
+  memorialSummary: string | null;
+  memorialIcon: string | null;
 };
 
 export default function MemorialHomepage({
@@ -56,21 +60,45 @@ export default function MemorialHomepage({
   memorialSummary,
   memorialIcon,
 }: MemorialHomepageProps): ReactElement {
-  const memorialServiceLinks = [];
-  memorialQuickLinks.forEach((element) => {
-    const item = {
-      title: element.link.title,
-      url: element.link.url,
-      iconKey: element.icon,
+  const memorialServiceLinks: PageLinkProp[] = [];
+  if (memorialQuickLinks != null) {
+    memorialQuickLinks.forEach((element) => {
+      if (element != null && element.link != null && element.icon != null && element.summary != null) {
+        const item: PageLinkProp = {
+          title: element.link.title,
+          url: element.link.url,
+          iconKey: element.icon,
+          quickLinksArray: [
+            {
+              title: element.summary,
+              url: element.link.url,
+            },
+          ],
+        };
+        memorialServiceLinks.push(item);
+      }
+    });
+  }
+  const condolenceLinkArray: PageLinkProp[] = [];
+  if (
+    memorialCondolenceLink != null &&
+    memorialCondolenceLink.title != null &&
+    memorialSummary != null &&
+    memorialIcon != null
+  ) {
+    condolenceLinkArray.push({
+      title: memorialCondolenceLink.title,
+      url: memorialCondolenceLink.url,
+      iconKey: memorialIcon,
       quickLinksArray: [
         {
-          title: element.summary,
-          url: element.link.url,
+          title: memorialSummary,
+          url: memorialCondolenceLink.url,
         },
       ],
-    };
-    memorialServiceLinks.push(item);
-  });
+    });
+  }
+
   return (
     <>
       <Head>
@@ -110,26 +138,9 @@ export default function MemorialHomepage({
               ]}
             />
           }
-          children={
-            <ServicesLinksList
-              hasBackground
-              hideHeader
-              serviceLinksArray={[
-                {
-                  title: memorialCondolenceLink[0].title,
-                  url: memorialCondolenceLink[0].url,
-                  iconKey: memorialIcon, // TODO this needs looking as its currently an image from the back end
-                  quickLinksArray: [
-                    {
-                      title: memorialSummary,
-                      url: memorialCondolenceLink[0].url,
-                    },
-                  ],
-                },
-              ]}
-              oneCol
-            />
-          }
+          placeholder="" // todo add values to these
+          alt=""
+          children={<ServicesLinksList hasBackground hideHeader serviceLinksArray={condolenceLinkArray} oneCol />}
         />
       </ThemeProvider>
 

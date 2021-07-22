@@ -289,8 +289,8 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   memorialTakeover: boolean;
   memorialNewsLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialNewsLinks[];
   memorialImages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialImages[];
-  memorialCondolenceLink: (GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialCondolenceLink | null)[] | null;
-  memorialSummary: string[] | null;
+  memorialCondolenceLink: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialCondolenceLink | null;
+  memorialSummary: string | null;
   memorialIcon: string | null;
   memorialQuickLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks[] | null;
 }

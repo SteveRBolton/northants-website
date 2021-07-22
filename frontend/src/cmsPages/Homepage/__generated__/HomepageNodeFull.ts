@@ -283,8 +283,8 @@ export interface HomepageNodeFull {
   memorialTakeover: boolean;
   memorialNewsLinks: HomepageNodeFull_memorialNewsLinks[];
   memorialImages: HomepageNodeFull_memorialImages[];
-  memorialCondolenceLink: (HomepageNodeFull_memorialCondolenceLink | null)[] | null;
-  memorialSummary: string[] | null;
+  memorialCondolenceLink: HomepageNodeFull_memorialCondolenceLink | null;
+  memorialSummary: string | null;
   memorialIcon: string | null;
   memorialQuickLinks: HomepageNodeFull_memorialQuickLinks[] | null;
 }
