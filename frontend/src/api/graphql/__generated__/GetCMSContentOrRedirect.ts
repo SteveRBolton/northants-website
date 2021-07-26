@@ -248,6 +248,31 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   date: string;
 }
 
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialImages {
+  __typename: "MemorialImage";
+  image1440x810: string;
+  image144x81: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialCondolenceLink {
+  __typename: "LinkFieldWithTitle";
+  url: string;
+  title: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks_link {
+  __typename: "LinkFieldWithTitle";
+  url: string;
+  title: string;
+}
+
+export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks {
+  __typename: "MemorialLink";
+  icon: string | null;
+  link: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks_link | null;
+  summary: string | null;
+}
+
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode {
   __typename: "HomepageNode";
   title: string;
@@ -263,6 +288,11 @@ export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode
   featuredNews: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_featuredNews[];
   memorialTakeover: boolean;
   memorialNewsLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialNewsLinks[];
+  memorialImages: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialImages[];
+  memorialCondolenceLink: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialCondolenceLink | null;
+  memorialSummary: string | null;
+  memorialIcon: string | null;
+  memorialQuickLinks: GetCMSContentOrRedirect_route_DrupalNodeRoute_node_HomepageNode_memorialQuickLinks[] | null;
 }
 
 export interface GetCMSContentOrRedirect_route_DrupalNodeRoute_node_ServiceLandingPageNode_serviceLandingBody_embeds_paragraph_AccordionItemParagraph {
