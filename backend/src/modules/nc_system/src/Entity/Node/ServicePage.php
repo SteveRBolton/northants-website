@@ -7,6 +7,7 @@ use Drupal\nc_system\Entity\Paragraph\Section;
 use Drupal\nc_system\GraphQLFieldResolver;
 use Drupal\nc_system\Entity\GraphQLEntityFieldResolver;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\Entity\Node;
 use phpDocumentor\Reflection\Types\Boolean;
 
 
@@ -173,6 +174,11 @@ class ServicePage extends Content implements GraphQLEntityFieldResolver {
       $parentEntity = $section->getParentEntity();
 
       if ($parentEntity !== null) {
+        if ($parentEntity instanceof \Drupal\node\Entity\Node) {
+          if (!$parentEntity->isPublished()) {
+            return false;
+          }
+        }
         $currentSectionIDs = array_column($parentEntity->field_sections->getValue(), 'target_id');
 
         if (in_array($section->id(), $currentSectionIDs)) {
