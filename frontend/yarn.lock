@@ -7947,10 +7947,10 @@
   "resolved" "https://registry.npmjs.org/normalize-url/-/normalize-url-4.5.0.tgz"
   "version" "4.5.0"
 
-"northants-design-system@0.1.113":
-  "integrity" "sha512-qhtJottSRePYYxtmO+zHS1uF9WtN6u2Vgi7l+b0noZu3Yu2fxj6BhoTMV+j1NhJeGmtuSO6g9Q5Z6qZe36AUMg=="
-  "resolved" "https://registry.npmjs.org/northants-design-system/-/northants-design-system-0.1.113.tgz"
-  "version" "0.1.113"
+"northants-design-system@0.1.114":
+  "integrity" "sha512-DP3JbchQvsEOi/Lo2iztpmXwTn0Y0B5B2A5RW6uiK+jydL/5SFc6oRCwJtwAm8r+GOZJKqvaVDqANaWHLKRk4A=="
+  "resolved" "https://registry.npmjs.org/northants-design-system/-/northants-design-system-0.1.114.tgz"
+  "version" "0.1.114"
   dependencies:
     "axios" "^0.21.1"
     "core-js" "^3.15.2"
