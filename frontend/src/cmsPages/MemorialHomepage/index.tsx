@@ -142,7 +142,7 @@ export default function MemorialHomepage({
       <MaxWidthContainer>
         <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
           <ServicesLinksList hideHeader serviceLinksArray={memorialServiceLinks} />
-          <NewsArticleFeaturedBlock {...memorialNewsLinks} />
+          <NewsArticleFeaturedBlock {...memorialNewsLinks} viewAllLink="/news" />
 
           <PageMain>
             <AlertBannerServiceIE />
