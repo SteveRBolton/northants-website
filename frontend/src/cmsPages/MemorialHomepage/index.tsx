@@ -135,13 +135,21 @@ export default function MemorialHomepage({
           }
           placeholder="" // todo add values to these
           alt=""
-          children={<ServicesLinksList hasBackground hideHeader serviceLinksArray={condolenceLinkArray} oneCol />}
+          children={
+            <ServicesLinksList
+              hasBackground
+              hideHeader
+              serviceLinksArray={condolenceLinkArray}
+              oneCol
+              serviceId="condolence-link"
+            />
+          }
         />
       </ThemeProvider>
 
       <MaxWidthContainer>
         <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
-          <ServicesLinksList hideHeader serviceLinksArray={memorialServiceLinks} />
+          <ServicesLinksList hideHeader serviceLinksArray={memorialServiceLinks} serviceId="memorial-news" />
           <NewsArticleFeaturedBlock {...memorialNewsLinks} viewAllLink="/news" />
 
           <PageMain>
