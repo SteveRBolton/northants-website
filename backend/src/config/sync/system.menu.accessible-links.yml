@@ -1,0 +1,8 @@
+uuid: e94dab1d-c240-4801-a712-e801a84fc86b
+langcode: en
+status: true
+dependencies: {  }
+id: accessible-links
+label: 'Accessible Links'
+description: ''
+locked: false
