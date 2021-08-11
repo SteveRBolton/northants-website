@@ -78,7 +78,7 @@ export default function ArticlePage({
           {oldPost ? null : <NewsArticleOldBanner />}
           <Heading level={1} text={title} />
           {parent ? <Button primary={false} text={parent.text} url={parent.url} /> : null}
-          <NewsArticleDate text={date} format="DD MMMM YYYY" />
+          <NewsArticleDate text={date} format="D MMMM YYYY" />
           {featuredImage1440x810 && featuredImage144x81 ? (
             <NewsArticleImage
               image1440x810={featuredImage1440x810?.url}
