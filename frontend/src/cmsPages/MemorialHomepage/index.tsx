@@ -103,8 +103,6 @@ export default function MemorialHomepage({
     memorialImages = [{ image1440x810: '', image144x81: '' }];
   }
 
-  console.log(memorialImages);
-
   return (
     <>
       <Head>
