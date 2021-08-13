@@ -11,6 +11,7 @@ permissions:
   - 'access media overview'
   - 'access toolbar'
   - 'add paragraphs entity embed'
+  - 'administer menu'
   - 'create audio media'
   - 'create document media'
   - 'create image media'
