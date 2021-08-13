@@ -56,7 +56,7 @@ class Homepage extends Content implements GraphQLEntityFieldResolver {
       $linkObj = [ "title"=> $linkData['title'], "url" => $linkData['url'], "external"=> $linkData['external']];
       return $linkObj;
     }
-    return null;
+    return ['url'=> '', 'title'=>''];
     
   }
 
