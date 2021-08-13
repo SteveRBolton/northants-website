@@ -99,6 +99,10 @@ export default function MemorialHomepage({
     });
   }
 
+  if (memorialImages.length == 0) {
+    memorialImages = [{ image1440x810: '', image144x81: '' }];
+  }
+
   return (
     <>
       <Head>
