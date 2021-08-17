@@ -84,7 +84,7 @@ nice_filemimes:
   application/vnd_@_cluetrust_@_cartomobile-config-pkg: 'ClueTrust CartoMobile - Config Package'
   image/x-cmu-raster: 'CMU Image'
   model/vnd_@_collada+xml: COLLADA
-  text/csv: 'Comma-Seperated Values'
+  text/csv: 'Comma-Separated Values'
   application/mac-compactpro: 'Compact Pro'
   application/vnd_@_wap_@_wmlc: 'Compiled Wireless Markup Language (WMLC)'
   image/cgm: 'Computer Graphics Metafile'
@@ -603,7 +603,7 @@ nice_filemimes:
   application/x-sv4cpio: 'System V Release 4 CPIO Archive'
   application/x-sv4crc: 'System V Release 4 CPIO Checksum Data'
   application/sbml+xml: 'Systems Biology Markup Language'
-  text/tab-separated-values: 'Tab Seperated Values'
+  text/tab-separated-values: 'Tab Separated Values'
   image/tiff: 'Tagged Image File Format'
   application/vnd_@_tao_@_intent-module-archive: 'Tao Intent'
   application/x-tar: 'Tar File (Tape Archive)'
