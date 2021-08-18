@@ -3,10 +3,10 @@ import { AlertBannerService } from 'northants-design-system';
 
 const AlertBannerServiceIE = (): ReactElement | null => {
   let usingInternetExplorer = null;
-  console.log('Alert banner start');
+  // console.log('Alert banner start');
   if (typeof window !== 'undefined') {
     console.log('If window is not undefined');
-    if (navigator) {
+    if (typeof navigator !== 'undefined' && navigator) {
       console.log('If navigator', navigator);
       // Can't use destructing assignment here as it needs to work on IE.
       const { userAgent } = navigator;
