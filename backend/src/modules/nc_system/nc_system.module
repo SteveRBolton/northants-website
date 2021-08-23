@@ -229,9 +229,6 @@ function _purge_node(Node $node) {
       break;
 
     case 'service_landing_page':
-      $urls[] = $host . $page_url;
-      break;
-      
     case 'service_page':
       $urls[] = $host . $page_url;
       break;
