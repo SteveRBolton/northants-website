@@ -75,13 +75,13 @@ settings:
       value: council
       label: 'Your council'
     -
-      value: CondolenceBookIcon
+      value: condolenceBook
       label: 'Condolence book'
     -
-      value: GovUKIcon
+      value: govUK
       label: 'Gov UK'
     -
-      value: RoyalWebsiteIcon
+      value: royalWebsite
       label: 'Royal website'
   allowed_values_function: ''
 module: options
