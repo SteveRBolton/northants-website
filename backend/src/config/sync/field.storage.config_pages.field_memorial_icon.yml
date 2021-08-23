@@ -74,6 +74,15 @@ settings:
     -
       value: council
       label: 'Your council'
+    -
+      value: condolenceBook
+      label: 'Condolence book'
+    -
+      value: govUK
+      label: 'Gov UK'
+    -
+      value: royalWebsite
+      label: 'Royal website'
   allowed_values_function: ''
 module: options
 locked: false
