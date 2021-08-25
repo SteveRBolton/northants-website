@@ -1,6 +1,9 @@
 ---
-name: 🚀 Feature Request
+name: "\U0001F680 Feature Request"
 about: Ideas for new features and improvements
+title: ''
+labels: ''
+assignees: ''
 
 ---
 

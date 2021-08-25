@@ -1,7 +1,9 @@
 ---
-name: 🐛 Bug Report
+name: "\U0001F41B Bug Report"
 about: Bugs or issues (general/accessibility)
-labels: Bug
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
