@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface Accordion_sections_body_embeds_paragraph_AccordionItemParagraph {
-  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
+  __typename: "AccordionItemParagraph" | "AccordionParagraph" | "CouncilSignpostParagraph" | "CouncilSignpostingParagraph" | "CouncilTaxListParagraph" | "PromoBannerParagraph" | "SectionParagraph" | "ServiceLinksParagraph";
 }
 
 export interface Accordion_sections_body_embeds_paragraph_CallToActionParagraph_link {
