@@ -1,0 +1,10 @@
+uuid: 4700ac46-eac5-4099-88ae-9ea659729d9e
+langcode: en
+status: true
+dependencies: {  }
+id: council_tax_list
+label: 'Council tax list'
+icon_uuid: null
+icon_default: null
+description: 'Displays a list of parishes and their council tax data'
+behavior_plugins: {  }

@@ -426,6 +426,13 @@ type ServiceLinksParagraph implements Paragraph
   servicePages: [ServicePageNode!]!
 }
 
+type CouncilTaxListParagraph implements Paragraph
+  @entity(type: paragraph, bundle: "council_tax_list") {
+  id: String!
+  topText: String
+  bottomText: String
+}
+
 type AccordionParagraph implements Paragraph
   @entity(type: paragraph, bundle: "accordion") {
   id: String!

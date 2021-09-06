@@ -14,6 +14,7 @@ type_settings:
   paragraphs_type_filter:
     accordion: accordion
     call_to_action: call_to_action
+    council_tax_list: council_tax_list
     file_download: file_download
     highlight: highlight
     pull_quote: pull_quote

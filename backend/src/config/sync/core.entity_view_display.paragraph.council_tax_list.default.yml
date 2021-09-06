@@ -1,0 +1,29 @@
+uuid: 6f637d8b-b523-4a83-8c15-8e773714f699
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.council_tax_list.field_bottom_text
+    - field.field.paragraph.council_tax_list.field_top_text
+    - paragraphs.paragraphs_type.council_tax_list
+id: paragraph.council_tax_list.default
+targetEntityType: paragraph
+bundle: council_tax_list
+mode: default
+content:
+  field_bottom_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_top_text:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden:
+  search_api_excerpt: true

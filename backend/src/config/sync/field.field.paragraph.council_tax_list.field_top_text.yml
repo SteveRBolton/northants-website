@@ -1,0 +1,19 @@
+uuid: 4d090ef3-0b63-4d61-bb24-9a97f65c16b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_top_text
+    - paragraphs.paragraphs_type.council_tax_list
+id: paragraph.council_tax_list.field_top_text
+field_name: field_top_text
+entity_type: paragraph
+bundle: council_tax_list
+label: 'top text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
