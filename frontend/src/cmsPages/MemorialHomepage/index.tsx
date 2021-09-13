@@ -127,12 +127,15 @@ export default function MemorialHomepage({
           src={memorialImages[0].image1440x810}
           theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}
           councilServices={
-            <PromotedLinks
+            <ServicesLinksList
+              hasBackground
+              hideHeader
               oneCol
-              promotedLinksArray={[
+              serviceId="proceed-to-council-services-link"
+              serviceLinksArray={[
                 {
                   title: 'Proceed to Council services',
-                  url: '#main',
+                  url: '#all-services',
                 },
               ]}
             />

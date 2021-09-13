@@ -4668,10 +4668,10 @@
   dependencies:
     "domelementtype" "^2.0.1"
 
-"domhandler@^4.0.0", "domhandler@^4.2.0", "domhandler@4.2.0":
-  "integrity" "sha512-zk7sgt970kzPks2Bf+dwT/PLzghLnsivb9CcxkvR8Mzr66Olr0Ofd8neSbglHJHaHa2MadfoSdNlKYAaafmWfA=="
-  "resolved" "https://registry.npmjs.org/domhandler/-/domhandler-4.2.0.tgz"
-  "version" "4.2.0"
+"domhandler@^4.0.0", "domhandler@^4.2.0", "domhandler@4.2.2":
+  "integrity" "sha512-PzE9aBMsdZO8TK4BnuJwH0QT41wgMbRzuZrHUcpYncEjmQazq8QEaBWgLG7ZyC/DAZKEgglpIA6j4Qn/HmxS3w=="
+  "resolved" "https://registry.npmjs.org/domhandler/-/domhandler-4.2.2.tgz"
+  "version" "4.2.2"
   dependencies:
     "domelementtype" "^2.2.0"
 
@@ -4707,9 +4707,9 @@
     "domhandler" "^4.0.0"
 
 "domutils@^2.5.2":
-  "integrity" "sha512-8eaHa17IwJUPAiB+SoTYBo5mCdeMgdcAoXJ59m6DT1vw+5iLS3gNoqYaRowaBKtGVrOF1Jz4yDTgYKLK2kvfJg=="
-  "resolved" "https://registry.npmjs.org/domutils/-/domutils-2.7.0.tgz"
-  "version" "2.7.0"
+  "integrity" "sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A=="
+  "resolved" "https://registry.npmjs.org/domutils/-/domutils-2.8.0.tgz"
+  "version" "2.8.0"
   dependencies:
     "dom-serializer" "^1.0.1"
     "domelementtype" "^2.2.0"
@@ -6146,31 +6146,21 @@
     "domhandler" "2.4.2"
     "htmlparser2" "3.10.1"
 
-"html-dom-parser@1.0.1":
-  "integrity" "sha512-uKXISKlHzB/l9A08jrs2wseQJ9b864ZfEdmIZskj10cuP6HxCOMHSK0RdluV8NVQaWs0PwefN7d8wqG3jR0IbQ=="
-  "resolved" "https://registry.npmjs.org/html-dom-parser/-/html-dom-parser-1.0.1.tgz"
-  "version" "1.0.1"
+"html-dom-parser@1.0.2":
+  "integrity" "sha512-Jq4oVkVSn+10ut3fyc2P/Fs1jqTo0l45cP6Q8d2ef/9jfkYwulO0QXmyLI0VUiZrXF4czpGgMEJRa52CQ6Fk8Q=="
+  "resolved" "https://registry.npmjs.org/html-dom-parser/-/html-dom-parser-1.0.2.tgz"
+  "version" "1.0.2"
   dependencies:
-    "domhandler" "4.2.0"
+    "domhandler" "4.2.2"
     "htmlparser2" "6.1.0"
 
-"html-react-parser@^0.14.2":
+"html-react-parser@^0.14.2", "html-react-parser@^1.2.1":
   "integrity" "sha512-ZyjUlNZ0cAUhknoXSTfE2yZteY+pnbGXE3Flp5l3Qk40UvKDRp+F/nBvRbIHrWa7tGLZInigJoBuFylxyhGU9w=="
   "resolved" "https://registry.npmjs.org/html-react-parser/-/html-react-parser-0.14.2.tgz"
   "version" "0.14.2"
   dependencies:
     "@types/htmlparser2" "3.10.1"
     "html-dom-parser" "0.3.0"
-    "react-property" "1.0.1"
-    "style-to-js" "1.1.0"
-
-"html-react-parser@^1.2.1":
-  "integrity" "sha512-fPPbnMNbVuceyJARZTCu2/Ai7XbVsfncwVUl3IFpgV8BG7lv6hm+Z8NWXRgc2r1DXTf1wRnLaPDL4unbln/r+g=="
-  "resolved" "https://registry.npmjs.org/html-react-parser/-/html-react-parser-1.2.8.tgz"
-  "version" "1.2.8"
-  dependencies:
-    "domhandler" "4.2.0"
-    "html-dom-parser" "1.0.1"
     "react-property" "1.0.1"
     "style-to-js" "1.1.0"
 
@@ -7881,11 +7871,13 @@
   "resolved" "https://registry.npmjs.org/normalize-url/-/normalize-url-4.5.0.tgz"
   "version" "4.5.0"
 
-"northants-design-system@file:.yalc/northants-design-system":
-  "resolved" "file:.yalc/northants-design-system"
-  "version" "0.1.115"
+"northants-design-system@0.1.119":
+  "integrity" "sha512-xxkUVufuNdeHbqLVtqmzQnXBJUGKG++I6GGtSmq++SbLfSuPmd78dqyRVL0SW0DQR5T600X5Wm6ow0HC7MzDwQ=="
+  "resolved" "https://registry.npmjs.org/northants-design-system/-/northants-design-system-0.1.119.tgz"
+  "version" "0.1.119"
   dependencies:
     "axios" "^0.21.1"
+    "core-js" "^3.15.2"
     "html-react-parser" "^1.2.1"
     "react-lazy-progressive-image" "^1.5.5"
 
@@ -8759,6 +8751,11 @@
   "resolved" "https://registry.npmjs.org/react-property/-/react-property-1.0.1.tgz"
   "version" "1.0.1"
 
+"react-property@2.0.0":
+  "integrity" "sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw=="
+  "resolved" "https://registry.npmjs.org/react-property/-/react-property-2.0.0.tgz"
+  "version" "2.0.0"
+
 "react-refresh@0.8.3":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
@@ -8771,7 +8768,7 @@
   dependencies:
     "prop-types" "^15.7.2"
 
-"react@^0.14 || ^15 || ^16 || ^17", "react@^0.14.9 || ^15.3.0 || ^16.0.0", "react@^16.6.0", "react@^16.8.0", "react@^16.8.0 || ^17.0.0", "react@^16.9.0", "react@^17.0.1", "react@>= 16.8.0", "react@>=16.0.0", "react@>=16.8.0", "react@15.x.x || 16.x.x", "react@17.0.1":
+"react@^0.14 || ^15 || ^16 || ^17", "react@^0.14.9 || ^15.3.0 || ^16.0.0", "react@^16.6.0", "react@^16.8.0", "react@^16.8.0 || ^17.0.0", "react@^16.9.0", "react@^17.0.1", "react@>= 16.8.0", "react@>=16.0.0", "react@>=16.8.0", "react@0.14 || 15 || 16 || 17", "react@15.x.x || 16.x.x", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.1.tgz"
   "version" "17.0.1"
