@@ -118,14 +118,14 @@ export default function MemorialHomepage({
         <meta property="twitter:title" content={metaTitle} />
         <meta property="twitter:description" content={metaDescription || ''} />
       </Head>
-      <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
+      <ThemeProvider theme={process.env.NEXT_PUBLIC_WEBSITE === 'north' ? lb_theme_north : lb_theme_west}>
         <Header />
       </ThemeProvider>
 
-      <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
+      <ThemeProvider theme={process.env.NEXT_PUBLIC_WEBSITE === 'north' ? lb_theme_north : lb_theme_west}>
         <MemorialHero
           src={memorialImages[0].image1440x810}
-          theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}
+          theme={process.env.NEXT_PUBLIC_WEBSITE === 'north' ? lb_theme_north : lb_theme_west}
           councilServices={
             <ServicesLinksList
               hasBackground
@@ -155,7 +155,7 @@ export default function MemorialHomepage({
       </ThemeProvider>
 
       <MaxWidthContainer>
-        <ThemeProvider theme={process.env.NEXT_PUBLIC_THEME === 'north' ? lb_theme_north : lb_theme_west}>
+        <ThemeProvider theme={process.env.NEXT_PUBLIC_WEBSITE === 'north' ? lb_theme_north : lb_theme_west}>
           <ServicesLinksList hideHeader serviceLinksArray={memorialServiceLinks} serviceId="memorial-news" />
           <NewsArticleFeaturedBlock {...memorialNewsLinks} viewAllLink="/news" />
 
