@@ -20,6 +20,7 @@ use Drupal\nc_system\Entity\Paragraph\FileDownload;
 use Drupal\nc_system\Entity\Paragraph\PromoBanner;
 use Drupal\nc_system\Entity\TaxonomyTerm\SovereignCouncil;
 use Drupal\node\Entity\Node;
+use Drupal\path_alias\Entity\PathAlias;
 use Drupal\system\Entity\Menu;
 use Drupal\redirect\Entity\Redirect;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -215,39 +216,172 @@ function nc_system_node_presave(Node $node) {
 }
 
 /**
- * This function purges the Cloudflare cache on nodes.
+ * This function purges the Cloudflare cache for a Node.
  * @param Node $node
+ *   The Node (page) that has been modified.
  */
 function _purge_node(Node $node) {
-  $urls = [];
+  // Gather all related URLs.
+  $urls = _nc_system_gather_purge_urls($node);
+
+  if (!empty($urls)) {
+    // Flush the URL(s) from Cloudflare.
+    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+    $purge_service->purgeByUrl($urls);
+  }
+}
+
+/**
+ * Helper function. Gather all relevant URLs relating to a Node to be flushed from Cloudflare.
+ *
+ * @param Node $node
+ *   The Node that has been modified.
+ * @return array
+ *   An array of URL strings.
+ */
+function _nc_system_gather_purge_urls(Node $node) {
+  /** @var Drupal\path_alias\AliasManager $path_manager */
+  $path_manager = \Drupal::service('path_alias.manager');
   $host = \Drupal::service('nc_system.website_manager')->getHost();
-  $page_url = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
+
+  // Gather a list of all Nodes related to this change.
+  $nodes = _nc_system_gather_purge_nodes($node);
+
+  $urls = [];
+  foreach ($nodes as $node) {
+    // Get the page URL for the Node.
+    $page_url = $path_manager->getAliasByPath('/node/' . $node->id());
+    $urls[] = $host . $page_url;
+
+    // Check for additional related URLs.
+    switch ($node->getType()) {
+      case 'homepage':
+        $urls[] = $host;
+        break;
+
+      case 'news_article':
+        $urls[] = $host . '/news';
+        // if the news article is promoted we clear the homepage as well.
+        if ($node->isPromoted()) {
+          $urls[] = $host;
+        }
+        break;
+    }
+  }
+
+  return array_unique($urls);
+}
+
+/**
+ * Helper function to gather all related Nodes to be purged from Cloudflare.
+ *
+ * @param Node $node
+ *   The affected Node.
+ * @return Node[]
+ */
+function _nc_system_gather_purge_nodes(Node $node) {
+  $nodes = [$node];
+
+  // Check if there is an 'original' (previous version) of this Node available.
+  if ($original = $node->original) {
+    // Account for the parent page changing.
+    if ($node->hasField('field_parent') && $original->hasField('field_parent')) {
+      $node_parent = $node->field_parent->entity;
+      $node_parent_id = !empty($node_parent) ? $node_parent->id() : NULL;
+      $original_parent = $original->field_parent->entity;
+      $original_parent_id = !empty($original_parent) ? $original_parent->id() : NULL;
+      // Compare the two parent IDs.
+      if (!empty($original_parent) && ($node_parent_id !== $original_parent_id)) {
+        // The original Node object shouldn't have its own 'original', but remove it just in case to prevent loops.
+        unset($original_parent->original);
+        // They differ, so add the original parent to the list of Nodes to purge from Cloudflare.
+        $nodes += _nc_system_gather_purge_nodes($original_parent);
+      }
+    }
+  }
 
   switch ($node->getType()) {
-    case 'homepage':
-      $urls[] = $host;
-      break;
-
     case 'service_landing_page':
     case 'service_page':
-      $urls[] = $host . $page_url;
-      break;
-
-    case 'news_article':
-      $urls[] = $host . '/news';
-      $urls[] = $host . $page_url;
-
-      // if the news article is promoted we clear the homepage as well
-      if ($node->isPromoted()) {
-        $urls[] = $host;
-      }
-
+      // Service pages can share a secondary menu structure and on-page alerts, so all related pages need to be purged.
+      $nodes += _nc_system_gather_related_service_pages($node);
       break;
   }
 
-  if (!empty($urls)) {
-    $purge_service = \Drupal::service('nc_cloudflare_purge.service');
-    $purge_service->purgeByUrl($urls);
+  return $nodes;
+}
+
+/**
+ * Helper function to gather all parent, child and sibling service pages relating to the provided Node.
+ *
+ * @param Node $node
+ * @param array $nodes
+ * @param int $count
+ * @return array|mixed
+ */
+function _nc_system_gather_related_service_pages(Node $node) {
+  if (empty($node) || !$node->hasField('field_parent')) {
+    return [$node];
+  }
+
+  $nodes = [
+    $node->id() => $node,
+  ];
+
+  // Gather parent pages which may be affected.
+  $item = $node;
+  while ($item && ($parent = $item->field_parent->entity)) {
+    $item = $parent;
+    if (isset($nodes[$item->id()])) {
+      // We've got a circular reference of parent pages.
+      break;
+    }
+    $nodes[$item->id()] = $item;
+  }
+
+  // Find all Nodes in the navigation tree structure.
+  $max_iterations = 5;
+  do {
+    // Search for all published service pages whose parent is one of the Nodes in our list.
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', ['service_page', 'service_landing_page'], 'IN')
+      ->condition('field_parent.entity:node.nid', array_keys($nodes), 'IN')
+      ->condition('status', 1)
+      ->execute();
+
+    // Add any new Nodes to our list.
+    $new_nids = array_diff($nids, array_keys($nodes));
+    foreach (Node::loadMultiple($new_nids) as $n) {
+      $nodes[$n->id()] = $n;
+    }
+
+    // Repeat until there are no new Nodes found, or we hit our maximum iteration limit.
+  } while(!empty($new_nids) && --$max_iterations);
+
+  return array_values($nodes);
+}
+
+/**
+ * Implements hook_path_alias_update().
+ */
+function nc_system_path_alias_update(PathAlias $path_alias) {
+  // A path alias has been edited. Check if the path or alias have changed.
+  if ($original_alias = $path_alias->original) {
+    if ($path_alias->getAlias() !== $original_alias->getAlias()
+      || $path_alias->getPath() !== $original_alias->getPath()) {
+
+      // The alias or path have changed, purge the corresponding URLs.
+      $host = \Drupal::service('nc_system.website_manager')->getHost();
+      // Purge the new and original paths (/node/123) and aliases (/council-tax/my-page).
+      $urls = [
+        $host . $path_alias->getAlias(),
+        $host . $original_alias->getAlias(),
+        $host . $path_alias->getPath(),
+        $host . $original_alias->getPath(),
+      ];
+      $purge_service = \Drupal::service('nc_cloudflare_purge.service');
+      $purge_service->purgeByUrl(array_unique($urls));
+    }
   }
 }
 
