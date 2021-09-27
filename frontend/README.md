@@ -69,4 +69,4 @@ https://www.northnorthants.gov.uk/north_frame/index.html
 | NEXT_PUBLIC_GTM_CODE  | String        | The Google Tag Manager code for the website |
 | NEXT_PUBLIC_SITEMAP_ENDPOINT  | URI        | The url to the sitemap.xml file in Drupal |
 | NEXT_PUBLIC_THEME  | String        | The design system theme name i.e. west, lb_theme_west, etc |
-| NEXT_PUBLIC_WEBSITE  | String        | The website it is on i.e. west, north |
+| NEXT_PUBLIC_WEBSITE  | String        | The website it is on i.e. west, north | 
